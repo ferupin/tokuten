@@ -6,7 +6,7 @@ This file is the written copy of the history shown in the app at `/changelog`. T
 
 Versions follow `major.minor.patch`.
 
-- **Patch**: fixes and wording changes that do not alter any result.
+- **Patch**: fixes, wording and visual polish that do not alter any result.
 - **Minor**: new features, new screens, new profiles.
 - **Major**: changes that alter how an existing evaluation is calculated or that break the JSON format.
 
@@ -18,6 +18,15 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 2. Update `version` in `package.json`. A test fails if the two disagree.
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
+
+## 0.1.1 (2026-11-06)
+
+Site icon. Sentai profile v1.
+
+### Design
+- Vector icon (`icon.svg`) in vermilion with the kanji in cream. The kanji outline comes from the Shippori Mincho font and is stored as a path, so no font is needed to display it.
+- `favicon.ico` with 16, 32 and 48 px frames. The small sizes drop the inner border and use a larger kanji to stay readable.
+- Apple touch icon (180 px) without rounded corners, since iOS applies its own.
 
 ## 0.1.0 (2026-11-06)
 

@@ -32,6 +32,38 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.1.1",
+    date: "2026-11-06",
+    sentaiProfileVersion: 1,
+    title: { en: "Site icon", "pt-BR": "Ícone do site" },
+    summary: {
+      en: "The hanko seal with the 点 kanji is now the icon of the site in browser tabs, bookmarks and on the home screen of phones.",
+      "pt-BR":
+        "O selo hanko com o kanji 点 agora é o ícone do site nas abas do navegador, nos favoritos e na tela inicial de celulares.",
+    },
+    groups: [
+      {
+        area: "design",
+        items: [
+          {
+            en: "Vector icon (icon.svg) in vermilion with the kanji in cream. The kanji outline comes from the Shippori Mincho font and is stored as a path, so it needs no font to display.",
+            "pt-BR":
+              "Ícone vetorial (icon.svg) em vermelhão com o kanji em creme. O contorno do kanji vem da fonte Shippori Mincho e fica guardado como um traçado, então não depende de fonte para aparecer.",
+          },
+          {
+            en: "favicon.ico with 16, 32 and 48 px frames. The small sizes drop the inner border and use a larger kanji to stay readable.",
+            "pt-BR":
+              "favicon.ico com quadros de 16, 32 e 48 px. Os tamanhos pequenos retiram a borda interna e usam um kanji maior para continuar legíveis.",
+          },
+          {
+            en: "Apple touch icon (180 px) without rounded corners, since iOS applies its own.",
+            "pt-BR": "Ícone para a tela inicial da Apple (180 px) sem cantos arredondados, já que o iOS aplica os seus.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.1.0",
     date: "2026-11-06",
     sentaiProfileVersion: 1,
