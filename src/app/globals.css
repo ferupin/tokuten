@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens.
+ * Light: "Washi", warm cream paper with sumi ink and shu vermilion.
+ * Dark: "Shikkoku", lacquer black with a brown undertone and ivory text.
+ * Pure white and pure black are avoided on purpose.
+ */
+:root {
+  --bg: #f3ecdc;
+  --surface: #faf5e9;
+  --surface-2: #efe6d2;
+  --ink: #221d16;
+  --ink-soft: #5d5446;
+  --line: #d8ccb2;
+  --line-strong: #bba98a;
+  --accent: #c23a22;
+  --accent-ink: #faf5e9;
+  --focus: #1f5f7a;
+
+  --red: #b8392a;
+  --blue: #2c6a85;
+  --yellow: #a9770d;
+  --green: #4f7440;
+  --pink: #b45a7c;
+
+  --good: #4f7440;
+  --warn: #a9770d;
+  --bad: #b8392a;
+
+  --shadow: 0 1px 0 rgba(34, 29, 22, 0.04), 0 10px 28px -14px rgba(34, 29, 22, 0.28);
+  --grain: rgba(34, 29, 22, 0.035);
+}
+
+:root[data-theme="dark"] {
+  --bg: #16130e;
+  --surface: #1e1a14;
+  --surface-2: #272219;
+  --ink: #ece3cf;
+  --ink-soft: #a89f8b;
+  --line: #342e23;
+  --line-strong: #4a4232;
+  --accent: #ee6a50;
+  --accent-ink: #1b1510;
+  --focus: #7ec1d9;
+
+  --red: #ee7261;
+  --blue: #6fb3cf;
+  --yellow: #e0b04a;
+  --green: #86b573;
+  --pink: #e48fb1;
+
+  --good: #86b573;
+  --warn: #e0b04a;
+  --bad: #ee7261;
+
+  --shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 14px 32px -16px rgba(0, 0, 0, 0.7);
+  --grain: rgba(236, 227, 207, 0.025);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --font-display: "Dela Gothic One", "Zen Kaku Gothic New", sans-serif;
+  --font-serif: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  --font-sans: "Zen Kaku Gothic New", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(circle at 1px 1px, var(--grain) 1px, transparent 0);
+  background-size: 20px 20px;
+  color: var(--ink);
+  font-family: "Zen Kaku Gothic New", system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.field {
+  width: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 14px;
+  transition: border-color 0.15s;
+}
+.field:focus {
+  border-color: var(--ink);
+  outline: none;
+}
+.field::placeholder {
+  color: var(--line-strong);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.12s, background 0.15s, color 0.15s;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+.btn.ghost:hover {
+  border-color: var(--ink);
+}
+.btn.danger {
+  background: transparent;
+  color: var(--bad);
+  border-color: var(--bad);
+}
+
+/* Range slider, tinted with the pillar color through --tone. */
+input[type="range"].grade {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+  --pct: 0%;
+}
+input[type="range"].grade::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(var(--tone, var(--accent)), var(--tone, var(--accent))) 0 / var(--pct) 100% no-repeat,
+    var(--surface-2);
+  border: 1px solid var(--line);
+}
+input[type="range"].grade::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+input[type="range"].grade::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--tone, var(--accent));
+}
+input[type="range"].grade::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--tone, var(--accent));
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+input[type="range"].grade::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--tone, var(--accent));
+}
+input[type="range"].grade:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Hanko stamp animation, used on the official score. */
+@keyframes stamp {
+  0% {
+    transform: scale(1.5) rotate(-8deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(0.96) rotate(-4deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-4deg);
+    opacity: 1;
+  }
+}
+.stamp-in {
+  animation: stamp 0.45s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
