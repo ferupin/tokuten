@@ -23,6 +23,7 @@ export const en = {
     madeBy: "Made by",
     version: "Version {version}",
     changelog: "Changelog",
+    backToTop: "Back to top",
     backToApp: "Back to the evaluator",
   },
   evaluation: {

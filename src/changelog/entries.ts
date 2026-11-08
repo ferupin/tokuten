@@ -32,6 +32,58 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.1.2",
+    date: "2026-11-06",
+    sentaiProfileVersion: 1,
+    title: { en: "Fixes and polish", "pt-BR": "Correções e acabamento" },
+    summary: {
+      en: "The changelog now opens at the top, English is always the starting language, the footer is easier to read and long pages have a way back to the top.",
+      "pt-BR":
+        "O histórico agora abre no topo, o inglês é sempre o idioma inicial, o rodapé ficou mais fácil de ler e as páginas longas ganharam um caminho de volta ao topo.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "Fixed: the changelog opened at the bottom, because the page kept the scroll position of the footer link. It now starts at the top, so the link back to the evaluator is visible.",
+            "pt-BR":
+              "Corrigido: o histórico abria no fim da página, porque mantinha a posição de rolagem do link do rodapé. Agora começa no topo, e o link de volta ao avaliador fica visível.",
+          },
+          {
+            en: "English is now always the starting language, whatever the language of the browser. A language chosen on purpose is still remembered.",
+            "pt-BR":
+              "O inglês agora é sempre o idioma inicial, qualquer que seja o idioma do navegador. Um idioma escolhido de propósito continua sendo lembrado.",
+          },
+          {
+            en: "Back to top button. It appears near the end of long pages, moves smoothly, and jumps instantly when reduced motion is on.",
+            "pt-BR":
+              "Botão de voltar ao topo. Aparece perto do fim das páginas longas, rola com suavidade e salta direto quando o movimento reduzido está ativado.",
+          },
+        ],
+      },
+      {
+        area: "design",
+        items: [
+          {
+            en: "Footer text increased from 11 px to 13 px, with a little more space above it.",
+            "pt-BR": "O texto do rodapé passou de 11 px para 13 px, com um pouco mais de espaço acima.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "README cleaned of merge leftovers. Commit message suggestions now follow the Conventional Commits pattern.",
+            "pt-BR":
+              "README limpo de sobras de merge. As sugestões de mensagem de commit agora seguem o padrão Conventional Commits.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.1.1",
     date: "2026-11-06",
     sentaiProfileVersion: 1,

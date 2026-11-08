@@ -47,15 +47,15 @@ const I18nContext = createContext<I18nValue | null>(null);
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("en");
 
-  // Read the saved or browser language after mount to keep hydration stable.
+  // English is always the default. Only a language the user picked on purpose
+  // is restored, and only after mount to keep hydration stable.
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY) as Locale | null;
-      if (saved && LOCALES.includes(saved)) return setLocaleState(saved);
+      if (saved && LOCALES.includes(saved)) setLocaleState(saved);
     } catch {
       /* storage can be unavailable */
     }
-    if (navigator.language.toLowerCase().startsWith("pt")) setLocaleState("pt-BR");
   }, []);
 
   useEffect(() => {

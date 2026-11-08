@@ -5,6 +5,7 @@ import { computeResult } from "@/core/scoring";
 import { Hanko } from "@/components/brand/hanko";
 import { LanguageSwitch } from "@/components/theme/language-switch";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { BackToTop } from "@/components/ui/back-to-top";
 import { Footer } from "@/components/ui/footer";
 import { useI18n } from "@/i18n";
 import { ActionsBar } from "@/features/result/actions-bar";
@@ -152,6 +153,8 @@ export function Evaluator() {
         <ActionsBar result={result} onMessage={notify} />
         <Footer />
       </main>
+
+      <BackToTop />
 
       <div
         role="status"

@@ -8,9 +8,9 @@ import { useI18n } from "@/i18n";
 export function Footer() {
   const { t } = useI18n();
   return (
-    <footer className="no-print mt-4 border-t border-line pt-5 text-center text-[11px] leading-relaxed text-soft">
+    <footer className="no-print mt-4 border-t border-line pt-6 text-center text-[13px] leading-relaxed text-soft">
       <p className="m-0">{t("ui.footer")}</p>
-      <p className="m-0 mt-1.5">
+      <p className="m-0 mt-2">
         <Link href="/changelog" className="text-soft underline-offset-2 hover:text-ink hover:underline" title={t("ui.changelog")}>
           {t("ui.version", { version: currentVersion })}
         </Link>

@@ -19,6 +19,7 @@ export const ptBR: Messages = {
     madeBy: "Feito por",
     version: "Versão {version}",
     changelog: "Histórico de versões",
+    backToTop: "Voltar ao topo",
     backToApp: "Voltar ao avaliador",
   },
   evaluation: {

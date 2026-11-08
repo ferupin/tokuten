@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Tokuten 特点
 
 Tokuten is a personal tool for scoring tokusatsu seasons in a consistent way. It is built on **Kijun 基準**, a method with ten weighted categories, subcriteria, and a clear separation between the official score and personal enjoyment.
@@ -71,6 +70,3 @@ The most important rule is that `core/` knows nothing about React or about any l
 - Code, comments and documentation are written in English.
 - Interface text is neutral and slightly formal, direct about the concept and free of slang, so it translates well.
 - The scoring engine must keep its test coverage. Any change to weights requires a new profile version.
-=======
-# tokuten
->>>>>>> a61837e12a3c7649d0df77d575de092bf7b741aa

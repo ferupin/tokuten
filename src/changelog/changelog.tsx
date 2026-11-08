@@ -1,15 +1,24 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { Hanko } from "@/components/brand/hanko";
 import { LanguageSwitch } from "@/components/theme/language-switch";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { BackToTop } from "@/components/ui/back-to-top";
 import { Footer } from "@/components/ui/footer";
 import { useI18n } from "@/i18n";
 import { planned, releases } from "./entries";
 
 export function Changelog() {
   const { t, locale } = useI18n();
+
+  // Client navigation keeps the scroll position of the previous page, which
+  // is the footer. Start this page at the top instead, without animation.
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
+
   const formatDate = (iso: string) =>
     new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
 
@@ -76,6 +85,7 @@ export function Changelog() {
 
         <Footer />
       </main>
+      <BackToTop />
     </>
   );
 }

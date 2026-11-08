@@ -19,6 +19,22 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.1.2 (2026-11-06)
+
+Fixes and polish. Sentai profile v1.
+
+### Interface
+- Fixed: the changelog opened at the bottom, because the page kept the scroll position of the footer link. It now starts at the top.
+- English is now always the starting language, whatever the language of the browser. A language chosen on purpose is still remembered.
+- Back to top button. It appears near the end of long pages, moves smoothly, and jumps instantly when reduced motion is on.
+
+### Design
+- Footer text increased from 11 px to 13 px.
+
+### Documentation
+- README cleaned of merge leftovers.
+- Commit message suggestions follow the Conventional Commits pattern.
+
 ## 0.1.1 (2026-11-06)
 
 Site icon. Sentai profile v1.
