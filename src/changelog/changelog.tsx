@@ -1,39 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
-import { Hanko } from "@/components/brand/hanko";
-import { LanguageSwitch } from "@/components/theme/language-switch";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { Footer } from "@/components/ui/footer";
+import { PageHeader } from "@/components/ui/page-header";
+import { useScrollTop } from "@/components/ui/use-scroll-top";
 import { useI18n } from "@/i18n";
 import { planned, releases } from "./entries";
 
 export function Changelog() {
   const { t, locale } = useI18n();
 
-  // Client navigation keeps the scroll position of the previous page, which
-  // is the footer. Start this page at the top instead, without animation.
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, []);
+  useScrollTop();
 
   const formatDate = (iso: string) =>
     new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
 
   return (
     <>
-      <header className="sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur">
-        <div className="mx-auto flex max-w-3xl items-center gap-3 px-4 py-3">
-          <Link href="/" className="flex min-w-0 flex-1 items-center gap-3 text-ink no-underline" aria-label={t("ui.backToApp")}>
-            <Hanko size={34}>点</Hanko>
-            <span className="font-display text-lg tracking-wide">TOKUTEN</span>
-          </Link>
-          <LanguageSwitch />
-          <ThemeToggle />
-        </div>
-      </header>
+      <PageHeader />
 
       <main className="mx-auto max-w-3xl space-y-10 px-4 pb-20 pt-10">
         <div>

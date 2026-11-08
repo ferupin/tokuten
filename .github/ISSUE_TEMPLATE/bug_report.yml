@@ -1,0 +1,41 @@
+name: Bug report
+description: Something is wrong or does not work as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping. A clear report makes a fix much faster.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Describe the problem and what you expected to happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The smallest set of steps that shows the problem.
+      placeholder: |
+        1. Open the app
+        2. Mark Music as not applicable
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Shown in the footer, for example 0.2.0.
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: Firefox 130 on Windows 11, Safari on iPhone 15
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or exported JSON
+      description: Optional. The JSON export also holds your notes, so check it before attaching.

@@ -19,6 +19,27 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.2.0 (2026-11-08)
+
+Meaning and community. Sentai profile v1.
+
+### Interface
+- New Meaning page at `/meaning`. It teaches the name, the five pillars, the seal, the numerals, the colors of both themes and the typefaces, using the real elements of the app. Facts are tagged as facts and project choices as design intent.
+- The footer links to Meaning and Contribute, next to the version and the credit.
+- Contribute card at the end of the Meaning page, with links to report a bug, suggest an improvement and read the guide.
+- The Meaning page opens at the top and has the back to top button.
+
+### Design
+- Theme tokens can be applied to any container, so a page can show both themes side by side. The look of the app did not change.
+
+### Documentation
+- New `docs/semiotics.md`. The design system document only points to it.
+- MIT license, contributing guide, GitHub issue forms for bugs and suggestions, and a pull request template.
+- Decision record 6.
+
+### Quality
+- Dictionary tests: same keys and placeholders in every language, no empty text, no em dashes, complete text for every category, subcriterion and pillar.
+
 ## 0.1.2 (2026-11-06)
 
 Fixes and polish. Sentai profile v1.

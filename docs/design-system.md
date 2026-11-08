@@ -1,5 +1,7 @@
 # Design system
 
+This page covers how the interface is built. For what the names, colors and symbols mean, see [Semiotics](semiotics.md).
+
 ## Concept
 
 The interface works like a critic's dossier with a tokusatsu soul. The layout is calm and editorial. The personality comes from a few deliberate elements: the hanko seal, the five ranger colors, and Japanese type used where it has a function.

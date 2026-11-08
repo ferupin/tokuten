@@ -6,7 +6,8 @@
  * Dark: "Shikkoku", lacquer black with a brown undertone and ivory text.
  * Pure white and pure black are avoided on purpose.
  */
-:root {
+:root,
+[data-theme="light"] {
   --bg: #f3ecdc;
   --surface: #faf5e9;
   --surface-2: #efe6d2;
@@ -32,7 +33,7 @@
   --grain: rgba(34, 29, 22, 0.035);
 }
 
-:root[data-theme="dark"] {
+[data-theme="dark"] {
   --bg: #16130e;
   --surface: #1e1a14;
   --surface-2: #272219;

@@ -32,6 +32,81 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.2.0",
+    date: "2026-11-08",
+    sentaiProfileVersion: 1,
+    title: { en: "Meaning and community", "pt-BR": "Significado e comunidade" },
+    summary: {
+      en: "A new page explains where the name, colors, seal and numbers come from, and the project now has a license and a clear way to report bugs and contribute.",
+      "pt-BR":
+        "Uma nova página explica de onde vêm o nome, as cores, o selo e os números, e o projeto agora tem licença e um caminho claro para reportar bugs e contribuir.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "New Meaning page at /meaning. It teaches the name, the five pillars, the seal, the numerals, the colors of both themes and the typefaces, using the real elements of the app. Facts about language are tagged as facts, and pairings chosen for the project are tagged as design intent.",
+            "pt-BR":
+              "Nova página Significado em /meaning. Ela ensina o nome, os cinco pilares, o selo, os numerais, as cores dos dois temas e as fontes, usando os elementos reais do app. Fatos sobre a língua aparecem marcados como fatos, e combinações escolhidas para o projeto aparecem como intenção de design.",
+          },
+          {
+            en: "Footer now links to Meaning and Contribute, next to the version and the credit.",
+            "pt-BR": "O rodapé agora leva a Significado e a Contribuir, ao lado da versão e do crédito.",
+          },
+          {
+            en: "Contribute card at the end of the Meaning page, with links to report a bug, suggest an improvement and read the contributing guide.",
+            "pt-BR":
+              "Cartão de contribuição no fim da página Significado, com links para reportar um bug, sugerir uma melhoria e ler o guia de contribuição.",
+          },
+          {
+            en: "The Meaning page opens at the top and has the back to top button.",
+            "pt-BR": "A página Significado abre no topo e tem o botão de voltar ao topo.",
+          },
+        ],
+      },
+      {
+        area: "design",
+        items: [
+          {
+            en: "Theme tokens can now be applied to any container, so a page can show the light and dark themes side by side. The look of the app itself did not change.",
+            "pt-BR":
+              "Os tokens de tema agora podem ser aplicados a qualquer contêiner, para que uma página mostre os temas claro e escuro lado a lado. A aparência do app em si não mudou.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "New document docs/semiotics.md with the meaning of the name, kanji, colors, seal, numerals and type. The design system document only points to it.",
+            "pt-BR":
+              "Novo documento docs/semiotics.md com o significado do nome, dos kanjis, das cores, do selo, dos numerais e da tipografia. O documento do design system apenas aponta para ele.",
+          },
+          {
+            en: "MIT license, contributing guide, bug and suggestion forms for GitHub issues, and a pull request template.",
+            "pt-BR":
+              "Licença MIT, guia de contribuição, formulários de bug e de sugestão para as issues do GitHub e um modelo de pull request.",
+          },
+          {
+            en: "Decision record 6 explains why meaning has its own document and page.",
+            "pt-BR": "O registro de decisão 6 explica por que o significado tem documento e página próprios.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "New dictionary tests: same keys and placeholders in every language, no empty text, no em dashes, and complete text for every category, subcriterion and pillar of every profile.",
+            "pt-BR":
+              "Novos testes dos dicionários: mesmas chaves e marcadores em todos os idiomas, nenhum texto vazio, nenhum travessão, e texto completo para cada categoria, subcritério e pilar de cada perfil.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.1.2",
     date: "2026-11-06",
     sentaiProfileVersion: 1,

@@ -1,0 +1,35 @@
+name: Suggestion
+description: An idea to improve the app, the method or the documentation
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Method (categories, weights, subcriteria)
+        - Interface
+        - Export and import
+        - Documentation
+        - Translation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What is hard, missing or unclear today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Your idea
+      description: How could it work? Sketches and examples are welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

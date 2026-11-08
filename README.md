@@ -63,6 +63,7 @@ The most important rule is that `core/` knows nothing about React or about any l
 - [The Kijun method](docs/framework.md)
 - [Changelog and versioning](docs/CHANGELOG.md), also shown in the app at `/changelog`
 - [Design system](docs/design-system.md)
+- [Semiotics](docs/semiotics.md), the meaning of the name, colors and symbols, also shown in the app at `/meaning`
 - [Decision records](docs/adr)
 
 ## Conventions
@@ -70,3 +71,11 @@ The most important rule is that `core/` knows nothing about React or about any l
 - Code, comments and documentation are written in English.
 - Interface text is neutral and slightly formal, direct about the concept and free of slang, so it translates well.
 - The scoring engine must keep its test coverage. Any change to weights requires a new profile version.
+
+## Contributing
+
+Tokuten is open source and help is welcome. Found a bug or have an idea? Open an [issue](https://github.com/ferupin/tokuten/issues/new/choose). The [contributing guide](CONTRIBUTING.md) explains how to set up the project, the conventions it follows and how to send a pull request.
+
+## License
+
+Released under the [MIT License](LICENSE).

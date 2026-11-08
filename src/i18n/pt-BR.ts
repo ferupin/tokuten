@@ -19,6 +19,8 @@ export const ptBR: Messages = {
     madeBy: "Feito por",
     version: "Versão {version}",
     changelog: "Histórico de versões",
+    meaning: "Significado",
+    contribute: "Contribuir",
     backToTop: "Voltar ao topo",
     backToApp: "Voltar ao avaliador",
   },
@@ -92,6 +94,105 @@ export const ptBR: Messages = {
     unset: "Não definida",
     set: "Definir uma nota",
     clear: "Limpar",
+  },
+  meaning: {
+    title: "Significado",
+    kanji: "意味",
+    reading: "imi",
+    intro:
+      "Quase tudo o que você vê no Tokuten tem um motivo: o nome, as cores, o selo e os números. Esta página explica de onde vem cada um, usando os mesmos elementos de que o app é feito.",
+    designNote: "Fatos sobre a língua aparecem marcados como fatos. Combinações escolhidas para este projeto aparecem como intenção de design.",
+    fact: "Fato",
+    intent: "Intenção de design",
+    name: {
+      title: "O nome",
+      tokuten: {
+        term: "特点",
+        reading: "tokuten",
+        text: "Um ponto distintivo. O primeiro kanji vem de tokusatsu (特撮), o gênero para o qual esta ferramenta foi feita. O segundo significa ponto ou marca, como em uma pontuação.",
+      },
+      pun: {
+        term: "得点",
+        reading: "tokuten",
+        text: "Pontos conquistados. Soa exatamente como 特点, então o nome carrega duas ideias ao mesmo tempo: o que torna uma obra distinta e quantos pontos ela obteve.",
+      },
+      kijun: {
+        term: "基準",
+        reading: "kijun",
+        text: "Um padrão, um critério. Dá nome ao método por trás da ferramenta: a mesma medida aplicada a toda temporada. Tokuten é o app e Kijun é o método.",
+      },
+    },
+    pillars: {
+      title: "Os cinco pilares",
+      intro:
+        "As dez categorias são agrupadas em cinco cores, em referência à clássica equipe de cinco cores do Super Sentai. O agrupamento é apenas visual e nunca altera um peso ou uma nota.",
+      colorLabel: "Cor",
+      categoriesLabel: "Categorias",
+      items: {
+        narrative: {
+          color: "Vermelho",
+          why: "O vermelho é o líder e o coração da equipe. Ele reúne aquilo em que uma história se apoia: a trama, os personagens e o vínculo entre eles.",
+        },
+        concept: {
+          color: "Azul",
+          why: "O azul é frio e ponderado. Ele reúne a ideia por trás da temporada.",
+        },
+        visual: {
+          color: "Amarelo",
+          why: "O amarelo é luz e atenção. Ele reúne o que o olho encontra primeiro: trajes, inimigos e mechas.",
+        },
+        craft: {
+          color: "Verde",
+          why: "O verde é crescimento e trabalho feito à mão. Ele reúne a execução da temporada: ação, acrobacias e direção.",
+        },
+        rhythm: {
+          color: "Rosa",
+          why: "O rosa vem do pêssego (桃) e representa movimento e calor. Ele reúne o que leva o espectador ao longo da temporada.",
+        },
+      },
+      note: "A cor nunca é o único portador de significado. Todo pilar também tem um kanji e um rótulo em texto.",
+    },
+    seal: {
+      title: "O selo",
+      text: "Um hanko (判子) é um selo pessoal carimbado em tinta vermelha no lugar de uma assinatura. O Tokuten usa um como logo e como carimbo do resultado, porque uma nota é um julgamento formal.",
+      provisional: { mark: "仮", reading: "kari", label: "Provisório", text: "Ao menos uma categoria aplicável ainda não tem nota." },
+      decided: { mark: "決", reading: "ketsu", label: "Decidido", text: "Toda categoria aplicável tem nota. O carimbo anima uma vez, a menos que o movimento reduzido esteja ativado." },
+    },
+    numerals: {
+      title: "Numerais",
+      text: "As categorias são numeradas com numerais formais. Os três primeiros, 壱 弐 参, são as formas usadas em contratos e recibos, porque os simples 一 二 三 são fáceis de adulterar com um traço. A partir do quatro, usam-se as formas do dia a dia, mais fáceis de reconhecer num relance. Misturar as duas é comum na prática e a escolha pode ser revista.",
+    },
+    colors: {
+      title: "Cor e luz",
+      text: "Cada tema leva o nome de um material, e nenhum usa branco ou preto puros, que cansam a vista numa sessão longa.",
+      light: "Tema claro",
+      dark: "Tema escuro",
+      swatches: {
+        washi: { name: "Washi", kanji: "和紙", text: "Papel japonês, quente e levemente amarelado. O fundo do tema claro." },
+        sumi: { name: "Sumi", kanji: "墨", text: "Tinta. A cor do texto no tema claro." },
+        shu: { name: "Shu", kanji: "朱", text: "Vermelhão, a cor da tinta de selo. O acento do app." },
+        shikkoku: { name: "Shikkoku", kanji: "漆黒", text: "O preto profundo da laca, com um toque de marrom. O fundo do tema escuro." },
+      },
+    },
+    type: {
+      title: "Tipografia",
+      text: "Quatro fontes, cada uma com uma função.",
+      sample: "Tokuten 特点 7.5",
+      items: {
+        display: { name: "Dela Gothic One", role: "Títulos e a nota grande. Pesada, como o letreiro de uma série." },
+        serif: { name: "Shippori Mincho", role: "Kanji e títulos de seção. Uma serifa japonesa que lembra impressão." },
+        sans: { name: "Zen Kaku Gothic New", role: "Texto de leitura. Limpa em letras latinas e em kana." },
+        mono: { name: "JetBrains Mono", role: "Números e rótulos pequenos. Largura fixa, então os dígitos não se deslocam." },
+      },
+    },
+    source: "O raciocínio completo fica no repositório, em docs/semiotics.md.",
+  },
+  contribute: {
+    title: "Encontrou um bug ou tem uma ideia?",
+    text: "O Tokuten é open source e construído de forma aberta. Se algo parecer errado, ou se você enxergar um jeito de melhorar o método ou a interface, abra uma issue. Pull requests também são bem-vindos. Tudo o que é preciso para começar está no repositório.",
+    bug: "Reportar um bug",
+    idea: "Sugerir uma melhoria",
+    guide: "Ler o guia de contribuição",
   },
   changelog: {
     title: "Histórico de versões",
