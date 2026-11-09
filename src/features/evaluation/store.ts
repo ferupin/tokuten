@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { createEvaluation } from "@/core/scoring";
-import type { CategoryId, Evaluation, Profile, SubcriterionId } from "@/core/types";
+import type { CategoryId, Evaluation, EvaluationMode, Profile, SubcriterionId } from "@/core/types";
 
 interface EvaluationState {
   profile: Profile;
   evaluation: Evaluation;
+  setMode: (mode: EvaluationMode) => void;
   setTitle: (value: string) => void;
   setIntroduction: (value: string) => void;
   setConclusion: (value: string) => void;
@@ -35,6 +36,7 @@ export function createEvaluationStore(profile: Profile) {
     return {
       profile,
       evaluation: createEvaluation(profile),
+      setMode: (mode) => set((s) => ({ evaluation: { ...s.evaluation, mode } })),
       setTitle: (title) => set((s) => ({ evaluation: { ...s.evaluation, title } })),
       setIntroduction: (introduction) => set((s) => ({ evaluation: { ...s.evaluation, introduction } })),
       setConclusion: (conclusion) => set((s) => ({ evaluation: { ...s.evaluation, conclusion } })),
@@ -53,7 +55,8 @@ export function createEvaluationStore(profile: Profile) {
           subcriteria: { ...c.subcriteria, [sub]: { ...c.subcriteria[sub], applicable } },
         })),
       load: (evaluation) => set({ evaluation }),
-      reset: () => set({ evaluation: createEvaluation(profile) }),
+      // Starting over clears the grades but keeps the way you chose to grade.
+      reset: () => set((s) => ({ evaluation: { ...createEvaluation(profile), mode: s.evaluation.mode } })),
     };
   });
 }

@@ -55,6 +55,17 @@ Pillars are only a visual grouping. They do not affect the calculation.
 
 Each category also shows a short note about what it covers and what belongs to a neighboring category. This is there to prevent double counting. A great soundtrack, for example, should never raise the Story & Lore grade.
 
+## Two ways to enter grades
+
+The method has two modes. They differ only in how a category grade is entered. The weights, the not applicable rules and the official score are the same.
+
+- **Detailed (詳細).** Grade the subcriteria and let the average become the category grade. This is the full process described above.
+- **Quick (簡易).** Set the category grade directly with one slider. Each slider shows the grade band and its description, so a quick grade still has an anchor, and the guidance for the category stays one click away.
+
+Switching modes keeps every grade. If a category already has subcriteria grades, Quick mode starts from their average. Moving the slider replaces that average with a direct grade, and one button returns to the average. The Markdown export states when an evaluation was quick and leaves the subcriteria out.
+
+A quick grade is a faster way to reach the same judgment, not a looser one. The consistency checklist below applies to both modes.
+
 ## The official score
 
 ```

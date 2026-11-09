@@ -19,6 +19,36 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.3.0 (2026-11-08)
+
+Detailed and Quick modes. Sentai profile v1.
+
+### Method
+- Two evaluation modes, Detailed (詳細) and Quick (簡易). The weights, the not applicable rules and the calculation are identical in both, and a test checks it.
+- Switching modes never discards a grade. In Quick mode a category with subcriteria grades starts from their average. Moving the slider replaces it with a direct grade, and one button returns to the average.
+- Starting over keeps the chosen mode.
+
+### Interface
+- Mode switch above the categories, with the kanji next to each name.
+- Quick rows with one slider per category, the grade band and description, the source of the grade, and buttons for guidance and notes, clearing the grade and marking not applicable.
+- Quick evaluation badge in the result.
+- Fixed: returning to the main page from Meaning or the changelog left it scrolled slightly down. The cause was the global smooth scrolling, which made the navigation scroll animate and compete with the reset, so it was removed. Back to top still scrolls smoothly, and the back button of the browser restores your position at once.
+- Fixed: a grade of exactly 5.0 could not be set on an ungraded slider. This affected every slider since 0.1.0.
+- Fixed: after Start over or an import, a category could still show the manual grade view with an empty slider.
+
+### Export and import
+- The JSON export stores the mode. Files from earlier versions load as Detailed.
+- The Markdown export states a quick evaluation and leaves the subcriteria out.
+
+### Documentation
+- Meaning page and `docs/semiotics.md` explain 詳細 and 簡易. New section in `docs/framework.md`. Decision record 7.
+
+### Quality
+- New tests for the mode, the JSON compatibility, the Markdown by mode and the store.
+
+### Known limits
+- The chosen mode is not remembered between visits.
+
 ## 0.2.0 (2026-11-08)
 
 Meaning and community. Sentai profile v1.

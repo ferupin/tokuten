@@ -32,6 +32,115 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.3.0",
+    date: "2026-11-08",
+    sentaiProfileVersion: 1,
+    title: { en: "Detailed and Quick modes", "pt-BR": "Modos Detalhado e Rápido" },
+    summary: {
+      en: "The same method can now be graded at two levels of effort: Detailed (詳細) through subcriteria, or Quick (簡易) with one grade per category. Three navigation and input bugs were also fixed.",
+      "pt-BR":
+        "O mesmo método agora pode ser avaliado em dois níveis de esforço: Detalhado (詳細), por subcritérios, ou Rápido (簡易), com uma nota por categoria. Três bugs de navegação e de entrada também foram corrigidos.",
+    },
+    groups: [
+      {
+        area: "method",
+        items: [
+          {
+            en: "Two evaluation modes, Detailed (詳細) and Quick (簡易). The weights, the not applicable rules and the calculation are identical in both. A test checks that the same data gives the same result in either mode.",
+            "pt-BR":
+              "Dois modos de avaliação, Detalhado (詳細) e Rápido (簡易). Os pesos, as regras de não aplicável e o cálculo são idênticos nos dois. Um teste confere que os mesmos dados dão o mesmo resultado em qualquer modo.",
+          },
+          {
+            en: "Switching modes never discards a grade. In Quick mode a category with subcriteria grades starts from their average, and moving the slider replaces it with a direct grade. One button returns to the average.",
+            "pt-BR":
+              "Alternar entre os modos nunca descarta uma nota. No modo Rápido, uma categoria com notas de subcritérios começa pela média deles, e mover o slider a substitui por uma nota direta. Um botão volta para a média.",
+          },
+          {
+            en: "Starting over clears the grades but keeps the chosen mode.",
+            "pt-BR": "Recomeçar apaga as notas, mas mantém o modo escolhido.",
+          },
+        ],
+      },
+      {
+        area: "interface",
+        items: [
+          {
+            en: "Mode switch above the categories, with the kanji next to each name and a short line that explains the current mode.",
+            "pt-BR":
+              "Seletor de modo acima das categorias, com o kanji ao lado de cada nome e uma linha curta que explica o modo atual.",
+          },
+          {
+            en: "Quick rows: one slider per category that shows the grade band and its description, the source of the grade, and buttons for guidance and notes, clearing the grade and marking the category as not applicable.",
+            "pt-BR":
+              "Linhas do modo Rápido: um slider por categoria que mostra a faixa da nota e a descrição, a origem da nota e botões para orientações e anotações, limpar a nota e marcar a categoria como não aplicável.",
+          },
+          {
+            en: "The result shows a Quick evaluation badge when the quick mode is in use.",
+            "pt-BR": "O resultado mostra o selo Avaliação rápida quando o modo rápido está em uso.",
+          },
+          {
+            en: "Fixed: returning to the main page from Meaning or the changelog left it scrolled slightly down. It now starts at the top. The cause was the global smooth scrolling, which made the scroll of the navigation animate and compete with the reset, so it was removed. The back to top button still scrolls smoothly, and the back button of the browser now restores your position at once.",
+            "pt-BR":
+              "Corrigido: voltar para a página principal a partir de Significado ou do histórico a deixava um pouco rolada para baixo. Agora ela começa no topo. A causa era a rolagem suave global, que fazia a rolagem da navegação animar e disputar com o reinício, então ela foi removida. O botão de voltar ao topo continua rolando com suavidade, e o botão voltar do navegador agora restaura sua posição na hora.",
+          },
+          {
+            en: "Fixed: a grade of exactly 5.0 could not be set on an ungraded slider, because the slider rests at 5.0 and clicking there changes nothing. Releasing the slider, or pressing Enter, now commits the value. This affected every slider since 0.1.0.",
+            "pt-BR":
+              "Corrigido: não era possível dar a nota exata 5,0 em um slider sem nota, porque ele repousa em 5,0 e clicar ali não muda nada. Soltar o slider, ou pressionar Enter, agora registra o valor. Isso afetava todos os sliders desde a 0.1.0.",
+          },
+          {
+            en: "Fixed: after Start over or an import, a category could still show the manual grade view with an empty slider. That state now follows the data.",
+            "pt-BR":
+              "Corrigido: depois de Recomeçar ou de uma importação, uma categoria ainda podia mostrar a visão de nota manual com um slider vazio. Esse estado agora acompanha os dados.",
+          },
+        ],
+      },
+      {
+        area: "export",
+        items: [
+          {
+            en: "The JSON export stores the mode. Files exported by earlier versions have no mode and load as Detailed.",
+            "pt-BR":
+              "A exportação em JSON guarda o modo. Arquivos exportados por versões anteriores não têm modo e são carregados como Detalhado.",
+          },
+          {
+            en: "The Markdown export states when an evaluation was quick and leaves the subcriteria out.",
+            "pt-BR": "A exportação em Markdown informa quando a avaliação foi rápida e deixa os subcritérios de fora.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "The Meaning page and docs/semiotics.md explain 詳細 and 簡易. docs/framework.md has a new section on the two modes, and decision record 7 explains the choice.",
+            "pt-BR":
+              "A página Significado e o docs/semiotics.md explicam 詳細 e 簡易. O docs/framework.md ganhou uma seção sobre os dois modos, e o registro de decisão 7 explica a escolha.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "New tests for the mode: default value, equal results in both modes, JSON round trip and files without a mode, rejection of an unknown mode, Markdown by mode, and the store actions.",
+            "pt-BR":
+              "Novos testes do modo: valor padrão, resultados iguais nos dois modos, ida e volta do JSON e arquivos sem modo, recusa de um modo desconhecido, Markdown por modo e as ações do store.",
+          },
+        ],
+      },
+      {
+        area: "limits",
+        items: [
+          {
+            en: "The chosen mode is not remembered between visits. Nothing is stored unless you export it.",
+            "pt-BR": "O modo escolhido não é lembrado entre visitas. Nada é guardado a menos que você exporte.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.2.0",
     date: "2026-11-08",
     sentaiProfileVersion: 1,

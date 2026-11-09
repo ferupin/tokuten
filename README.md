@@ -8,7 +8,7 @@ Everything runs in the browser. There is no database, no account and no server l
 
 ## What it does
 
-- Grades ten categories, each one through its own subcriteria.
+- Grades ten categories in two modes: Detailed (詳細), through subcriteria, or Quick (簡易), with one grade per category. Switching keeps your grades.
 - Lets you mark a subcriterion or a whole category as not applicable. The weight of a removed category is shared among the others in proportion to their own weights.
 - Shows the official score as partial until every applicable category has a grade.
 - Keeps personal enjoyment in a separate card that never touches the official score.

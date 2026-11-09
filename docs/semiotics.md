@@ -90,6 +90,19 @@ Four typefaces, each with one job.
 | Reading text | Zen Kaku Gothic New | Clean and legible in Latin letters and in kana |
 | Numbers and small labels | JetBrains Mono | Fixed width digits, so numbers do not shift when they change |
 
+## Evaluation modes
+
+The same method can be graded at two levels of effort. The weights and the calculation are identical in both. Only the amount of hand grading changes.
+
+| Mode | Kanji | Reading | Meaning of the kanji | What it does |
+|---|---|---|---|---|
+| Detailed | 詳細 | shōsai | Detail, particulars | Each subcriterion gets a grade and the category grade is their average |
+| Quick | 簡易 | kan'i | Simple, simplified | One grade per category, set directly |
+
+The kanji meanings are facts. Choosing them as the names of the modes is **design intent**. The interface shows the kanji next to the English or Portuguese name, in the same small serif used for the pillars, so the pair is read as part of the identity.
+
+A grade set directly in Quick mode replaces the subcriteria average for that category, and the interface says so. Switching modes never discards a grade.
+
 ## Grade bands
 
 The eleven grade labels from Abysmal to Masterpiece have no color of their own. Color is reserved for pillars so that a grade is never read as a verdict by hue alone. The reading note under the score carries the nuance instead, and it treats 6 and 7 as solid results. See [the Kijun method](framework.md).

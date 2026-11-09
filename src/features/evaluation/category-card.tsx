@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { formatGrade, gradeBand } from "@/core/grades";
 import type { Category, CategoryResult, Pillar } from "@/core/types";
 import { Hanko } from "@/components/brand/hanko";
@@ -24,7 +23,7 @@ export function CategoryCard({ index, profileId, category, pillar, result, store
   const { t } = useI18n();
   const entry = store((s) => s.evaluation.categories[category.id]);
   const s = store.getState();
-  const [manual, setManual] = useState(entry.override !== null);
+  const manual = entry.override !== null;
 
   const base = `profiles.${profileId}.categories.${category.id}`;
   const tone = `var(--${pillar.tone})`;
@@ -143,10 +142,7 @@ export function CategoryCard({ index, profileId, category, pillar, result, store
                     <button
                       type="button"
                       className="btn ghost !py-1 text-xs"
-                      onClick={() => {
-                        s.setOverride(category.id, null);
-                        setManual(false);
-                      }}
+                      onClick={() => s.setOverride(category.id, null)}
                     >
                       {t("evaluation.useAverage")}
                     </button>
@@ -163,10 +159,7 @@ export function CategoryCard({ index, profileId, category, pillar, result, store
                     <button
                       type="button"
                       className="btn ghost !py-1 text-xs"
-                      onClick={() => {
-                        s.setOverride(category.id, result.grade ?? 5);
-                        setManual(true);
-                      }}
+                      onClick={() => s.setOverride(category.id, result.grade ?? 5)}
                     >
                       {t("evaluation.overrideGrade")}
                     </button>

@@ -7,17 +7,22 @@ import { LanguageSwitch } from "@/components/theme/language-switch";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { Footer } from "@/components/ui/footer";
+import { useScrollTop } from "@/components/ui/use-scroll-top";
 import { useI18n } from "@/i18n";
 import { ActionsBar } from "@/features/result/actions-bar";
 import { EnjoymentCard } from "@/features/result/enjoyment-card";
 import { ResultPanel } from "@/features/result/result-panel";
 import { CategoryCard } from "./category-card";
+import { ModeSwitch } from "./mode-switch";
+import { QuickRow } from "./quick-row";
 import { useEvaluationStore } from "./use-store";
 
 export function Evaluator() {
   const { t } = useI18n();
+  useScrollTop();
   const profile = useEvaluationStore((s) => s.profile);
   const evaluation = useEvaluationStore((s) => s.evaluation);
+  const setMode = useEvaluationStore((s) => s.setMode);
   const setTitle = useEvaluationStore((s) => s.setTitle);
   const setIntroduction = useEvaluationStore((s) => s.setIntroduction);
   const setConclusion = useEvaluationStore((s) => s.setConclusion);
@@ -94,7 +99,7 @@ export function Evaluator() {
           </div>
         </section>
 
-        <section aria-labelledby="cats-title" className="space-y-4">
+        <section aria-labelledby="cats-title" className="flex flex-col gap-4">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
               <h2 id="cats-title" className="m-0 font-serif text-2xl font-extrabold">{t("evaluation.sectionTitle")}</h2>
@@ -102,14 +107,22 @@ export function Evaluator() {
                 {t("evaluation.progress", { graded: result.gradedCount, total: result.applicableCount })}
               </p>
             </div>
-            <button
-              type="button"
-              className="btn ghost no-print"
-              onClick={() => setOpenIds(allOpen ? new Set() : new Set(profile.categories.map((c) => c.id)))}
-            >
-              {allOpen ? t("evaluation.collapseAll") : t("evaluation.expandAll")}
-            </button>
+            <div className="no-print flex flex-wrap items-center gap-3">
+              <ModeSwitch mode={evaluation.mode} onChange={setMode} />
+              {evaluation.mode === "detailed" && (
+                <button
+                  type="button"
+                  className="btn ghost"
+                  onClick={() => setOpenIds(allOpen ? new Set() : new Set(profile.categories.map((c) => c.id)))}
+                >
+                  {allOpen ? t("evaluation.collapseAll") : t("evaluation.expandAll")}
+                </button>
+              )}
+            </div>
           </div>
+          <p className="m-0 max-w-2xl text-[13px] text-soft">
+            {t(`modes.${evaluation.mode}.hint`)} {t("modes.keepNote")}
+          </p>
           <div
             className="h-1.5 overflow-hidden rounded-full bg-surface-2"
             role="progressbar"
@@ -120,23 +133,36 @@ export function Evaluator() {
             <div className="h-full bg-accent transition-all" style={{ width: `${result.applicableCount ? (result.gradedCount / result.applicableCount) * 100 : 0}%` }} />
           </div>
           <div className="grid gap-3">
-            {profile.categories.map((category, i) => (
-              <CategoryCard
-                key={category.id}
-                index={i}
-                profileId={profile.id}
-                category={category}
-                pillar={profile.pillars.find((p) => p.id === category.pillarId)!}
-                result={result.categories[i]}
-                store={useEvaluationStore}
-                open={openIds.has(category.id)}
-                onToggle={() => toggle(category.id)}
-              />
-            ))}
+            {profile.categories.map((category, i) => {
+              const pillar = profile.pillars.find((p) => p.id === category.pillarId)!;
+              return evaluation.mode === "quick" ? (
+                <QuickRow
+                  key={category.id}
+                  index={i}
+                  profileId={profile.id}
+                  category={category}
+                  pillar={pillar}
+                  result={result.categories[i]}
+                  store={useEvaluationStore}
+                />
+              ) : (
+                <CategoryCard
+                  key={category.id}
+                  index={i}
+                  profileId={profile.id}
+                  category={category}
+                  pillar={pillar}
+                  result={result.categories[i]}
+                  store={useEvaluationStore}
+                  open={openIds.has(category.id)}
+                  onToggle={() => toggle(category.id)}
+                />
+              );
+            })}
           </div>
         </section>
 
-        <ResultPanel profile={profile} result={result} />
+        <ResultPanel profile={profile} result={result} mode={evaluation.mode} />
         <EnjoymentCard />
 
         <section className="card grid gap-2 p-5 sm:p-6">

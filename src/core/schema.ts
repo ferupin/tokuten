@@ -28,6 +28,8 @@ export function evaluationSchema(profile: Profile) {
   return z.object({
     profileId: z.literal(profile.id),
     profileVersion: z.number().int().positive(),
+    // Files exported before modes existed have no mode, and were detailed.
+    mode: z.enum(["detailed", "quick"]).default("detailed"),
     title: z.string(),
     introduction: z.string(),
     conclusion: z.string(),

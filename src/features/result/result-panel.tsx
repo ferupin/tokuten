@@ -2,13 +2,13 @@
 
 import { formatGrade, gradeBand } from "@/core/grades";
 import { readingTier, shapeOf } from "@/core/insights";
-import type { EvaluationResult, Profile } from "@/core/types";
+import type { EvaluationMode, EvaluationResult, Profile } from "@/core/types";
 import { Hanko } from "@/components/brand/hanko";
 import { Radar } from "@/components/ui/radar";
 import { numeral } from "@/features/evaluation/numerals";
 import { useI18n } from "@/i18n";
 
-export function ResultPanel({ profile, result }: { profile: Profile; result: EvaluationResult }) {
+export function ResultPanel({ profile, result, mode }: { profile: Profile; result: EvaluationResult; mode: EvaluationMode }) {
   const { t } = useI18n();
   const pillarTone = (categoryId: string) => {
     const cat = profile.categories.find((c) => c.id === categoryId)!;
@@ -28,6 +28,11 @@ export function ResultPanel({ profile, result }: { profile: Profile; result: Eva
           <h2 id="result-title" className="label m-0">
             {t("result.officialScore")}
           </h2>
+          {mode === "quick" && (
+            <p className="label m-0 mt-1">
+              {t("modes.badge")} · <span lang="ja">{t("modes.quick.kanji")}</span>
+            </p>
+          )}
           <div className="relative mx-auto mt-4 inline-block">
             <div className="tnum font-display text-[clamp(64px,13vw,104px)] leading-none" aria-live="polite">
               {result.score === null ? "—" : formatGrade(result.score, 1)}

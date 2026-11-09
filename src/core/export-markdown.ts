@@ -37,6 +37,11 @@ export function exportMarkdown(
     lines.push(evaluation.introduction.trim());
   }
 
+  if (evaluation.mode === "quick") {
+    lines.push("");
+    lines.push(`> ${t("export.quickNote")}`);
+  }
+
   // 2. Category evaluations
   lines.push("");
   lines.push(`## ${t("export.categoryEvaluations")}`);
@@ -53,7 +58,7 @@ export function exportMarkdown(
       lines.push(`**${t("export.grade")}:** ${formatGrade(c.grade)} / 10`);
     }
 
-    if (c.status !== "not-applicable") {
+    if (c.status !== "not-applicable" && evaluation.mode !== "quick") {
       const rows = Object.entries(entry.subcriteria).filter(([, s]) => s.applicable && s.value !== null);
       if (rows.length > 0) {
         lines.push("");

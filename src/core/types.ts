@@ -61,9 +61,20 @@ export interface CategoryEntry {
   notes: string;
 }
 
+/**
+ * How the grades are entered.
+ * - detailed: each subcriterion is graded and the category grade is their average.
+ * - quick: one grade is set directly per category.
+ * The mode never changes the calculation, only how much is graded by hand.
+ */
+export type EvaluationMode = "detailed" | "quick";
+
+export const EVALUATION_MODES: readonly EvaluationMode[] = ["detailed", "quick"];
+
 export interface Evaluation {
   profileId: string;
   profileVersion: number;
+  mode: EvaluationMode;
   title: string;
   introduction: string;
   conclusion: string;

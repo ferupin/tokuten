@@ -99,6 +99,33 @@ export const en = {
     set: "Set a score",
     clear: "Clear",
   },
+  modes: {
+    label: "Evaluation mode",
+    keepNote: "Switching keeps your grades. A grade set directly replaces the subcriteria average.",
+    badge: "Quick evaluation",
+    detailed: {
+      name: "Detailed",
+      kanji: "詳細",
+      reading: "shōsai",
+      hint: "Grade each subcriterion. The category grade is their average.",
+    },
+    quick: {
+      name: "Quick",
+      kanji: "簡易",
+      reading: "kan'i",
+      hint: "Set one grade per category, directly.",
+    },
+    row: {
+      guidance: "Guidance and notes",
+      fromSubcriteria: "Average of {count} subcriteria. Move the slider to set the grade directly.",
+      direct: "Set directly",
+      useAverage: "Use the subcriteria average",
+      clear: "Clear grade",
+      notApplicable: "Does not apply",
+      restore: "Include again",
+      skipped: "This category does not apply to this season. Its weight is shared among the others.",
+    },
+  },
   meaning: {
     title: "Meaning",
     kanji: "意味",
@@ -189,6 +216,12 @@ export const en = {
         mono: { name: "JetBrains Mono", role: "Numbers and small labels. Fixed width, so digits do not shift." },
       },
     },
+    modes: {
+      title: "Two ways to grade",
+      text: "The method is the same in both modes. The weights and the calculation do not change, only how much you grade by hand.",
+      detailed: { term: "詳細", reading: "shōsai", text: "Detail, particulars. Every subcriterion gets its own grade, and the category grade follows from them." },
+      quick: { term: "簡易", reading: "kan'i", text: "Simple, simplified. One grade per category, set directly, for a fast result that still uses the same weights." },
+    },
     source: "The full reasoning is kept in the repository, in docs/semiotics.md.",
   },
   contribute: {
@@ -261,6 +294,7 @@ export const en = {
     masterpiece: "Exceptional and close to flawless in this category.",
   },
   export: {
+    quickNote: "Quick evaluation: each category grade was set directly, without subcriteria.",
     untitled: "Untitled season",
     categoryEvaluations: "Category evaluations",
     grade: "Grade",

@@ -191,6 +191,27 @@ export function Meaning() {
           </div>
         </Section>
 
+        <Section id="modes" title={t("meaning.modes.title")}>
+          <p className="m-0 max-w-2xl">{t("meaning.modes.text")}</p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {(["detailed", "quick"] as const).map((mode) => (
+              <article key={mode} className="card p-5">
+                <div className="flex items-baseline gap-3">
+                  <span lang="ja" className="font-serif text-4xl font-extrabold leading-none" style={{ color: mode === "detailed" ? "var(--blue)" : "var(--accent)" }}>
+                    {t(`meaning.modes.${mode}.term`)}
+                  </span>
+                  <span className="label">{t(`meaning.modes.${mode}.reading`)}</span>
+                </div>
+                <h3 className="mb-1 mt-3 text-[15px] font-bold">{t(`modes.${mode}.name`)}</h3>
+                <p className="m-0 text-[14px] text-soft">{t(`meaning.modes.${mode}.text`)}</p>
+                <div className="mt-3">
+                  <Tag kind="fact" />
+                </div>
+              </article>
+            ))}
+          </div>
+        </Section>
+
         <Section id="numerals" title={t("meaning.numerals.title")}>
           <p className="m-0 max-w-2xl">{t("meaning.numerals.text")}</p>
           <ol className="m-0 grid list-none grid-cols-5 gap-2 p-0 sm:grid-cols-10" aria-label={t("meaning.numerals.title")}>

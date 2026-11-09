@@ -95,6 +95,33 @@ export const ptBR: Messages = {
     set: "Definir uma nota",
     clear: "Limpar",
   },
+  modes: {
+    label: "Modo de avaliação",
+    keepNote: "Alternar mantém suas notas. Uma nota definida diretamente substitui a média dos subcritérios.",
+    badge: "Avaliação rápida",
+    detailed: {
+      name: "Detalhado",
+      kanji: "詳細",
+      reading: "shōsai",
+      hint: "Avalie cada subcritério. A nota da categoria é a média deles.",
+    },
+    quick: {
+      name: "Rápido",
+      kanji: "簡易",
+      reading: "kan'i",
+      hint: "Defina uma nota por categoria, diretamente.",
+    },
+    row: {
+      guidance: "Orientações e anotações",
+      fromSubcriteria: "Média de {count} subcritérios. Mova o slider para definir a nota diretamente.",
+      direct: "Definida diretamente",
+      useAverage: "Usar a média dos subcritérios",
+      clear: "Limpar nota",
+      notApplicable: "Não se aplica",
+      restore: "Incluir novamente",
+      skipped: "Esta categoria não se aplica a esta temporada. O peso dela é dividido entre as outras.",
+    },
+  },
   meaning: {
     title: "Significado",
     kanji: "意味",
@@ -185,6 +212,12 @@ export const ptBR: Messages = {
         mono: { name: "JetBrains Mono", role: "Números e rótulos pequenos. Largura fixa, então os dígitos não se deslocam." },
       },
     },
+    modes: {
+      title: "Duas formas de avaliar",
+      text: "O método é o mesmo nos dois modos. Os pesos e o cálculo não mudam, só o quanto você avalia à mão.",
+      detailed: { term: "詳細", reading: "shōsai", text: "Detalhe, minúcias. Cada subcritério recebe a sua nota, e a nota da categoria decorre delas." },
+      quick: { term: "簡易", reading: "kan'i", text: "Simples, simplificado. Uma nota por categoria, definida diretamente, para um resultado rápido que usa os mesmos pesos." },
+    },
     source: "O raciocínio completo fica no repositório, em docs/semiotics.md.",
   },
   contribute: {
@@ -257,6 +290,7 @@ export const ptBR: Messages = {
     masterpiece: "Excepcional e quase sem falhas nesta categoria.",
   },
   export: {
+    quickNote: "Avaliação rápida: a nota de cada categoria foi definida diretamente, sem subcritérios.",
     untitled: "Temporada sem título",
     categoryEvaluations: "Avaliação por categoria",
     grade: "Nota",
