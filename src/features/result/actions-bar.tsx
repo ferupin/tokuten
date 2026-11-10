@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { exportMarkdown } from "@/core/export-markdown";
+import { EXPORT_FORMATS, exportAs, type ExportFormat } from "@/core/export";
 import { parseEnvelope, toEnvelope } from "@/core/schema";
 import type { EvaluationResult } from "@/core/types";
 import { useI18n } from "@/i18n";
@@ -26,11 +26,38 @@ export function ActionsBar({ result, onMessage }: { result: EvaluationResult; on
   const reset = useEvaluationStore((s) => s.reset);
   const fileRef = useRef<HTMLInputElement>(null);
   const [confirming, setConfirming] = useState(false);
+  const [format, setFormat] = useState<ExportFormat>("standard");
 
-  const markdown = () => exportMarkdown(profile, evaluation, result, t);
+  const markdown = () => {
+    const d = new Date();
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const date = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    return exportAs(format, profile, evaluation, result, t, { date });
+  };
 
   return (
-    <div className="no-print flex flex-wrap items-center justify-center gap-3">
+    <div className="no-print flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-1">
+        <div role="radiogroup" aria-label={t("actions.format")} className="inline-flex items-center gap-2">
+          <span className="label">{t("actions.format")}</span>
+          {EXPORT_FORMATS.map((f) => (
+            <button
+              key={f}
+              type="button"
+              role="radio"
+              aria-checked={format === f}
+              className={`btn !py-1 ${format === f ? "" : "ghost"}`}
+              onClick={() => setFormat(f)}
+            >
+              {t(f === "obsidian" ? "actions.formatObsidian" : "actions.formatStandard")}
+            </button>
+          ))}
+        </div>
+        <p className="m-0 text-xs text-soft">
+          {t(format === "obsidian" ? "actions.formatHintObsidian" : "actions.formatHintStandard")}
+        </p>
+      </div>
+      <div className="flex flex-wrap items-center justify-center gap-3">
       <button
         type="button"
         className="btn"
@@ -95,6 +122,7 @@ export function ActionsBar({ result, onMessage }: { result: EvaluationResult; on
           {t("actions.reset")}
         </button>
       )}
+      </div>
     </div>
   );
 }

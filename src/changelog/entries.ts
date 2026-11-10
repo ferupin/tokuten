@@ -32,6 +32,64 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.4.0",
+    date: "2026-11-09",
+    sentaiProfileVersion: 1,
+    title: { en: "Obsidian Markdown export", "pt-BR": "Exportação em Markdown do Obsidian" },
+    summary: {
+      en: "The Markdown export now comes in two formats. Standard stays as it was and renders anywhere. Obsidian adds properties, collapsible callouts, gauges and a chart for people who keep their notes in a vault.",
+      "pt-BR":
+        "A exportação em Markdown agora tem dois formatos. O Padrão continua como era e aparece corretamente em qualquer lugar. O Obsidian acrescenta propriedades, blocos recolhíveis, indicadores e um gráfico para quem guarda suas notas em um cofre.",
+    },
+    groups: [
+      {
+        area: "export",
+        items: [
+          {
+            en: "New Obsidian format with properties (title, profile, mode, status, score, band, enjoyment, date, tags), so a vault can filter and sort evaluations.",
+            "pt-BR":
+              "Novo formato Obsidian com propriedades (título, perfil, modo, status, nota, faixa, diversão, data, tags), para que um cofre possa filtrar e ordenar avaliações.",
+          },
+          {
+            en: "Each category becomes a collapsible callout with its grade, a ten cell gauge, the weight, the subcriteria and the reasoning. Partial scores, redistributed weights and quick evaluations get their own callouts.",
+            "pt-BR":
+              "Cada categoria vira um bloco recolhível com a nota, um indicador de dez células, o peso, os subcritérios e a justificativa. Notas parciais, pesos redistribuídos e avaliações rápidas ganham blocos próprios.",
+          },
+          {
+            en: "The calculation is a table with the contribution of each category, followed by a Mermaid pie chart. The official score is highlighted, and the personal enjoyment score stays apart from it.",
+            "pt-BR":
+              "O cálculo é uma tabela com a contribuição de cada categoria, seguida de um gráfico de pizza em Mermaid. A nota oficial aparece destacada e a nota de diversão pessoal continua separada dela.",
+          },
+          {
+            en: "The Standard format is unchanged, so forums and GitHub keep working. Both formats carry the same data in the same order.",
+            "pt-BR":
+              "O formato Padrão não mudou, então fóruns e GitHub continuam funcionando. Os dois formatos levam os mesmos dados na mesma ordem.",
+          },
+        ],
+      },
+      {
+        area: "interface",
+        items: [
+          {
+            en: "Format selector above the export buttons, with a short line that says where each format reads best.",
+            "pt-BR":
+              "Seletor de formato acima dos botões de exportação, com uma linha curta que diz onde cada formato é lido melhor.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "Tests for the property block, the callouts, the Mermaid chart and the separation of the two scores.",
+            "pt-BR":
+              "Testes para o bloco de propriedades, os blocos de destaque, o gráfico Mermaid e a separação das duas notas.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.3.0",
     date: "2026-11-08",
     sentaiProfileVersion: 1,

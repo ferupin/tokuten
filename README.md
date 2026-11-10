@@ -12,7 +12,7 @@ Everything runs in the browser. There is no database, no account and no server l
 - Lets you mark a subcriterion or a whole category as not applicable. The weight of a removed category is shared among the others in proportion to their own weights.
 - Shows the official score as partial until every applicable category has a grade.
 - Keeps personal enjoyment in a separate card that never touches the official score.
-- Exports the evaluation as Markdown, following the output format of the method, and as JSON so it can be imported again.
+- Exports the evaluation as Markdown, following the output format of the method, in a Standard format for any renderer and an Obsidian format with properties and callouts. JSON export can be imported again.
 - Works in English and Brazilian Portuguese, with light and dark themes.
 
 ## Getting started
@@ -41,7 +41,7 @@ The project exports a static site, so Vercel needs no special setup. Import the 
 
 ```
 src/
-  core/        Pure TypeScript. Scoring, grade bands, validation, Markdown export.
+  core/        Pure TypeScript. Scoring, grade bands, validation, Markdown exports.
   profiles/    One file per franchise. Weights and categories live here as data.
   i18n/        Dictionaries and the small translation provider.
   features/    Evaluation form and result views.

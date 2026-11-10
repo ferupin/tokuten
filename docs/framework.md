@@ -120,3 +120,5 @@ The Markdown export follows this order:
 5. The official score.
 6. The personal enjoyment score, kept separate.
 7. The conclusion, covering strongest and weakest aspects.
+
+The Obsidian format keeps the same order and the same data. It adds properties at the top, turns each category into a collapsible callout and shows the calculation as a table with a Mermaid chart. The Standard format stays plain so it renders in a forum or on GitHub. See ADR 0008.
