@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EXPORT_FORMATS, exportAs, type ExportFormat } from "@/core/export";
 import { parseEnvelope, toEnvelope } from "@/core/schema";
 import type { EvaluationResult } from "@/core/types";
 import { useI18n } from "@/i18n";
+import { readPreferences, writePreferences } from "@/features/evaluation/persistence";
 import { useEvaluationStore } from "@/features/evaluation/use-store";
 
 function download(name: string, text: string, type: string) {
@@ -28,6 +29,12 @@ export function ActionsBar({ result, onMessage }: { result: EvaluationResult; on
   const [confirming, setConfirming] = useState(false);
   const [format, setFormat] = useState<ExportFormat>("standard");
 
+  // The chosen format is remembered between visits.
+  useEffect(() => {
+    const saved = readPreferences().format;
+    if (saved) setFormat(saved);
+  }, []);
+
   const markdown = () => {
     const d = new Date();
     const pad = (n: number) => String(n).padStart(2, "0");
@@ -47,7 +54,10 @@ export function ActionsBar({ result, onMessage }: { result: EvaluationResult; on
               role="radio"
               aria-checked={format === f}
               className={`btn !py-1 ${format === f ? "" : "ghost"}`}
-              onClick={() => setFormat(f)}
+              onClick={() => {
+                setFormat(f);
+                writePreferences({ format: f });
+              }}
             >
               {t(f === "obsidian" ? "actions.formatObsidian" : "actions.formatStandard")}
             </button>

@@ -19,6 +19,30 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.5.0 (2026-11-10)
+
+Local draft. Sentai profile v1.
+
+### Interface
+- The evaluation is saved in this browser a moment after every change, and when the page is hidden or closed. A blank evaluation is never saved.
+- On the next visit a prompt offers to restore the draft or discard it. Nothing is replaced without a choice, and the stored draft is left untouched until then.
+- A quiet line under the buttons says where the work is kept, with buttons to delete the draft or turn it off. Turning it off also deletes the stored copy.
+- With the draft off, leaving a page that holds work asks for confirmation.
+- The grading mode and the Markdown export format are remembered between visits, like the language.
+
+### Method
+- Start over also deletes the draft.
+
+### Quality
+- A broken, foreign or out of range draft is ignored. The app works normally when the browser blocks storage.
+- Tests for the draft rules and for the browser flow.
+
+### Documentation
+- ADR 0009. The footer, the README and the notes of earlier decisions were updated.
+
+### Limits
+- The draft lives in one browser on one device and does not sync. Clearing the site data removes it. Export JSON to keep an evaluation for good.
+
 ## 0.4.0 (2026-11-09)
 
 Obsidian Markdown export. Sentai profile v1.

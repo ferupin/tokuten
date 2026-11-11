@@ -14,4 +14,4 @@ The app is a static site with no backend. State lives in memory while the page i
 
 ## Consequences
 
-An accidental refresh loses unsaved work. An optional draft kept in the browser is planned as a later feature, off by default.
+An accidental refresh loses unsaved work. This was softened in version 0.5.0 by a local draft that never leaves the device. See ADR 0009. The rule about servers and databases stands.

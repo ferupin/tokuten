@@ -18,4 +18,4 @@ The modes are named Detailed (詳細) and Quick (簡易). Each Quick slider show
 
 ## Consequences
 
-One score, one calculation, two ways in. A grade set directly in Quick mode replaces the subcriteria average, and the interface says so. The preferred mode is not remembered between visits, in line with the rule that nothing is stored without being asked.
+One score, one calculation, two ways in. A grade set directly in Quick mode replaces the subcriteria average, and the interface says so. The preferred mode was not remembered between visits at first. Since version 0.5.0 it is, together with the draft. See ADR 0009.

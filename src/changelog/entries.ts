@@ -32,6 +32,88 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.5.0",
+    date: "2026-11-10",
+    sentaiProfileVersion: 1,
+    title: { en: "Local draft", "pt-BR": "Rascunho local" },
+    summary: {
+      en: "Your work is now kept as a draft in this browser, so a refresh, a closed tab or a crash no longer costs a whole evaluation. Nothing is sent anywhere, and it can be turned off.",
+      "pt-BR":
+        "Seu trabalho agora fica guardado como rascunho neste navegador, então atualizar a página, fechar a aba ou uma falha não custa mais uma avaliação inteira. Nada é enviado, e dá para desligar.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "The evaluation is saved in this browser a moment after every change, and when the page is hidden or closed. A blank evaluation is never saved.",
+            "pt-BR":
+              "A avaliação é salva neste navegador um instante depois de cada alteração, e quando a página é ocultada ou fechada. Uma avaliação em branco nunca é salva.",
+          },
+          {
+            en: "On the next visit a prompt offers to restore the draft or discard it. Nothing is replaced without your choice, and the stored draft is left untouched until you decide.",
+            "pt-BR":
+              "Na visita seguinte, um aviso oferece restaurar o rascunho ou descartá-lo. Nada é substituído sem a sua escolha, e o rascunho guardado fica intacto até você decidir.",
+          },
+          {
+            en: "A quiet line under the buttons says where your work is kept, with buttons to delete the draft or turn the feature off. Turning it off also deletes the stored copy.",
+            "pt-BR":
+              "Uma linha discreta abaixo dos botões diz onde seu trabalho está guardado, com botões para apagar o rascunho ou desligar o recurso. Desligar também apaga a cópia guardada.",
+          },
+          {
+            en: "With the draft off, leaving a page that holds work asks for confirmation first.",
+            "pt-BR": "Com o rascunho desligado, sair de uma página que tem trabalho pede confirmação antes.",
+          },
+          {
+            en: "The grading mode and the Markdown export format are now remembered between visits, like the language.",
+            "pt-BR":
+              "O modo de avaliação e o formato da exportação em Markdown agora são lembrados entre visitas, como o idioma.",
+          },
+        ],
+      },
+      {
+        area: "method",
+        items: [
+          {
+            en: "Start over also deletes the draft. Starting over and importing JSON behave as before.",
+            "pt-BR":
+              "Recomeçar também apaga o rascunho. Recomeçar e importar JSON se comportam como antes.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "A broken, foreign or out of range draft is ignored instead of breaking the page, and the app works normally when the browser blocks storage. Tests cover the rules and the browser flow.",
+            "pt-BR":
+              "Um rascunho quebrado, de outra origem ou fora da escala é ignorado em vez de quebrar a página, e o app funciona normalmente quando o navegador bloqueia o armazenamento. Testes cobrem as regras e o fluxo no navegador.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "ADR 0009 records the change and its limits. The footer, the README and the notes of earlier decisions were updated to match.",
+            "pt-BR":
+              "O ADR 0009 registra a mudança e seus limites. O rodapé, o README e as notas de decisões anteriores foram atualizados para combinar.",
+          },
+        ],
+      },
+      {
+        area: "limits",
+        items: [
+          {
+            en: "The draft lives in one browser on one device. It does not sync, and clearing the site data of the browser removes it. Export JSON to keep an evaluation for good.",
+            "pt-BR":
+              "O rascunho vive em um navegador de um dispositivo. Ele não sincroniza, e limpar os dados do site no navegador o remove. Exporte o JSON para guardar uma avaliação de vez.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.4.0",
     date: "2026-11-09",
     sentaiProfileVersion: 1,
@@ -557,10 +639,6 @@ export const planned: Text[] = [
   {
     en: "Consistency checklist before finishing an evaluation.",
     "pt-BR": "Checklist de consistência antes de finalizar uma avaliação.",
-  },
-  {
-    en: "Optional draft saved in the browser, off by default.",
-    "pt-BR": "Rascunho opcional salvo no navegador, desligado por padrão.",
   },
   {
     en: "Keyboard shortcuts for grading and marking not applicable.",

@@ -4,7 +4,7 @@ Tokuten is a personal tool for scoring tokusatsu seasons in a consistent way. It
 
 The first profile covers Super Sentai. The structure is ready for others, such as Kamen Rider, without changes to the calculation code.
 
-Everything runs in the browser. There is no database, no account and no server logic. Nothing is saved unless you export it.
+Everything runs in the browser. There is no database, no account and no server logic. Your work is kept as a draft in your own browser so a refresh does not lose it, and it never leaves your device. You can turn the draft off, and export JSON to keep an evaluation for good.
 
 ## What it does
 

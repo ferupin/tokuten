@@ -14,6 +14,7 @@ import { EnjoymentCard } from "@/features/result/enjoyment-card";
 import { ResultPanel } from "@/features/result/result-panel";
 import { CategoryCard } from "./category-card";
 import { ModeSwitch } from "./mode-switch";
+import { DraftBanner, DraftStatus, useDraft } from "./draft";
 import { QuickRow } from "./quick-row";
 import { useEvaluationStore } from "./use-store";
 
@@ -26,6 +27,7 @@ export function Evaluator() {
   const setTitle = useEvaluationStore((s) => s.setTitle);
   const setIntroduction = useEvaluationStore((s) => s.setIntroduction);
   const setConclusion = useEvaluationStore((s) => s.setConclusion);
+  const draft = useDraft();
   const result = useMemo(() => computeResult(profile, evaluation), [profile, evaluation]);
 
   const [openIds, setOpenIds] = useState<Set<string>>(new Set());
@@ -68,6 +70,8 @@ export function Evaluator() {
       </header>
 
       <main id="main" className="mx-auto max-w-5xl space-y-10 px-4 pb-24 pt-10">
+        <DraftBanner draft={draft} />
+
         <section>
           <p className="label m-0">{t(`profiles.${profile.id}.name`)}</p>
           <h1 className="mb-2 mt-2 font-display text-[clamp(30px,5.5vw,52px)] font-normal leading-[1.05]">{t("app.tagline")}</h1>
@@ -177,6 +181,7 @@ export function Evaluator() {
         </section>
 
         <ActionsBar result={result} onMessage={notify} />
+        <DraftStatus draft={draft} />
         <Footer />
       </main>
 
