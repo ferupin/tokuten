@@ -335,6 +335,7 @@ export const ptBR: Messages = {
     quickTitle: "Avaliação rápida",
     redistributedTitle: "Pesos redistribuídos",
     partialTitle: "Nota parcial",
+    subcriterion: "Subcritério",
     contribution: "Contribuição",
     composition: "Contribuição para a nota oficial",
   },

@@ -21,7 +21,8 @@ Rules followed in the Obsidian format:
 
 - Property names are lowercase with underscores, values are quoted when text, numbers are literal, tags are a list without the hash.
 - Callouts use built in types only. Categories use `note`, or `question` when still ungraded, so no color suggests a verdict on a grade. Collapsible with `+` so the reasoning is open by default, and `-` for categories that do not apply.
-- Table cells escape the pipe character.
+- Table cells escape the pipe character. Subcriteria are a table (version 0.6.0). In the Obsidian format it sits inside the callout, after a blank callout line so it renders, and has a gauge column.
+- The reasoning is never put in a table. A cell holds one line, and the reasoning is long prose.
 - The Mermaid chart is only added when at least one category has a contribution.
 - The personal enjoyment score sits on its own line under the official score, labeled as separate, and is never part of the calculation.
 

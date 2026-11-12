@@ -146,8 +146,11 @@ export function exportObsidian(
       const rows = Object.entries(entry.subcriteria).filter(([, s]) => s.applicable && s.value !== null);
       if (rows.length > 0) {
         body.push("");
+        body.push(`| ${t("export.subcriterion")} | ${t("export.grade")} |  |`);
+        body.push("|:---|---:|:---|");
         for (const [id, s] of rows) {
-          body.push(`- ${t(`${p}.categories.${c.id}.subcriteria.${id}`)}: ${formatGrade(s.value as number)}`);
+          const value = s.value as number;
+          body.push(`| ${cell(t(`${p}.categories.${c.id}.subcriteria.${id}`))} | ${formatGrade(value)} | \`${gauge(value)}\` |`);
         }
       }
     }

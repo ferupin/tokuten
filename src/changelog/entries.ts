@@ -32,6 +32,54 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.6.0",
+    date: "2026-11-12",
+    sentaiProfileVersion: 1,
+    title: { en: "Subcriteria as tables", "pt-BR": "Subcritérios em tabela" },
+    summary: {
+      en: "In the Markdown export, the subcriteria of each category are now a table instead of a list, in both formats. The reasoning stays as plain text, where long writing reads best.",
+      "pt-BR":
+        "Na exportação em Markdown, os subcritérios de cada categoria agora formam uma tabela em vez de uma lista, nos dois formatos. A justificativa continua em texto corrido, onde textos longos são lidos melhor.",
+    },
+    groups: [
+      {
+        area: "export",
+        items: [
+          {
+            en: "Standard format: each category lists its graded subcriteria in a two column table with the grade aligned to the right. It uses only core table syntax, so it renders in forums, on GitHub and in any Markdown viewer.",
+            "pt-BR":
+              "Formato Padrão: cada categoria lista seus subcritérios avaliados em uma tabela de duas colunas, com a nota alinhada à direita. Usa apenas a sintaxe básica de tabela, então aparece corretamente em fóruns, no GitHub e em qualquer leitor de Markdown.",
+          },
+          {
+            en: "Obsidian format: the table sits inside the collapsible callout of the category and adds a third column with the ten cell gauge, so the strong and weak points of a category can be seen at a glance.",
+            "pt-BR":
+              "Formato Obsidian: a tabela fica dentro do bloco recolhível da categoria e ganha uma terceira coluna com o indicador de dez células, para ver de relance os pontos fortes e fracos de uma categoria.",
+          },
+          {
+            en: "The reasoning is not put in a table on purpose. A table cell holds one line, and the reasoning is the longest and most important text of the evaluation.",
+            "pt-BR":
+              "A justificativa não vai para a tabela de propósito. Uma célula de tabela comporta uma linha, e a justificativa é o texto mais longo e mais importante da avaliação.",
+          },
+          {
+            en: "Ungraded and not applicable subcriteria are left out, and quick evaluations still have no subcriteria table.",
+            "pt-BR":
+              "Subcritérios sem nota ou não aplicáveis ficam de fora, e avaliações rápidas continuam sem tabela de subcritérios.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "A new test renders both formats with the real English and Portuguese dictionaries and fails on any missing text, which would have caught a wrong label before release. The rendered tables were also checked with a Markdown parser.",
+            "pt-BR":
+              "Um novo teste gera os dois formatos com os dicionários reais em inglês e português e falha diante de qualquer texto ausente, o que teria pegado um rótulo errado antes do lançamento. As tabelas geradas também foram conferidas com um interpretador de Markdown.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.5.1",
     date: "2026-11-11",
     sentaiProfileVersion: 1,

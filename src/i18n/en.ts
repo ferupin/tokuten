@@ -339,6 +339,7 @@ export const en = {
     quickTitle: "Quick evaluation",
     redistributedTitle: "Redistributed weights",
     partialTitle: "Partial score",
+    subcriterion: "Subcriterion",
     contribution: "Contribution",
     composition: "Contribution to the official score",
   },

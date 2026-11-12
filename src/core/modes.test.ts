@@ -52,7 +52,8 @@ describe("markdown export by mode", () => {
 
   it("lists subcriteria in detailed mode and does not mention a quick evaluation", () => {
     const md = build("detailed");
-    expect(md).toContain("- profiles.sentai.categories.story.subcriteria.structure: 8.0");
+    expect(md).toContain("| export.subcriterion | export.grade |");
+    expect(md).toContain("| profiles.sentai.categories.story.subcriteria.structure | 8.0 |");
     expect(md).not.toContain("export.quickNote");
   });
 
@@ -89,5 +90,17 @@ describe("store", () => {
     const ev = store.getState().evaluation;
     expect(ev.mode).toBe("quick");
     expect(ev.categories.story.override).toBeNull();
+  });
+});
+
+describe("standard export subcriteria table", () => {
+  it("is a two column table with a right aligned grade and no list", () => {
+    const ev = createEvaluation(sentaiProfile);
+    ev.categories.story.subcriteria.structure.value = 8;
+    ev.categories.story.subcriteria.plot.value = 6.5;
+    const md = exportMarkdown(sentaiProfile, ev, computeResult(sentaiProfile, ev), (k) => k);
+    expect(md).toContain("|:---|---:|");
+    expect(md).toContain("| profiles.sentai.categories.story.subcriteria.plot | 6.5 |");
+    expect(md).not.toMatch(/^- profiles\.sentai\.categories\.story\.subcriteria/m);
   });
 });

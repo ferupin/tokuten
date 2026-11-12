@@ -62,8 +62,11 @@ export function exportMarkdown(
       const rows = Object.entries(entry.subcriteria).filter(([, s]) => s.applicable && s.value !== null);
       if (rows.length > 0) {
         lines.push("");
+        lines.push(`| ${t("export.subcriterion")} | ${t("export.grade")} |`);
+        lines.push("|:---|---:|");
         for (const [id, s] of rows) {
-          lines.push(`- ${t(`${p}.categories.${c.id}.subcriteria.${id}`)}: ${formatGrade(s.value as number)}`);
+          const name = t(`${p}.categories.${c.id}.subcriteria.${id}`).replace(/\|/g, "\\|");
+          lines.push(`| ${name} | ${formatGrade(s.value as number)} |`);
         }
       }
     }

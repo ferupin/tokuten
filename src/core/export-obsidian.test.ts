@@ -98,3 +98,64 @@ describe("obsidian export", () => {
     expect(exportAs("standard", sentaiProfile, evaluation, result, t).startsWith("# ")).toBe(true);
   });
 });
+
+describe("subcriteria tables", () => {
+  const graded = (e: ReturnType<typeof createEvaluation>) => {
+    e.categories.story.subcriteria.structure.value = 8;
+    e.categories.story.subcriteria.plot.value = 6.5;
+  };
+
+  it("sits inside the callout with a gauge column", () => {
+    const md = build(graded);
+    expect(md).toContain("> | export.subcriterion | export.grade |  |");
+    expect(md).toContain("> |:---|---:|:---|");
+    expect(md).toContain("> | profiles.sentai.categories.story.subcriteria.structure | 8.0 | `████████░░` |");
+  });
+
+  it("keeps a blank callout line before the table so it renders", () => {
+    const lines = build(graded).split("\n");
+    const i = lines.findIndex((l) => l.startsWith("> | export.subcriterion"));
+    expect(lines[i - 1]).toBe(">");
+  });
+
+  it("omits the table in quick mode", () => {
+    const md = build((e) => {
+      graded(e);
+      e.mode = "quick";
+    });
+    expect(md).not.toContain("export.subcriterion");
+  });
+
+  it("leaves ungraded and not applicable subcriteria out", () => {
+    const md = build((e) => {
+      graded(e);
+      e.categories.story.subcriteria.plot.applicable = false;
+    });
+    expect(md).toContain("subcriteria.structure |");
+    expect(md).not.toContain("subcriteria.plot |");
+  });
+});
+
+describe("real dictionaries", () => {
+  it("resolve every key the exports use, in both languages and both formats", async () => {
+    const { en } = await import("@/i18n/en");
+    const { ptBR } = await import("@/i18n/pt-BR");
+    for (const dict of [en, ptBR]) {
+      const tr = (key: string, values?: Record<string, string | number>) => {
+        const found = key.split(".").reduce<unknown>((o, p) => (o as Record<string, unknown> | undefined)?.[p], dict);
+        if (typeof found !== "string") throw new Error(`Missing text: ${key}`);
+        return Object.entries(values ?? {}).reduce((s, [k, v]) => s.replace(`{${k}}`, String(v)), found);
+      };
+      const e = createEvaluation(sentaiProfile);
+      e.categories.story.subcriteria.structure.value = 8;
+      e.categories.mecha.applicable = false;
+      e.enjoyment = 7;
+      const r = computeResult(sentaiProfile, e);
+      for (const f of ["standard", "obsidian"] as const) {
+        const md = exportAs(f, sentaiProfile, e, r, tr);
+        expect(md).not.toContain("undefined");
+        expect(md).not.toContain("—");
+      }
+    }
+  });
+});

@@ -19,6 +19,19 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.6.0 (2026-11-12)
+
+Subcriteria as tables. Sentai profile v1.
+
+### Export and import
+- Standard format: the graded subcriteria of each category are a two column table with the grade aligned to the right. Only core table syntax is used, so it renders in forums, on GitHub and in any Markdown viewer.
+- Obsidian format: the table sits inside the collapsible callout of the category and adds a third column with the ten cell gauge.
+- The reasoning stays as plain text on purpose. A table cell holds one line, and the reasoning is the longest and most important text of the evaluation.
+- Ungraded and not applicable subcriteria are left out. Quick evaluations still have no subcriteria table.
+
+### Quality
+- A new test renders both formats with the real English and Portuguese dictionaries and fails on any missing text. The rendered tables were also checked with a Markdown parser.
+
 ## 0.5.1 (2026-11-11)
 
 Named palette and hex codes. Sentai profile v1.

@@ -1,6 +1,6 @@
 {
   "name": "tokuten",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "private": true,
   "description": "Tokuten (特点): a scoring tool for tokusatsu seasons, built on the Kijun (基準) method.",
   "scripts": {
