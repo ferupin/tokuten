@@ -50,6 +50,13 @@ Fonts are self-hosted through `@fontsource`, so the build does not depend on a n
 - **Formal numerals.** Categories are numbered 壱 弐 参 四 五 六 七 八 九 十.
 - **Radar chart.** Ten axes, one per category, labeled with the same numerals.
 
+## Settings and actions
+
+A control that does something is a button. A control that stays on or off, or picks one of a few options, looks different, so the footer does not read as a wall of buttons.
+
+- **Switch**: an on or off setting, such as keeping a draft. The track takes the accent color when on.
+- **Segmented control**: one choice among a few, such as the Markdown format. It is one piece with arrow key support.
+
 ## Accessibility
 
 - Text contrast follows WCAG AA in both themes.

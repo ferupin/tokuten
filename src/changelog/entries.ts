@@ -32,6 +32,62 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.7.1",
+    date: "2026-11-13",
+    sentaiProfileVersion: 1,
+    title: { en: "Calmer draft controls", "pt-BR": "Controles do rascunho mais calmos" },
+    summary: {
+      en: "The draft notice no longer repeats when you move between pages, it stays in view until you answer it, and the footer has fewer things that look like buttons.",
+      "pt-BR":
+        "O aviso do rascunho não se repete mais quando você troca de página, fica à vista até você responder, e o rodapé tem menos coisas que parecem botões.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "Fixed: going to Meaning or Version and coming back offered to restore a draft that was already restored. The notice now appears only when nothing is in progress, that is, after a reload or a new visit.",
+            "pt-BR":
+              "Corrigido: ir para Significado ou Versão e voltar oferecia restaurar um rascunho que já tinha sido restaurado. O aviso agora aparece só quando não há nada em andamento, ou seja, após recarregar ou numa nova visita.",
+          },
+          {
+            en: "The draft notice is now a slim strip under the header. It follows you while you scroll, does not cover the page, and stays until you restore or discard. On narrow screens it shortens to two lines.",
+            "pt-BR":
+              "O aviso do rascunho agora é uma faixa fina sob o cabeçalho. Ela acompanha a rolagem, não cobre a página e fica até você restaurar ou descartar. Em telas estreitas ela se reduz a duas linhas.",
+          },
+          {
+            en: "Keeping a draft is now a switch instead of two buttons, with a quiet Delete draft link beside the status. Settings that stay on or off now look different from actions that do something.",
+            "pt-BR":
+              "Manter um rascunho agora é um interruptor em vez de dois botões, com um link discreto Apagar rascunho ao lado do status. Ajustes que ficam ligados ou desligados agora parecem diferentes de ações que fazem algo.",
+          },
+          {
+            en: "The Markdown format is a single segmented control and works with the arrow keys.",
+            "pt-BR": "O formato do Markdown é um único controle segmentado e funciona com as setas do teclado.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "Checked in the browser: a reload still offers the draft, while moving between pages, using the back button and returning from the changelog does not. The two controls work with the keyboard.",
+            "pt-BR":
+              "Conferido no navegador: recarregar ainda oferece o rascunho, enquanto trocar de página, usar o botão voltar e retornar do changelog não oferece. Os dois controles funcionam com o teclado.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "ADR 0009 and the design system describe the new rule and the two controls.",
+            "pt-BR": "O ADR 0009 e o design system descrevem a nova regra e os dois controles.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.7.0",
     date: "2026-11-12",
     sentaiProfileVersion: 1,

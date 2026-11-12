@@ -14,9 +14,11 @@ Keep a draft of the evaluation in `localStorage`, on this device only.
 
 - **On by default**, with a visible line that says where the work is kept and a switch to turn it off. People who never read the settings are the ones who need the protection most.
 - **Saved after every change** with a short delay, and at once when the page is hidden or closed.
-- **Offered back, never forced.** A stored draft appears as a prompt to restore or discard. Nothing is written while that choice is pending, so a fresh page cannot overwrite it.
+- **Offered back, never forced.** A stored draft appears as a prompt to restore or discard. Nothing is written while that choice is pending, so a fresh page cannot overwrite it. The prompt is a slim strip under the header, so it stays in view and does not cover the page.
+- **Offered only when nothing is in progress.** Moving between pages of the app keeps the work in memory, and it already matches the draft. The prompt is for a reload or a new visit, when the memory is blank (version 0.7.1).
 - **Blank is not saved.** Opening the app and leaving leaves nothing behind.
 - **Turning it off deletes the copy**, and Start over deletes the draft.
+- **A switch, not buttons.** Keeping a draft is a setting, so it is a switch, with a quiet Delete draft link beside the status.
 - **With the draft off**, leaving a page that holds work asks for confirmation.
 - **Preferences are kept apart** from the draft: draft on or off, grading mode and export format. They survive Start over.
 - The draft is validated with the same schema as the JSON import. Anything broken, foreign or out of range is ignored.

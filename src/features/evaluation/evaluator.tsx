@@ -68,11 +68,10 @@ export function Evaluator() {
           <LanguageSwitch />
           <ThemeToggle />
         </div>
+        <DraftBanner draft={draft} />
       </header>
 
       <main id="main" className="mx-auto max-w-5xl space-y-10 px-4 pb-24 pt-10">
-        <DraftBanner draft={draft} />
-
         <section>
           <p className="label m-0">{t(`profiles.${profile.id}.name`)}</p>
           <h1 className="mb-2 mt-2 font-display text-[clamp(30px,5.5vw,52px)] font-normal leading-[1.05]">{t("app.tagline")}</h1>

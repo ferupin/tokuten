@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { isBlank } from "@/core/draft";
+import { Switch } from "@/components/ui/switch";
 import type { Evaluation } from "@/core/types";
 import { useI18n } from "@/i18n";
 import { clearDraft, readDraft, readPreferences, writeDraft, writePreferences } from "./persistence";
@@ -38,14 +39,17 @@ export function useDraft(): DraftController {
   const [savedAt, setSavedAt] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
 
-  // Read preferences and any stored draft once, after mount.
+  // Read preferences and any stored draft once, after mount. When the page is
+  // opened again by navigating inside the app, the work is still in memory and
+  // already matches the draft, so there is nothing to offer back.
   useEffect(() => {
     const prefs = readPreferences();
     setEnabledState(prefs.draft);
-    const found = prefs.draft ? readDraft(profile) : { ok: false as const };
+    const inMemory = !isBlank(profile, useEvaluationStore.getState().evaluation);
+    const found = prefs.draft && !inMemory ? readDraft(profile) : { ok: false as const };
     if (found.ok && !isBlank(profile, found.evaluation)) {
       setPending({ evaluation: found.evaluation, savedAt: found.savedAt });
-    } else if (prefs.mode) {
+    } else if (!inMemory && prefs.mode) {
       setMode(prefs.mode);
     }
     setReady(true);
@@ -145,54 +149,70 @@ function formatWhen(iso: string, locale: string, withDate: boolean) {
     : d.toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" });
 }
 
-/** Offers a stored draft back, right under the header. */
+/**
+ * Offers a stored draft back. It is a slim strip that rides under the header,
+ * so it stays in view while scrolling, never covers the content and does not
+ * compete with the back to top button. It stays until you choose.
+ */
 export function DraftBanner({ draft }: { draft: DraftController }) {
   const { t, locale } = useI18n();
   if (!draft.pending) return null;
   const when = formatWhen(draft.pending.savedAt, locale, true);
   return (
-    <section role="region" aria-label={t("draft.foundTitle")} className="card no-print flex flex-wrap items-center justify-between gap-3 p-4" style={{ borderColor: "var(--accent)" }}>
-      <div className="min-w-0 flex-1">
-        <p className="m-0 font-bold">{t("draft.foundTitle")}</p>
-        <p className="m-0 text-[13px] text-soft">{t("draft.foundText", { when })}</p>
+    <div
+      role="region"
+      aria-label={t("draft.foundTitle")}
+      className="border-t"
+      style={{ background: "var(--surface-2)", borderColor: "var(--line)" }}
+    >
+      <div className="mx-auto flex max-w-5xl items-center gap-x-4 gap-y-2 px-4 py-2">
+        <span aria-hidden className="h-2 w-2 shrink-0 rounded-full" style={{ background: "var(--accent)" }} />
+        <p className="m-0 min-w-0 flex-1 text-[13px] leading-snug">
+          <strong>{t("draft.foundTitle")}.</strong>{" "}
+          <span className="hidden text-soft sm:inline">{t("draft.foundText", { when })}</span>
+          <span className="block text-soft sm:hidden">{t("draft.foundWhen", { when })}</span>
+        </p>
+        <div className="flex shrink-0 flex-col gap-1.5 min-[480px]:flex-row min-[480px]:gap-2">
+          <button type="button" className="btn !py-1 !text-xs" onClick={draft.restore}>
+            {t("draft.restore")}
+          </button>
+          <button type="button" className="btn ghost !py-1 !text-xs" onClick={draft.discard}>
+            {t("draft.discard")}
+          </button>
+        </div>
       </div>
-      <div className="flex flex-wrap gap-2">
-        <button type="button" className="btn" onClick={draft.restore}>
-          {t("draft.restore")}
-        </button>
-        <button type="button" className="btn ghost" onClick={draft.discard}>
-          {t("draft.discard")}
-        </button>
-      </div>
-    </section>
+    </div>
   );
 }
 
-/** One quiet line that says where the work is kept, with the controls. */
+/** Where the work is kept: one switch, one line of status, and a quiet way to delete. */
 export function DraftStatus({ draft }: { draft: DraftController }) {
   const { t, locale } = useI18n();
-  const text = draft.failed
+  const status = draft.failed
     ? t("draft.failed")
     : !draft.enabled
-      ? t("draft.off")
+      ? t("draft.hintOff")
       : draft.savedAt
-        ? t("draft.saved", { time: formatWhen(draft.savedAt, locale, false) })
-        : t("draft.on");
+        ? `${t("draft.savedAt", { time: formatWhen(draft.savedAt, locale, false) })}. ${t("draft.hintOn")}`
+        : t("draft.hintOn");
   return (
-    <div className="no-print flex flex-col items-center gap-2 text-center" data-testid="draft-status">
+    <div className="no-print flex flex-col items-center gap-1 text-center" data-testid="draft-status">
+      <Switch checked={draft.enabled} onChange={draft.setEnabled} label={t("draft.switchLabel")} />
       <p className="m-0 max-w-xl text-xs text-soft" role="status">
-        {text}
-      </p>
-      <div className="flex flex-wrap justify-center gap-2">
+        {status}
         {draft.enabled && draft.savedAt && (
-          <button type="button" className="btn ghost !py-1 !text-xs" onClick={draft.remove}>
-            {t("draft.delete")}
-          </button>
+          <>
+            {" "}
+            <button
+              type="button"
+              onClick={draft.remove}
+              className="cursor-pointer border-0 bg-transparent p-0 text-xs text-soft underline underline-offset-2 hover:text-ink"
+            >
+              {t("draft.delete")}
+            </button>
+          </>
         )}
-        <button type="button" className="btn ghost !py-1 !text-xs" onClick={() => draft.setEnabled(!draft.enabled)}>
-          {draft.enabled ? t("draft.turnOff") : t("draft.turnOn")}
-        </button>
-      </div>
+      </p>
     </div>
   );
 }

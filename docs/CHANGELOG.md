@@ -19,6 +19,22 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.7.1 (2026-11-13)
+
+Calmer draft controls. Sentai profile v1.
+
+### Interface
+- Fixed: going to Meaning or Version and coming back offered to restore a draft that was already restored. The notice now appears only when nothing is in progress, that is, after a reload or a new visit.
+- The draft notice is a slim strip under the header. It follows the scroll, does not cover the page and stays until you restore or discard. On narrow screens it shortens to two lines.
+- Keeping a draft is a switch, with a quiet Delete draft link beside the status.
+- The Markdown format is a single segmented control and works with the arrow keys.
+
+### Quality
+- Checked in the browser: a reload still offers the draft, while moving between pages, the back button and returning from the changelog do not.
+
+### Documentation
+- ADR 0009 and the design system describe the new rule and the two controls.
+
 ## 0.7.0 (2026-11-12)
 
 Consistency checklist. Sentai profile v1.

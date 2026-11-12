@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { EXPORT_FORMATS, exportAs, type ExportFormat } from "@/core/export";
 import { parseEnvelope, toEnvelope } from "@/core/schema";
 import type { EvaluationResult } from "@/core/types";
+import { Segmented } from "@/components/ui/segmented";
 import { useI18n } from "@/i18n";
 import { readPreferences, writePreferences } from "@/features/evaluation/persistence";
 import { useEvaluationStore } from "@/features/evaluation/use-store";
@@ -45,23 +46,20 @@ export function ActionsBar({ result, onMessage }: { result: EvaluationResult; on
   return (
     <div className="no-print flex flex-col items-center gap-4">
       <div className="flex flex-col items-center gap-1">
-        <div role="radiogroup" aria-label={t("actions.format")} className="inline-flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-3">
           <span className="label">{t("actions.format")}</span>
-          {EXPORT_FORMATS.map((f) => (
-            <button
-              key={f}
-              type="button"
-              role="radio"
-              aria-checked={format === f}
-              className={`btn !py-1 ${format === f ? "" : "ghost"}`}
-              onClick={() => {
-                setFormat(f);
-                writePreferences({ format: f });
-              }}
-            >
-              {t(f === "obsidian" ? "actions.formatObsidian" : "actions.formatStandard")}
-            </button>
-          ))}
+          <Segmented
+            label={t("actions.format")}
+            value={format}
+            options={EXPORT_FORMATS.map((f) => ({
+              value: f,
+              label: t(f === "obsidian" ? "actions.formatObsidian" : "actions.formatStandard"),
+            }))}
+            onChange={(f) => {
+              setFormat(f);
+              writePreferences({ format: f });
+            }}
+          />
         </div>
         <p className="m-0 text-xs text-soft">
           {t(format === "obsidian" ? "actions.formatHintObsidian" : "actions.formatHintStandard")}
