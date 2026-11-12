@@ -34,6 +34,11 @@ export function evaluationSchema(profile: Profile) {
     introduction: z.string(),
     conclusion: z.string(),
     enjoyment: grade(profile).nullable(),
+    // Files saved before the checklist existed have none.
+    checked: z
+      .array(z.string())
+      .default([])
+      .transform((ids) => profile.checklist.filter((id) => ids.includes(id))),
     categories: z.object(categoryShape),
   });
 }

@@ -54,6 +54,13 @@ describe("profile text", () => {
         }
       });
 
+      it("words every consistency check", () => {
+        for (const flat of [flatEn, flatPt]) {
+          for (const id of profile.checklist) expect(flat[`${p}.checklist.${id}`], id).toBeTruthy();
+        }
+        expect(new Set(profile.checklist).size).toBe(profile.checklist.length);
+      });
+
       it("describes every category and subcriterion", () => {
         for (const flat of [flatEn, flatPt]) {
           for (const c of profile.categories) {

@@ -10,6 +10,7 @@ import { Footer } from "@/components/ui/footer";
 import { useScrollTop } from "@/components/ui/use-scroll-top";
 import { useI18n } from "@/i18n";
 import { ActionsBar } from "@/features/result/actions-bar";
+import { ChecklistCard } from "@/features/result/checklist-card";
 import { EnjoymentCard } from "@/features/result/enjoyment-card";
 import { ResultPanel } from "@/features/result/result-panel";
 import { CategoryCard } from "./category-card";
@@ -179,6 +180,8 @@ export function Evaluator() {
             onChange={(e) => setConclusion(e.target.value)}
           />
         </section>
+
+        <ChecklistCard />
 
         <ActionsBar result={result} onMessage={notify} />
         <DraftStatus draft={draft} />

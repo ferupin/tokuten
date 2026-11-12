@@ -19,6 +19,25 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.7.0 (2026-11-12)
+
+Consistency checklist. Sentai profile v1.
+
+### Method
+- A new card after the conclusion lists the ten consistency checks of the method. It starts collapsed and shows how many are ticked.
+- Ticking never changes the score, in either mode, and never blocks the export.
+
+### Export and import
+- When at least one check is ticked, both Markdown formats end with a consistency checklist as a task list. It is left out when nothing is ticked.
+- In the Obsidian format the list sits in a collapsible to-do callout, and a `checklist_done` property records the count.
+- The JSON file gets a new optional `checked` list of ids. Files from earlier versions still import, with nothing ticked, and unknown ids are dropped. The file schema version stays 1 because nothing breaks.
+
+### Interface
+- The checks are part of the local draft.
+
+### Quality
+- Tests for the score being untouched, profile order, the JSON round trip, old files, unknown ids and both exports. A dictionary test checks every check has text in both languages.
+
 ## 0.6.0 (2026-11-12)
 
 Subcriteria as tables. Sentai profile v1.
@@ -219,8 +238,6 @@ First usable release. Sentai profile v1.
 Nothing here is promised or dated.
 
 - Category specific grade anchors.
-- Consistency checklist before finishing.
-- Optional browser draft, off by default.
 - Keyboard shortcuts.
 - Compare seasons side by side.
 - Kamen Rider profile.

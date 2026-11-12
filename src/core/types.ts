@@ -41,6 +41,8 @@ export interface Profile {
   pillars: readonly Pillar[];
   categories: readonly Category[];
   scale: { min: number; max: number; step: number };
+  /** Ids of the consistency checks, in order. Text lives in the dictionaries. */
+  checklist: readonly string[];
 }
 
 /** One subcriterion inside a category. */
@@ -80,6 +82,8 @@ export interface Evaluation {
   conclusion: string;
   /** Personal enjoyment. Kept apart from the official score on purpose. */
   enjoyment: number | null;
+  /** Ids of the consistency checks the author confirmed. Never read by the scoring code. */
+  checked: string[];
   categories: Record<CategoryId, CategoryEntry>;
 }
 

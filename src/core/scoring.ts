@@ -31,6 +31,7 @@ export function createEvaluation(profile: Profile): Evaluation {
     introduction: "",
     conclusion: "",
     enjoyment: null,
+    checked: [],
     categories: Object.fromEntries(profile.categories.map((c) => [c.id, createCategoryEntry(c)])),
   };
 }

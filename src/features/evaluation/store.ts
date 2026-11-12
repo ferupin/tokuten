@@ -10,6 +10,7 @@ interface EvaluationState {
   setIntroduction: (value: string) => void;
   setConclusion: (value: string) => void;
   setEnjoyment: (value: number | null) => void;
+  setChecked: (id: string, checked: boolean) => void;
   setNotes: (category: CategoryId, value: string) => void;
   setCategoryApplicable: (category: CategoryId, applicable: boolean) => void;
   setOverride: (category: CategoryId, value: number | null) => void;
@@ -41,6 +42,14 @@ export function createEvaluationStore(profile: Profile) {
       setIntroduction: (introduction) => set((s) => ({ evaluation: { ...s.evaluation, introduction } })),
       setConclusion: (conclusion) => set((s) => ({ evaluation: { ...s.evaluation, conclusion } })),
       setEnjoyment: (enjoyment) => set((s) => ({ evaluation: { ...s.evaluation, enjoyment } })),
+      setChecked: (id, checked) =>
+        set((s) => {
+          const has = s.evaluation.checked.includes(id);
+          if (has === checked) return s;
+          // Keep the order of the profile, whatever order the boxes were ticked in.
+          const next = profile.checklist.filter((c) => (c === id ? checked : s.evaluation.checked.includes(c)));
+          return { evaluation: { ...s.evaluation, checked: next } };
+        }),
       setNotes: (id, notes) => patchCategory(id, (c) => ({ ...c, notes })),
       setCategoryApplicable: (id, applicable) => patchCategory(id, (c) => ({ ...c, applicable })),
       setOverride: (id, override) => patchCategory(id, (c) => ({ ...c, override })),

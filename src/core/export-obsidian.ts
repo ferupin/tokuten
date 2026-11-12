@@ -64,6 +64,7 @@ export function exportObsidian(
     lines.push(`band: ${yamlString(t(`grades.${gradeBand(result.score)}`))}`);
   }
   if (evaluation.enjoyment !== null) lines.push(`enjoyment: ${formatGrade(evaluation.enjoyment)}`);
+  if (evaluation.checked.length > 0) lines.push(`checklist_done: ${evaluation.checked.length}`);
   if (options.date) lines.push(`exported: ${options.date}`);
   lines.push("tags:");
   lines.push("  - tokuten");
@@ -225,6 +226,19 @@ export function exportObsidian(
   if (evaluation.conclusion.trim()) {
     lines.push("");
     lines.push(evaluation.conclusion.trim());
+  }
+
+  // 8. Consistency checklist, only when the author ticked something
+  if (evaluation.checked.length > 0) {
+    lines.push("");
+    lines.push(`## ${t("export.checklist")}`);
+    lines.push("");
+    lines.push(
+      `> [!todo]- ${t("export.checklistCount", { done: evaluation.checked.length, total: profile.checklist.length })}`,
+    );
+    lines.push(
+      ...inCallout(profile.checklist.map((id) => `- [${evaluation.checked.includes(id) ? "x" : " "}] ${t(`${p}.checklist.${id}`)}`)),
+    );
   }
 
   return lines.join("\n") + "\n";

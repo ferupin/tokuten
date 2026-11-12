@@ -32,6 +32,72 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.7.0",
+    date: "2026-11-12",
+    sentaiProfileVersion: 1,
+    title: { en: "Consistency checklist", "pt-BR": "Checklist de consistência" },
+    summary: {
+      en: "The ten consistency checks of the method are now part of the app, as a last look before you finish. They are a reminder for you: they never change the score and never block the export.",
+      "pt-BR":
+        "As dez verificações de consistência do método agora fazem parte do app, como uma última olhada antes de terminar. Elas são um lembrete para você: nunca alteram a nota e nunca bloqueiam a exportação.",
+    },
+    groups: [
+      {
+        area: "method",
+        items: [
+          {
+            en: "A new card after the conclusion lists the ten checks, such as no bonus for nostalgia, no double counting of a strength and each judgment supported by examples. It starts collapsed and shows how many are ticked.",
+            "pt-BR":
+              "Um novo cartão depois da conclusão lista as dez verificações, como nenhum bônus por nostalgia, nenhuma contagem dupla de um ponto forte e cada julgamento sustentado por exemplos. Ele começa recolhido e mostra quantas estão marcadas.",
+          },
+          {
+            en: "Ticking never changes the score, in either mode.",
+            "pt-BR": "Marcar nunca altera a nota, em nenhum dos modos.",
+          },
+        ],
+      },
+      {
+        area: "export",
+        items: [
+          {
+            en: "When at least one check is ticked, both Markdown formats end with a consistency checklist as a task list. It is left out when nothing is ticked, so the output stays as before.",
+            "pt-BR":
+              "Quando ao menos uma verificação está marcada, os dois formatos de Markdown terminam com um checklist de consistência em forma de lista de tarefas. Ele fica de fora quando nada está marcado, então a saída continua como antes.",
+          },
+          {
+            en: "In the Obsidian format the list sits in a collapsible to-do callout, and a checklist_done property records how many checks were ticked.",
+            "pt-BR":
+              "No formato Obsidian, a lista fica em um bloco recolhível de tarefas, e a propriedade checklist_done registra quantas verificações foram marcadas.",
+          },
+          {
+            en: "The JSON file keeps the ticked checks. Files saved before this version still import, with nothing ticked.",
+            "pt-BR":
+              "O arquivo JSON guarda as verificações marcadas. Arquivos salvos antes desta versão continuam sendo importados, sem nada marcado.",
+          },
+        ],
+      },
+      {
+        area: "interface",
+        items: [
+          {
+            en: "The checks are part of the local draft, so they come back with the rest of your work.",
+            "pt-BR": "As verificações fazem parte do rascunho local, então voltam junto com o resto do seu trabalho.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "Tests for the score being untouched, profile order, the JSON round trip, old files, unknown ids and both exports. A dictionary test checks that every check has text in both languages.",
+            "pt-BR":
+              "Testes para a nota intacta, a ordem do perfil, o ciclo do JSON, arquivos antigos, ids desconhecidos e os dois formatos de exportação. Um teste de dicionário confere que toda verificação tem texto nos dois idiomas.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.6.0",
     date: "2026-11-12",
     sentaiProfileVersion: 1,
@@ -738,10 +804,6 @@ export const planned: Text[] = [
   {
     en: "Category specific grade anchors, written together with the method.",
     "pt-BR": "Âncoras de nota específicas por categoria, escritas junto com o método.",
-  },
-  {
-    en: "Consistency checklist before finishing an evaluation.",
-    "pt-BR": "Checklist de consistência antes de finalizar uma avaliação.",
   },
   {
     en: "Keyboard shortcuts for grading and marking not applicable.",

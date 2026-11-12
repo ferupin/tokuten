@@ -109,6 +109,8 @@ Before finishing an evaluation, check that you did the following:
 - Did not inflate a grade because the season is popular.
 - Did not force a low grade just to look objective.
 
+The app shows these ten checks as a card after the conclusion. They are a reminder for the author. Ticking them never changes the score and never blocks the export. When at least one is ticked, both Markdown formats end with the list as a task list.
+
 ## Output format
 
 The Markdown export follows this order:
@@ -120,5 +122,6 @@ The Markdown export follows this order:
 5. The official score.
 6. The personal enjoyment score, kept separate.
 7. The conclusion, covering strongest and weakest aspects.
+8. The consistency checklist, only when at least one check was ticked.
 
 The Obsidian format keeps the same order and the same data. It adds properties at the top, turns each category into a collapsible callout and shows the calculation as a table with a Mermaid chart. The Standard format stays plain so it renders in a forum or on GitHub. See ADR 0008.

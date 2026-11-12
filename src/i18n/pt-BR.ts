@@ -86,6 +86,14 @@ export const ptBR: Messages = {
     strongest: "Categoria mais forte",
     weakest: "Categoria mais fraca",
   },
+  checklist: {
+    title: "Checklist de consistência",
+    description:
+      "Uma última olhada antes de terminar. Marque o que você de fato fez. É um lembrete para você e nunca altera a nota.",
+    progress: "{done} de {total} marcados",
+    open: "Mostrar o checklist",
+    close: "Ocultar o checklist",
+  },
   enjoyment: {
     sectionTitle: "Diversão pessoal",
     title: "Nota de Diversão Pessoal",
@@ -336,12 +344,26 @@ export const ptBR: Messages = {
     redistributedTitle: "Pesos redistribuídos",
     partialTitle: "Nota parcial",
     subcriterion: "Subcritério",
+    checklist: "Checklist de consistência",
+    checklistCount: "{done} de {total} marcados",
     contribution: "Contribuição",
     composition: "Contribuição para a nota oficial",
   },
   profiles: {
     sentai: {
       name: "Kijun: Super Sentai",
+      checklist: {
+        noNostalgia: "Não dei bônus por nostalgia.",
+        noAgePenalty: "Não apliquei penalidade por idade ou limitações de produção.",
+        attemptAndSuccess: "Julguei o que a temporada tenta fazer e o quanto ela consegue.",
+        conceptVsExecution: "Separei um conceito interessante de sua execução.",
+        quantityVsQuality: "Não confundi quantidade com qualidade.",
+        noDoubleCounting: "Não contei o mesmo ponto forte ou fraco em mais de uma categoria.",
+        wholeSeason: "Considerei a temporada inteira, e não só seus melhores ou piores episódios.",
+        concreteExamples: "Sustentei cada julgamento com exemplos concretos.",
+        noPopularityBonus: "Não inflei uma nota porque a temporada é popular.",
+        noForcedLow: "Não forcei uma nota baixa só para parecer objetivo.",
+      },
       pillars: {
         narrative: "Narrativa",
         concept: "Conceito",

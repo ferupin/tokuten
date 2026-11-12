@@ -10,6 +10,18 @@ export const sentaiProfile: Profile = {
   id: "sentai",
   version: 1,
   scale: { min: 0, max: 10, step: 0.1 },
+  checklist: [
+    "noNostalgia",
+    "noAgePenalty",
+    "attemptAndSuccess",
+    "conceptVsExecution",
+    "quantityVsQuality",
+    "noDoubleCounting",
+    "wholeSeason",
+    "concreteExamples",
+    "noPopularityBonus",
+    "noForcedLow",
+  ],
   pillars: [
     { id: "narrative", kanji: "赤", reading: "aka", tone: "red" },
     { id: "concept", kanji: "青", reading: "ao", tone: "blue" },

@@ -90,6 +90,14 @@ export const en = {
     strongest: "Strongest category",
     weakest: "Weakest category",
   },
+  checklist: {
+    title: "Consistency checklist",
+    description:
+      "A last look before you finish. Tick what you honestly did. It is a reminder for you and never changes the score.",
+    progress: "{done} of {total} checked",
+    open: "Show the checklist",
+    close: "Hide the checklist",
+  },
   enjoyment: {
     sectionTitle: "Personal enjoyment",
     title: "Personal Enjoyment Score",
@@ -340,12 +348,26 @@ export const en = {
     redistributedTitle: "Redistributed weights",
     partialTitle: "Partial score",
     subcriterion: "Subcriterion",
+    checklist: "Consistency checklist",
+    checklistCount: "{done} of {total} checked",
     contribution: "Contribution",
     composition: "Contribution to the official score",
   },
   profiles: {
     sentai: {
       name: "Kijun: Super Sentai",
+      checklist: {
+        noNostalgia: "I gave no bonus for nostalgia.",
+        noAgePenalty: "I applied no penalty for age or production limits.",
+        attemptAndSuccess: "I judged what the season attempts and how well it succeeds.",
+        conceptVsExecution: "I kept an interesting concept apart from its execution.",
+        quantityVsQuality: "I did not confuse quantity with quality.",
+        noDoubleCounting: "I did not count the same strength or weakness in more than one category.",
+        wholeSeason: "I considered the whole season, not only its best or worst episodes.",
+        concreteExamples: "I supported each judgment with concrete examples.",
+        noPopularityBonus: "I did not inflate a grade because the season is popular.",
+        noForcedLow: "I did not force a low grade just to look objective.",
+      },
       pillars: {
         narrative: "Narrative",
         concept: "Concept",

@@ -140,5 +140,17 @@ export function exportMarkdown(
     lines.push(evaluation.conclusion.trim());
   }
 
+  // 8. Consistency checklist, only when the author ticked something
+  if (evaluation.checked.length > 0) {
+    lines.push("");
+    lines.push(`## ${t("export.checklist")}`);
+    lines.push("");
+    lines.push(`*${t("export.checklistCount", { done: evaluation.checked.length, total: profile.checklist.length })}*`);
+    lines.push("");
+    for (const id of profile.checklist) {
+      lines.push(`- [${evaluation.checked.includes(id) ? "x" : " "}] ${t(`${p}.checklist.${id}`)}`);
+    }
+  }
+
   return lines.join("\n") + "\n";
 }
