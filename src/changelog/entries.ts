@@ -32,6 +32,61 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.5.1",
+    date: "2026-11-11",
+    sentaiProfileVersion: 1,
+    title: { en: "Named palette and hex codes", "pt-BR": "Paleta nomeada e códigos hex" },
+    summary: {
+      en: "Every color of both themes now has a name, and each color on the Meaning page shows its hex code and copies it on a click.",
+      "pt-BR":
+        "Todas as cores dos dois temas agora têm nome, e cada cor da página Significado mostra o código hex e o copia com um clique.",
+    },
+    groups: [
+      {
+        area: "design",
+        items: [
+          {
+            en: "The two missing names were added: Kinari (生成り) for the card surface of the light theme and Kurocha (黒茶) for the card surface of the dark theme. The text color of the dark theme is now Zōge (象牙), in place of the English word Ivory, so the whole palette is named the same way.",
+            "pt-BR":
+              "Os dois nomes que faltavam foram adicionados: Kinari (生成り) para a superfície dos cartões no tema claro e Kurocha (黒茶) para a do tema escuro. A cor do texto no tema escuro agora é Zōge (象牙), no lugar da palavra inglesa Ivory, então toda a paleta é nomeada do mesmo jeito.",
+          },
+          {
+            en: "Each color is described on the Meaning page, including Shu, which is a little lighter on the dark theme.",
+            "pt-BR":
+              "Cada cor é descrita na página Significado, inclusive o Shu, que fica um pouco mais claro no tema escuro.",
+          },
+        ],
+      },
+      {
+        area: "interface",
+        items: [
+          {
+            en: "Hover over a color, or focus it with the keyboard, to see its hex code. Select it to copy the code. A tap on a touch screen shows it too.",
+            "pt-BR":
+              "Passe o mouse sobre uma cor, ou foque nela com o teclado, para ver o código hex. Selecione para copiar. Um toque em tela sensível também mostra o código.",
+          },
+          {
+            en: "The five pillar colors are listed under each theme with the same behavior.",
+            "pt-BR": "As cinco cores dos pilares aparecem sob cada tema, com o mesmo comportamento.",
+          },
+          {
+            en: "The code is read from the computed color on screen, so it always matches what is shown.",
+            "pt-BR": "O código é lido da cor calculada na tela, então sempre bate com o que é mostrado.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "The semiotics page and the design system table list all names.",
+            "pt-BR": "A página de semiótica e a tabela do design system listam todos os nomes.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.5.0",
     date: "2026-11-10",
     sentaiProfileVersion: 1,

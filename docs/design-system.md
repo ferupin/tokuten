@@ -10,12 +10,12 @@ The interface works like a critic's dossier with a tokusatsu soul. The layout is
 
 Both themes avoid pure white and pure black.
 
-| Token | Light (Washi) | Dark (Shikkoku) |
+| Token | Light | Dark |
 |---|---|---|
-| `--bg` | `#f3ecdc` | `#16130e` |
-| `--surface` | `#faf5e9` | `#1e1a14` |
-| `--ink` | `#221d16` | `#ece3cf` |
-| `--accent` | `#c23a22` | `#ee6a50` |
+| `--bg` | `#f3ecdc` Washi | `#16130e` Shikkoku |
+| `--surface` | `#faf5e9` Kinari | `#1e1a14` Kurocha |
+| `--ink` | `#221d16` Sumi | `#ece3cf` Zōge |
+| `--accent` | `#c23a22` Shu | `#ee6a50` Shu |
 
 Light is warm cream paper with sumi ink. Dark is lacquer black with a brown undertone and ivory text. The accent is a vermilion, the color of a seal stamp. By default the theme follows the system setting, and the choice is remembered by the browser.
 

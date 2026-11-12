@@ -7,6 +7,7 @@ import { BackToTop } from "@/components/ui/back-to-top";
 import { ContributeCard } from "@/components/ui/contribute-card";
 import { Footer } from "@/components/ui/footer";
 import { PageHeader } from "@/components/ui/page-header";
+import { Swatch } from "@/components/ui/swatch";
 import { useScrollTop } from "@/components/ui/use-scroll-top";
 import { useI18n } from "@/i18n";
 import { numeral } from "@/features/evaluation/numerals";
@@ -38,31 +39,26 @@ function Section({ id, title, children }: { id: string; title: string; children:
 }
 
 /** A themed panel that always shows one theme, whatever the page is using. */
-function ThemePanel({ theme, title, names }: { theme: "light" | "dark"; title: string; names: [string, string, string] }) {
-  const tokens: { token: string; name: string }[] = [
-    { token: "--bg", name: names[0] },
-    { token: "--surface", name: "" },
-    { token: "--ink", name: names[1] },
-    { token: "--accent", name: names[2] },
-  ];
+function ThemePanel({ theme, title, names }: { theme: "light" | "dark"; title: string; names: [string, string, string, string] }) {
+  const { t } = useI18n();
+  const tokens = ["--bg", "--surface", "--ink", "--accent"];
+  const pillars = getProfile(defaultProfileId).pillars;
   return (
     <div data-theme={theme} className="rounded-xl border p-4" style={{ background: "var(--bg)", color: "var(--ink)", borderColor: "var(--line-strong)" }}>
       <p className="m-0 font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: "var(--ink-soft)" }}>
         {title}
       </p>
-      <div className="mt-3 flex items-end gap-3">
-        {tokens.map(({ token, name }) => (
-          <div key={token} className="text-center">
-            <div className="h-12 w-12 rounded-lg border" style={{ background: `var(${token})`, borderColor: "var(--line-strong)" }} />
-            <span className="mt-1 block text-[11px]" style={{ color: "var(--ink-soft)" }}>
-              {name || " "}
-            </span>
-          </div>
+      <div className="mt-3 flex flex-wrap items-start gap-x-3 gap-y-2">
+        {tokens.map((token, i) => (
+          <Swatch key={token} token={token} name={names[i]} />
         ))}
       </div>
-      <div className="mt-3 flex gap-1.5" aria-hidden>
-        {["--red", "--blue", "--yellow", "--green", "--pink"].map((token) => (
-          <span key={token} className="h-2.5 flex-1 rounded-full" style={{ background: `var(${token})` }} />
+      <p className="mb-0 mt-4 font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: "var(--ink-soft)" }}>
+        {t("meaning.colors.rangers")}
+      </p>
+      <div className="mt-2 flex flex-wrap items-start gap-x-3 gap-y-1">
+        {pillars.map((pillar) => (
+          <Swatch key={pillar.id} token={`--${pillar.tone}`} name={pillar.kanji} japanese size="sm" />
         ))}
       </div>
     </div>
@@ -81,7 +77,7 @@ export function Meaning() {
     { key: "kijun", mark: "基準" },
   ] as const;
 
-  const swatches = ["washi", "sumi", "shu", "shikkoku"] as const;
+  const swatches = ["washi", "kinari", "sumi", "shu", "shikkoku", "kurocha", "zoge"] as const;
   const fonts = [
     { key: "display", cls: "font-display" },
     { key: "serif", cls: "font-serif font-extrabold" },
@@ -228,9 +224,10 @@ export function Meaning() {
 
         <Section id="colors" title={t("meaning.colors.title")}>
           <p className="m-0 max-w-2xl">{t("meaning.colors.text")}</p>
+          <p className="m-0 max-w-2xl text-[13px] text-soft">{t("meaning.colors.copyHint")}</p>
           <div className="grid gap-4 sm:grid-cols-2">
-            <ThemePanel theme="light" title={t("meaning.colors.light")} names={["Washi", "Sumi", "Shu"]} />
-            <ThemePanel theme="dark" title={t("meaning.colors.dark")} names={["Shikkoku", "Ivory", "Shu"]} />
+            <ThemePanel theme="light" title={t("meaning.colors.light")} names={["Washi", "Kinari", "Sumi", "Shu"]} />
+            <ThemePanel theme="dark" title={t("meaning.colors.dark")} names={["Shikkoku", "Kurocha", "Zōge", "Shu"]} />
           </div>
           <dl className="m-0 grid gap-3 sm:grid-cols-2">
             {swatches.map((key) => (

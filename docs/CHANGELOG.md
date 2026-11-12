@@ -19,6 +19,22 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.5.1 (2026-11-11)
+
+Named palette and hex codes. Sentai profile v1.
+
+### Design
+- Added the two missing names: Kinari (生成り) for the card surface of the light theme and Kurocha (黒茶) for the dark one. The dark text color is now Zōge (象牙) instead of the English word Ivory, so every color is named the same way.
+- Each color is described on the Meaning page, including Shu, which is a little lighter on the dark theme.
+
+### Interface
+- Hover over a color, or focus it with the keyboard, to see its hex code. Select it to copy. A tap on a touch screen shows it too.
+- The five pillar colors are listed under each theme with the same behavior.
+- The code is read from the computed color, so it always matches what is on screen.
+
+### Documentation
+- The semiotics page and the design system table list all names.
+
 ## 0.5.0 (2026-11-10)
 
 Local draft. Sentai profile v1.

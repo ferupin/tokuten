@@ -72,10 +72,15 @@ Both themes are named after a material, and neither uses pure white or pure blac
 
 | Name | Kanji | Reading | Role |
 |---|---|---|---|
-| Washi | 和紙 | washi | The light theme. Japanese paper, warm and slightly yellow |
-| Shikkoku | 漆黒 | shikkoku | The dark theme. The deep black of lacquer, tinted brown |
-| Sumi | 墨 | sumi | Ink. The text color in the light theme |
-| Shu | 朱 | shu | Vermilion. The accent, taken from seal ink |
+| Washi | 和紙 | washi | Light theme background. Japanese paper, warm and slightly yellow |
+| Kinari | 生成り | kinari | Light theme card surface. Unbleached cloth, a cream a little deeper than the paper |
+| Sumi | 墨 | sumi | Light theme text. Ink |
+| Shikkoku | 漆黒 | shikkoku | Dark theme background. The deep black of lacquer, tinted brown |
+| Kurocha | 黒茶 | kurocha | Dark theme card surface. Black tea, a brown so dark it is almost black |
+| Zōge | 象牙 | zōge | Dark theme text. Ivory |
+| Shu | 朱 | shu | The accent in both themes. Vermilion, taken from seal ink, a little lighter in the dark theme |
+
+Every color of a theme has a name, so the palette reads as one set. On the Meaning page each color shows its hex code on hover or keyboard focus and copies it when selected. The code is read from the computed style, so it always matches what is on screen.
 
 In the dark theme the text becomes ivory and the vermilion is lifted slightly, so both keep AA contrast. Exact values are in the [design system](design-system.md).
 
