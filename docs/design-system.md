@@ -49,6 +49,7 @@ Fonts are self-hosted through `@fontsource`, so the build does not depend on a n
 - **Hanko seal.** A square seal used for the logo and for the result. It shows 仮 (provisional) while the score is partial and 決 (decided) once it is complete.
 - **Formal numerals.** Categories are numbered 壱 弐 参 四 五 六 七 八 九 十.
 - **Radar chart.** Ten axes, one per category, labeled with the same numerals.
+- **Score card.** The profile name, the name of the season, the official score with its reading, and the radar. It has no dependency on the breakdown table, so it can later be drawn as an image or on a results page.
 
 ## Settings and actions
 

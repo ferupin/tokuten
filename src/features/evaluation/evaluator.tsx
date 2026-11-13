@@ -166,7 +166,7 @@ export function Evaluator() {
           </div>
         </section>
 
-        <ResultPanel profile={profile} result={result} mode={evaluation.mode} />
+        <ResultPanel profile={profile} result={result} mode={evaluation.mode} title={evaluation.title} />
         <EnjoymentCard />
 
         <section className="card grid gap-2 p-5 sm:p-6">

@@ -1,14 +1,22 @@
 "use client";
 
-import { formatGrade, gradeBand } from "@/core/grades";
-import { readingTier, shapeOf } from "@/core/insights";
+import { formatGrade } from "@/core/grades";
 import type { EvaluationMode, EvaluationResult, Profile } from "@/core/types";
-import { Hanko } from "@/components/brand/hanko";
-import { Radar } from "@/components/ui/radar";
+import { ScoreCard } from "./score-card";
 import { numeral } from "@/features/evaluation/numerals";
 import { useI18n } from "@/i18n";
 
-export function ResultPanel({ profile, result, mode }: { profile: Profile; result: EvaluationResult; mode: EvaluationMode }) {
+export function ResultPanel({
+  profile,
+  result,
+  mode,
+  title,
+}: {
+  profile: Profile;
+  result: EvaluationResult;
+  mode: EvaluationMode;
+  title: string;
+}) {
   const { t } = useI18n();
   const pillarTone = (categoryId: string) => {
     const cat = profile.categories.find((c) => c.id === categoryId)!;
@@ -18,53 +26,12 @@ export function ResultPanel({ profile, result, mode }: { profile: Profile; resul
   const graded = result.categories.filter((c) => c.grade !== null);
   const best = graded.length ? graded.reduce((a, b) => ((b.grade ?? 0) > (a.grade ?? 0) ? b : a)) : null;
   const worst = graded.length > 1 ? graded.reduce((a, b) => ((b.grade ?? 0) < (a.grade ?? 0) ? b : a)) : null;
-  const { shape } = shapeOf(result);
   const name = (id: string) => t(`profiles.${profile.id}.categories.${id}.name`);
 
   return (
     <section aria-labelledby="result-title" className="card p-5 sm:p-8">
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
-        <div className="text-center">
-          <h2 id="result-title" className="label m-0">
-            {t("result.officialScore")}
-          </h2>
-          {mode === "quick" && (
-            <p className="label m-0 mt-1">
-              {t("modes.badge")} · <span lang="ja">{t("modes.quick.kanji")}</span>
-            </p>
-          )}
-          <div className="relative mx-auto mt-4 inline-block">
-            <div className="tnum font-display text-[clamp(64px,13vw,104px)] leading-none" aria-live="polite">
-              {result.score === null ? "—" : formatGrade(result.score, 1)}
-              <span className="ml-1 text-[0.28em] text-soft">/10</span>
-            </div>
-            {result.score !== null && (
-              <span key={result.complete ? "done" : "part"} className={`absolute -right-14 -top-3 hidden sm:block ${result.complete ? "stamp-in" : ""}`}>
-                <Hanko size={52} rotate={-4} title={result.complete ? t("result.complete") : t("result.partial")} color={result.complete ? "var(--accent)" : "var(--line-strong)"}>
-                  {result.complete ? "決" : "仮"}
-                </Hanko>
-              </span>
-            )}
-          </div>
-          <p className="mb-0 mt-3 font-serif text-xl font-extrabold">
-            {result.score === null ? t("result.noScore") : t(`grades.${gradeBand(result.score)}`)}
-          </p>
-          <p className="mx-auto mt-2 max-w-sm text-xs text-soft">
-            {result.complete ? t("result.complete") : t("result.partialNote", { graded: result.gradedCount, total: result.applicableCount })}
-            {result.redistributed && <> {t("result.redistributedNote", { count: result.applicableCount })}</>}
-          </p>
-          {result.score !== null && (
-            <div className="mx-auto mt-4 max-w-md space-y-1.5 text-[13px] italic leading-relaxed text-soft">
-              <p className="m-0">{t(`result.reading.${readingTier(result.score)}`)}</p>
-              {shape !== "none" && <p className="m-0">{t(`result.shape.${shape}`)}</p>}
-            </div>
-          )}
-          <div className="mt-6">
-            <Radar
-              points={result.categories.map((c, i) => ({ id: c.id, label: numeral(i), value: c.grade, color: pillarTone(c.id) }))}
-            />
-          </div>
-        </div>
+        <ScoreCard profile={profile} result={result} mode={mode} title={title} />
 
         <div>
           <h3 className="label mb-3 mt-0">{t("result.breakdown")}</h3>

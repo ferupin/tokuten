@@ -19,6 +19,21 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.7.2 (2026-11-13)
+
+Easier changelog and a named result. Sentai profile v1.
+
+### Interface
+- Each release in the changelog is collapsible. The title, date and summary stay in view, and only the newest release starts open. Expand all and Collapse all are at the top.
+- A link such as `/changelog#v0.5.0` opens that release and scrolls to it.
+- The result card shows the name of the season, under the profile name and above the official score. Long names are held to three lines, and a muted Untitled season shows until a name is typed.
+
+### Design
+- The score side of the card is a component of its own, with no change to how it looks. It is the groundwork for sharing a result as an image or a page later.
+
+### Quality
+- Checked in the browser: open and closed states, the keyboard, links with a version in the address, both languages and a 360 px screen.
+
 ## 0.7.1 (2026-11-13)
 
 Calmer draft controls. Sentai profile v1.

@@ -64,6 +64,7 @@ export const en = {
     conclusionPlaceholder: "Summarize the strongest and weakest aspects of the season.",
   },
   result: {
+    untitled: "Untitled season",
     sectionTitle: "Official result",
     officialScore: "Official Evaluation Score",
     partial: "Partial",
@@ -252,6 +253,8 @@ export const en = {
       "Every change to the app, the method and the documentation, newest first. Versions follow major.minor.patch. The profile version is bumped whenever weights or categories change.",
     planned: "Planned",
     plannedHint: "Ideas under consideration. Nothing here is promised or dated.",
+    expandAll: "Expand all",
+    collapseAll: "Collapse all",
     released: "Released {date}",
     profileVersion: "Sentai profile v{version}",
     areas: {

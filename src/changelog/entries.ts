@@ -32,6 +32,58 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.7.2",
+    date: "2026-11-13",
+    sentaiProfileVersion: 1,
+    title: { en: "Easier changelog and a named result", "pt-BR": "Changelog mais fácil e resultado com nome" },
+    summary: {
+      en: "The changelog now opens one release at a time, and the result card says which season it belongs to.",
+      "pt-BR":
+        "O changelog agora abre uma versão por vez, e o card do resultado diz a qual temporada ele pertence.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "Each release in the changelog is collapsible. The title, date and summary stay in view, and only the newest release starts open. Expand all and Collapse all are at the top.",
+            "pt-BR":
+              "Cada versão do changelog é recolhível. O título, a data e o resumo ficam à vista, e só a versão mais recente começa aberta. Expandir tudo e Recolher tudo ficam no topo.",
+          },
+          {
+            en: "A link such as /changelog#v0.5.0 opens that release and scrolls to it.",
+            "pt-BR": "Um link como /changelog#v0.5.0 abre aquela versão e rola até ela.",
+          },
+          {
+            en: "The result card now shows the name of the season, under the name of the profile and above the official score. Long names are held to three lines, and a muted Untitled season shows until a name is typed, so the card does not change height as you write.",
+            "pt-BR":
+              "O card do resultado agora mostra o nome da temporada, abaixo do nome do perfil e acima da nota oficial. Nomes longos ficam limitados a três linhas, e um discreto Temporada sem título aparece até um nome ser digitado, para o card não mudar de altura enquanto você escreve.",
+          },
+        ],
+      },
+      {
+        area: "design",
+        items: [
+          {
+            en: "The score side of the card is now a component of its own, with no change to how it looks. It is the groundwork for sharing a result as an image or a page later.",
+            "pt-BR":
+              "O lado da nota no card agora é um componente próprio, sem mudar a aparência. É a base para compartilhar um resultado como imagem ou página mais adiante.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "Checked in the browser: the open and closed states, the keyboard, links with a version in the address, both languages and a 360 px screen.",
+            "pt-BR":
+              "Conferido no navegador: os estados aberto e fechado, o teclado, links com versão no endereço, os dois idiomas e uma tela de 360 px.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.7.1",
     date: "2026-11-13",
     sentaiProfileVersion: 1,

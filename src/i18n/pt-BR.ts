@@ -60,6 +60,7 @@ export const ptBR: Messages = {
     conclusionPlaceholder: "Resuma os pontos mais fortes e os mais fracos da temporada.",
   },
   result: {
+    untitled: "Temporada sem título",
     sectionTitle: "Resultado oficial",
     officialScore: "Nota Oficial de Avaliação",
     partial: "Parcial",
@@ -248,6 +249,8 @@ export const ptBR: Messages = {
       "Cada mudança no app, no método e na documentação, da mais recente para a mais antiga. As versões seguem o formato maior.menor.correção. A versão do perfil sobe sempre que pesos ou categorias mudam.",
     planned: "Planejado",
     plannedHint: "Ideias em avaliação. Nada aqui é uma promessa e nada tem data.",
+    expandAll: "Expandir tudo",
+    collapseAll: "Recolher tudo",
     released: "Lançada em {date}",
     profileVersion: "Perfil Sentai v{version}",
     areas: {
