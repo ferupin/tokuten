@@ -1,9 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { isBlank } from "@/core/draft";
 import { buildCardData } from "@/core/share-card";
+import { decodeShare, encodeShare } from "@/core/share-link";
+import { profiles } from "@/profiles";
 import { computeResult } from "@/core/scoring";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { Footer } from "@/components/ui/footer";
@@ -51,8 +55,28 @@ export function Results() {
   const { resolvedTheme } = useTheme();
   const profile = useEvaluationStore((s) => s.profile);
   const evaluation = useEvaluationStore((s) => s.evaluation);
-  const result = useMemo(() => computeResult(profile, evaluation), [profile, evaluation]);
+  const load = useEvaluationStore((s) => s.load);
+  const router = useRouter();
+  const ownResult = useMemo(() => computeResult(profile, evaluation), [profile, evaluation]);
   useScrollTop();
+
+  // A link carries a result in the part of the address after #. It is read after mount, so the
+  // static page and the first render agree.
+  const [hash, setHash] = useState("");
+  const [origin, setOrigin] = useState("");
+  useEffect(() => {
+    const read = () => setHash(window.location.hash);
+    read();
+    setOrigin(window.location.origin + window.location.pathname);
+    window.addEventListener("hashchange", read);
+    return () => window.removeEventListener("hashchange", read);
+  }, []);
+  const decoded = useMemo(
+    () => (hash.length > 1 ? decodeShare(hash, (id) => (Object.hasOwn(profiles, id) ? profiles[id] : undefined)) : null),
+    [hash],
+  );
+  const shared = decoded?.ok ? decoded : null;
+  const [confirming, setConfirming] = useState(false);
 
   const [layout, setLayout] = useState<CardLayout>("seal");
   const [theme, setTheme] = useState<CardTheme | null>(null);
@@ -67,17 +91,26 @@ export function Results() {
   }, []);
 
   const cardTheme: CardTheme = theme ?? (resolvedTheme === "dark" ? "dark" : "light");
+  const cardProfile = shared?.profile ?? profile;
+  const cardResult = shared?.result ?? ownResult;
+  const cardTitle = shared ? shared.title : evaluation.title;
+  const cardEnjoyment = shared ? shared.enjoyment : evaluation.enjoyment;
+  const includeEnjoyment = shared ? shared.enjoyment !== null : withEnjoyment;
   const data = useMemo(
-    () =>
-      buildCardData(profile, result, { title: evaluation.title, enjoyment: evaluation.enjoyment, includeEnjoyment: withEnjoyment }, t),
-    [profile, result, evaluation.title, evaluation.enjoyment, withEnjoyment, t],
+    () => buildCardData(cardProfile, cardResult, { title: cardTitle, enjoyment: cardEnjoyment, includeEnjoyment }, t),
+    [cardProfile, cardResult, cardTitle, cardEnjoyment, includeEnjoyment, t],
   );
+
+  const link = useMemo(() => {
+    if (shared || !data || !origin) return "";
+    return `${origin}#${encodeShare(profile, ownResult, { title: evaluation.title, enjoyment: evaluation.enjoyment, includeEnjoyment: withEnjoyment })}`;
+  }, [shared, data, origin, profile, ownResult, evaluation.title, evaluation.enjoyment, withEnjoyment]);
 
   const say = (message: string) => {
     setStatus(message);
     window.setTimeout(() => setStatus(""), 2500);
   };
-  const fileName = `${slug(evaluation.title)}.png`;
+  const fileName = `${slug(cardTitle)}.png`;
 
   const download = async () => {
     if (!data) return;
@@ -137,6 +170,32 @@ export function Results() {
     }
   };
 
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(link);
+      say(t("share.linkCopied"));
+    } catch {
+      say(t("share.copyFailed"));
+    }
+  };
+
+  const openShared = () => {
+    if (!shared) return;
+    if (!isBlank(profile, evaluation) && !confirming) {
+      setConfirming(true);
+      return;
+    }
+    load(shared.evaluation);
+    router.push("/");
+  };
+
+  const showOwn = () => {
+    window.history.replaceState(null, "", window.location.pathname);
+    setHash("");
+    setConfirming(false);
+  };
+
+  const linkError = decoded && !decoded.ok ? decoded.error : null;
   const layoutName = (l: CardLayout) => t(`share.${l}`);
 
   return (
@@ -153,6 +212,35 @@ export function Results() {
           <p className="m-0 max-w-2xl text-soft">{t("share.intro")}</p>
         </header>
 
+        {linkError && (
+          <p role="alert" className="card m-0 border-accent p-4 text-sm">
+            {t(linkError === "version" ? "share.linkVersion" : linkError === "profile" ? "share.linkProfile" : "share.linkInvalid")}
+          </p>
+        )}
+        {shared && (
+          <section aria-label={t("share.sharedTitle")} className="card flex flex-col gap-3 p-5">
+            <h2 className="m-0 font-serif text-xl font-extrabold">{t("share.sharedTitle")}</h2>
+            <p className="m-0 text-sm text-soft">{t("share.sharedNote")}</p>
+            {confirming && (
+              <p role="alert" className="m-0 text-sm">
+                {t("share.openConfirm")}
+              </p>
+            )}
+            <div className="flex flex-wrap items-center gap-3">
+              <button type="button" className="btn" onClick={openShared}>
+                {confirming ? t("share.openConfirmYes") : t("share.openInApp")}
+              </button>
+              {confirming && (
+                <button type="button" className="btn ghost" onClick={() => setConfirming(false)}>
+                  {t("actions.cancel")}
+                </button>
+              )}
+              <button type="button" className="btn ghost" onClick={showOwn}>
+                {t("share.sharedOwn")}
+              </button>
+            </div>
+          </section>
+        )}
         {!data ? (
           <p className="card m-0 p-6">{t("share.nothing")}</p>
         ) : (
@@ -161,7 +249,7 @@ export function Results() {
               <h2 id="share-layouts" className="label m-0">
                 {t("share.layoutLabel")}
               </h2>
-              <div role="radiogroup" aria-labelledby="share-layouts" className="grid gap-3 sm:grid-cols-3">
+              <div role="radiogroup" aria-labelledby="share-layouts" className="grid items-start gap-3 sm:grid-cols-3">
                 {LAYOUTS.map((l) => (
                   <button
                     key={l}
@@ -201,7 +289,7 @@ export function Results() {
                     }}
                   />
                 </div>
-                {evaluation.enjoyment !== null && (
+                {!shared && evaluation.enjoyment !== null && (
                   <div className="flex flex-col gap-1">
                     <Switch checked={withEnjoyment} onChange={setWithEnjoyment} label={t("share.enjoymentSwitch")} />
                     <p className="m-0 text-xs text-soft">{t("share.enjoymentHint")}</p>
@@ -227,6 +315,28 @@ export function Results() {
                 </span>
               </div>
             </section>
+
+            {!shared && link && (
+              <section aria-labelledby="share-link" className="flex flex-col gap-2">
+                <h2 id="share-link" className="label m-0">
+                  {t("share.linkTitle")}
+                </h2>
+                <p className="m-0 text-sm text-soft">{t("share.linkHint")}</p>
+                <div className="flex flex-wrap items-center gap-3">
+                  <input
+                    readOnly
+                    value={link}
+                    aria-label={t("share.linkLabel")}
+                    onFocus={(e) => e.currentTarget.select()}
+                    className="min-w-0 flex-1 rounded-lg border border-line bg-surface px-3 py-2 font-mono text-xs text-ink"
+                  />
+                  <button type="button" className="btn ghost" onClick={copyLink}>
+                    {t("share.copyLink")}
+                  </button>
+                </div>
+                <p className="m-0 text-xs text-soft">{t("share.linkPrivacy")}</p>
+              </section>
+            )}
 
             <section aria-labelledby="share-description" className="flex flex-col gap-2">
               <h2 id="share-description" className="label m-0">

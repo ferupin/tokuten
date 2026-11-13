@@ -19,6 +19,35 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.10.0 (2026-11-13)
+
+Share a result as a link. Sentai profile v1.
+
+### Interface
+- The Results page has a Share as a link section with the link and a Copy link button. The personal enjoyment switch applies to the link too and is off by default.
+- Opening a link shows the shared card at `/results`, read only, in the language of the person who opens it, with the same layouts, theme choice, download, copy and description.
+- Open in the evaluator turns a shared result into a Quick mode evaluation with the grades from the link. A confirmation asks first when the evaluator already has work. Show my own result goes back to your own card.
+- A damaged, cut short, newer or unknown profile link shows a clear message.
+
+### Export and import
+- The link is readable text, for example `/results#1/sentai/8,7.5,7,-,n,9,8,7.5,6.5,7/t=Season`: format version, profile, one grade per category (`n` not applicable, `-` not graded), optional `e=` enjoyment and `t=` title.
+- It holds grades and never the score, so the receiving side calculates the score with the same engine. The introduction, the notes and the conclusion are not in it.
+- Everything after `#` stays in the browser and is never sent to a server.
+
+### Design
+- A generic preview image (1200 by 630) so a link to Tokuten shows a card in chats and social networks. It cannot show the result itself.
+
+### Quality
+- Tests for the link: format, round trip, not applicable and not graded categories, special characters in titles, long titles, enjoyment only when asked, and rejection of invalid input.
+
+### Documentation
+- ADR 0010 records the link as built. The roadmap no longer lists sharing as pending.
+
+### Known limits
+- Anyone with the link can read it, and a link cannot be taken back once sent.
+- Grades are kept to four decimals, so a score can differ in a far decimal place from the sender's own.
+- The preview in chats is always the generic image.
+
 ## 0.9.1 (2026-11-13)
 
 A portrait card for phones. Sentai profile v1.

@@ -41,6 +41,121 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.10.0",
+    date: "2026-11-13",
+    sentaiProfileVersion: 1,
+    title: { en: "Share a result as a link", "pt-BR": "Compartilhe o resultado como link", es: "Comparte el resultado como enlace" },
+    summary: {
+      en: "A result can now travel as a short, readable link. Whoever opens it sees the same card, read only, and nothing goes through a server.",
+      "pt-BR": "Um resultado agora pode viajar como um link curto e legível. Quem abrir vê o mesmo cartão, só para leitura, e nada passa por um servidor.",
+      es: "Un resultado ahora puede viajar como un enlace corto y legible. Quien lo abra verá la misma tarjeta, de solo lectura, y nada pasa por un servidor.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "The Results page has a new Share as a link section with the link and a Copy link button. The personal enjoyment switch applies to the link too, and it is off by default.",
+            "pt-BR":
+              "A página de Resultados tem uma nova seção Compartilhar como link, com o link e um botão Copiar link. A chave do gosto pessoal vale também para o link e fica desligada por padrão.",
+            es: "La página de Resultados tiene una nueva sección Compartir como enlace, con el enlace y un botón Copiar enlace. El interruptor del disfrute personal también vale para el enlace y está desactivado por defecto.",
+          },
+          {
+            en: "Opening a link shows the shared card at /results, read only, in the language of the person who opens it, with the same layouts, theme choice, download, copy and description as before.",
+            "pt-BR":
+              "Abrir um link mostra o cartão compartilhado em /results, só para leitura, no idioma de quem abre, com os mesmos layouts, escolha de tema, download, cópia e descrição de antes.",
+            es: "Abrir un enlace muestra la tarjeta compartida en /results, de solo lectura, en el idioma de quien lo abre, con los mismos diseños, elección de tema, descarga, copia y descripción de antes.",
+          },
+          {
+            en: "Open in the evaluator turns a shared result into an evaluation in Quick mode, with the grades from the link. If the evaluator already has work in it, a confirmation asks before replacing it. Show my own result goes back to your own card.",
+            "pt-BR":
+              "Abrir no avaliador transforma um resultado compartilhado em uma avaliação no modo Rápido, com as notas do link. Se o avaliador já tiver trabalho, uma confirmação pergunta antes de substituir. Mostrar o meu resultado volta ao seu próprio cartão.",
+            es: "Abrir en el evaluador convierte un resultado compartido en una evaluación en modo Rápido, con las notas del enlace. Si el evaluador ya tiene trabajo, una confirmación pregunta antes de reemplazarlo. Mostrar mi propio resultado vuelve a tu propia tarjeta.",
+          },
+          {
+            en: "A link that is damaged, cut short, from a newer version or for an unknown profile shows a clear message instead of a broken card.",
+            "pt-BR":
+              "Um link danificado, cortado, de uma versão mais nova ou de um perfil desconhecido mostra uma mensagem clara em vez de um cartão quebrado.",
+            es: "Un enlace dañado, cortado, de una versión más nueva o de un perfil desconocido muestra un mensaje claro en lugar de una tarjeta rota.",
+          },
+        ],
+      },
+      {
+        area: "export",
+        items: [
+          {
+            en: "The link is plain text that a person can read, for example /results#1/sentai/8,7.5,7,-,n,9,8,7.5,6.5,7/t=Season. It holds the format version, the profile, one grade per category (n for not applicable, a dash for not graded), optional enjoyment and the title.",
+            "pt-BR":
+              "O link é texto simples que uma pessoa consegue ler, por exemplo /results#1/sentai/8,7.5,7,-,n,9,8,7.5,6.5,7/t=Temporada. Ele guarda a versão do formato, o perfil, uma nota por categoria (n para não se aplica, um traço para sem nota), o gosto pessoal opcional e o título.",
+            es: "El enlace es texto simple que una persona puede leer, por ejemplo /results#1/sentai/8,7.5,7,-,n,9,8,7.5,6.5,7/t=Temporada. Contiene la versión del formato, el perfil, una nota por categoría (n para no aplica, un guion para sin calificar), el disfrute personal opcional y el título.",
+          },
+          {
+            en: "It holds the grades and never the score, so the receiving side calculates the score with the same engine and the two cannot disagree. The introduction, the notes and the conclusion are not in it.",
+            "pt-BR":
+              "Ele guarda as notas e nunca a nota final, então quem recebe calcula a nota com o mesmo motor e os dois não podem discordar. A introdução, as anotações e a conclusão não estão nele.",
+            es: "Contiene las notas y nunca la puntuación, así que quien lo recibe calcula la puntuación con el mismo motor y ambos no pueden discrepar. La introducción, los comentarios y la conclusión no están en él.",
+          },
+          {
+            en: "Everything after the # sign stays in the browser and is never sent to a server, so the app still has no server side at all.",
+            "pt-BR":
+              "Tudo depois do sinal # fica no navegador e nunca é enviado a um servidor, então o app continua sem nenhum lado servidor.",
+            es: "Todo lo que va después del signo # se queda en el navegador y nunca se envía a un servidor, así que la aplicación sigue sin ningún lado servidor.",
+          },
+        ],
+      },
+      {
+        area: "design",
+        items: [
+          {
+            en: "A generic preview image (1200 by 630) is added to the site, so a link to Tokuten shows a card in chats and social networks. It cannot show the result itself, because drawing one image per link would need a server.",
+            "pt-BR":
+              "Uma imagem de prévia genérica (1200 por 630) foi adicionada ao site, para que um link do Tokuten mostre um cartão em chats e redes sociais. Ela não consegue mostrar o resultado em si, porque desenhar uma imagem por link exigiria um servidor.",
+            es: "Se añadió al sitio una imagen de vista previa genérica (1200 por 630), para que un enlace a Tokuten muestre una tarjeta en chats y redes sociales. No puede mostrar el resultado en sí, porque dibujar una imagen por enlace requeriría un servidor.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "Tests for the link: format, round trip to the same score, not applicable and not graded categories, titles with slashes, accents, kanji and emoji, a long title, enjoyment only when asked, and rejection of empty, damaged, out of range, repeated, too long and prototype name inputs.",
+            "pt-BR":
+              "Testes do link: formato, ida e volta para a mesma nota, categorias não se aplica e sem nota, títulos com barras, acentos, kanji e emoji, título longo, gosto pessoal só quando pedido, e rejeição de entradas vazias, danificadas, fora da escala, repetidas, longas demais e com nome de protótipo.",
+            es: "Pruebas del enlace: formato, ida y vuelta a la misma puntuación, categorías no aplica y sin calificar, títulos con barras, acentos, kanji y emoji, un título largo, disfrute solo cuando se pide, y rechazo de entradas vacías, dañadas, fuera de escala, repetidas, demasiado largas y con nombre de prototipo.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "ADR 0010 records the link as built, and the roadmap no longer lists sharing as pending. The README explains what a link contains.",
+            "pt-BR":
+              "O ADR 0010 registra o link como construído, e o roadmap não lista mais o compartilhamento como pendente. O README explica o que um link contém.",
+            es: "El ADR 0010 documenta el enlace tal como se construyó, y la hoja de ruta ya no indica el compartir como pendiente. El README explica qué contiene un enlace.",
+          },
+        ],
+      },
+      {
+        area: "limits",
+        items: [
+          {
+            en: "Anyone who has a link can read what is in it, and a link cannot be taken back once it has been sent. Grades are kept to four decimals, so a score can differ in a far decimal place from the sender's own.",
+            "pt-BR":
+              "Qualquer pessoa com o link pode ler o que há nele, e um link não pode ser desfeito depois de enviado. As notas são guardadas com quatro casas decimais, então a nota pode diferir numa casa decimal distante da de quem enviou.",
+            es: "Cualquiera que tenga un enlace puede leer lo que contiene, y un enlace no se puede retirar una vez enviado. Las notas se guardan con cuatro decimales, así que la puntuación puede diferir en un decimal lejano de la de quien la envió.",
+          },
+          {
+            en: "The preview in chats is always the generic image, never the card of the result.",
+            "pt-BR":
+              "A prévia nos chats é sempre a imagem genérica, nunca o cartão do resultado.",
+            es: "La vista previa en los chats es siempre la imagen genérica, nunca la tarjeta del resultado.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.9.1",
     date: "2026-11-13",
     sentaiProfileVersion: 1,

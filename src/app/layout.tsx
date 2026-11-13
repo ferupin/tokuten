@@ -1,3 +1,4 @@
+import { siteUrl } from "@/config";
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { I18nProvider } from "@/i18n";
@@ -15,8 +16,16 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Tokuten 特点",
   description: "A consistent way to score a tokusatsu season, built on the Kijun method.",
+  openGraph: {
+    title: "Tokuten 特点",
+    description: "A consistent way to score a tokusatsu season, built on the Kijun method.",
+    type: "website",
+    siteName: "Tokuten",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

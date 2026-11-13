@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted. The image part was built in versions 0.9.0 (layouts A and B) and 0.9.1 (layout C). The link is still planned.
+Accepted. Built in versions 0.9.0 (layouts A and B), 0.9.1 (layout C) and 0.10.0 (the link).
 
 ## Context
 
@@ -134,3 +134,12 @@ A centered layout with the seal on top, a very large score and a radar with name
 - The Share button appears under the result only when a score exists. The page reads the evaluation held in memory, so after a reload the draft has to be restored in the evaluator first.
 - Layouts are named Seal and Ledger in the interface.
 - Layout C is named Poster. It follows the light or dark choice of the card like the others, so the dark look in the proposal is one setting of it and not fixed. Its enjoyment line is a single centered line.
+
+### The link, as built in 0.10.0
+
+- The format is `#1/sentai/8,7.5,7,-,n,9,8,7.5,6.5,7/e=8.5/t=Title`: version, profile id, one grade per category in profile order (`n` not applicable, `-` not graded), then optional `e=` and `t=` parts. It differs from the sketch in the decision above because separate parts are easier to read and to validate than one long dotted string.
+- `src/core/share-link.ts` encodes and decodes it. Decoding rejects anything unexpected: wrong version, unknown profile, wrong number of grades, grades outside the scale or with more than four decimals, repeated or unknown parts, an escape that does not decode, and a link that gives no score. A name such as `__proto__` cannot resolve to a profile.
+- The link carries grades and not the score. The receiving side builds a Quick mode evaluation from it and calculates the score with the same engine.
+- Personal enjoyment is in the link only when switched on, as with the image.
+- Open in the evaluator replaces the current evaluation only after a confirmation when there is work in it.
+- A generic `opengraph-image.png` is added at 1200 by 630. The fragment never reaches a server, so a preview of the result itself is not possible without one.

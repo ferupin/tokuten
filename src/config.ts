@@ -9,3 +9,6 @@ export const repo = {
   idea: `${base}/issues/new?template=feature_request.yml`,
   guide: `${base}/blob/master/CONTRIBUTING.md`,
 } as const;
+
+/** Public address of the deployed app, used for link previews. */
+export const siteUrl = "https://tokuten-snowy.vercel.app";

@@ -17,7 +17,7 @@ Everything runs in the browser. There is no database, no account and no server l
 - Offers the ten consistency checks of the method as a last look before you finish. They are a reminder and never change the score.
 - Keeps a draft in your own browser, offered back after a reload. It can be turned off.
 - Exports the evaluation as Markdown in two formats: Standard, for any renderer such as a forum or GitHub, and Obsidian, with properties, collapsible callouts, tables and a chart. JSON export can be imported again.
-- Turns the result into a card you can save, copy or send as an image, in two layouts. It is drawn in your browser, and the notes, the introduction and the conclusion are never included.
+- Turns the result into a card you can save, copy or send as an image, in three layouts, or share as a short link. It is drawn in your browser, and the notes, the introduction and the conclusion are never included. A link holds the season name and the grades, in the part of the address after `#`, which a browser never sends to a server.
 - Works in English, Brazilian Portuguese and Spanish, with light and dark themes.
 
 ## Getting started
