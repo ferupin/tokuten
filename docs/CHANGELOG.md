@@ -19,6 +19,17 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.9.1 (2026-11-13)
+
+A portrait card for phones. Sentai profile v1.
+
+### Interface
+- New Poster layout (1080 by 1350): season name, a very large score with its grade band, the seal with its caption and a radar with every axis named and graded. It follows the light or dark choice of the card, and the enjoyment line is centered when switched on.
+- The layout picker shows three previews, and the choice is remembered.
+
+### Documentation
+- ADR 0010 and the roadmap list only the share link as left to do.
+
 ## 0.9.0 (2026-11-13)
 
 Share a result as an image. Sentai profile v1.
@@ -45,7 +56,7 @@ Share a result as an image. Sentai profile v1.
 - ADR 0010 records what was built. The roadmap lists layout C and the link.
 
 ### Known limits
-- A card cannot be opened back into the app.
+- A card cannot be opened back into the app. The share link is planned.
 - The page reads the evaluation in memory. After a reload, restore the draft first.
 
 ## 0.8.0 (2026-11-13)

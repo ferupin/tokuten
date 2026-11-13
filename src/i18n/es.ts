@@ -365,6 +365,8 @@ export const es: Messages = {
     sealHint: "Horizontal, con un radar. Ideal para chats y redes sociales.",
     ledger: "Registro",
     ledgerHint: "Cuadrada, con cada nota en una barra. La más clara para quien no conoce el método.",
+    poster: "Cartel",
+    posterHint: "Vertical, centrado, con un radar. Pensado para pantallas de móvil.",
     themeLabel: "Tema de la tarjeta",
     enjoymentSwitch: "Incluir el disfrute personal",
     enjoymentHint: "Se muestra en una línea aparte, separada de la puntuación. Desactivado por defecto.",

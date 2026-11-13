@@ -41,6 +41,47 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.9.1",
+    date: "2026-11-13",
+    sentaiProfileVersion: 1,
+    title: { en: "A portrait card for phones", "pt-BR": "Um cartão vertical para celular", es: "Una tarjeta vertical para móvil" },
+    summary: {
+      en: "The Results page gains a third card layout, tall and centered, made for phone screens.",
+      "pt-BR": "A página de Resultados ganha um terceiro layout de cartão, alto e centralizado, feito para telas de celular.",
+      es: "La página de Resultados gana un tercer diseño de tarjeta, alto y centrado, pensado para pantallas de móvil.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "New Poster layout (1080 by 1350): the season name, a very large score with its grade band, the seal with its caption and a radar with every axis named and graded. It follows the light or dark choice of the card, and the enjoyment line is centered when switched on.",
+            "pt-BR":
+              "Novo layout Cartaz (1080 por 1350): o nome da temporada, uma nota bem grande com a faixa, o selo com a legenda e um radar com todos os eixos nomeados e com nota. Ele segue a escolha de tema claro ou escuro do cartão, e a linha do gosto pessoal fica centralizada quando ligada.",
+            es: "Nuevo diseño Cartel (1080 por 1350): el nombre de la temporada, una puntuación muy grande con su banda, el sello con su leyenda y un radar con cada eje nombrado y con su nota. Sigue la elección de tema claro u oscuro de la tarjeta, y la línea de disfrute aparece centrada cuando se activa.",
+          },
+          {
+            en: "The layout picker now shows three previews, and the choice is remembered like the other two.",
+            "pt-BR":
+              "O seletor de layout agora mostra três prévias, e a escolha é lembrada como nos outros dois.",
+            es: "El selector de diseño ahora muestra tres vistas previas, y la elección se recuerda igual que en los otros dos.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "ADR 0010 and the roadmap now list only the share link as left to do.",
+            "pt-BR":
+              "O ADR 0010 e o roadmap agora listam só o link de compartilhamento como pendente.",
+            es: "El ADR 0010 y la hoja de ruta ahora indican solo el enlace para compartir como pendiente.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.9.0",
     date: "2026-11-13",
     sentaiProfileVersion: 1,
@@ -146,10 +187,10 @@ export const releases: Release[] = [
         area: "limits",
         items: [
           {
-            en: "A card cannot be opened back into the app. Use the JSON export to keep working. The portrait layout and the share link are planned.",
+            en: "A card cannot be opened back into the app. Use the JSON export to keep working. The share link is planned.",
             "pt-BR":
-              "Um cartão não pode ser reaberto no app. Use a exportação JSON para continuar o trabalho. O layout vertical e o link de compartilhamento estão planejados.",
-            es: "Una tarjeta no se puede volver a abrir en la aplicación. Usa la exportación JSON para seguir trabajando. El diseño vertical y el enlace para compartir están planificados.",
+              "Um cartão não pode ser reaberto no app. Use a exportação JSON para continuar o trabalho. O link de compartilhamento está planejado.",
+            es: "Una tarjeta no se puede volver a abrir en la aplicación. Usa la exportación JSON para seguir trabajando. El enlace para compartir está planificado.",
           },
           {
             en: "The page reads the evaluation held in memory. After a reload, restore the draft in the evaluator first.",

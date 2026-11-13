@@ -69,7 +69,7 @@ describe("preferences", () => {
       cardTheme: null,
     });
     expect(parsePreferences('{"cardLayout":"ledger","cardTheme":"dark"}')).toMatchObject({ cardLayout: "ledger", cardTheme: "dark" });
-    expect(parsePreferences('{"cardLayout":"poster","cardTheme":"blue"}')).toMatchObject({ cardLayout: null, cardTheme: null });
+    expect(parsePreferences('{"cardLayout":"banner","cardTheme":"blue"}')).toMatchObject({ cardLayout: null, cardTheme: null });
     expect(parsePreferences('{"draft":"yes","mode":"huge","format":3}')).toEqual(defaultPreferences);
   });
 });

@@ -7,9 +7,8 @@ Each item has a rough size: small is a few hours, medium is a few days, large is
 ## Next
 
 ### Share a result
-The image half is done in 0.9.0: a Results page at `/results` draws the card in the browser, with two layouts to choose from, and it can be downloaded, copied or sent through the share sheet. What is left:
+The image half is done in 0.9.0 and 0.9.1: a Results page at `/results` draws the card in the browser, with three layouts to choose from, and it can be downloaded, copied or sent through the share sheet. What is left:
 
-- **A dark portrait layout** (1080 by 1350), planned for 0.9.1.
 - **A link.** The grades travel in the part of the address after the `#`, which never reaches any server, and the Results page draws the card from it, read only. A link preview in a social network would show a generic image, since drawing a card per link needs a server. Planned for 0.10.0. Size: medium.
 
 The decisions, including the privacy rules and how the cards stay readable for someone who has never seen Tokuten, are in [ADR 0010](adr/0010-sharing-a-result.md).
@@ -20,7 +19,7 @@ The 1.0 mark is a promise that the method, the file format and the core of the i
 
 1. The grade anchors written, so the meaning of a grade stops changing.
 2. A JSON format that old files keep opening with.
-3. Sharing delivered. The image is done in 0.9.0. The portrait layout and the link are left.
+3. Sharing delivered. The image is done in 0.9.1. The link is left.
 4. English, Portuguese and Spanish complete. Done in 0.8.0, and kept complete by tests.
 
 ## Method

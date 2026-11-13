@@ -1,13 +1,14 @@
 import type { CardData } from "@/core/share-card";
 import { palettes, type CardTheme, type Palette } from "./palette";
 
-export type CardLayout = "seal" | "ledger";
-export const LAYOUTS: readonly CardLayout[] = ["seal", "ledger"];
+export type CardLayout = "seal" | "ledger" | "poster";
+export const LAYOUTS: readonly CardLayout[] = ["seal", "ledger", "poster"];
 
 /** Fixed size of each layout, drawn the same on every screen. */
 export const LAYOUT_SIZE: Record<CardLayout, { width: number; height: number }> = {
   seal: { width: 1200, height: 630 },
   ledger: { width: 1080, height: 1080 },
+  poster: { width: 1080, height: 1350 },
 };
 
 const F = {
@@ -285,6 +286,52 @@ function drawLedger(ctx: Ctx, data: CardData, p: Palette, w: number, h: number) 
   text(ctx, data.footer, left, h - 44, `400 22px ${F.sans}`, p.soft);
 }
 
+function drawPoster(ctx: Ctx, data: CardData, p: Palette, w: number, h: number) {
+  background(ctx, w, h, p);
+  const mid = w / 2;
+  text(ctx, data.profileName.toUpperCase(), mid, 104, `400 22px ${F.mono}`, p.soft, "center", 3);
+
+  const titleFont = `800 58px ${F.serif}`;
+  wrap(ctx, data.title, titleFont, 880, 2).forEach((l, i) =>
+    text(ctx, l, mid, 190 + i * 68, titleFont, data.titleIsPlaceholder ? p.soft : p.ink, "center"),
+  );
+
+  const scoreSize = fit(ctx, data.scoreText, (px) => `400 ${px}px ${F.display}`, 210, 120, 520);
+  ctx.font = `400 ${scoreSize}px ${F.display}`;
+  const sw = ctx.measureText(data.scoreText).width;
+  const slash = 90;
+  const startX = mid - (sw + slash) / 2;
+  text(ctx, data.scoreText, startX, 440, `400 ${scoreSize}px ${F.display}`, p.ink);
+  text(ctx, "/10", startX + sw + 12, 440, `400 44px ${F.display}`, p.soft);
+
+  text(ctx, data.band, mid, 506, `800 46px ${F.serif}`, p.ink, "center");
+  wrap(ctx, data.hint, `400 26px ${F.sans}`, 820, 2).forEach((l, i) =>
+    text(ctx, l, mid, 550 + i * 32, `400 26px ${F.sans}`, p.soft, "center"),
+  );
+
+  // Seal and caption as one centered group.
+  ctx.font = `700 26px ${F.sans}`;
+  const cw = ctx.measureText(data.caption).width;
+  const gx = mid - (76 + 24 + cw) / 2;
+  seal(ctx, gx + 38, 630, 76, data.complete ? "決" : "仮", data.complete ? p.accent : p.lineStrong);
+  text(ctx, data.caption, gx + 100, 639, `700 26px ${F.sans}`, p.ink);
+
+  radar(ctx, data, p, mid, 955, 185);
+
+  if (data.enjoyment) {
+    text(
+      ctx,
+      `${data.enjoyment.label} ${data.enjoyment.valueText} / 10 · ${data.enjoyment.note}`,
+      mid,
+      1262,
+      `700 24px ${F.sans}`,
+      p.ink,
+      "center",
+    );
+  }
+  text(ctx, data.footer, mid, h - 44, `400 22px ${F.sans}`, p.soft, "center");
+}
+
 /** Draws a card on a canvas context. The canvas must already have the layout size. */
 export function drawCard(ctx: Ctx, layout: CardLayout, data: CardData, theme: CardTheme): void {
   const { width, height } = LAYOUT_SIZE[layout];
@@ -292,7 +339,8 @@ export function drawCard(ctx: Ctx, layout: CardLayout, data: CardData, theme: Ca
   ctx.save();
   ctx.clearRect(0, 0, width, height);
   if (layout === "seal") drawSeal(ctx, data, p, width, height);
-  else drawLedger(ctx, data, p, width, height);
+  else if (layout === "ledger") drawLedger(ctx, data, p, width, height);
+  else drawPoster(ctx, data, p, width, height);
   ctx.restore();
 }
 

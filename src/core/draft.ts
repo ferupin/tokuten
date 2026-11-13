@@ -67,7 +67,7 @@ export interface Preferences {
   mode: EvaluationMode | null;
   format: "standard" | "obsidian" | null;
   /** Layout and theme of the share card. */
-  cardLayout: "seal" | "ledger" | null;
+  cardLayout: "seal" | "ledger" | "poster" | null;
   cardTheme: "light" | "dark" | null;
 }
 
@@ -77,7 +77,7 @@ const preferencesSchema = z.object({
   draft: z.boolean().catch(true),
   mode: z.enum(["detailed", "quick"]).nullable().catch(null),
   format: z.enum(["standard", "obsidian"]).nullable().catch(null),
-  cardLayout: z.enum(["seal", "ledger"]).nullable().catch(null),
+  cardLayout: z.enum(["seal", "ledger", "poster"]).nullable().catch(null),
   cardTheme: z.enum(["light", "dark"]).nullable().catch(null),
 });
 

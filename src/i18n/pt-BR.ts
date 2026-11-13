@@ -365,6 +365,8 @@ export const ptBR: Messages = {
     sealHint: "Horizontal, com radar. Ideal para chats e redes sociais.",
     ledger: "Registro",
     ledgerHint: "Quadrado, com cada nota em uma barra. O mais claro para quem não conhece.",
+    poster: "Cartaz",
+    posterHint: "Vertical, centralizado, com radar. Feito para telas de celular.",
     themeLabel: "Tema do cartão",
     enjoymentSwitch: "Incluir o gosto pessoal",
     enjoymentHint: "Aparece em uma linha separada, à parte da nota. Desligado por padrão.",

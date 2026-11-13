@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted. The image part (layouts A and B) was built in version 0.9.0. Layout C and the link are still planned.
+Accepted. The image part was built in versions 0.9.0 (layouts A and B) and 0.9.1 (layout C). The link is still planned.
 
 ## Context
 
@@ -133,3 +133,4 @@ A centered layout with the seal on top, a very large score and a radar with name
 - Layout and card theme are remembered in the preferences. Personal enjoyment is off at every visit on purpose.
 - The Share button appears under the result only when a score exists. The page reads the evaluation held in memory, so after a reload the draft has to be restored in the evaluator first.
 - Layouts are named Seal and Ledger in the interface.
+- Layout C is named Poster. It follows the light or dark choice of the card like the others, so the dark look in the proposal is one setting of it and not fixed. Its enjoyment line is a single centered line.

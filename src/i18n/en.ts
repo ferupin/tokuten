@@ -369,6 +369,8 @@ export const en = {
     sealHint: "Landscape, with a radar. Best for chats and social networks.",
     ledger: "Ledger",
     ledgerHint: "Square, with every grade as a bar. Clearest for someone new.",
+    poster: "Poster",
+    posterHint: "Portrait, centered, with a radar. Made for phone screens.",
     themeLabel: "Card theme",
     enjoymentSwitch: "Include personal enjoyment",
     enjoymentHint: "Shown as a separate line, apart from the score. Off by default.",

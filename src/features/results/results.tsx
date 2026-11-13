@@ -137,7 +137,7 @@ export function Results() {
     }
   };
 
-  const layoutName = (l: CardLayout) => t(l === "seal" ? "share.seal" : "share.ledger");
+  const layoutName = (l: CardLayout) => t(`share.${l}`);
 
   return (
     <>
@@ -161,7 +161,7 @@ export function Results() {
               <h2 id="share-layouts" className="label m-0">
                 {t("share.layoutLabel")}
               </h2>
-              <div role="radiogroup" aria-labelledby="share-layouts" className="grid gap-3 sm:grid-cols-2">
+              <div role="radiogroup" aria-labelledby="share-layouts" className="grid gap-3 sm:grid-cols-3">
                 {LAYOUTS.map((l) => (
                   <button
                     key={l}
@@ -178,7 +178,7 @@ export function Results() {
                   >
                     <CardCanvas layout={l} data={data} theme={cardTheme} label={layoutName(l)} />
                     <span className="font-serif text-lg font-extrabold">{layoutName(l)}</span>
-                    <span className="text-xs text-soft">{t(l === "seal" ? "share.sealHint" : "share.ledgerHint")}</span>
+                    <span className="text-xs text-soft">{t(`share.${l}Hint`)}</span>
                   </button>
                 ))}
               </div>
