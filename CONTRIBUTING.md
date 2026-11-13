@@ -22,7 +22,7 @@ Open an [issue](https://github.com/ferupin/tokuten/issues/new?template=feature_r
 
 ## Setting up
 
-You need Node.js 20 or newer.
+You need Node.js 20.9 or newer.
 
 ```bash
 git clone https://github.com/ferupin/tokuten.git
@@ -71,12 +71,17 @@ Every released change adds an entry to `src/changelog/entries.ts` in every suppo
 
 ## Adding a language
 
-1. Create `src/i18n/<code>.ts` that exports an object typed as `Messages`. TypeScript lists every missing key.
-2. Register it in `src/i18n/index.tsx`, in `LOCALES`, `localeLabels` and `dictionaries`.
-3. Add that language to each text in `src/changelog/entries.ts`. The compiler points to each one.
-4. Run the tests. They check that every language has the same keys and the same placeholders.
+Say in an issue which language you plan to do, so work is not duplicated. Today a new language touches a few places, and the steps below are exactly what the code needs.
+
+1. Copy `src/i18n/en.ts` to `src/i18n/<code>.ts`, rename the export and translate every text. The file is typed as `Messages`, so TypeScript lists any missing key. Keep the `{placeholders}` as they are.
+2. Register the language in `src/i18n/index.tsx`, in `LOCALES`, `localeLabels` and `dictionaries`.
+3. Add the language to each text in `src/changelog/entries.ts`. The compiler points to each one. This is the longest part, because every release has its own text.
+4. In `src/i18n/dictionary.test.ts`, import the new dictionary and compare it with English. The test file lists the languages by hand, so a new one is not checked until it is added there.
+5. Run `npm test`, `npm run typecheck` and `npm run build`.
 
 Keep the kanji that belong to the identity untranslated: the logo, the pillars, the numerals and the seal marks.
+
+Steps 3 and 4 are heavier than they should be. The roadmap lists a plan to make a language a single file, with the changelog falling back to English until it is translated. Until then, a partial translation is still welcome as a pull request in draft state.
 
 ## Adding a profile
 
