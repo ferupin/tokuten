@@ -66,14 +66,19 @@ export interface Preferences {
   draft: boolean;
   mode: EvaluationMode | null;
   format: "standard" | "obsidian" | null;
+  /** Layout and theme of the share card. */
+  cardLayout: "seal" | "ledger" | null;
+  cardTheme: "light" | "dark" | null;
 }
 
-export const defaultPreferences: Preferences = { draft: true, mode: null, format: null };
+export const defaultPreferences: Preferences = { draft: true, mode: null, format: null, cardLayout: null, cardTheme: null };
 
 const preferencesSchema = z.object({
   draft: z.boolean().catch(true),
   mode: z.enum(["detailed", "quick"]).nullable().catch(null),
   format: z.enum(["standard", "obsidian"]).nullable().catch(null),
+  cardLayout: z.enum(["seal", "ledger"]).nullable().catch(null),
+  cardTheme: z.enum(["light", "dark"]).nullable().catch(null),
 });
 
 export function parsePreferences(text: string | null): Preferences {

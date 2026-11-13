@@ -352,6 +352,45 @@ export const ptBR: Messages = {
     contribution: "Contribuição",
     composition: "Contribuição para a nota oficial",
   },
+  share: {
+    button: "Compartilhar este resultado",
+    back: "Voltar ao avaliador",
+    title: "Compartilhar um resultado",
+    kanji: "共有",
+    reading: "kyōyū",
+    intro: "Escolha um cartão, confira o que ele mostra e salve como imagem. O cartão é desenhado no seu navegador e nada é enviado.",
+    nothing: "Dê nota a pelo menos uma categoria para compartilhar um resultado.",
+    layoutLabel: "Layout do cartão",
+    seal: "Selo",
+    sealHint: "Horizontal, com radar. Ideal para chats e redes sociais.",
+    ledger: "Registro",
+    ledgerHint: "Quadrado, com cada nota em uma barra. O mais claro para quem não conhece.",
+    themeLabel: "Tema do cartão",
+    enjoymentSwitch: "Incluir o gosto pessoal",
+    enjoymentHint: "Aparece em uma linha separada, à parte da nota. Desligado por padrão.",
+    privacy: "A introdução, as anotações e a conclusão nunca são incluídas.",
+    previewLabel: "Prévia do cartão",
+    download: "Baixar imagem",
+    copyImage: "Copiar imagem",
+    shareImage: "Compartilhar",
+    copyDescription: "Copiar descrição",
+    downloaded: "Imagem baixada",
+    imageCopied: "Imagem copiada",
+    descriptionCopied: "Descrição copiada",
+    failed: "Não foi possível criar a imagem neste navegador.",
+    copyFailed: "Este navegador não consegue copiar imagens. Baixe a imagem.",
+    descriptionTitle: "Descrição para leitores de tela",
+    descriptionHint: "Uma versão em texto do cartão, para usar como texto alternativo da imagem.",
+    cardComplete: "Nota completa",
+    cardPartial: "Nota parcial, {graded} de {total} avaliadas",
+    cardFooter: "Kijun 基準: {count} categorias ponderadas, de 0 a 10",
+    cardEnjoyment: "Gosto pessoal",
+    cardSeparate: "À parte da nota",
+    altCard: "{title}. {profile}. Nota oficial {score} de 10, {band}. {status}.",
+    altGrades: "Notas: {list}.",
+    altEnjoyment: "Gosto pessoal {value} de 10, à parte da nota.",
+    altNotGraded: "sem nota",
+  },
   profiles: {
     sentai: {
       name: "Kijun: Super Sentai",
@@ -377,6 +416,7 @@ export const ptBR: Messages = {
       categories: {
         theme: {
           name: "Tema e Conceito",
+          short: "Tema",
           scope: "A ideia por trás da temporada e o quanto ela a explora bem.",
           boundary: "Avalie aqui o conceito e sua consistência. Os eventos da trama pertencem a História e Mundo.",
           subcriteria: {
@@ -389,6 +429,7 @@ export const ptBR: Messages = {
         },
         suits: {
           name: "Trajes e Design Visual",
+          short: "Trajes",
           scope: "A aparência dos heróis, dos vilões e do mundo da temporada.",
           boundary:
             "Apenas o design estático. O movimento pertence a Ação e Coreografia, e o trabalho de câmera a Produção e Direção.",
@@ -402,6 +443,7 @@ export const ptBR: Messages = {
         },
         mecha: {
           name: "Mecha e Arsenal",
+          short: "Mecha",
           scope: "Robôs, combinações, armas e acessórios, e como servem à temporada.",
           boundary:
             "Designs e funcionamento contam aqui. Os trajes pertencem a Trajes e Design Visual, e a forma como as batalhas de robôs são filmadas a Produção e Direção.",
@@ -416,6 +458,7 @@ export const ptBR: Messages = {
         },
         story: {
           name: "História e Mundo",
+          short: "Roteiro",
           scope: "A trama, sua estrutura, a construção de mundo e a resolução.",
           boundary:
             "Não aumente nem reduza esta nota por causa de personagens, música ou ritmo. A distribuição da história pelos episódios pertence a Ritmo.",
@@ -430,6 +473,7 @@ export const ptBR: Messages = {
         },
         characters: {
           name: "Personagens e Desenvolvimento",
+          short: "Personagens",
           scope: "Os personagens individuais: motivações, arcos e crescimento.",
           boundary:
             "Avalie aqui os indivíduos. A interação entre os membros da equipe pertence a Química e Dinâmica do Time.",
@@ -444,6 +488,7 @@ export const ptBR: Messages = {
         },
         chemistry: {
           name: "Química e Dinâmica do Time",
+          short: "Química",
           scope: "Como a equipe funciona como unidade: laços, trabalho em equipe e momentos compartilhados.",
           boundary: "Avalie aqui o grupo. Os arcos pessoais pertencem a Personagens e Desenvolvimento.",
           subcriteria: {
@@ -456,6 +501,7 @@ export const ptBR: Messages = {
         },
         music: {
           name: "Música e Trilha Sonora",
+          short: "Música",
           scope: "Canções, trilha e design de som.",
           boundary: "A música afeta apenas esta categoria. Uma ótima trilha não eleva a nota de História e Mundo.",
           subcriteria: {
@@ -468,6 +514,7 @@ export const ptBR: Messages = {
         },
         action: {
           name: "Ação e Coreografia",
+          short: "Ação",
           scope: "Lutas, acrobacias e criatividade de combate.",
           boundary:
             "A qualidade da coreografia e das acrobacias conta aqui. Escolhas de câmera e edição pertencem a Produção e Direção.",
@@ -481,6 +528,7 @@ export const ptBR: Messages = {
         },
         production: {
           name: "Produção e Direção",
+          short: "Produção",
           scope: "Como a temporada é filmada, editada e levada à tela.",
           boundary:
             "Avalie a direção e a execução técnica. Os designs de trajes e robôs pertencem a outras categorias, e a coreografia a Ação e Coreografia.",
@@ -495,6 +543,7 @@ export const ptBR: Messages = {
         },
         pacing: {
           name: "Ritmo e Execução Geral",
+          short: "Ritmo",
           scope: "O ritmo ao longo de toda a exibição: consistência, episódios de enchimento e impulso.",
           boundary:
             "Avalie o quão bem o tempo de tela é usado. A qualidade da trama em si pertence a História e Mundo.",

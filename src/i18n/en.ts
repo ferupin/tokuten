@@ -356,6 +356,45 @@ export const en = {
     contribution: "Contribution",
     composition: "Contribution to the official score",
   },
+  share: {
+    button: "Share this result",
+    back: "Back to the evaluator",
+    title: "Share a result",
+    kanji: "共有",
+    reading: "kyōyū",
+    intro: "Pick a card, check what it shows and save it as an image. The card is drawn in your browser and nothing is uploaded.",
+    nothing: "Grade at least one category to share a result.",
+    layoutLabel: "Card layout",
+    seal: "Seal",
+    sealHint: "Landscape, with a radar. Best for chats and social networks.",
+    ledger: "Ledger",
+    ledgerHint: "Square, with every grade as a bar. Clearest for someone new.",
+    themeLabel: "Card theme",
+    enjoymentSwitch: "Include personal enjoyment",
+    enjoymentHint: "Shown as a separate line, apart from the score. Off by default.",
+    privacy: "The introduction, the notes and the conclusion are never included.",
+    previewLabel: "Card preview",
+    download: "Download image",
+    copyImage: "Copy image",
+    shareImage: "Share",
+    copyDescription: "Copy description",
+    downloaded: "Image downloaded",
+    imageCopied: "Image copied",
+    descriptionCopied: "Description copied",
+    failed: "The image could not be created in this browser.",
+    copyFailed: "This browser cannot copy images. Download it instead.",
+    descriptionTitle: "Description for screen readers",
+    descriptionHint: "A text version of the card, to use as the alternative text of the image.",
+    cardComplete: "Complete score",
+    cardPartial: "Partial score, {graded} of {total} graded",
+    cardFooter: "Kijun 基準: {count} weighted categories, 0 to 10",
+    cardEnjoyment: "Personal enjoyment",
+    cardSeparate: "Separate from the score",
+    altCard: "{title}. {profile}. Official score {score} out of 10, {band}. {status}.",
+    altGrades: "Grades: {list}.",
+    altEnjoyment: "Personal enjoyment {value} out of 10, separate from the score.",
+    altNotGraded: "not graded",
+  },
   profiles: {
     sentai: {
       name: "Kijun: Super Sentai",
@@ -381,6 +420,7 @@ export const en = {
       categories: {
         theme: {
           name: "Theme & Concept",
+          short: "Theme",
           scope: "The idea behind the season and how well it explores that idea.",
           boundary: "Judge the concept and its consistency here. Plot events belong to Story & Lore.",
           subcriteria: {
@@ -393,6 +433,7 @@ export const en = {
         },
         suits: {
           name: "Suits & Visual Design",
+          short: "Suits",
           scope: "How the heroes, villains and the world of the season look.",
           boundary:
             "Static design only. Movement belongs to Action & Choreography and camera work to Production & Direction.",
@@ -406,6 +447,7 @@ export const en = {
         },
         mecha: {
           name: "Mecha & Arsenal",
+          short: "Mecha",
           scope: "Robots, combinations, weapons and gadgets, and how they serve the season.",
           boundary:
             "Designs and function count here. Costumes belong to Suits & Visual Design, and how robot battles are filmed to Production & Direction.",
@@ -420,6 +462,7 @@ export const en = {
         },
         story: {
           name: "Story & Lore",
+          short: "Story",
           scope: "The plot, its structure, worldbuilding and resolution.",
           boundary:
             "Do not raise or lower this grade because of characters, music or pacing. How the story is spread across episodes belongs to Pacing.",
@@ -434,6 +477,7 @@ export const en = {
         },
         characters: {
           name: "Characters & Development",
+          short: "Characters",
           scope: "Individual characters: motivations, arcs and growth.",
           boundary:
             "Judge individuals here. Interaction between team members belongs to Squad Chemistry & Dynamics.",
@@ -448,6 +492,7 @@ export const en = {
         },
         chemistry: {
           name: "Squad Chemistry & Dynamics",
+          short: "Chemistry",
           scope: "How the team works as a unit: bonds, teamwork and shared moments.",
           boundary: "Judge the group here. Personal arcs belong to Characters & Development.",
           subcriteria: {
@@ -460,6 +505,7 @@ export const en = {
         },
         music: {
           name: "Music & Soundtrack",
+          short: "Music",
           scope: "Songs, score and sound design.",
           boundary: "Music affects only this category. A strong soundtrack does not lift the Story & Lore grade.",
           subcriteria: {
@@ -472,6 +518,7 @@ export const en = {
         },
         action: {
           name: "Action & Choreography",
+          short: "Action",
           scope: "Fights, stunts and combat creativity.",
           boundary:
             "Choreography and stunt quality count here. Camera and editing choices belong to Production & Direction.",
@@ -485,6 +532,7 @@ export const en = {
         },
         production: {
           name: "Production & Direction",
+          short: "Production",
           scope: "How the season is filmed, edited and brought to the screen.",
           boundary:
             "Judge direction and technical execution. Suit and robot designs belong elsewhere, and fight choreography belongs to Action & Choreography.",
@@ -499,6 +547,7 @@ export const en = {
         },
         pacing: {
           name: "Pacing & Overall Execution",
+          short: "Pacing",
           scope: "Rhythm across the whole run: consistency, filler and momentum.",
           boundary:
             "Judge how well the screen time is used. The quality of the plot itself belongs to Story & Lore.",

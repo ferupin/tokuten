@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import pkg from "../../package.json";
 import { sentaiProfile } from "@/profiles/sentai";
-import { currentVersion, planned, releases } from "./entries";
+import type { Locale } from "@/i18n";
+import { currentVersion, pick, planned, releases } from "./entries";
 
 const SEMVER = /^\d+\.\d+\.\d+$/;
 const compare = (a: string, b: string) => {
@@ -31,15 +32,23 @@ describe("changelog", () => {
     expect(releases[0].sentaiProfileVersion).toBe(sentaiProfile.version);
   });
 
-  it("has English and Portuguese text everywhere", () => {
+  it("has English text everywhere, and full text in the maintained languages", () => {
     const texts = [
       ...planned,
       ...releases.flatMap((r) => [r.title, r.summary, ...r.groups.flatMap((g) => g.items)]),
     ];
+    // Other registered languages may be partial: a missing text falls back to English.
+    const maintained: Locale[] = ["en", "pt-BR", "es"];
     for (const text of texts) {
-      expect(text.en.trim().length).toBeGreaterThan(0);
-      expect(text["pt-BR"].trim().length).toBeGreaterThan(0);
+      for (const locale of maintained) {
+        expect(text[locale]?.trim().length ?? 0, `${locale}: ${text.en}`).toBeGreaterThan(0);
+      }
     }
+  });
+
+  it("falls back to English when a translation is missing", () => {
+    expect(pick({ en: "Hello" }, "es")).toBe("Hello");
+    expect(pick({ en: "Hello", es: "Hola" }, "es")).toBe("Hola");
   });
 
   it("does not use em dashes", () => {

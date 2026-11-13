@@ -14,10 +14,59 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 
 ## Releasing
 
-1. Add the entry to `src/changelog/entries.ts`, newest first, in English and Portuguese.
+1. Add the entry to `src/changelog/entries.ts`, newest first, in English, Portuguese and Spanish.
 2. Update `version` in `package.json`. A test fails if the two disagree.
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
+
+## 0.9.0 (2026-11-13)
+
+Share a result as an image. Sentai profile v1.
+
+### Interface
+- A Share this result button under the result opens the new Results page at `/results`. It appears only when at least one category is graded.
+- Two card layouts, each shown as a live preview: Seal (landscape, 1200 by 630, with a radar) and Ledger (square, 1080 by 1080, one bar per category). The choice is remembered.
+- The card can be light or dark, whatever the theme of the app.
+- Download the PNG, copy it, or use the share sheet where the browser supports sharing files.
+- Every axis and bar is named in plain words, the seal has a caption and a footer says what Kijun is and the scale used.
+- A text description of the card, with a copy button, for use as alternative text.
+
+### Method
+- Every category has a short name in the three languages, used on the cards.
+
+### Export and import
+- The introduction, the notes and the conclusion are never part of a card. Personal enjoyment is included only when switched on, on a separate line, and is off at every visit.
+- The card is drawn in the browser. Nothing is uploaded.
+
+### Quality
+- Tests for privacy, short names in every language and the match between the canvas colors and the theme tokens.
+
+### Documentation
+- ADR 0010 records what was built. The roadmap lists layout C and the link.
+
+### Known limits
+- A card cannot be opened back into the app.
+- The page reads the evaluation in memory. After a reload, restore the draft first.
+
+## 0.8.0 (2026-11-13)
+
+Spanish and easier languages. Sentai profile v1.
+
+### Interface
+- Spanish is available in the language menu. Every screen, the grade bands, the category guidance and both Markdown exports are translated.
+- Each language is named in its own language. English is still the starting language, and a language chosen on purpose is still remembered.
+- The changelog falls back to English for any text that is not translated yet.
+
+### Quality
+- One registry, `src/i18n/languages.ts`, lists every language. The menu, the saved preference and the tests read from it, so a new language needs a dictionary file and one line.
+- The dictionary tests run for every registered language: same keys, same placeholders, no empty text, no em dashes, complete profile text, and not a copy of English.
+- A test keeps English, Portuguese and Spanish complete in the changelog. Other languages may be partial.
+
+### Documentation
+- ADR 0011 records the language registry. The README and the contributing guide explain how to add a language in three steps.
+
+### Known limits
+- The Spanish text was written without a native review. Corrections are welcome.
 
 ## 0.7.2 (2026-11-13)
 

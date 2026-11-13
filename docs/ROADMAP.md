@@ -7,19 +7,12 @@ Each item has a rough size: small is a few hours, medium is a few days, large is
 ## Next
 
 ### Share a result
-Someone who finishes an evaluation should be able to share the result directly, through the score card. The card already stands alone in the code, which prepares this.
+The image half is done in 0.9.0: a Results page at `/results` draws the card in the browser, with two layouts to choose from, and it can be downloaded, copied or sent through the share sheet. What is left:
 
-It starts with a decision, not with code, because the app has no server. Two ways are on the table.
+- **A dark portrait layout** (1080 by 1350), planned for 0.9.1.
+- **A link.** The grades travel in the part of the address after the `#`, which never reaches any server, and the Results page draws the card from it, read only. A link preview in a social network would show a generic image, since drawing a card per link needs a server. Planned for 0.10.0. Size: medium.
 
-- **An image.** The card is drawn in the browser as a PNG, to download, copy or send through the share sheet of a phone. It works anywhere a picture works.
-- **A link.** The grades travel in the part of the address after the `#`, which never reaches any server, and a results page draws the card from it. A link preview in a social network would not show the card, since that needs a server.
-
-Nothing private would go out by default. The title, the score, the reading, the radar and the grades are shared. The notes, the introduction and the conclusion are left out, and personal enjoyment is opt in.
-
-Plan: a decision record with a few card layouts to choose from, then the image, then the link. Size: medium for each part.
-
-### Spanish
-Added by the maintainer, so the app has English, Portuguese and Spanish. It is also the chance to make a language cheaper to add: one file for the interface, tests that cover every registered language, and a changelog that falls back to English until a text is translated. Size: medium.
+The decisions, including the privacy rules and how the cards stay readable for someone who has never seen Tokuten, are in [ADR 0010](adr/0010-sharing-a-result.md).
 
 ## Toward 1.0
 
@@ -27,8 +20,8 @@ The 1.0 mark is a promise that the method, the file format and the core of the i
 
 1. The grade anchors written, so the meaning of a grade stops changing.
 2. A JSON format that old files keep opening with.
-3. Sharing delivered.
-4. English, Portuguese and Spanish complete.
+3. Sharing delivered. The image is done in 0.9.0. The portrait layout and the link are left.
+4. English, Portuguese and Spanish complete. Done in 0.8.0, and kept complete by tests.
 
 ## Method
 
@@ -42,7 +35,7 @@ The 1.0 mark is a promise that the method, the file format and the core of the i
 
 ## Languages
 
-Open to the community, once the one-file setup is in place: Japanese, French, German and others. Neutral, slightly formal wording is the goal. Size: medium per language. Help welcome.
+Open to the community, now that a language is one file and one line ([ADR 0011](adr/0011-language-registry.md)): Japanese, French, German and others. Neutral, slightly formal wording is the goal. Size: medium per language. Help welcome.
 
 ## Interface
 

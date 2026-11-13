@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { formatGrade } from "@/core/grades";
 import type { EvaluationMode, EvaluationResult, Profile } from "@/core/types";
 import { ScoreCard } from "./score-card";
@@ -78,6 +79,13 @@ export function ResultPanel({
           )}
         </div>
       </div>
+      {result.score !== null && (
+        <p className="no-print m-0 mt-6 text-center">
+          <Link href="/results" className="btn ghost no-underline">
+            {t("share.button")}
+          </Link>
+        </p>
+      )}
     </section>
   );
 }

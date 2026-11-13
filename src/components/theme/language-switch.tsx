@@ -1,6 +1,6 @@
 "use client";
 
-import { LOCALES, localeLabels, useI18n, type Locale } from "@/i18n";
+import { LOCALES, languages, useI18n, type Locale } from "@/i18n";
 
 export function LanguageSwitch() {
   const { locale, setLocale, t } = useI18n();
@@ -14,7 +14,7 @@ export function LanguageSwitch() {
       >
         {LOCALES.map((l) => (
           <option key={l} value={l}>
-            {localeLabels[l]}
+            {languages[l].label}
           </option>
         ))}
       </select>

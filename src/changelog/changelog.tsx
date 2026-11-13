@@ -7,7 +7,7 @@ import { Footer } from "@/components/ui/footer";
 import { PageHeader } from "@/components/ui/page-header";
 import { useScrollTop } from "@/components/ui/use-scroll-top";
 import { useI18n } from "@/i18n";
-import { planned, releases } from "./entries";
+import { pick, planned, releases } from "./entries";
 
 export function Changelog() {
   const { t, locale } = useI18n();
@@ -83,7 +83,7 @@ export function Changelog() {
                   >
                     <span id={`v${release.version}`} className="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-3 gap-y-1">
                       <span className="tnum font-display text-3xl font-normal">v{release.version}</span>
-                      <span className="font-serif text-lg font-extrabold">{release.title[locale]}</span>
+                      <span className="font-serif text-lg font-extrabold">{pick(release.title, locale)}</span>
                     </span>
                     <svg
                       aria-hidden
@@ -100,7 +100,7 @@ export function Changelog() {
                 <p className="label m-0 mt-1">
                   {t("changelog.released", { date: formatDate(release.date) })} · {t("changelog.profileVersion", { version: release.sentaiProfileVersion })}
                 </p>
-                <p className="mb-0 mt-3 text-[15px]">{release.summary[locale]}</p>
+                <p className="mb-0 mt-3 text-[15px]">{pick(release.summary, locale)}</p>
               </header>
               <div id={detailsId} hidden={!isOpen} className="mt-5 flex flex-col gap-5">
                 {release.groups.map((group) => (
@@ -108,7 +108,7 @@ export function Changelog() {
                     <h3 className="label mb-2 mt-0">{t(`changelog.areas.${group.area}`)}</h3>
                     <ul className="m-0 space-y-2 pl-5 text-[14px] marker:text-accent">
                       {group.items.map((item, i) => (
-                        <li key={i}>{item[locale]}</li>
+                        <li key={i}>{pick(item, locale)}</li>
                       ))}
                     </ul>
                   </section>
@@ -125,7 +125,7 @@ export function Changelog() {
           <p className="mb-3 mt-1 text-[13px] text-soft">{t("changelog.plannedHint")}</p>
           <ul className="m-0 space-y-2 pl-5 text-[14px] marker:text-soft">
             {planned.map((item, i) => (
-              <li key={i}>{item[locale]}</li>
+              <li key={i}>{pick(item, locale)}</li>
             ))}
           </ul>
         </section>

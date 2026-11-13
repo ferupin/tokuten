@@ -61,7 +61,15 @@ describe("preferences", () => {
   });
 
   it("keeps valid values and repairs invalid ones", () => {
-    expect(parsePreferences('{"draft":false,"mode":"quick","format":"obsidian"}')).toEqual({ draft: false, mode: "quick", format: "obsidian" });
+    expect(parsePreferences('{"draft":false,"mode":"quick","format":"obsidian"}')).toEqual({
+      draft: false,
+      mode: "quick",
+      format: "obsidian",
+      cardLayout: null,
+      cardTheme: null,
+    });
+    expect(parsePreferences('{"cardLayout":"ledger","cardTheme":"dark"}')).toMatchObject({ cardLayout: "ledger", cardTheme: "dark" });
+    expect(parsePreferences('{"cardLayout":"poster","cardTheme":"blue"}')).toMatchObject({ cardLayout: null, cardTheme: null });
     expect(parsePreferences('{"draft":"yes","mode":"huge","format":3}')).toEqual(defaultPreferences);
   });
 });

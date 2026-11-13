@@ -67,21 +67,19 @@ Common types are `feat`, `fix`, `docs`, `style`, `refactor`, `test` and `chore`.
 
 ### Versions and the changelog
 
-Every released change adds an entry to `src/changelog/entries.ts` in every supported language and to `docs/CHANGELOG.md`, and updates the version in `package.json`. A test fails if they disagree. The rules for choosing a version number are at the top of `docs/CHANGELOG.md`.
+Every released change adds an entry to `src/changelog/entries.ts` in English, Portuguese and Spanish and to `docs/CHANGELOG.md`, and updates the version in `package.json`. A test fails if they disagree. The rules for choosing a version number are at the top of `docs/CHANGELOG.md`.
 
 ## Adding a language
 
-Say in an issue which language you plan to do, so work is not duplicated. Today a new language touches a few places, and the steps below are exactly what the code needs.
+Say in an issue which language you plan to do, so work is not duplicated. A language is one file and one line, and the tests cover it automatically.
 
 1. Copy `src/i18n/en.ts` to `src/i18n/<code>.ts`, rename the export and translate every text. The file is typed as `Messages`, so TypeScript lists any missing key. Keep the `{placeholders}` as they are.
-2. Register the language in `src/i18n/index.tsx`, in `LOCALES`, `localeLabels` and `dictionaries`.
-3. Add the language to each text in `src/changelog/entries.ts`. The compiler points to each one. This is the longest part, because every release has its own text.
-4. In `src/i18n/dictionary.test.ts`, import the new dictionary and compare it with English. The test file lists the languages by hand, so a new one is not checked until it is added there.
-5. Run `npm test`, `npm run typecheck` and `npm run build`.
+2. Add one line to the registry in `src/i18n/languages.ts`, with the name of the language written in that language and the dictionary. The language menu, the saved preference and the dictionary tests all read from it.
+3. Run `npm test`, `npm run typecheck` and `npm run build`.
 
 Keep the kanji that belong to the identity untranslated: the logo, the pillars, the numerals and the seal marks.
 
-Steps 3 and 4 are heavier than they should be. The roadmap lists a plan to make a language a single file, with the changelog falling back to English until it is translated. Until then, a partial translation is still welcome as a pull request in draft state.
+The changelog is optional. A changelog text in `src/changelog/entries.ts` can carry any language next to `en`, and any text that is missing is shown in English. Translate as many as you like, newest first. English, Portuguese and Spanish are kept complete, and a test enforces that.
 
 ## Adding a profile
 

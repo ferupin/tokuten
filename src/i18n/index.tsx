@@ -1,16 +1,11 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { en, type Messages } from "./en";
-import { ptBR } from "./pt-BR";
+import type { Messages } from "./en";
+import { DEFAULT_LOCALE, isLocale, languages, type Locale } from "./languages";
 import type { Translate } from "@/core/export-markdown";
 
-export const LOCALES = ["en", "pt-BR"] as const;
-export type Locale = (typeof LOCALES)[number];
-
-export const localeLabels: Record<Locale, string> = { en: "English", "pt-BR": "Português (BR)" };
-
-const dictionaries: Record<Locale, Messages> = { en, "pt-BR": ptBR };
+export { LOCALES, languages, type Locale } from "./languages";
 
 const STORAGE_KEY = "tokuten.locale";
 
@@ -45,14 +40,14 @@ const I18nContext = createContext<I18nValue | null>(null);
  * so a missing key in any language fails the type check.
  */
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
 
   // English is always the default. Only a language the user picked on purpose
   // is restored, and only after mount to keep hydration stable.
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY) as Locale | null;
-      if (saved && LOCALES.includes(saved)) setLocaleState(saved);
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (isLocale(saved)) setLocaleState(saved);
     } catch {
       /* storage can be unavailable */
     }
@@ -72,7 +67,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const t = useCallback<Translate>(
-    (key, values) => interpolate(lookup(dictionaries[locale], key), values),
+    (key, values) => interpolate(lookup(languages[locale].messages, key), values),
     [locale],
   );
 

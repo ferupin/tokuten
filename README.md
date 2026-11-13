@@ -17,7 +17,8 @@ Everything runs in the browser. There is no database, no account and no server l
 - Offers the ten consistency checks of the method as a last look before you finish. They are a reminder and never change the score.
 - Keeps a draft in your own browser, offered back after a reload. It can be turned off.
 - Exports the evaluation as Markdown in two formats: Standard, for any renderer such as a forum or GitHub, and Obsidian, with properties, collapsible callouts, tables and a chart. JSON export can be imported again.
-- Works in English and Brazilian Portuguese, with light and dark themes.
+- Turns the result into a card you can save, copy or send as an image, in two layouts. It is drawn in your browser, and the notes, the introduction and the conclusion are never included.
+- Works in English, Brazilian Portuguese and Spanish, with light and dark themes.
 
 ## Getting started
 
@@ -75,7 +76,7 @@ The most important rule is that `core/` knows nothing about React or about any l
 
 1. Create `src/profiles/rider.ts` with its pillars, categories, weights and subcriteria. The weights must add up to 100.
 2. Register it in `src/profiles/index.ts`.
-3. Add a `profiles.rider` block to every dictionary in `src/i18n/`. TypeScript will report any language that is missing keys.
+3. Add a `profiles.rider` block to every dictionary in `src/i18n/` (the registry is `src/i18n/languages.ts`). TypeScript will report any language that is missing keys.
 4. Add a test that checks the weights, like the one for Sentai.
 
 ## Documentation
@@ -97,7 +98,7 @@ The most important rule is that `core/` knows nothing about React or about any l
 
 Tokuten is open source and the community is welcome in it. The [contributing guide](CONTRIBUTING.md) explains the setup, the conventions and how to send a pull request. These are the places where help counts most.
 
-**Translations.** The app is written in English, with Brazilian Portuguese complete. Spanish will be added by the maintainer, which gives the project three languages. Other languages are open, for example Japanese, French and German. A translation covers the interface dictionary in `src/i18n` and the changelog texts. Neutral, slightly formal wording works best, because it keeps the meaning clear in every language. The identity kanji stay as they are. The steps are in the [contributing guide](CONTRIBUTING.md#adding-a-language).
+**Translations.** The app is written in English and is complete in Brazilian Portuguese and Spanish. Other languages are open, for example Japanese, French and German. A language is one dictionary file in `src/i18n` and one line in the registry, and the changelog texts are optional because a missing one falls back to English. Neutral, slightly formal wording works best, because it keeps the meaning clear in every language. The identity kanji stay as they are. The steps are in the [contributing guide](CONTRIBUTING.md#adding-a-language).
 
 **A profile for another franchise.** Kamen Rider is the next one planned. A profile is plain data, so it does not touch the scoring code. The categories and weights deserve a discussion first, so open an issue before writing it.
 
