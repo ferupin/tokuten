@@ -41,6 +41,64 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.11.0",
+    date: "2026-11-13",
+    sentaiProfileVersion: 1,
+    title: { en: "A stable file format", "pt-BR": "Um formato de arquivo estável", es: "Un formato de archivo estable" },
+    summary: {
+      en: "The JSON file is now covered by a written promise and by tests: old files keep opening with the same score, and a file from a newer format is refused with a clear message.",
+      "pt-BR": "O arquivo JSON agora tem uma promessa escrita e testes: arquivos antigos continuam abrindo com a mesma nota, e um arquivo de um formato mais novo é recusado com uma mensagem clara.",
+      es: "El archivo JSON ahora tiene una promesa escrita y pruebas: los archivos antiguos siguen abriéndose con la misma puntuación, y un archivo de un formato más nuevo se rechaza con un mensaje claro.",
+    },
+    groups: [
+      {
+        area: "export",
+        items: [
+          {
+            en: "Importing a file whose schema is newer than the app understands now stops with its own message, The file comes from a newer version of Tokuten, instead of being half read.",
+            "pt-BR":
+              "Importar um arquivo cujo esquema é mais novo do que o app entende agora para com uma mensagem própria, O arquivo vem de uma versão mais nova do Tokuten, em vez de ser lido pela metade.",
+            es: "Importar un archivo cuyo esquema es más nuevo de lo que la aplicación entiende ahora se detiene con su propio mensaje, El archivo viene de una versión más nueva de Tokuten, en lugar de leerse a medias.",
+          },
+          {
+            en: "Files with fields the app does not know still open, so a later version can add optional fields without breaking this one. The file format itself did not change.",
+            "pt-BR":
+              "Arquivos com campos que o app não conhece continuam abrindo, então uma versão futura pode adicionar campos opcionais sem quebrar esta. O formato do arquivo em si não mudou.",
+            es: "Los archivos con campos que la aplicación no conoce siguen abriéndose, así que una versión futura puede añadir campos opcionales sin romper esta. El formato del archivo en sí no cambió.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "Three real files from earlier stages of the format (before modes, with modes, with the checklist) are kept as fixtures. A test checks that each opens, gives the same score and gets the right defaults.",
+            "pt-BR":
+              "Três arquivos reais de fases anteriores do formato (antes dos modos, com modos, com a checklist) ficam guardados como amostras. Um teste verifica que cada um abre, dá a mesma nota e recebe os padrões corretos.",
+            es: "Tres archivos reales de etapas anteriores del formato (antes de los modos, con modos, con la lista de consistencia) se guardan como muestras. Una prueba comprueba que cada uno se abre, da la misma puntuación y recibe los valores por defecto correctos.",
+          },
+          {
+            en: "The file written by the current version is pinned to the newest fixture, so any change to the format makes a test fail and has to be a decision.",
+            "pt-BR":
+              "O arquivo escrito pela versão atual é fixado na amostra mais nova, então qualquer mudança no formato faz um teste falhar e precisa ser uma decisão.",
+            es: "El archivo escrito por la versión actual se fija a la muestra más nueva, así que cualquier cambio en el formato hace fallar una prueba y tiene que ser una decisión.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "New document docs/file-format.md with the promise for 1.x: old files keep opening, new fields are optional, unknown fields are ignored, a newer file is refused, and a breaking change is a new schema and a new major version. It also describes the share link and the draft.",
+            "pt-BR":
+              "Novo documento docs/file-format.md com a promessa para a 1.x: arquivos antigos continuam abrindo, campos novos são opcionais, campos desconhecidos são ignorados, um arquivo mais novo é recusado, e uma mudança que quebra é um novo esquema e uma nova versão maior. Ele descreve também o link de compartilhamento e o rascunho.",
+            es: "Nuevo documento docs/file-format.md con la promesa para la 1.x: los archivos antiguos siguen abriéndose, los campos nuevos son opcionales, los campos desconocidos se ignoran, un archivo más nuevo se rechaza, y un cambio que rompe es un nuevo esquema y una nueva versión mayor. También describe el enlace para compartir y el borrador.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.10.0",
     date: "2026-11-13",
     sentaiProfileVersion: 1,

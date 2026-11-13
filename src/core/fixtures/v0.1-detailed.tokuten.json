@@ -1,0 +1,305 @@
+{
+  "app": "tokuten",
+  "schema": 1,
+  "exportedAt": "2026-11-06T20:23:29.445Z",
+  "evaluation": {
+    "profileId": "sentai",
+    "profileVersion": 1,
+    "title": "Fixture Season",
+    "introduction": "An introduction.",
+    "conclusion": "A conclusion.",
+    "enjoyment": 8.5,
+    "categories": {
+      "theme": {
+        "applicable": true,
+        "override": 8,
+        "notes": "Notes for theme.",
+        "subcriteria": {
+          "originality": {
+            "value": null,
+            "applicable": true
+          },
+          "identity": {
+            "value": null,
+            "applicable": true
+          },
+          "premise": {
+            "value": null,
+            "applicable": true
+          },
+          "consistency": {
+            "value": null,
+            "applicable": true
+          },
+          "exploration": {
+            "value": null,
+            "applicable": true
+          }
+        }
+      },
+      "suits": {
+        "applicable": true,
+        "override": 7,
+        "notes": "Notes for suits.",
+        "subcriteria": {
+          "rangerSuits": {
+            "value": null,
+            "applicable": true
+          },
+          "visualIdentity": {
+            "value": null,
+            "applicable": true
+          },
+          "enemyDesigns": {
+            "value": null,
+            "applicable": true
+          },
+          "aesthetics": {
+            "value": null,
+            "applicable": true
+          },
+          "visualConsistency": {
+            "value": null,
+            "applicable": true
+          }
+        }
+      },
+      "mecha": {
+        "applicable": false,
+        "override": null,
+        "notes": "Notes for mecha.",
+        "subcriteria": {
+          "mechaDesigns": {
+            "value": null,
+            "applicable": true
+          },
+          "combinations": {
+            "value": null,
+            "applicable": true
+          },
+          "weapons": {
+            "value": null,
+            "applicable": true
+          },
+          "functionality": {
+            "value": null,
+            "applicable": true
+          },
+          "variety": {
+            "value": null,
+            "applicable": true
+          },
+          "integration": {
+            "value": null,
+            "applicable": true
+          }
+        }
+      },
+      "story": {
+        "applicable": true,
+        "override": null,
+        "notes": "Notes for story.",
+        "subcriteria": {
+          "structure": {
+            "value": 7,
+            "applicable": true
+          },
+          "worldbuilding": {
+            "value": 8,
+            "applicable": true
+          },
+          "continuity": {
+            "value": 8,
+            "applicable": true
+          },
+          "plot": {
+            "value": 6,
+            "applicable": true
+          },
+          "conflicts": {
+            "value": 9,
+            "applicable": true
+          },
+          "resolution": {
+            "value": 7,
+            "applicable": true
+          }
+        }
+      },
+      "characters": {
+        "applicable": true,
+        "override": 8,
+        "notes": "Notes for characters.",
+        "subcriteria": {
+          "characterization": {
+            "value": null,
+            "applicable": true
+          },
+          "arcs": {
+            "value": null,
+            "applicable": true
+          },
+          "motivations": {
+            "value": null,
+            "applicable": true
+          },
+          "consistency": {
+            "value": null,
+            "applicable": true
+          },
+          "relationships": {
+            "value": null,
+            "applicable": true
+          },
+          "growth": {
+            "value": null,
+            "applicable": true
+          }
+        }
+      },
+      "chemistry": {
+        "applicable": true,
+        "override": 10,
+        "notes": "Notes for chemistry.",
+        "subcriteria": {
+          "teamwork": {
+            "value": null,
+            "applicable": true
+          },
+          "interactions": {
+            "value": null,
+            "applicable": true
+          },
+          "friendships": {
+            "value": null,
+            "applicable": true
+          },
+          "dynamics": {
+            "value": null,
+            "applicable": true
+          },
+          "unity": {
+            "value": null,
+            "applicable": true
+          }
+        }
+      },
+      "music": {
+        "applicable": true,
+        "override": null,
+        "notes": "Notes for music.",
+        "subcriteria": {
+          "themeSongs": {
+            "value": null,
+            "applicable": true
+          },
+          "backgroundMusic": {
+            "value": null,
+            "applicable": true
+          },
+          "insertSongs": {
+            "value": null,
+            "applicable": true
+          },
+          "emotionalImpact": {
+            "value": null,
+            "applicable": true
+          },
+          "soundDesign": {
+            "value": null,
+            "applicable": true
+          }
+        }
+      },
+      "action": {
+        "applicable": true,
+        "override": 6,
+        "notes": "Notes for action.",
+        "subcriteria": {
+          "choreography": {
+            "value": null,
+            "applicable": false
+          },
+          "stuntWork": {
+            "value": null,
+            "applicable": true
+          },
+          "creativity": {
+            "value": null,
+            "applicable": true
+          },
+          "clarity": {
+            "value": null,
+            "applicable": true
+          },
+          "actionDirection": {
+            "value": null,
+            "applicable": true
+          }
+        }
+      },
+      "production": {
+        "applicable": true,
+        "override": 7,
+        "notes": "Notes for production.",
+        "subcriteria": {
+          "cinematography": {
+            "value": null,
+            "applicable": true
+          },
+          "editing": {
+            "value": null,
+            "applicable": true
+          },
+          "directing": {
+            "value": null,
+            "applicable": true
+          },
+          "practicalEffects": {
+            "value": null,
+            "applicable": true
+          },
+          "presentation": {
+            "value": null,
+            "applicable": true
+          },
+          "execution": {
+            "value": null,
+            "applicable": true
+          }
+        }
+      },
+      "pacing": {
+        "applicable": true,
+        "override": 5,
+        "notes": "Notes for pacing.",
+        "subcriteria": {
+          "consistency": {
+            "value": null,
+            "applicable": true
+          },
+          "rhythm": {
+            "value": null,
+            "applicable": true
+          },
+          "filler": {
+            "value": null,
+            "applicable": true
+          },
+          "momentum": {
+            "value": null,
+            "applicable": true
+          },
+          "screenTime": {
+            "value": null,
+            "applicable": true
+          },
+          "delivery": {
+            "value": null,
+            "applicable": true
+          }
+        }
+      }
+    }
+  }
+}

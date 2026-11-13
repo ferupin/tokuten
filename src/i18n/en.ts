@@ -288,6 +288,7 @@ export const en = {
       invalidJson: "The file is not valid JSON.",
       notTokuten: "The file was not exported by Tokuten.",
       invalidShape: "The file does not match this profile.",
+      newerSchema: "The file comes from a newer version of Tokuten.",
     },
   },
   grades: {

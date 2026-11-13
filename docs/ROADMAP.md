@@ -11,7 +11,7 @@ Each item has a rough size: small is a few hours, medium is a few days, large is
 The 1.0 mark is a promise that the method, the file format and the core of the interface are stable. It needs:
 
 1. The grade anchors written, so the meaning of a grade stops changing.
-2. A JSON format that old files keep opening with.
+2. A JSON format that old files keep opening with. Done in 0.11.0, see [file-format.md](file-format.md).
 3. Sharing delivered. Done in 0.9.1 (image) and 0.10.0 (link).
 4. English, Portuguese and Spanish complete. Done in 0.8.0, and kept complete by tests.
 

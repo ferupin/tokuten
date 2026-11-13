@@ -52,7 +52,7 @@ Then open http://localhost:3000.
 | Tests | [Vitest](https://vitest.dev) | 5.1.0 |
 | Fonts | [Fontsource](https://fontsource.org), self-hosted: Dela Gothic One, Shippori Mincho, Zen Kaku Gothic New, JetBrains Mono | 5.3.x |
 
-Versions are the ones installed at release 0.7.2. The exact ones for any release are in `package-lock.json`. There is no backend and no database, and the only network request the app makes is loading its own files. The reasons for the main choices are in the [decision records](docs/adr).
+Versions are the ones installed at release 0.7.2, and later releases did not add dependencies. The exact ones for any release are in `package-lock.json`. There is no backend and no database, and the only network request the app makes is loading its own files. The reasons for the main choices are in the [decision records](docs/adr).
 
 ## Deploying to Vercel
 
@@ -84,6 +84,7 @@ The most important rule is that `core/` knows nothing about React or about any l
 - [The Kijun method](docs/framework.md)
 - [Roadmap](docs/ROADMAP.md), what is planned and where help is welcome
 - [Changelog and versioning](docs/CHANGELOG.md), also shown in the app at `/changelog`
+- [File format](docs/file-format.md), the promise about JSON files, share links and drafts
 - [Design system](docs/design-system.md)
 - [Semiotics](docs/semiotics.md), the meaning of the name, colors and symbols, also shown in the app at `/meaning`
 - [Decision records](docs/adr)

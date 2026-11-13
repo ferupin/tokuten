@@ -19,6 +19,21 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.11.0 (2026-11-13)
+
+A stable file format. Sentai profile v1.
+
+### Export and import
+- Importing a file with a newer schema than the app understands stops with its own message, "The file comes from a newer version of Tokuten", instead of being half read.
+- Files with fields the app does not know still open, so later versions can add optional fields. The file format itself did not change.
+
+### Quality
+- Three real files from earlier stages of the format are kept as fixtures. A test checks that each opens, gives the same score and gets the right defaults.
+- The file written by the current version is pinned to the newest fixture, so any change to the format fails a test and has to be a decision.
+
+### Documentation
+- New `docs/file-format.md` with the promise for 1.x, the format of the JSON file, the share link and the draft.
+
 ## 0.10.0 (2026-11-13)
 
 Share a result as a link. Sentai profile v1.

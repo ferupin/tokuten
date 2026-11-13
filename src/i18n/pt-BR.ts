@@ -284,6 +284,7 @@ export const ptBR: Messages = {
       invalidJson: "O arquivo não é um JSON válido.",
       notTokuten: "O arquivo não foi exportado pelo Tokuten.",
       invalidShape: "O arquivo não corresponde a este perfil.",
+      newerSchema: "O arquivo vem de uma versão mais nova do Tokuten.",
     },
   },
   grades: {
