@@ -271,6 +271,9 @@ export const en = {
   },
   actions: {
     copyMarkdown: "Copy Markdown",
+    copy: "Copy",
+    groupMarkdown: "Markdown",
+    groupFile: "File (JSON)",
     downloadMarkdown: "Download Markdown",
     downloadJson: "Download JSON",
     importJson: "Import JSON",
@@ -331,6 +334,7 @@ export const en = {
     hintOff: "Reloading or closing the page clears your work. Export JSON to keep it.",
     failed: "The draft could not be saved in this browser. Export JSON to keep your work.",
     delete: "Delete draft",
+    savedChip: "Draft saved",
   },
   export: {
     quickNote: "Quick evaluation: each category grade was set directly, without subcriteria.",

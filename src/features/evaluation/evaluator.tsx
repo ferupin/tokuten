@@ -15,7 +15,7 @@ import { EnjoymentCard } from "@/features/result/enjoyment-card";
 import { ResultPanel } from "@/features/result/result-panel";
 import { CategoryCard } from "./category-card";
 import { ModeSwitch } from "./mode-switch";
-import { DraftBanner, DraftStatus, useDraft } from "./draft";
+import { DraftBanner, DraftSavedChip, DraftStatus, useDraft } from "./draft";
 import { QuickRow } from "./quick-row";
 import { useEvaluationStore } from "./use-store";
 
@@ -69,6 +69,7 @@ export function Evaluator() {
           <ThemeToggle />
         </div>
         <DraftBanner draft={draft} />
+        <DraftSavedChip draft={draft} />
       </header>
 
       <main id="main" className="mx-auto max-w-5xl space-y-10 px-4 pb-24 pt-10">

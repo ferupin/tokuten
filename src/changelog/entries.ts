@@ -41,6 +41,77 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.13.0",
+    date: "2026-11-13",
+    sentaiProfileVersion: 1,
+    title: { en: "Calmer export controls and a draft check", "pt-BR": "Controles de exportação mais calmos e um check do rascunho", es: "Controles de exportación más tranquilos y una marca del borrador" },
+    summary: {
+      en: "The export buttons are grouped by purpose, the draft notice gets the reader's attention gently, and every save shows a small check.",
+      "pt-BR": "Os botões de exportação foram agrupados por finalidade, o aviso do rascunho chama a atenção com delicadeza, e cada salvamento mostra um pequeno check.",
+      es: "Los botones de exportación se agruparon por finalidad, el aviso del borrador llama la atención con suavidad, y cada guardado muestra una pequeña marca.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "The export area has two groups. Markdown holds the format choice, a Copy button and a download arrow attached to it. File holds Download JSON and Import JSON. Five buttons of equal weight became two clear groups.",
+            "pt-BR":
+              "A área de exportação tem dois grupos. Markdown reúne a escolha de formato, um botão Copiar e uma seta de download ligada a ele. Arquivo reúne Baixar JSON e Importar JSON. Cinco botões de peso igual viraram dois grupos claros.",
+            es: "El área de exportación tiene dos grupos. Markdown reúne la elección de formato, un botón Copiar y una flecha de descarga unida a él. Archivo reúne Descargar JSON e Importar JSON. Cinco botones de igual peso pasaron a ser dos grupos claros.",
+          },
+          {
+            en: "Copy keeps its word, and the download arrow has a tooltip and a label for screen readers. After copying, the icon turns into a check for two seconds. Buttons that take a file now carry a small icon.",
+            "pt-BR":
+              "Copiar mantém a palavra, e a seta de download tem uma dica e um rótulo para leitores de tela. Depois de copiar, o ícone vira um check por dois segundos. Os botões que lidam com arquivos agora têm um pequeno ícone.",
+            es: "Copiar conserva su palabra, y la flecha de descarga tiene una descripción emergente y una etiqueta para lectores de pantalla. Tras copiar, el icono se convierte en una marca durante dos segundos. Los botones que manejan archivos ahora llevan un pequeño icono.",
+          },
+          {
+            en: "Start over is now a quiet red link at the end of the File group, since it is the one action that erases work. The confirmation works as before.",
+            "pt-BR":
+              "Começar de novo agora é um link vermelho discreto no fim do grupo Arquivo, já que é a única ação que apaga trabalho. A confirmação funciona como antes.",
+            es: "Empezar de nuevo ahora es un enlace rojo discreto al final del grupo Archivo, ya que es la única acción que borra trabajo. La confirmación funciona como antes.",
+          },
+          {
+            en: "The dot in the saved draft notice pulses softly from its center until you choose to restore or discard, to show that a decision is waiting. The pulse pauses while the pointer or focus is on the notice, and with reduced motion it stays still.",
+            "pt-BR":
+              "O ponto no aviso de rascunho salvo pulsa suavemente a partir do centro até você restaurar ou descartar, para mostrar que há uma decisão esperando. O pulso pausa enquanto o ponteiro ou o foco está no aviso, e com movimento reduzido ele fica parado.",
+            es: "El punto del aviso de borrador guardado pulsa suavemente desde su centro hasta que restaures o descartes, para mostrar que hay una decisión pendiente. El pulso se pausa mientras el puntero o el foco está en el aviso, y con movimiento reducido se queda quieto.",
+          },
+          {
+            en: "The result card is compact and easier to see. It has a firmer border and shadow, a smaller score, no extra line about how close the categories are, and a radar under the reading whose kanji are larger and take the color of their pillar, so the chart is in view sooner and the card is about a quarter shorter. Strongest and weakest now sit at the bottom of the table column.",
+            "pt-BR":
+              "O cartão de resultado ficou compacto e mais fácil de enxergar. Tem borda e sombra mais firmes, nota menor, nenhuma linha extra sobre a proximidade das categorias e um radar logo abaixo da leitura, com kanjis maiores e na cor de cada pilar, então o gráfico aparece mais cedo e o cartão fica cerca de um quarto mais curto. Mais forte e mais fraca agora ficam no fim da coluna da tabela.",
+            es: "La tarjeta de resultado es compacta y se ve mejor. Tiene un borde y una sombra más firmes, una nota más pequeña, ninguna línea extra sobre lo cercanas que están las categorías y un radar bajo la lectura con kanji más grandes y del color de su pilar, así el gráfico aparece antes y la tarjeta queda un cuarto más corta. Más fuerte y más débil quedan al final de la columna de la tabla.",
+          },
+          {
+            en: "Share this result is now a small quiet link in the top corner of the card, in a space the card already had, so it no longer adds height or sits in the middle of the result.",
+            "pt-BR":
+              "Compartilhar este resultado agora é um pequeno link discreto no canto superior do cartão, em um espaço que o cartão já tinha, então não aumenta mais a altura nem fica no meio do resultado.",
+            es: "Compartir este resultado ahora es un pequeño enlace discreto en la esquina superior de la tarjeta, en un espacio que ya tenía, así que no añade altura ni queda en medio del resultado.",
+          },
+          {
+            en: "A small Draft saved check, styled like the toast, hangs under the header for about two seconds after a save and fades out. It appears after a pause in typing, at most once every eight seconds so steady editing does not turn it into noise, does not move the page, and is announced politely to screen readers. It never shows when the draft is off.",
+            "pt-BR":
+              "Um pequeno check Rascunho salvo, com o estilo do aviso de toast, fica sob o cabeçalho por cerca de dois segundos após um salvamento e some suavemente. Ele aparece após uma pausa na digitação, no máximo uma vez a cada oito segundos para que a edição contínua não vire ruído, não move a página e é anunciado com educação para leitores de tela. Nunca aparece com o rascunho desligado.",
+            es: "Una pequeña marca Borrador guardado, con el estilo del aviso toast, queda bajo el encabezado unos dos segundos tras un guardado y se desvanece. Aparece tras una pausa al escribir, como máximo una vez cada ocho segundos para que la edición continua no sea ruido, no mueve la página y se anuncia con cortesía a los lectores de pantalla. Nunca aparece con el borrador desactivado.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "The design system and ADR 0009 describe the grouping, the pulse and the check.",
+            "pt-BR":
+              "O sistema de design e o ADR 0009 descrevem o agrupamento, o pulso e o check.",
+            es: "El sistema de diseño y el ADR 0009 describen la agrupación, el pulso y la marca.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.12.1",
     date: "2026-11-13",
     sentaiProfileVersion: 1,

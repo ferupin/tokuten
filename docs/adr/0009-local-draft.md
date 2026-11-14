@@ -31,3 +31,8 @@ The pure rules (envelope, validation, what counts as blank, preferences) are in 
 - The footer no longer says nothing is stored. It says nothing is sent and that a draft stays on the device.
 - A draft belongs to one browser. It does not sync, and clearing site data removes it. JSON export remains the way to keep an evaluation for good.
 - Changing the profile in a way that breaks the schema makes older drafts unreadable, so they are ignored. The profile version policy already covers that case.
+
+## Update in 0.13.0
+
+- The dot in the notice that offers a stored draft pulses softly from its center until a choice is made, because a decision is waiting and the draft is not touched before it. Animation that lasts more than five seconds should be pausable, so the pulse pauses while the pointer or focus is on the notice, and with reduced motion it does not pulse at all.
+- Each successful save shows a small "Draft saved" check under the header for two seconds. The line at the bottom of the page still says where the work is kept, but it is out of sight while editing, so the check answers the question at the moment it is asked. It overlays the page, so nothing moves.

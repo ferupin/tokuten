@@ -19,6 +19,22 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.13.0 (2026-11-13)
+
+Calmer export controls and a draft check. Sentai profile v1.
+
+### Interface
+- The export area has two groups. Markdown holds the format choice, a Copy button and a download arrow attached to it. File holds Download JSON and Import JSON.
+- Copy keeps its word, and the arrow has a tooltip and a label for screen readers. After copying, the icon turns into a check for two seconds. File buttons carry a small icon.
+- Start over is a quiet red link at the end of the File group. The confirmation is unchanged.
+- The dot in the saved draft notice pulses softly from its center until a choice is made, and pauses while the pointer or focus is on the notice. With reduced motion it stays still.
+- A small "Draft saved" check, styled like the toast, hangs under the header for about two seconds after a save, at most once every eight seconds. It does not move the page and is announced politely. It never shows when the draft is off.
+- The result card is compact: firmer border and shadow, smaller score, no line about how close the categories are, and a radar right under the reading with larger kanji in the color of their pillar. It is about a quarter shorter and the chart comes into view sooner. Strongest and weakest sit at the bottom of the table column.
+- Share this result is a small quiet link in the top corner of the card, so it adds no height.
+
+### Documentation
+- The design system and ADR 0009 describe the grouping, the pulse and the check.
+
 ## 0.12.1 (2026-11-13)
 
 A steadier result card. Sentai profile v1.

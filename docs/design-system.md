@@ -56,6 +56,10 @@ Fonts are self-hosted through `@fontsource`, so the build does not depend on a n
 A control that does something is a button. A control that stays on or off, or picks one of a few options, looks different, so the footer does not read as a wall of buttons.
 
 - **Switch**: an on or off setting, such as keeping a draft. The track takes the accent color when on.
+- **Group box**: a thin bordered, centered box of one shared width that holds related actions under one small label, such as Markdown and File. A primary action may have a second action attached to it as an icon only button, which then carries a tooltip and a text label for screen readers.
+- **Quiet link action**: the one action that erases work, Start over, is a small red underlined link and not a button, so it is easy to find and hard to press by habit.
+- **Attention pulse**: a dot that asks for a decision sends a soft ring from its center until the choice is made. It pauses while the pointer or focus is on the notice and is off with reduced motion.
+- **Saved check**: a small toast-style chip that hangs under the header for about two seconds to confirm a save, shown at most once every eight seconds. It overlays the page, so it never shifts the layout.
 - **Segmented control**: one choice among a few, such as the Markdown format. It is one piece with arrow key support.
 
 ## Accessibility

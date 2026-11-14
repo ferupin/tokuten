@@ -1,7 +1,7 @@
 "use client";
 
 import { formatGrade, gradeBand } from "@/core/grades";
-import { readingTier, shapeOf, type ReadingTier, type Shape } from "@/core/insights";
+import { readingTier, type ReadingTier } from "@/core/insights";
 import type { EvaluationMode, EvaluationResult, Profile } from "@/core/types";
 import { Hanko } from "@/components/brand/hanko";
 import { Radar } from "@/components/ui/radar";
@@ -9,7 +9,6 @@ import { numeral } from "@/features/evaluation/numerals";
 import { useI18n } from "@/i18n";
 
 const TIERS: ReadingTier[] = ["low", "middle", "solid", "high"];
-const SHAPES: Exclude<Shape, "none">[] = ["balanced", "contrasted"];
 
 /**
  * Shows one of several texts and keeps the room of the longest one, so changing
@@ -50,7 +49,6 @@ export function ScoreCard({
   title: string;
 }) {
   const { t } = useI18n();
-  const { shape } = shapeOf(result);
   const scoreText = result.score === null ? "—" : formatGrade(result.score, 1);
   const pillarTone = (categoryId: string) => {
     const cat = profile.categories.find((c) => c.id === categoryId)!;
@@ -68,7 +66,7 @@ export function ScoreCard({
       >
         {title.trim() || t("result.untitled")}
       </p>
-      <h2 id="result-title" className="label m-0 mt-5">
+      <h2 id="result-title" className="label m-0 mt-4">
         {t("result.officialScore")}
       </h2>
       {mode === "quick" && (
@@ -77,13 +75,13 @@ export function ScoreCard({
         </p>
       )}
       {/* The wide 10.0 gets a size that leaves room for the seal inside its own column. */}
-      <div className="mt-4 flex items-center justify-center" style={{ containerType: "inline-size", height: "clamp(64px,13vw,104px)" }}>
+      <div className="mt-3 flex items-center justify-center" style={{ containerType: "inline-size", height: "clamp(56px,11vw,84px)" }}>
       <div className="relative inline-block">
         <div
           className={`tnum font-display leading-none ${
             scoreText.length > 3
-              ? "text-[clamp(56px,13vw,104px)] sm:[font-size:clamp(56px,calc((100cqw_-_112px)/3.4),104px)]"
-              : "text-[clamp(64px,13vw,104px)]"
+              ? "text-[clamp(48px,11vw,84px)] sm:[font-size:clamp(48px,calc((100cqw_-_112px)/3.4),84px)]"
+              : "text-[clamp(56px,11vw,84px)]"
           }`}
           aria-live="polite"
         >
@@ -99,20 +97,19 @@ export function ScoreCard({
         )}
       </div>
       </div>
-      <p className="mb-0 mt-3 font-serif text-xl font-extrabold">
+      <p className="mb-0 mt-2 font-serif text-xl font-extrabold">
         {result.score === null ? t("result.noScore") : t(`grades.${gradeBand(result.score)}`)}
       </p>
-      <p className="mx-auto mt-2 min-h-[2.5rem] max-w-sm text-xs text-soft">
+      <p className="mx-auto mt-1 min-h-[2.25rem] max-w-sm text-xs text-soft">
         {result.complete ? t("result.complete") : t("result.partialNote", { graded: result.gradedCount, total: result.applicableCount })}
         {result.redistributed && <> {t("result.redistributedNote", { count: result.applicableCount })}</>}
       </p>
       {result.score !== null && (
-        <div className="mx-auto mt-4 max-w-md space-y-1.5 text-[13px] italic leading-relaxed text-soft">
+        <div className="mx-auto mt-2 max-w-md text-[13px] italic leading-relaxed text-soft">
           <Stable items={TIERS} active={readingTier(result.score)} text={(tier) => t(`result.reading.${tier}`)} />
-          <Stable items={SHAPES} active={shape === "none" ? null : shape} text={(sh) => t(`result.shape.${sh}`)} />
         </div>
       )}
-      <div className="mt-6">
+      <div className="mx-auto mt-4 max-w-[300px]">
         <Radar
           points={result.categories.map((c, i) => ({ id: c.id, label: numeral(i), value: c.grade, color: pillarTone(c.id) }))}
         />

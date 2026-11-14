@@ -30,6 +30,7 @@
   --bad: #b8392a;
 
   --shadow: 0 1px 0 rgba(34, 29, 22, 0.04), 0 10px 28px -14px rgba(34, 29, 22, 0.28);
+  --shadow-lifted: 0 1px 0 rgba(34, 29, 22, 0.05), 0 18px 36px -16px rgba(34, 29, 22, 0.4);
   --grain: rgba(34, 29, 22, 0.035);
 }
 
@@ -56,6 +57,7 @@
   --bad: #ee7261;
 
   --shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 14px 32px -16px rgba(0, 0, 0, 0.7);
+  --shadow-lifted: 0 1px 0 rgba(0, 0, 0, 0.35), 0 22px 40px -16px rgba(0, 0, 0, 0.85);
   --grain: rgba(236, 227, 207, 0.025);
 }
 
@@ -240,7 +242,92 @@ input[type="range"].grade:disabled {
   animation: stamp 0.45s cubic-bezier(0.2, 0.9, 0.3, 1) both;
 }
 
+/* A box that groups related actions: centered, one shared width, content centered inside. */
+.group-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 34rem);
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-align: center;
+}
+.group-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 12px;
+}
+
+/* A decision is waiting: a soft ring grows from the exact center of the dot until the choice is made. */
+@keyframes attention-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+.attention {
+  position: relative;
+  display: inline-block;
+}
+.attention::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--accent);
+  transform-origin: center;
+  animation: attention-ring 2.2s ease-out infinite;
+  pointer-events: none;
+}
+/* The ring rests while the reader is on the banner, so it never competes with the buttons. */
+[data-draft-banner]:hover .attention::after,
+[data-draft-banner]:focus-within .attention::after {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+/* The small confirmation that a draft was saved, styled like the toast. */
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes chip-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+.saved-chip {
+  animation: chip-in 0.28s ease-out both;
+}
+.saved-chip[data-leaving="true"] {
+  animation: chip-out 0.28s ease-in both;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .attention::after {
+    animation: none;
+    opacity: 0;
+  }
   *,
   *::before,
   *::after {

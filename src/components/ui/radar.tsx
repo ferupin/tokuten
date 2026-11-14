@@ -10,7 +10,7 @@ export interface RadarPoint {
 /** Ten axis radar chart in plain SVG. Missing values stay at the center. */
 export function Radar({ points, max = 10, size = 320 }: { points: RadarPoint[]; max?: number; size?: number }) {
   const c = size / 2;
-  const r = size / 2 - 46;
+  const r = size / 2 - 38;
   const n = points.length;
   const angle = (i: number) => -Math.PI / 2 + (i * 2 * Math.PI) / n;
   const at = (i: number, ratio: number) => [c + Math.cos(angle(i)) * r * ratio, c + Math.sin(angle(i)) * r * ratio] as const;
@@ -20,7 +20,8 @@ export function Radar({ points, max = 10, size = 320 }: { points: RadarPoint[]; 
     .map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`)
     .join(" ");
 
-  const label: CSSProperties = { fontFamily: "JetBrains Mono, monospace", fontSize: 9, fill: "var(--ink-soft)" };
+  // The kanji take the color of their pillar, so each axis reads like its row in the table.
+  const label = (color: string): CSSProperties => ({ fontFamily: "Shippori Mincho, serif", fontWeight: 800, fontSize: 14, fill: color });
 
   return (
     <svg viewBox={`0 0 ${size} ${size}`} role="img" aria-label="Radar chart of category grades" className="mx-auto h-auto w-full max-w-[340px]">
@@ -35,12 +36,12 @@ export function Radar({ points, max = 10, size = 320 }: { points: RadarPoint[]; 
       ))}
       {points.map((p, i) => {
         const [x, y] = at(i, 1);
-        const [lx, ly] = at(i, 1.17);
+        const [lx, ly] = at(i, 1.15);
         const anchor = Math.abs(lx - c) < 6 ? "middle" : lx > c ? "start" : "end";
         return (
           <g key={p.id}>
             <line x1={c} y1={c} x2={x} y2={y} stroke="var(--line)" strokeWidth={0.8} />
-            <text x={lx} y={ly} textAnchor={anchor} dominantBaseline="middle" style={label}>
+            <text x={lx} y={ly} textAnchor={anchor} dominantBaseline="middle" style={label(p.color)}>
               {p.label}
             </text>
           </g>

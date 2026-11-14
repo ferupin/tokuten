@@ -267,6 +267,9 @@ export const es: Messages = {
   },
   actions: {
     copyMarkdown: "Copiar Markdown",
+    copy: "Copiar",
+    groupMarkdown: "Markdown",
+    groupFile: "Archivo (JSON)",
     downloadMarkdown: "Descargar Markdown",
     downloadJson: "Descargar JSON",
     importJson: "Importar JSON",
@@ -327,6 +330,7 @@ export const es: Messages = {
     hintOff: "Al recargar o cerrar la página se pierde tu trabajo. Exporta el JSON para conservarlo.",
     failed: "No se pudo guardar el borrador en este navegador. Exporta el JSON para conservar tu trabajo.",
     delete: "Eliminar borrador",
+    savedChip: "Borrador guardado",
   },
   export: {
     quickNote: "Evaluación rápida: la nota de cada categoría se fijó directamente, sin subcriterios.",

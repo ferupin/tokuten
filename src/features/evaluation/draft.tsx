@@ -176,12 +176,13 @@ export function DraftBanner({ draft }: { draft: DraftController }) {
   return (
     <div
       role="region"
+      data-draft-banner
       aria-label={t("draft.foundTitle")}
       className="border-t"
       style={{ background: "var(--surface-2)", borderColor: "var(--line)" }}
     >
       <div className="mx-auto flex max-w-5xl items-center gap-x-4 gap-y-2 px-4 py-2">
-        <span aria-hidden className="h-2 w-2 shrink-0 rounded-full" style={{ background: "var(--accent)" }} />
+        <span aria-hidden className="attention h-2 w-2 shrink-0 rounded-full" style={{ background: "var(--accent)" }} />
         <p className="m-0 min-w-0 flex-1 text-[13px] leading-snug">
           <strong>{t("draft.foundTitle")}.</strong>{" "}
           <span className="hidden text-soft sm:inline">{t("draft.foundText", { when })}</span>
@@ -228,6 +229,56 @@ export function DraftStatus({ draft }: { draft: DraftController }) {
           </>
         )}
       </p>
+    </div>
+  );
+}
+
+const CHIP_SHOW = 1800;
+const CHIP_LEAVE = 280;
+const CHIP_COOLDOWN = 8000;
+
+/**
+ * A small check, styled like the toast, that confirms the draft was written.
+ * It shows after a save, which already waits for a pause in typing. To keep it from
+ * turning into noise during steady editing, it appears at most once per cooldown.
+ * It hangs under the header without moving the page.
+ */
+export function DraftSavedChip({ draft }: { draft: DraftController }) {
+  const { t } = useI18n();
+  const [phase, setPhase] = useState<"hidden" | "shown" | "leaving">("hidden");
+  const lastShown = useRef(0);
+  const timers = useRef<number[]>([]);
+
+  useEffect(() => {
+    if (!draft.savedAt || !draft.enabled || draft.pending) return;
+    const now = Date.now();
+    if (now - lastShown.current < CHIP_COOLDOWN) return;
+    lastShown.current = now;
+    timers.current.forEach(window.clearTimeout);
+    setPhase("shown");
+    timers.current = [
+      window.setTimeout(() => setPhase("leaving"), CHIP_SHOW),
+      window.setTimeout(() => setPhase("hidden"), CHIP_SHOW + CHIP_LEAVE),
+    ];
+  }, [draft.savedAt, draft.enabled, draft.pending]);
+
+  useEffect(() => () => timers.current.forEach(window.clearTimeout), []);
+
+  return (
+    <div className="pointer-events-none absolute inset-x-0 top-full no-print" role="status" aria-live="polite">
+      <div className="mx-auto flex max-w-5xl justify-end px-4">
+        {phase !== "hidden" && (
+          <span
+            data-leaving={phase === "leaving"}
+            className="saved-chip mt-2 inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 font-mono text-xs text-bg shadow-sm"
+          >
+            <svg aria-hidden width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m5 12 5 5L20 7" />
+            </svg>
+            {t("draft.savedChip")}
+          </span>
+        )}
+      </div>
     </div>
   );
 }

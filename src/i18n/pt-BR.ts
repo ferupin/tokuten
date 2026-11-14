@@ -267,6 +267,9 @@ export const ptBR: Messages = {
   },
   actions: {
     copyMarkdown: "Copiar Markdown",
+    copy: "Copiar",
+    groupMarkdown: "Markdown",
+    groupFile: "Arquivo (JSON)",
     downloadMarkdown: "Baixar Markdown",
     downloadJson: "Baixar JSON",
     importJson: "Importar JSON",
@@ -327,6 +330,7 @@ export const ptBR: Messages = {
     hintOff: "Recarregar ou fechar a página apaga o seu trabalho. Exporte o JSON para guardá-lo.",
     failed: "Não foi possível salvar o rascunho neste navegador. Exporte o JSON para guardar seu trabalho.",
     delete: "Apagar rascunho",
+    savedChip: "Rascunho salvo",
   },
   export: {
     quickNote: "Avaliação rápida: a nota de cada categoria foi definida diretamente, sem subcritérios.",
