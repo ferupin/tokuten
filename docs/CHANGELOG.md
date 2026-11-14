@@ -422,10 +422,14 @@ First usable release. Sentai profile v1.
 
 ## Planned
 
-Nothing here is promised or dated.
+Where the project stands. Checked steps are done. Nothing unchecked is promised or dated.
 
-- Category specific grade anchors.
-- Keyboard shortcuts.
-- Compare seasons side by side.
-- Kamen Rider profile.
-- Sensitivity view for category weights.
+- [x] English, Portuguese and Spanish, complete.
+- [x] Share a result as an image and as a link.
+- [x] A stable JSON file format.
+- [x] Grade reference points for each category.
+- [ ] Version 1.0.
+- [ ] Keyboard shortcuts.
+- [ ] Compare seasons side by side.
+- [ ] Kamen Rider profile.
+- [ ] Sensitivity view for category weights.

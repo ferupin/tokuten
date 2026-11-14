@@ -323,6 +323,43 @@ input[type="range"].grade:disabled {
   animation: chip-out 0.28s ease-in both;
 }
 
+/* The bottom toast fades like the draft check, rising a little from below. */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes toast-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.toast {
+  animation: toast-in 0.28s ease-out both;
+}
+.toast[data-leaving="true"] {
+  animation: toast-out 0.28s ease-in both;
+}
+
+/* Two buttons that read as one piece stay together on hover: only the text and icon change color. */
+.split .btn {
+  transition: color 0.15s ease;
+}
+.split .btn:hover {
+  transform: none;
+  color: color-mix(in srgb, var(--accent) 70%, var(--bg));
+}
+
 @media (prefers-reduced-motion: reduce) {
   .attention::after {
     animation: none;

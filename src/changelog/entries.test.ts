@@ -34,7 +34,7 @@ describe("changelog", () => {
 
   it("has English text everywhere, and full text in the maintained languages", () => {
     const texts = [
-      ...planned,
+      ...planned.map((step) => step.text),
       ...releases.flatMap((r) => [r.title, r.summary, ...r.groups.flatMap((g) => g.items)]),
     ];
     // Other registered languages may be partial: a missing text falls back to English.

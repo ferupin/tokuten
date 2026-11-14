@@ -217,23 +217,30 @@ function drawSeal(ctx: Ctx, data: CardData, p: Palette, w: number, h: number) {
   const lines = wrap(ctx, data.title, titleFont, 600, 2);
   lines.forEach((l, i) => text(ctx, l, left, 148 + i * 60, titleFont, data.titleIsPlaceholder ? p.soft : p.ink));
 
-  const scoreY = 330;
+  const scoreY = 316;
   const scoreSize = fit(ctx, data.scoreText, (px) => `400 ${px}px ${F.display}`, 150, 90, 330);
   text(ctx, data.scoreText, left, scoreY, `400 ${scoreSize}px ${F.display}`, p.ink);
   ctx.font = `400 ${scoreSize}px ${F.display}`;
   const sw = ctx.measureText(data.scoreText).width;
   text(ctx, "/10", left + sw + 10, scoreY, `400 40px ${F.display}`, p.soft);
 
-  text(ctx, data.band, left, scoreY + 56, `800 40px ${F.serif}`, p.ink);
+  text(ctx, data.band, left, scoreY + 50, `800 40px ${F.serif}`, p.ink);
+  // The hint may take two lines. Everything below it sits at a fixed place under the second line.
   wrap(ctx, data.hint, `400 24px ${F.sans}`, 560, 2).forEach((l, i) =>
-    text(ctx, l, left, scoreY + 94 + i * 32, `400 24px ${F.sans}`, p.soft),
+    text(ctx, l, left, scoreY + 88 + i * 30, `400 24px ${F.sans}`, p.soft),
   );
 
-  // The seal always has its caption in words beside it.
-  const sealY = data.enjoyment ? 466 : 480;
-  seal(ctx, left + 40, sealY, 76, data.complete ? "決" : "仮", data.complete ? p.accent : p.lineStrong);
-  text(ctx, data.caption, left + 100, sealY + 9, `700 26px ${F.sans}`, p.ink);
-  enjoymentLine(ctx, data, p, left, 534);
+  // The seal always has its caption in words beside it. With personal enjoyment,
+  // the caption and the enjoyment share one block next to the seal.
+  const sealY = 484;
+  seal(ctx, left + 34, sealY, 68, data.complete ? "決" : "仮", data.complete ? p.accent : p.lineStrong);
+  if (data.enjoyment) {
+    text(ctx, data.caption, left + 90, sealY - 6, `700 26px ${F.sans}`, p.ink);
+    text(ctx, `${data.enjoyment.label} ${data.enjoyment.valueText} / 10`, left + 90, sealY + 24, `700 24px ${F.sans}`, p.ink);
+    text(ctx, data.enjoyment.note, left + 90, sealY + 50, `400 20px ${F.sans}`, p.soft);
+  } else {
+    text(ctx, data.caption, left + 90, sealY + 9, `700 26px ${F.sans}`, p.ink);
+  }
 
   radar(ctx, data, p, 905, 318, 160);
   text(ctx, data.footer, left, h - 44, `400 22px ${F.sans}`, p.soft);
@@ -258,7 +265,8 @@ function drawLedger(ctx: Ctx, data: CardData, p: Palette, w: number, h: number) 
   text(ctx, data.caption, left + 80, 305, `700 26px ${F.sans}`, p.ink);
 
   const top = 352;
-  const rowH = 62;
+  // With personal enjoyment the rows tighten a little, so its two lines stay clear of the footer.
+  const rowH = data.enjoyment ? 58 : 62;
   const barX = 360;
   const barW = 540;
   data.rows.forEach((r, i) => {
@@ -282,7 +290,7 @@ function drawLedger(ctx: Ctx, data: CardData, p: Palette, w: number, h: number) 
     text(ctx, r.gradeText, right, y + 31, `700 32px ${F.mono}`, r.grade === null ? p.soft : p.ink, "right");
   });
 
-  enjoymentLine(ctx, data, p, left, top + 10 * rowH + 26);
+  enjoymentLine(ctx, data, p, left, top + 10 * rowH + (data.enjoyment ? 24 : 26));
   text(ctx, data.footer, left, h - 44, `400 22px ${F.sans}`, p.soft);
 }
 

@@ -94,7 +94,7 @@ export function ActionsBar({
               writePreferences({ format: f });
             }}
           />
-          <span className="inline-flex">
+          <span className="split inline-flex">
             <button
               type="button"
               className="btn !rounded-r-none"

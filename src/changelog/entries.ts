@@ -1751,26 +1751,85 @@ export const releases: Release[] = [
   },
 ];
 
-export const planned: Text[] = [
+/** One step of the project. `done` is set by the maintainers, never by the reader. */
+export interface PlannedStep {
+  text: Text;
+  done: boolean;
+}
+
+/** Where the project stands: finished steps first, then what is still ahead. */
+export const planned: PlannedStep[] = [
   {
-    en: "Keyboard shortcuts for grading and marking not applicable.",
-    "pt-BR": "Atalhos de teclado para avaliar e marcar como não aplicável.",
-    es: "Atajos de teclado para calificar y para marcar no aplicable.",
+    done: true,
+    text: {
+      en: "English, Portuguese and Spanish, complete and kept in step by tests.",
+      "pt-BR": "Inglês, português e espanhol completos e mantidos em dia por testes.",
+      es: "Inglés, portugués y español completos y mantenidos al día por pruebas.",
+    },
   },
   {
-    en: "Compare two or more seasons side by side from imported JSON files.",
-    "pt-BR": "Comparar duas ou mais temporadas lado a lado a partir de arquivos JSON importados.",
-    es: "Comparar dos o más temporadas lado a lado a partir de archivos JSON importados.",
+    done: true,
+    text: {
+      en: "Share a result as an image and as a link.",
+      "pt-BR": "Compartilhar um resultado como imagem e como link.",
+      es: "Compartir un resultado como imagen y como enlace.",
+    },
   },
   {
-    en: "Kamen Rider profile.",
-    "pt-BR": "Perfil Kamen Rider.",
-    es: "Perfil de Kamen Rider.",
+    done: true,
+    text: {
+      en: "A stable JSON file format that old files keep opening with.",
+      "pt-BR": "Um formato de arquivo JSON estável, com o qual os arquivos antigos continuam abrindo.",
+      es: "Un formato de archivo JSON estable con el que los archivos antiguos siguen abriéndose.",
+    },
   },
   {
-    en: "Sensitivity view: how much each category moves the final score.",
-    "pt-BR": "Visão de sensibilidade: o quanto cada categoria move a nota final.",
-    es: "Vista de sensibilidad: cuánto mueve cada categoría la puntuación final.",
+    done: true,
+    text: {
+      en: "Grade reference points for what a 3, 5, 7 or 9 means in each category.",
+      "pt-BR": "Pontos de referência de nota para o que significa um 3, 5, 7 ou 9 em cada categoria.",
+      es: "Puntos de referencia de nota para lo que significa un 3, 5, 7 o 9 en cada categoría.",
+    },
+  },
+  {
+    done: false,
+    text: {
+      en: "Version 1.0: a promise that the method, the file format and the core of the interface stay stable.",
+      "pt-BR": "Versão 1.0: a promessa de que o método, o formato de arquivo e o núcleo da interface permanecem estáveis.",
+      es: "Versión 1.0: la promesa de que el método, el formato de archivo y el núcleo de la interfaz se mantienen estables.",
+    },
+  },
+  {
+    done: false,
+    text: {
+      en: "Keyboard shortcuts for grading and marking not applicable.",
+      "pt-BR": "Atalhos de teclado para avaliar e marcar como não aplicável.",
+      es: "Atajos de teclado para calificar y para marcar no aplicable.",
+    },
+  },
+  {
+    done: false,
+    text: {
+      en: "Compare two or more seasons side by side from imported JSON files.",
+      "pt-BR": "Comparar duas ou mais temporadas lado a lado a partir de arquivos JSON importados.",
+      es: "Comparar dos o más temporadas lado a lado a partir de archivos JSON importados.",
+    },
+  },
+  {
+    done: false,
+    text: {
+      en: "Kamen Rider profile.",
+      "pt-BR": "Perfil Kamen Rider.",
+      es: "Perfil de Kamen Rider.",
+    },
+  },
+  {
+    done: false,
+    text: {
+      en: "Sensitivity view: how much each category moves the final score.",
+      "pt-BR": "Visão de sensibilidade: o quanto cada categoria move a nota final.",
+      es: "Vista de sensibilidad: cuánto mueve cada categoría la puntuación final.",
+    },
   },
 ];
 

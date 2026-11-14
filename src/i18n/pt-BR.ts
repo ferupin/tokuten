@@ -250,7 +250,9 @@ export const ptBR: Messages = {
     intro:
       "Cada mudança no app, no método e na documentação, da mais recente para a mais antiga. As versões seguem o formato maior.menor.correção. A versão do perfil sobe sempre que pesos ou categorias mudam.",
     planned: "Planejado",
-    plannedHint: "Ideias em avaliação. Nada aqui é uma promessa e nada tem data.",
+    plannedHint: "Onde o projeto está. Os passos marcados estão concluídos. Os demais são ideias em avaliação, e nada aqui é uma promessa nem tem data.",
+    stepDone: "Concluído",
+    stepAhead: "Pela frente",
     expandAll: "Expandir tudo",
     collapseAll: "Recolher tudo",
     released: "Lançada em {date}",

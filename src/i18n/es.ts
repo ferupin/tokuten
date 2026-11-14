@@ -250,7 +250,9 @@ export const es: Messages = {
     intro:
       "Cada cambio en la aplicación, el método y la documentación, del más reciente al más antiguo. Las versiones siguen el formato mayor.menor.parche. La versión del perfil aumenta cada vez que cambian los pesos o las categorías.",
     planned: "Planificado",
-    plannedHint: "Ideas en consideración. Nada de lo que aparece aquí está prometido ni tiene fecha.",
+    plannedHint: "Dónde está el proyecto. Los pasos marcados están hechos. Los demás son ideas en consideración, y nada de lo que aparece aquí está prometido ni tiene fecha.",
+    stepDone: "Hecho",
+    stepAhead: "Por delante",
     expandAll: "Expandir todo",
     collapseAll: "Contraer todo",
     released: "Publicada el {date}",

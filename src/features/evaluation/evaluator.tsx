@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { computeResult } from "@/core/scoring";
 import { Hanko } from "@/components/brand/hanko";
 import { LanguageSwitch } from "@/components/theme/language-switch";
@@ -32,11 +32,19 @@ export function Evaluator() {
   const result = useMemo(() => computeResult(profile, evaluation), [profile, evaluation]);
 
   const [openIds, setOpenIds] = useState<Set<string>>(new Set());
-  const [toast, setToast] = useState<string | null>(null);
+  // The toast fades in and out like the draft check. The message stays in place while it fades
+  // out, and a new message restarts the timers so two of them never fight.
+  const [toast, setToast] = useState<{ message: string; leaving: boolean } | null>(null);
+  const toastTimers = useRef<number[]>([]);
   const notify = (message: string) => {
-    setToast(message);
-    window.setTimeout(() => setToast(null), 2400);
+    toastTimers.current.forEach(window.clearTimeout);
+    setToast({ message, leaving: false });
+    toastTimers.current = [
+      window.setTimeout(() => setToast({ message, leaving: true }), 2400),
+      window.setTimeout(() => setToast(null), 2400 + 280),
+    ];
   };
+  useEffect(() => () => toastTimers.current.forEach(window.clearTimeout), []);
   const toggle = (id: string) =>
     setOpenIds((prev) => {
       const next = new Set(prev);
@@ -190,12 +198,15 @@ export function Evaluator() {
 
       <BackToTop />
 
-      <div
-        role="status"
-        aria-live="polite"
-        className={`fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-2.5 font-mono text-xs text-bg transition-all ${toast ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}
-      >
-        {toast}
+      <div role="status" aria-live="polite" className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center no-print">
+        {toast && (
+          <span
+            data-leaving={toast.leaving}
+            className="toast rounded-full bg-ink px-5 py-2.5 font-mono text-xs text-bg shadow-sm"
+          >
+            {toast.message}
+          </span>
+        )}
       </div>
     </>
   );

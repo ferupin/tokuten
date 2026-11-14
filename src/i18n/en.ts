@@ -254,7 +254,9 @@ export const en = {
     intro:
       "Every change to the app, the method and the documentation, newest first. Versions follow major.minor.patch. The profile version is bumped whenever weights or categories change.",
     planned: "Planned",
-    plannedHint: "Ideas under consideration. Nothing here is promised or dated.",
+    plannedHint: "Where the project stands. Checked steps are done. The others are ideas under consideration, and nothing here is promised or dated.",
+    stepDone: "Done",
+    stepAhead: "Ahead",
     expandAll: "Expand all",
     collapseAll: "Collapse all",
     released: "Released {date}",

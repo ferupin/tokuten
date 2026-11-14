@@ -106,7 +106,7 @@ export function Changelog() {
                 {release.groups.map((group) => (
                   <section key={group.area}>
                     <h3 className="label mb-2 mt-0">{t(`changelog.areas.${group.area}`)}</h3>
-                    <ul className="m-0 space-y-2 pl-5 text-[14px] marker:text-accent">
+                    <ul className="m-0 list-disc space-y-2 pl-5 text-[14px] marker:text-accent">
                       {group.items.map((item, i) => (
                         <li key={i}>{pick(item, locale)}</li>
                       ))}
@@ -123,9 +123,29 @@ export function Changelog() {
             {t("changelog.planned")}
           </h2>
           <p className="mb-3 mt-1 text-[13px] text-soft">{t("changelog.plannedHint")}</p>
-          <ul className="m-0 space-y-2 pl-5 text-[14px] marker:text-soft">
-            {planned.map((item, i) => (
-              <li key={i}>{pick(item, locale)}</li>
+          <ul className="m-0 list-none space-y-2 p-0 text-[14px]">
+            {planned.map((step, i) => (
+              <li key={i} className="flex items-start gap-2.5">
+                <span
+                  aria-hidden
+                  className="mt-[3px] inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-[4px] border"
+                  style={{
+                    borderColor: step.done ? "var(--good)" : "var(--line-strong)",
+                    background: step.done ? "var(--good)" : "transparent",
+                    color: "var(--surface)",
+                  }}
+                >
+                  {step.done && (
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m5 12 5 5L20 7" />
+                    </svg>
+                  )}
+                </span>
+                <span className={step.done ? "text-soft" : undefined}>
+                  <span className="sr-only">{step.done ? t("changelog.stepDone") : t("changelog.stepAhead")}: </span>
+                  {pick(step.text, locale)}
+                </span>
+              </li>
             ))}
           </ul>
         </section>
