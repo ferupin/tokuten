@@ -17,6 +17,8 @@ import type { Evaluation, EvaluationResult, Profile } from "./types";
  *      `-` means not graded yet
  *   4. optional `e=` personal enjoyment, only when the sender chose to include it
  *   5. optional `t=` season title, percent encoded
+ *   6. optional `l=` card layout (seal, ledger or poster) and `c=` card theme
+ *      (light or dark), so the reader first sees the card the sender chose
  *
  * The link holds grades and never the score, so the receiving side calculates
  * the score with the same engine and the two cannot disagree. The introduction,
@@ -29,10 +31,17 @@ export const MAX_PAYLOAD = 1200;
 
 const GRADE = /^\d{1,2}(\.\d{1,4})?$/;
 
+export const SHARE_LAYOUTS = ["seal", "ledger", "poster"] as const;
+export const SHARE_THEMES = ["light", "dark"] as const;
+export type ShareLayout = (typeof SHARE_LAYOUTS)[number];
+export type ShareTheme = (typeof SHARE_THEMES)[number];
+
 export interface ShareInput {
   title: string;
   enjoyment: number | null;
   includeEnjoyment: boolean;
+  layout?: ShareLayout;
+  theme?: ShareTheme;
 }
 
 const num = (value: number) => String(round(value, 4));
@@ -46,13 +55,24 @@ export function encodeShare(profile: Profile, result: EvaluationResult, input: S
   if (input.includeEnjoyment && input.enjoyment !== null) parts.push(`e=${num(input.enjoyment)}`);
   const title = input.title.trim().slice(0, MAX_TITLE);
   if (title) parts.push(`t=${encodeURIComponent(title)}`);
+  if (input.layout) parts.push(`l=${input.layout}`);
+  if (input.theme) parts.push(`c=${input.theme}`);
   return parts.join("/");
 }
 
 export type ShareError = "invalid" | "version" | "profile";
 
 export type DecodedShare =
-  | { ok: true; profile: Profile; title: string; enjoyment: number | null; evaluation: Evaluation; result: EvaluationResult }
+  | {
+      ok: true;
+      profile: Profile;
+      title: string;
+      enjoyment: number | null;
+      layout: ShareLayout | null;
+      theme: ShareTheme | null;
+      evaluation: Evaluation;
+      result: EvaluationResult;
+    }
   | { ok: false; error: ShareError };
 
 const fail = (error: ShareError): DecodedShare => ({ ok: false, error });
@@ -66,7 +86,7 @@ export function decodeShare(fragment: string, lookup: (id: string) => Profile | 
   if (!text || text.length > MAX_PAYLOAD) return fail("invalid");
 
   const parts = text.split("/");
-  if (parts.length < 3 || parts.length > 5) return fail("invalid");
+  if (parts.length < 3 || parts.length > 7) return fail("invalid");
   const [version, profileId, gradeText, ...extras] = parts;
 
   if (!/^\d+$/.test(version)) return fail("invalid");
@@ -100,6 +120,8 @@ export function decodeShare(fragment: string, lookup: (id: string) => Profile | 
 
   let enjoyment: number | null = null;
   let title = "";
+  let layout: ShareLayout | null = null;
+  let theme: ShareTheme | null = null;
   const seen = new Set<string>();
   for (const extra of extras) {
     const eq = extra.indexOf("=");
@@ -119,6 +141,12 @@ export function decodeShare(fragment: string, lookup: (id: string) => Profile | 
       } catch {
         return fail("invalid");
       }
+    } else if (key === "l") {
+      if (!(SHARE_LAYOUTS as readonly string[]).includes(value)) return fail("invalid");
+      layout = value as ShareLayout;
+    } else if (key === "c") {
+      if (!(SHARE_THEMES as readonly string[]).includes(value)) return fail("invalid");
+      theme = value as ShareTheme;
     } else {
       return fail("invalid");
     }
@@ -128,5 +156,5 @@ export function decodeShare(fragment: string, lookup: (id: string) => Profile | 
   evaluation.enjoyment = enjoyment;
   const result = computeResult(profile, evaluation);
   if (result.score === null) return fail("invalid");
-  return { ok: true, profile, title, enjoyment, evaluation, result };
+  return { ok: true, profile, title, enjoyment, layout, theme, evaluation, result };
 }

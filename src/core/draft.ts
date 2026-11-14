@@ -69,9 +69,11 @@ export interface Preferences {
   /** Layout and theme of the share card. */
   cardLayout: "seal" | "ledger" | "poster" | null;
   cardTheme: "light" | "dark" | null;
+  /** The wording chosen for a shared message. */
+  shareStyle: "curious" | "direct" | "challenge" | "minimal" | "formal" | null;
 }
 
-export const defaultPreferences: Preferences = { draft: true, mode: null, format: null, cardLayout: null, cardTheme: null };
+export const defaultPreferences: Preferences = { draft: true, mode: null, format: null, cardLayout: null, cardTheme: null, shareStyle: null };
 
 const preferencesSchema = z.object({
   draft: z.boolean().catch(true),
@@ -79,6 +81,7 @@ const preferencesSchema = z.object({
   format: z.enum(["standard", "obsidian"]).nullable().catch(null),
   cardLayout: z.enum(["seal", "ledger", "poster"]).nullable().catch(null),
   cardTheme: z.enum(["light", "dark"]).nullable().catch(null),
+  shareStyle: z.enum(["curious", "direct", "challenge", "minimal", "formal"]).nullable().catch(null),
 });
 
 export function parsePreferences(text: string | null): Preferences {

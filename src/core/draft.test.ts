@@ -67,7 +67,10 @@ describe("preferences", () => {
       format: "obsidian",
       cardLayout: null,
       cardTheme: null,
+      shareStyle: null,
     });
+    expect(parsePreferences('{"shareStyle":"formal"}')).toMatchObject({ shareStyle: "formal" });
+    expect(parsePreferences('{"shareStyle":"loud"}')).toMatchObject({ shareStyle: null });
     expect(parsePreferences('{"cardLayout":"ledger","cardTheme":"dark"}')).toMatchObject({ cardLayout: "ledger", cardTheme: "dark" });
     expect(parsePreferences('{"cardLayout":"banner","cardTheme":"blue"}')).toMatchObject({ cardLayout: null, cardTheme: null });
     expect(parsePreferences('{"draft":"yes","mode":"huge","format":3}')).toEqual(defaultPreferences);

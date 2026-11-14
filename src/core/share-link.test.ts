@@ -90,7 +90,22 @@ describe("share link", () => {
     expect(decodeShare("#1/sentai/8,7.5,7,7,8.5,9,8,7.5,6.5,7", lookup).ok).toBe(true);
   });
 
+  it("carries the card layout and theme, and old links without them still open", () => {
+    const ev = make([...full]);
+    const result = computeResult(sentaiProfile, ev);
+    const link = encodeShare(sentaiProfile, result, { title: "A", enjoyment: null, includeEnjoyment: false, layout: "ledger", theme: "dark" });
+    expect(link).toBe("1/sentai/8,7.5,7,7,8.5,9,8,7.5,6.5,7/t=A/l=ledger/c=dark");
+    const back = decodeShare(link, lookup);
+    expect(back.ok && back.layout).toBe("ledger");
+    expect(back.ok && back.theme).toBe("dark");
+    const old = decodeShare("1/sentai/8,7.5,7,7,8.5,9,8,7.5,6.5,7/t=A", lookup);
+    expect(old.ok && old.layout).toBe(null);
+    expect(old.ok && old.theme).toBe(null);
+  });
+
   const bad: [string, string, string][] = [
+    ["unknown layout", "1/sentai/8,7.5,7,7,8.5,9,8,7.5,6.5,7/l=banner", "invalid"],
+    ["unknown theme", "1/sentai/8,7.5,7,7,8.5,9,8,7.5,6.5,7/c=blue", "invalid"],
     ["empty", "", "invalid"],
     ["garbage", "hello", "invalid"],
     ["newer version", "2/sentai/8,7.5,7,7,8.5,9,8,7.5,6.5,7", "version"],

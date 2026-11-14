@@ -351,6 +351,16 @@ input[type="range"].grade:disabled {
   animation: toast-out 0.28s ease-in both;
 }
 
+/* A round network button lights up in the accent color, without moving. */
+.network {
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.network:hover,
+.network:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 /* Two buttons that read as one piece stay together on hover: only the text and icon change color. */
 .split .btn {
   transition: color 0.15s ease;

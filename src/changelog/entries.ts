@@ -41,6 +41,87 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.14.0",
+    date: "2026-11-14",
+    sentaiProfileVersion: 1,
+    title: { en: "Share to social networks", "pt-BR": "Compartilhar nas redes sociais", es: "Compartir en redes sociales" },
+    summary: {
+      en: "A result can be sent to the main social networks with a wording of your choice, and the share cards and the changelog are tidier.",
+      "pt-BR": "Um resultado pode ser enviado às principais redes sociais com um texto à sua escolha, e os cartões de compartilhamento e o changelog ficaram mais organizados.",
+      es: "Un resultado puede enviarse a las principales redes sociales con un texto a tu elección, y las tarjetas para compartir y el changelog quedaron más ordenados.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "Share this result sends a post to X, Bluesky, Threads, Reddit, Facebook, WhatsApp and Telegram. Pick one of five wordings (Curious, Direct, Challenge, Minimal or Formal), edit the text if you like, and press the round button of a network. The post carries the message and the link to your result. Where a network lets people paste an image, the card is copied first and the app says so.",
+            "pt-BR":
+              "Compartilhar este resultado envia um post para X, Bluesky, Threads, Reddit, Facebook, WhatsApp e Telegram. Escolha entre cinco textos (Curioso, Direto, Desafio, Minimalista ou Formal), edite se quiser e aperte o botão redondo de uma rede. O post leva a mensagem e o link do seu resultado. Onde a rede deixa colar uma imagem, o cartão é copiado antes e o app avisa.",
+            es: "Compartir este resultado envía una publicación a X, Bluesky, Threads, Reddit, Facebook, WhatsApp y Telegram. Elige entre cinco textos (Curioso, Directo, Desafío, Mínimo o Formal), edítalo si quieres y pulsa el botón redondo de una red. La publicación lleva el mensaje y el enlace de tu resultado. Donde la red permite pegar una imagen, la tarjeta se copia antes y la app lo avisa.",
+          },
+          {
+            en: "No network accepts an image through a link, so every wording invites the reader to open the result. On devices that can share files, Share from this device sends the image, the message and the link together. Nothing is sent until you press a button, and nothing goes through a server of ours.",
+            "pt-BR":
+              "Nenhuma rede aceita imagem por link, então todos os textos convidam quem lê a abrir o resultado. Em aparelhos que compartilham arquivos, Compartilhar deste aparelho envia a imagem, a mensagem e o link juntos. Nada é enviado até você apertar um botão, e nada passa por um servidor nosso.",
+            es: "Ninguna red acepta una imagen mediante un enlace, así que todos los textos invitan a quien lee a abrir el resultado. En dispositivos que comparten archivos, Compartir desde este dispositivo envía la imagen, el mensaje y el enlace juntos. No se envía nada hasta que pulsas un botón, y nada pasa por un servidor nuestro.",
+          },
+          {
+            en: "The messages on the share page and the Evaluation imported message fade in and out like the draft check, and a new message restarts the time instead of cutting the old one short.",
+            "pt-BR":
+              "As mensagens da página de compartilhamento e a mensagem Avaliação importada entram e saem suavemente, como o check do rascunho, e uma nova mensagem reinicia o tempo em vez de cortar a anterior.",
+            es: "Los mensajes de la página de compartir y el mensaje Evaluación importada aparecen y desaparecen suavemente, como la marca del borrador, y un mensaje nuevo reinicia el tiempo en lugar de cortar el anterior.",
+          },
+          {
+            en: "The Planned list on this page is now a read-only checklist that shows how far the project has come. Inside each release, the points are bullets.",
+            "pt-BR":
+              "A lista Planejado desta página agora é uma lista de verificação só de leitura, que mostra até onde o projeto avançou. Dentro de cada versão, os pontos são marcadores.",
+            es: "La lista Planificado de esta página ahora es una lista de verificación de solo lectura que muestra hasta dónde ha llegado el proyecto. Dentro de cada versión, los puntos son viñetas.",
+          },
+        ],
+      },
+      {
+        area: "design",
+        items: [
+          {
+            en: "On the Seal card, the stamp no longer crosses the grade reading when personal enjoyment is on. The caption and the enjoyment sit together beside the stamp. On the Ledger card, the enjoyment note no longer runs into the footer.",
+            "pt-BR":
+              "No cartão Seal, o carimbo não cruza mais o texto da nota quando o gosto pessoal está ligado. A legenda e o gosto pessoal ficam juntos ao lado do carimbo. No cartão Ledger, a nota do gosto pessoal não encosta mais no rodapé.",
+            es: "En la tarjeta Seal, el sello ya no cruza el texto de la nota cuando el gusto personal está activado. El pie y el gusto personal quedan juntos junto al sello. En la tarjeta Ledger, la nota del gusto personal ya no toca el pie.",
+          },
+          {
+            en: "Copy and the download arrow stay joined on hover. Only their text and icon take a soft accent color.",
+            "pt-BR":
+              "Copiar e a seta de download ficam unidos no hover. Só o texto e o ícone ganham uma cor suave do accent.",
+            es: "Copiar y la flecha de descarga se mantienen unidos al pasar el puntero. Solo su texto y su icono toman un color suave del accent.",
+          },
+        ],
+      },
+      {
+        area: "export",
+        items: [
+          {
+            en: "The share link also carries the card layout and theme, so the reader first sees the card the sender chose. Older links without them still open. The link always points at the address the app is running from, wherever it is hosted.",
+            "pt-BR":
+              "O link de compartilhamento também leva o layout e o tema do cartão, então quem abre vê primeiro o cartão que a pessoa escolheu. Links antigos sem esses dados continuam abrindo. O link sempre aponta para o endereço de onde o app está rodando, onde quer que esteja hospedado.",
+            es: "El enlace para compartir también lleva el diseño y el tema de la tarjeta, así quien lo abre ve primero la tarjeta que eligió el remitente. Los enlaces antiguos sin ellos siguen abriéndose. El enlace siempre apunta a la dirección desde la que corre la app, esté donde esté alojada.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "The file format document describes the two new link keys, l for the layout and c for the theme.",
+            "pt-BR":
+              "O documento do formato de arquivo descreve as duas novas chaves do link, l para o layout e c para o tema.",
+            es: "El documento del formato de archivo describe las dos nuevas claves del enlace, l para el diseño y c para el tema.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.13.0",
     date: "2026-11-13",
     sentaiProfileVersion: 1,

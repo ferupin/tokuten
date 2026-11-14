@@ -19,6 +19,26 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.14.0 (2026-11-14)
+
+Share to social networks. Sentai profile v1.
+
+### Interface
+- Share this result sends a post to X, Bluesky, Threads, Reddit, Facebook, WhatsApp and Telegram. Pick one of five wordings (Curious, Direct, Challenge, Minimal or Formal), edit the text, and press the round button of a network. The post carries the message and the link to the result. Where a network lets people paste an image, the card is copied first and the app says so.
+- No network accepts an image through a link, so every wording invites the reader to open the result. On devices that can share files, Share from this device sends the image, the message and the link together. Nothing is sent until a button is pressed.
+- The messages on the share page and the Evaluation imported message fade in and out like the draft check, and a new message restarts the time.
+- Planned is a read-only checklist of how far the project has come. Inside each release, the points are bullets.
+
+### Design
+- Seal card: the stamp no longer crosses the grade reading when personal enjoyment is on. Ledger card: the enjoyment note no longer runs into the footer.
+- Copy and the download arrow stay joined on hover. Only their text and icon take a soft accent color.
+
+### Export
+- The share link also carries the card layout and theme (`l=` and `c=`). Older links still open. The link points at the address the app runs from, wherever it is hosted.
+
+### Documentation
+- The file format document describes the two new link keys.
+
 ## 0.13.0 (2026-11-13)
 
 Calmer export controls and a draft check. Sentai profile v1.

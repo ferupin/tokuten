@@ -7,6 +7,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { isBlank } from "@/core/draft";
 import { buildCardData } from "@/core/share-card";
 import { decodeShare, encodeShare } from "@/core/share-link";
+import { DEFAULT_MESSAGE_STYLE, type MessageStyle } from "@/core/share-message";
 import { profiles } from "@/profiles";
 import { computeResult } from "@/core/scoring";
 import { BackToTop } from "@/components/ui/back-to-top";
@@ -20,6 +21,7 @@ import { useEvaluationStore } from "@/features/evaluation/use-store";
 import { useI18n } from "@/i18n";
 import { LAYOUTS, LAYOUT_SIZE, drawCard, loadCardFonts, renderCard, type CardLayout } from "./draw-card";
 import type { CardTheme } from "./palette";
+import { SocialShare } from "./social-share";
 
 const slug = (s: string) => s.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "season";
 
@@ -81,14 +83,27 @@ export function Results() {
   const [layout, setLayout] = useState<CardLayout>("seal");
   const [theme, setTheme] = useState<CardTheme | null>(null);
   const [withEnjoyment, setWithEnjoyment] = useState(false);
-  const [status, setStatus] = useState("");
+  // Messages show as the same fading toast the evaluator uses, since the buttons that
+  // cause them are spread over the page.
+  const [status, setStatus] = useState<{ message: string; leaving: boolean } | null>(null);
+  const statusTimers = useRef<number[]>([]);
+  const [messageStyle, setMessageStyle] = useState<MessageStyle>(DEFAULT_MESSAGE_STYLE);
 
   // Layout and card theme are remembered. Personal enjoyment never is: it is off every visit.
   useEffect(() => {
     const prefs = readPreferences();
     if (prefs.cardLayout) setLayout(prefs.cardLayout);
     if (prefs.cardTheme) setTheme(prefs.cardTheme);
+    if (prefs.shareStyle) setMessageStyle(prefs.shareStyle);
   }, []);
+
+  // A link from someone else opens on the card they chose. Changing it afterwards is free,
+  // and it is not saved as this person's own choice.
+  useEffect(() => {
+    if (!shared) return;
+    if (shared.layout) setLayout(shared.layout);
+    if (shared.theme) setTheme(shared.theme);
+  }, [shared]);
 
   const cardTheme: CardTheme = theme ?? (resolvedTheme === "dark" ? "dark" : "light");
   const cardProfile = shared?.profile ?? profile;
@@ -103,13 +118,18 @@ export function Results() {
 
   const link = useMemo(() => {
     if (shared || !data || !origin) return "";
-    return `${origin}#${encodeShare(profile, ownResult, { title: evaluation.title, enjoyment: evaluation.enjoyment, includeEnjoyment: withEnjoyment })}`;
-  }, [shared, data, origin, profile, ownResult, evaluation.title, evaluation.enjoyment, withEnjoyment]);
+    return `${origin}#${encodeShare(profile, ownResult, { title: evaluation.title, enjoyment: evaluation.enjoyment, includeEnjoyment: withEnjoyment, layout, theme: cardTheme })}`;
+  }, [shared, data, origin, profile, ownResult, evaluation.title, evaluation.enjoyment, withEnjoyment, layout, cardTheme]);
 
   const say = (message: string) => {
-    setStatus(message);
-    window.setTimeout(() => setStatus(""), 2500);
+    statusTimers.current.forEach(window.clearTimeout);
+    setStatus({ message, leaving: false });
+    statusTimers.current = [
+      window.setTimeout(() => setStatus({ message, leaving: true }), 2400),
+      window.setTimeout(() => setStatus(null), 2400 + 280),
+    ];
   };
+  useEffect(() => () => statusTimers.current.forEach(window.clearTimeout), []);
   const fileName = `${slug(cardTitle)}.png`;
 
   const download = async () => {
@@ -148,17 +168,6 @@ export function Results() {
       setCanShareFile(false);
     }
   }, []);
-
-  const share = async () => {
-    if (!data) return;
-    try {
-      const blob = await renderCard(layout, data, cardTheme);
-      await navigator.share({ files: [new File([blob], fileName, { type: "image/png" })], title: data.title, text: data.description });
-    } catch (e) {
-      // Closing the share sheet is not an error.
-      if (!(e instanceof DOMException && e.name === "AbortError")) say(t("share.failed"));
-    }
-  };
 
   const copyDescription = async () => {
     if (!data) return;
@@ -305,16 +314,25 @@ export function Results() {
                 <button type="button" className="btn ghost" onClick={copyImage}>
                   {t("share.copyImage")}
                 </button>
-                {canShareFile && (
-                  <button type="button" className="btn ghost" onClick={share}>
-                    {t("share.shareImage")}
-                  </button>
-                )}
-                <span role="status" aria-live="polite" className="text-xs text-soft">
-                  {status}
-                </span>
               </div>
             </section>
+
+            {!shared && link && (
+              <SocialShare
+                title={data.title}
+                score={data.scoreText}
+                link={link}
+                style={messageStyle}
+                onStyle={(style) => {
+                  setMessageStyle(style);
+                  writePreferences({ shareStyle: style });
+                }}
+                renderImage={() => renderCard(layout, data, cardTheme)}
+                canShareFile={canShareFile}
+                fileName={fileName}
+                onStatus={say}
+              />
+            )}
 
             {!shared && link && (
               <section aria-labelledby="share-link" className="flex flex-col gap-2">
@@ -355,6 +373,13 @@ export function Results() {
         <Footer />
       </main>
       <BackToTop />
+      <div role="status" aria-live="polite" className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center no-print">
+        {status && (
+          <span data-leaving={status.leaving} className="toast rounded-full bg-ink px-5 py-2.5 font-mono text-xs text-bg shadow-sm">
+            {status.message}
+          </span>
+        )}
+      </div>
     </>
   );
 }

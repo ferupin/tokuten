@@ -73,10 +73,10 @@ The file keeps the grades and the text a person wrote. It does not keep the scor
 ## The share link
 
 ```
-/results#1/sentai/8,7.5,7,-,n,9,8,7.5,6.5,7/e=8.5/t=Season%20name
+/results#1/sentai/8,7.5,7,-,n,9,8,7.5,6.5,7/e=8.5/t=Season%20name/l=ledger/c=dark
 ```
 
-Separated by `/`: the link format version, the profile id, one grade per category in profile order (`n` is not applicable and `-` is not graded), then optional `e=` for personal enjoyment and `t=` for the title, percent encoded.
+Separated by `/`: the link format version, the profile id, one grade per category in profile order (`n` is not applicable and `-` is not graded), then optional `e=` for personal enjoyment, `t=` for the title, percent encoded, `l=` for the card layout (`seal`, `ledger` or `poster`) and `c=` for the card theme (`light` or `dark`). The last two only decide which card the reader sees first. A link without them opens as before.
 
 The same rules apply in spirit. The version in front is `1`. A link with a higher version shows a message that it comes from a newer version of the app, and anything that does not fit is rejected. Links hold grades and never the score. Links are meant to be short lived, so unlike files they do not carry a promise to open forever, but a version 1 link is read by every 1.x release.
 
