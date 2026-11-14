@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { isBlank } from "@/core/draft";
+import { applyAnchor, captureAnchor, type ScrollAnchor } from "@/components/ui/scroll-anchor";
 import { Switch } from "@/components/ui/switch";
 import type { Evaluation } from "@/core/types";
 import { useI18n } from "@/i18n";
@@ -56,6 +57,18 @@ export function useDraft(): DraftController {
   }, [profile, setMode]);
 
   const active = ready && !pending;
+
+  // Answering the prompt changes the height of the page: the strip leaves and the result fills in.
+  // The reader keeps their place instead of being carried to another part of the page.
+  const anchor = useRef<ScrollAnchor | null>(null);
+  useLayoutEffect(() => {
+    if (pending || !anchor.current) return;
+    const kept = anchor.current;
+    anchor.current = null;
+    applyAnchor(kept);
+    // Once more after the next frame, for anything that settles late.
+    window.requestAnimationFrame(() => applyAnchor(kept));
+  }, [pending]);
 
   useEffect(() => {
     if (active) writePreferences({ mode: evaluation.mode });
@@ -116,10 +129,12 @@ export function useDraft(): DraftController {
     failed,
     restore: () => {
       if (!pending) return;
+      anchor.current = captureAnchor();
       load(pending.evaluation);
       setPending(null);
     },
     discard: () => {
+      anchor.current = captureAnchor();
       clearDraft();
       setPending(null);
       const mode = readPreferences().mode;

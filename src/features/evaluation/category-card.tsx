@@ -4,6 +4,7 @@ import { formatGrade, gradeBand } from "@/core/grades";
 import type { Category, CategoryResult, Pillar } from "@/core/types";
 import { Hanko } from "@/components/brand/hanko";
 import { GradeSlider } from "@/components/ui/grade-slider";
+import { Anchors } from "./anchors";
 import { useI18n } from "@/i18n";
 import { numeral } from "./numerals";
 import type { useEvaluationStore } from "./use-store";
@@ -74,6 +75,7 @@ export function CategoryCard({ index, profileId, category, pillar, result, store
               {t(`${base}.boundary`)}
             </p>
           </div>
+          <Anchors base={base} />
 
           <label className="flex items-start gap-3 rounded-lg bg-surface-2 px-3 py-2.5 text-sm">
             <input

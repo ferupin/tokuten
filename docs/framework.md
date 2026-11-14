@@ -53,6 +53,8 @@ Pillars are only a visual grouping. They do not affect the calculation.
 3. The category grade is the average of the graded subcriteria.
 4. If you prefer, you can set the category grade by hand. A manual grade replaces the average.
 
+Each category also has four **reference points**, for the grades 3, 5, 7 and 9. They say what a season at that level typically looks like in that category. They help grade the same way every time, they are not a checklist, and a season can sit between two of them. They judge what the season attempts and how well it succeeds, stay inside their own category, and never change a score. The extremes (1 and 10) are left to the grade bands above, because they are rare. The wording can be revised after a future review of the method, which does not change any score, so it does not change the profile version.
+
 Each category also shows a short note about what it covers and what belongs to a neighboring category. This is there to prevent double counting. A great soundtrack, for example, should never raise the Story & Lore grade.
 
 ## Two ways to enter grades

@@ -41,7 +41,7 @@ npm run build
 
 ## How the project is organized
 
-The README has the folder map. The rule that matters most is that `src/core` is pure TypeScript with no React and no visible text. Profiles are plain data, and every visible string lives in the dictionaries in `src/i18n`.
+The [development guide](docs/development.md) has the folder map. The rule that matters most is that `src/core` is pure TypeScript with no React and no visible text. Profiles are plain data, and every visible string lives in the dictionaries in `src/i18n`.
 
 ## Project conventions
 
@@ -83,7 +83,7 @@ The changelog is optional. A changelog text in `src/changelog/entries.ts` can ca
 
 ## Adding a profile
 
-Follow the steps in the README, under "Adding a new profile". Include the dictionary entries in every language and a test for the weights.
+Follow the steps in the [development guide](docs/development.md#adding-a-new-profile). Include the dictionary entries in every language and a test for the weights.
 
 ## Sending a pull request
 

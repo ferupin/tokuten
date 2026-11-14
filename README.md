@@ -1,116 +1,59 @@
 # Tokuten 特点
 
-Tokuten is a personal tool for scoring tokusatsu seasons in a consistent way. It is built on **Kijun 基準**, a method with ten weighted categories, subcriteria, and a clear separation between the official score and personal enjoyment.
+**Score a tokusatsu season the same way every time.**
 
-The app is in version 0.x. The method and the file format are settling, and the plan to reach 1.0 is in the [roadmap](docs/ROADMAP.md).
+Tokuten applies **Kijun 基準**, a method with ten weighted categories, clear criteria and a score that stays apart from personal enjoyment. It runs entirely in your browser: no account, no server, nothing uploaded.
 
-The first profile covers Super Sentai. The structure is ready for others, such as Kamen Rider, without changes to the calculation code.
+### → [Open the app: tokuten-snowy.vercel.app](https://tokuten-snowy.vercel.app)
 
-Everything runs in the browser. There is no database, no account and no server logic. Your work is kept as a draft in your own browser so a refresh does not lose it, and it never leaves your device. You can turn the draft off, and export JSON to keep an evaluation for good.
+## What you get
 
-## What it does
+- **Two ways to grade.** Detailed (詳細) through subcriteria, or Quick (簡易) with one grade per category.
+- **A fair official score.** Categories that do not apply share their weight, and a partial score says so.
+- **Enjoyment kept apart.** Your personal score never touches the official one.
+- **Share it.** Save a card as an image in three layouts, or send a short link. Notes are never included.
+- **Take it anywhere.** Export Markdown for any forum or for Obsidian, and JSON to open again later.
+- **English, Português, Español**, with light and dark themes.
 
-- Grades ten categories in two modes: Detailed (詳細), through subcriteria, or Quick (簡易), with one grade per category. Switching keeps your grades.
-- Lets you mark a subcriterion or a whole category as not applicable. The weight of a removed category is shared among the others in proportion to their own weights.
-- Shows the official score as partial until every applicable category has a grade.
-- Keeps personal enjoyment in a separate card that never touches the official score.
-- Offers the ten consistency checks of the method as a last look before you finish. They are a reminder and never change the score.
-- Keeps a draft in your own browser, offered back after a reload. It can be turned off.
-- Exports the evaluation as Markdown in two formats: Standard, for any renderer such as a forum or GitHub, and Obsidian, with properties, collapsible callouts, tables and a chart. JSON export can be imported again.
-- Turns the result into a card you can save, copy or send as an image, in three layouts, or share as a short link. It is drawn in your browser, and the notes, the introduction and the conclusion are never included. A link holds the season name and the grades, in the part of the address after `#`, which a browser never sends to a server.
-- Works in English, Brazilian Portuguese and Spanish, with light and dark themes.
+## Where the project is
 
-## Getting started
+- [x] Super Sentai profile, scoring engine and tests
+- [x] Detailed and Quick modes, consistency checklist, reference points for grades
+- [x] Markdown (Standard and Obsidian) and JSON export, local draft
+- [x] Share as image and as link
+- [x] English, Portuguese, Spanish
+- [x] Stable file format ([promise](docs/file-format.md))
+- [ ] 1.0.0
+- [ ] Kamen Rider profile
+- [ ] Compare seasons side by side
+- [ ] Sensitivity view
+- [ ] Keyboard shortcuts and an accessibility pass
 
-You need Node.js 20.9 or newer. It is developed on Node.js 22.
-
-```bash
-npm install
-npm run dev
-```
-
-Then open http://localhost:3000.
-
-| Command | Purpose |
-|---|---|
-| `npm run dev` | Start the development server |
-| `npm run build` | Create the static site in `out/` |
-| `npm test` | Run the unit tests for the scoring engine |
-| `npm run typecheck` | Check types without building |
-
-## Tech stack
-
-| Area | Tool | Version |
-|---|---|---|
-| Framework | [Next.js](https://nextjs.org) (App Router, static export) | 16.4.5 |
-| UI | [React](https://react.dev) | 19.3.1 |
-| Language | [TypeScript](https://www.typescriptlang.org) | 7.0.2 |
-| Styling | [Tailwind CSS](https://tailwindcss.com) with design tokens as CSS variables | 4.3.4 |
-| State | [Zustand](https://zustand.docs.pmnd.rs), in memory only | 5.1.0 |
-| Validation | [Zod](https://zod.dev), for JSON import and the draft | 4.6.7 |
-| Themes | [next-themes](https://github.com/pacocoursey/next-themes) | 0.4.6 |
-| Tests | [Vitest](https://vitest.dev) | 5.1.0 |
-| Fonts | [Fontsource](https://fontsource.org), self-hosted: Dela Gothic One, Shippori Mincho, Zen Kaku Gothic New, JetBrains Mono | 5.3.x |
-
-Versions are the ones installed at release 0.7.2, and later releases did not add dependencies. The exact ones for any release are in `package-lock.json`. There is no backend and no database, and the only network request the app makes is loading its own files. The reasons for the main choices are in the [decision records](docs/adr).
-
-## Deploying to Vercel
-
-The project exports a static site, so Vercel needs no special setup. Import the repository and keep the defaults. Next.js is detected automatically.
-
-## How the code is organized
-
-```
-src/
-  core/        Pure TypeScript. Scoring, grade bands, validation, Markdown exports.
-  profiles/    One file per franchise. Weights and categories live here as data.
-  i18n/        Dictionaries and the small translation provider.
-  features/    Evaluation form and result views.
-  components/  Shared interface pieces and theme controls.
-docs/          Method, design system and decision records.
-```
-
-The most important rule is that `core/` knows nothing about React or about any language. A profile only holds ids and numbers. Every visible text comes from the dictionaries in `i18n/`.
-
-## Adding a new profile
-
-1. Create `src/profiles/rider.ts` with its pillars, categories, weights and subcriteria. The weights must add up to 100.
-2. Register it in `src/profiles/index.ts`.
-3. Add a `profiles.rider` block to every dictionary in `src/i18n/` (the registry is `src/i18n/languages.ts`). TypeScript will report any language that is missing keys.
-4. Add a test that checks the weights, like the one for Sentai.
-
-## Documentation
-
-- [The Kijun method](docs/framework.md)
-- [Roadmap](docs/ROADMAP.md), what is planned and where help is welcome
-- [Changelog and versioning](docs/CHANGELOG.md), also shown in the app at `/changelog`
-- [File format](docs/file-format.md), the promise about JSON files, share links and drafts
-- [Design system](docs/design-system.md)
-- [Semiotics](docs/semiotics.md), the meaning of the name, colors and symbols, also shown in the app at `/meaning`
-- [Decision records](docs/adr)
-
-## Conventions
-
-- Code, comments and documentation are written in English.
-- Interface text is neutral and slightly formal, direct about the concept and free of slang, so it translates well.
-- The scoring engine must keep its test coverage. Any change to weights requires a new profile version.
+Details and sizes are in the [roadmap](docs/ROADMAP.md).
 
 ## How you can help
 
-Tokuten is open source and the community is welcome in it. The [contributing guide](CONTRIBUTING.md) explains the setup, the conventions and how to send a pull request. These are the places where help counts most.
+Pick one, open an issue to say so, and send a pull request. The [contributing guide](CONTRIBUTING.md) has the setup.
 
-**Translations.** The app is written in English and is complete in Brazilian Portuguese and Spanish. Other languages are open, for example Japanese, French and German. A language is one dictionary file in `src/i18n` and one line in the registry, and the changelog texts are optional because a missing one falls back to English. Neutral, slightly formal wording works best, because it keeps the meaning clear in every language. The identity kanji stay as they are. The steps are in the [contributing guide](CONTRIBUTING.md#adding-a-language).
+- [ ] **Translate** into Japanese, French, German or another language. One file and one line, see [adding a language](CONTRIBUTING.md#adding-a-language).
+- [ ] **Review the Spanish and Portuguese** wording for naturalness.
+- [ ] **Propose a profile**, such as Kamen Rider. Open an issue first, because categories and weights deserve a discussion.
+- [ ] **Test it** with a screen reader, on a phone, in Safari or Firefox, and tell us what felt wrong.
+- [ ] **Report a bug or an idea** through an [issue](https://github.com/ferupin/tokuten/issues/new/choose). The version in the footer and a JSON export help a lot.
 
-**A profile for another franchise.** Kamen Rider is the next one planned. A profile is plain data, so it does not touch the scoring code. The categories and weights deserve a discussion first, so open an issue before writing it.
+## Run it locally
 
-**The method.** Wording of the categories, subcriteria and consistency checks, and the grade anchors that say what a 3, a 5 or an 8 means in each category. Changes here alter what a score means, so they start with a conversation.
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm test         # scoring engine and format tests
+npm run build    # static site in out/
+```
 
-**Accessibility, design and testing.** Screen reader checks, keyboard use, contrast, small screens and browsers that are not Chrome. A report of what felt wrong is already useful.
+Needs Node.js 20.9 or newer. Built with Next.js, React, TypeScript, Tailwind CSS, Zustand and Zod. The full stack and the code layout are in [development](docs/development.md).
 
-**Bugs and ideas.** Open an [issue](https://github.com/ferupin/tokuten/issues/new/choose). A screenshot, the version in the footer and the JSON export make a bug much easier to trace.
+## Read more
 
-The open evolutions, with an idea of the size of each, are listed in the [roadmap](docs/ROADMAP.md).
+[Method](docs/framework.md) · [File format](docs/file-format.md) · [Changelog](docs/CHANGELOG.md) · [Roadmap](docs/ROADMAP.md) · [Design system](docs/design-system.md) · [Meaning of the symbols](docs/semiotics.md) · [Decisions](docs/adr) · [Development](docs/development.md)
 
-## License
-
-Released under the [MIT License](LICENSE).
+Made by [ferupin](https://github.com/ferupin) · [MIT License](LICENSE)

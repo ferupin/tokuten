@@ -87,8 +87,12 @@ describe("profile text", () => {
       it("describes every category and subcriterion", () => {
         for (const { flat } of all) {
           for (const c of profile.categories) {
-            for (const field of ["name", "scope", "boundary"]) {
+            for (const field of ["name", "short", "scope", "boundary"]) {
               expect(flat[`${p}.categories.${c.id}.${field}`], `${c.id}.${field}`).toBeTruthy();
+            }
+            // Reference points for a 3, a 5, a 7 and a 9, which help grading and never change a score.
+            for (const key of ["three", "five", "seven", "nine"]) {
+              expect(flat[`${p}.categories.${c.id}.anchors.${key}`], `${c.id}.anchors.${key}`).toBeTruthy();
             }
             for (const sub of c.subcriteria) {
               expect(flat[`${p}.categories.${c.id}.subcriteria.${sub}`], `${c.id}.${sub}`).toBeTruthy();

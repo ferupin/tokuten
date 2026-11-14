@@ -1,12 +1,37 @@
 "use client";
 
 import { formatGrade, gradeBand } from "@/core/grades";
-import { readingTier, shapeOf } from "@/core/insights";
+import { readingTier, shapeOf, type ReadingTier, type Shape } from "@/core/insights";
 import type { EvaluationMode, EvaluationResult, Profile } from "@/core/types";
 import { Hanko } from "@/components/brand/hanko";
 import { Radar } from "@/components/ui/radar";
 import { numeral } from "@/features/evaluation/numerals";
 import { useI18n } from "@/i18n";
+
+const TIERS: ReadingTier[] = ["low", "middle", "solid", "high"];
+const SHAPES: Exclude<Shape, "none">[] = ["balanced", "contrasted"];
+
+/**
+ * Shows one of several texts and keeps the room of the longest one, so changing
+ * the grade never moves what sits below. The other texts are laid on the same
+ * spot, invisible and hidden from assistive technology.
+ */
+function Stable<T extends string>({ items, active, text }: { items: readonly T[]; active: T | null; text: (item: T) => string }) {
+  return (
+    <div className="grid">
+      {items.map((item) => (
+        <p
+          key={item}
+          aria-hidden={item === active ? undefined : true}
+          className={`m-0 ${item === active ? "" : "invisible"}`}
+          style={{ gridArea: "1 / 1" }}
+        >
+          {text(item)}
+        </p>
+      ))}
+    </div>
+  );
+}
 
 /**
  * The score side of the result: the season, the official score, its reading and
@@ -26,6 +51,7 @@ export function ScoreCard({
 }) {
   const { t } = useI18n();
   const { shape } = shapeOf(result);
+  const scoreText = result.score === null ? "—" : formatGrade(result.score, 1);
   const pillarTone = (categoryId: string) => {
     const cat = profile.categories.find((c) => c.id === categoryId)!;
     return `var(--${profile.pillars.find((p) => p.id === cat.pillarId)!.tone})`;
@@ -50,9 +76,18 @@ export function ScoreCard({
           {t("modes.badge")} · <span lang="ja">{t("modes.quick.kanji")}</span>
         </p>
       )}
-      <div className="relative mx-auto mt-4 inline-block">
-        <div className="tnum font-display text-[clamp(64px,13vw,104px)] leading-none" aria-live="polite">
-          {result.score === null ? "—" : formatGrade(result.score, 1)}
+      {/* The wide 10.0 gets a size that leaves room for the seal inside its own column. */}
+      <div className="mt-4 flex items-center justify-center" style={{ containerType: "inline-size", height: "clamp(64px,13vw,104px)" }}>
+      <div className="relative inline-block">
+        <div
+          className={`tnum font-display leading-none ${
+            scoreText.length > 3
+              ? "text-[clamp(56px,13vw,104px)] sm:[font-size:clamp(56px,calc((100cqw_-_112px)/3.4),104px)]"
+              : "text-[clamp(64px,13vw,104px)]"
+          }`}
+          aria-live="polite"
+        >
+          {scoreText}
           <span className="ml-1 text-[0.28em] text-soft">/10</span>
         </div>
         {result.score !== null && (
@@ -63,17 +98,18 @@ export function ScoreCard({
           </span>
         )}
       </div>
+      </div>
       <p className="mb-0 mt-3 font-serif text-xl font-extrabold">
         {result.score === null ? t("result.noScore") : t(`grades.${gradeBand(result.score)}`)}
       </p>
-      <p className="mx-auto mt-2 max-w-sm text-xs text-soft">
+      <p className="mx-auto mt-2 min-h-[2.5rem] max-w-sm text-xs text-soft">
         {result.complete ? t("result.complete") : t("result.partialNote", { graded: result.gradedCount, total: result.applicableCount })}
         {result.redistributed && <> {t("result.redistributedNote", { count: result.applicableCount })}</>}
       </p>
       {result.score !== null && (
         <div className="mx-auto mt-4 max-w-md space-y-1.5 text-[13px] italic leading-relaxed text-soft">
-          <p className="m-0">{t(`result.reading.${readingTier(result.score)}`)}</p>
-          {shape !== "none" && <p className="m-0">{t(`result.shape.${shape}`)}</p>}
+          <Stable items={TIERS} active={readingTier(result.score)} text={(tier) => t(`result.reading.${tier}`)} />
+          <Stable items={SHAPES} active={shape === "none" ? null : shape} text={(sh) => t(`result.shape.${sh}`)} />
         </div>
       )}
       <div className="mt-6">

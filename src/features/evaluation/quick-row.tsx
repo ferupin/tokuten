@@ -4,6 +4,7 @@ import { useState } from "react";
 import { formatGrade } from "@/core/grades";
 import type { Category, CategoryResult, Pillar } from "@/core/types";
 import { GradeSlider } from "@/components/ui/grade-slider";
+import { Anchors } from "./anchors";
 import { useI18n } from "@/i18n";
 import { numeral } from "./numerals";
 import type { useEvaluationStore } from "./use-store";
@@ -104,6 +105,7 @@ export function QuickRow({ index, profileId, category, pillar, result, store }: 
               {t(`${base}.boundary`)}
             </p>
           </div>
+          <Anchors base={base} />
           <div>
             <label htmlFor={`${notesId}-text`} className="label mb-1.5 block">
               {t("evaluation.notesLabel")}

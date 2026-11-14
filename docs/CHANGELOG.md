@@ -19,6 +19,39 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 0.12.1 (2026-11-13)
+
+A steadier result card. Sentai profile v1.
+
+### Interface
+- Fixed: with a score of 10.0 the seal overlapped the first column of the breakdown table. Only the wide 10.0 is drawn a little smaller, so the seal stays in its own column. Other scores are unchanged.
+- Fixed: the reading text under the score changed height with the grade and moved the radar. The card now keeps the room of the longest text. The text is still always visible.
+- Fixed: Restore draft and Discard could carry the reader to another part of the page, because the notice strip leaves and the result card fills in at that moment. The page now keeps what the reader was looking at in place.
+
+### Documentation
+- The README is shorter, with a link to the app, a progress checklist and a help checklist. The stack, the code layout and how to add a profile moved to `docs/development.md`.
+
+## 0.12.0 (2026-11-13)
+
+Reference points for grades. Sentai profile v1.
+
+### Method
+- Each category has four reference points, for the grades 3, 5, 7 and 9. They describe a typical reading and are not a checklist.
+- They judge what a season attempts and how well it succeeds, never its age, budget, popularity or nostalgia, and each stays inside its own category.
+- The extremes keep the existing grade band texts.
+
+### Interface
+- A collapsed Reference points list in each category: in Detailed mode below the scope and boundary notes, and in Quick mode inside the Guidance and notes panel.
+
+### Quality
+- A dictionary test requires all four reference points for every category in every registered language.
+
+### Documentation
+- `docs/framework.md` explains the reference points. The roadmap no longer lists them as pending.
+
+### Known limits
+- A first version, open to revision. Changing the wording does not change a score, so the profile version stays the same.
+
 ## 0.11.0 (2026-11-13)
 
 A stable file format. Sentai profile v1.

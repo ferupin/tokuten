@@ -43,6 +43,8 @@ export const en = {
     boundary: "What belongs elsewhere",
     subcriteriaTitle: "Subcriteria",
     subcriteriaHint: "Grade the ones that apply. The category grade is their average.",
+    anchorsTitle: "Reference points",
+    anchorsHint: "Typical readings, not a checklist. A season can sit between two of them.",
     notGraded: "Not graded",
     subcriterionApplicable: "Applies",
     subcriterionNotApplicable: "Does not apply",
@@ -439,6 +441,12 @@ export const en = {
         theme: {
           name: "Theme & Concept",
           short: "Theme",
+          anchors: {
+            three: "The idea is borrowed or vague, and the season drops it or contradicts it often.",
+            five: "A clear but familiar idea that stays in view without being explored much.",
+            seven: "A distinct idea that shapes most of the season and is explored with some depth.",
+            nine: "A memorable idea with its own identity, explored from several angles and held consistently to the end.",
+          },
           scope: "The idea behind the season and how well it explores that idea.",
           boundary: "Judge the concept and its consistency here. Plot events belong to Story & Lore.",
           subcriteria: {
@@ -452,6 +460,12 @@ export const en = {
         suits: {
           name: "Suits & Visual Design",
           short: "Suits",
+          anchors: {
+            three: "Designs look unfinished or unrelated to each other, and the team and the enemies share no visual logic.",
+            five: "Readable designs that follow the conventions of the genre, with few that stand out.",
+            seven: "Cohesive designs with a clear identity. The heroes are easy to tell apart and several designs stand out.",
+            nine: "A strong visual identity across heroes, villains and world. Designs are distinctive, consistent and memorable on their own.",
+          },
           scope: "How the heroes, villains and the world of the season look.",
           boundary:
             "Static design only. Movement belongs to Action & Choreography and camera work to Production & Direction.",
@@ -466,6 +480,12 @@ export const en = {
         mecha: {
           name: "Mecha & Arsenal",
           short: "Mecha",
+          anchors: {
+            three: "Mecha and weapons are generic or repetitive, serve little purpose and are easy to forget.",
+            five: "Functional designs and combinations that do the job, with limited variety.",
+            seven: "Varied, well designed mecha and gadgets that matter in the story and in the fights.",
+            nine: "An inventive arsenal where each piece has a clear function and identity, and combinations feel like an event.",
+          },
           scope: "Robots, combinations, weapons and gadgets, and how they serve the season.",
           boundary:
             "Designs and function count here. Costumes belong to Suits & Visual Design, and how robot battles are filmed to Production & Direction.",
@@ -481,6 +501,12 @@ export const en = {
         story: {
           name: "Story & Lore",
           short: "Story",
+          anchors: {
+            three: "The plot is hard to follow or left unresolved, and the world raises questions it does not answer.",
+            five: "A straightforward plot with a beginning and an end. The world and the conflicts serve it without surprise.",
+            seven: "A well structured plot with a developed world and conflicts that build, resolved in a satisfying way.",
+            nine: "A layered, coherent story whose structure, worldbuilding and ending reinforce each other and reward attention across the whole season.",
+          },
           scope: "The plot, its structure, worldbuilding and resolution.",
           boundary:
             "Do not raise or lower this grade because of characters, music or pacing. How the story is spread across episodes belongs to Pacing.",
@@ -496,6 +522,12 @@ export const en = {
         characters: {
           name: "Characters & Development",
           short: "Characters",
+          anchors: {
+            three: "Characters are defined by one trait and do not change. Motivations are unclear or inconsistent.",
+            five: "Clear characters with understandable motivations. Some have arcs and others stay as they are.",
+            seven: "Most of the cast has a motivation and an arc, and the changes are earned and consistent.",
+            nine: "Characters feel like individuals with distinct motivations and growth that the season earns, side characters included.",
+          },
           scope: "Individual characters: motivations, arcs and growth.",
           boundary:
             "Judge individuals here. Interaction between team members belongs to Squad Chemistry & Dynamics.",
@@ -511,6 +543,12 @@ export const en = {
         chemistry: {
           name: "Squad Chemistry & Dynamics",
           short: "Chemistry",
+          anchors: {
+            three: "The team acts like a group of strangers, and bonds are stated rather than shown.",
+            five: "The team works together and a few relationships stand out. The dynamic is functional.",
+            seven: "Bonds are visible and varied. Trust and friction feel natural and come back in the story.",
+            nine: "The group feels like a unit with a history. Interactions are specific and memorable, and they shape key moments.",
+          },
           scope: "How the team works as a unit: bonds, teamwork and shared moments.",
           boundary: "Judge the group here. Personal arcs belong to Characters & Development.",
           subcriteria: {
@@ -524,6 +562,12 @@ export const en = {
         music: {
           name: "Music & Soundtrack",
           short: "Music",
+          anchors: {
+            three: "Music is generic, repetitive or out of place, and the sound design adds little.",
+            five: "A competent soundtrack that supports the scenes, with few pieces that stand out.",
+            seven: "Memorable themes and well placed music that adds emotion, with careful sound design.",
+            nine: "A soundtrack with its own identity, whose themes and insert songs lift key scenes and stay with the viewer.",
+          },
           scope: "Songs, score and sound design.",
           boundary: "Music affects only this category. A strong soundtrack does not lift the Story & Lore grade.",
           subcriteria: {
@@ -537,6 +581,12 @@ export const en = {
         action: {
           name: "Action & Choreography",
           short: "Action",
+          anchors: {
+            three: "Fights are short, confusing or repetitive, with limited stunts and little creativity.",
+            five: "Competent, readable fights with standard choreography and little variation.",
+            seven: "Varied, clear fights with good stunt work and some inventive moments.",
+            nine: "Inventive, readable choreography that uses the setting and the powers well, with several standout fights.",
+          },
           scope: "Fights, stunts and combat creativity.",
           boundary:
             "Choreography and stunt quality count here. Camera and editing choices belong to Production & Direction.",
@@ -551,6 +601,12 @@ export const en = {
         production: {
           name: "Production & Direction",
           short: "Production",
+          anchors: {
+            three: "Technical problems are frequent: unclear framing, awkward editing, effects that break the scene.",
+            five: "Competent execution within its means. Direction is functional and mostly unobtrusive.",
+            seven: "Confident direction and editing, with effects and presentation handled carefully and some striking scenes.",
+            nine: "Direction, editing and effects work together with clear intent, and the season looks and feels deliberate and polished throughout.",
+          },
           scope: "How the season is filmed, edited and brought to the screen.",
           boundary:
             "Judge direction and technical execution. Suit and robot designs belong elsewhere, and fight choreography belongs to Action & Choreography.",
@@ -566,6 +622,12 @@ export const en = {
         pacing: {
           name: "Pacing & Overall Execution",
           short: "Pacing",
+          anchors: {
+            three: "An uneven rhythm. Filler or rushing weakens the momentum, and intentions go undelivered.",
+            five: "Mostly steady, with noticeable slow or rushed stretches.",
+            seven: "Good rhythm with purposeful episodes. Momentum holds, with few weak stretches.",
+            nine: "Every stretch earns its time. Momentum builds across the whole season, and it delivers what it sets out to.",
+          },
           scope: "Rhythm across the whole run: consistency, filler and momentum.",
           boundary:
             "Judge how well the screen time is used. The quality of the plot itself belongs to Story & Lore.",

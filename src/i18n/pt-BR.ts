@@ -39,6 +39,8 @@ export const ptBR: Messages = {
     boundary: "O que pertence a outras categorias",
     subcriteriaTitle: "Subcritérios",
     subcriteriaHint: "Avalie os que se aplicam. A nota da categoria é a média deles.",
+    anchorsTitle: "Pontos de referência",
+    anchorsHint: "Leituras típicas, não uma lista de verificação. Uma temporada pode ficar entre dois deles.",
     notGraded: "Sem nota",
     subcriterionApplicable: "Se aplica",
     subcriterionNotApplicable: "Não se aplica",
@@ -435,6 +437,12 @@ export const ptBR: Messages = {
         theme: {
           name: "Tema e Conceito",
           short: "Tema",
+          anchors: {
+            three: "A ideia é emprestada ou vaga, e a temporada a abandona ou a contradiz com frequência.",
+            five: "Uma ideia clara, mas familiar, que fica à vista sem ser muito explorada.",
+            seven: "Uma ideia distinta que molda a maior parte da temporada e é explorada com alguma profundidade.",
+            nine: "Uma ideia memorável, com identidade própria, explorada por vários ângulos e mantida com coerência até o fim.",
+          },
           scope: "A ideia por trás da temporada e o quanto ela a explora bem.",
           boundary: "Avalie aqui o conceito e sua consistência. Os eventos da trama pertencem a História e Mundo.",
           subcriteria: {
@@ -448,6 +456,12 @@ export const ptBR: Messages = {
         suits: {
           name: "Trajes e Design Visual",
           short: "Trajes",
+          anchors: {
+            three: "Os designs parecem inacabados ou sem relação entre si, e o time e os inimigos não compartilham nenhuma lógica visual.",
+            five: "Designs legíveis que seguem as convenções do gênero, com poucos que se destacam.",
+            seven: "Designs coesos com identidade clara. Os heróis são fáceis de distinguir e vários designs se destacam.",
+            nine: "Uma identidade visual forte em heróis, vilões e mundo. Os designs são distintivos, consistentes e memoráveis por si só.",
+          },
           scope: "A aparência dos heróis, dos vilões e do mundo da temporada.",
           boundary:
             "Apenas o design estático. O movimento pertence a Ação e Coreografia, e o trabalho de câmera a Produção e Direção.",
@@ -462,6 +476,12 @@ export const ptBR: Messages = {
         mecha: {
           name: "Mecha e Arsenal",
           short: "Mecha",
+          anchors: {
+            three: "Mechas e armas são genéricos ou repetitivos, servem pouco e são fáceis de esquecer.",
+            five: "Designs e combinações funcionais que cumprem o papel, com variedade limitada.",
+            seven: "Mechas e engenhocas variados e bem desenhados, que importam na história e nas lutas.",
+            nine: "Um arsenal inventivo em que cada peça tem função e identidade claras, e as combinações parecem um acontecimento.",
+          },
           scope: "Robôs, combinações, armas e acessórios, e como servem à temporada.",
           boundary:
             "Designs e funcionamento contam aqui. Os trajes pertencem a Trajes e Design Visual, e a forma como as batalhas de robôs são filmadas a Produção e Direção.",
@@ -477,6 +497,12 @@ export const ptBR: Messages = {
         story: {
           name: "História e Mundo",
           short: "Roteiro",
+          anchors: {
+            three: "A trama é difícil de acompanhar ou fica sem resolução, e o mundo levanta perguntas que não responde.",
+            five: "Uma trama direta, com começo e fim. O mundo e os conflitos a servem sem surpresas.",
+            seven: "Uma trama bem estruturada, com mundo desenvolvido e conflitos que crescem, resolvida de forma satisfatória.",
+            nine: "Uma história em camadas e coerente, cuja estrutura, construção de mundo e final se reforçam e recompensam a atenção ao longo de toda a temporada.",
+          },
           scope: "A trama, sua estrutura, a construção de mundo e a resolução.",
           boundary:
             "Não aumente nem reduza esta nota por causa de personagens, música ou ritmo. A distribuição da história pelos episódios pertence a Ritmo.",
@@ -492,6 +518,12 @@ export const ptBR: Messages = {
         characters: {
           name: "Personagens e Desenvolvimento",
           short: "Personagens",
+          anchors: {
+            three: "Os personagens são definidos por um traço e não mudam. As motivações são pouco claras ou inconsistentes.",
+            five: "Personagens claros, com motivações compreensíveis. Alguns têm arcos e outros ficam como estão.",
+            seven: "A maior parte do elenco tem motivação e arco, e as mudanças são merecidas e consistentes.",
+            nine: "Os personagens parecem indivíduos com motivações distintas e um crescimento que a temporada conquista, inclusive os secundários.",
+          },
           scope: "Os personagens individuais: motivações, arcos e crescimento.",
           boundary:
             "Avalie aqui os indivíduos. A interação entre os membros da equipe pertence a Química e Dinâmica do Time.",
@@ -507,6 +539,12 @@ export const ptBR: Messages = {
         chemistry: {
           name: "Química e Dinâmica do Time",
           short: "Química",
+          anchors: {
+            three: "O time age como um grupo de desconhecidos, e os laços são declarados em vez de mostrados.",
+            five: "O time trabalha em conjunto e algumas relações se destacam. A dinâmica é funcional.",
+            seven: "Os laços são visíveis e variados. A confiança e o atrito parecem naturais e voltam na história.",
+            nine: "O grupo parece uma unidade com história. As interações são específicas e memoráveis, e moldam momentos-chave.",
+          },
           scope: "Como a equipe funciona como unidade: laços, trabalho em equipe e momentos compartilhados.",
           boundary: "Avalie aqui o grupo. Os arcos pessoais pertencem a Personagens e Desenvolvimento.",
           subcriteria: {
@@ -520,6 +558,12 @@ export const ptBR: Messages = {
         music: {
           name: "Música e Trilha Sonora",
           short: "Música",
+          anchors: {
+            three: "A música é genérica, repetitiva ou deslocada, e o desenho de som acrescenta pouco.",
+            five: "Uma trilha competente que apoia as cenas, com poucas peças que se destacam.",
+            seven: "Temas memoráveis e música bem colocada que acrescenta emoção, com desenho de som cuidadoso.",
+            nine: "Uma trilha com identidade própria, cujos temas e canções inseridas elevam cenas-chave e ficam com o espectador.",
+          },
           scope: "Canções, trilha e design de som.",
           boundary: "A música afeta apenas esta categoria. Uma ótima trilha não eleva a nota de História e Mundo.",
           subcriteria: {
@@ -533,6 +577,12 @@ export const ptBR: Messages = {
         action: {
           name: "Ação e Coreografia",
           short: "Ação",
+          anchors: {
+            three: "As lutas são curtas, confusas ou repetitivas, com poucas acrobacias e pouca criatividade.",
+            five: "Lutas competentes e legíveis, com coreografia padrão e pouca variação.",
+            seven: "Lutas variadas e claras, com bom trabalho acrobático e alguns momentos inventivos.",
+            nine: "Coreografia inventiva e legível, que usa bem o cenário e os poderes, com várias lutas marcantes.",
+          },
           scope: "Lutas, acrobacias e criatividade de combate.",
           boundary:
             "A qualidade da coreografia e das acrobacias conta aqui. Escolhas de câmera e edição pertencem a Produção e Direção.",
@@ -547,6 +597,12 @@ export const ptBR: Messages = {
         production: {
           name: "Produção e Direção",
           short: "Produção",
+          anchors: {
+            three: "Problemas técnicos são frequentes: enquadramento confuso, montagem desajeitada, efeitos que quebram a cena.",
+            five: "Execução competente dentro dos seus meios. A direção é funcional e quase sempre discreta.",
+            seven: "Direção e montagem seguras, com efeitos e apresentação tratados com cuidado e algumas cenas marcantes.",
+            nine: "Direção, montagem e efeitos trabalham juntos com intenção clara, e a temporada parece deliberada e bem acabada do início ao fim.",
+          },
           scope: "Como a temporada é filmada, editada e levada à tela.",
           boundary:
             "Avalie a direção e a execução técnica. Os designs de trajes e robôs pertencem a outras categorias, e a coreografia a Ação e Coreografia.",
@@ -562,6 +618,12 @@ export const ptBR: Messages = {
         pacing: {
           name: "Ritmo e Execução Geral",
           short: "Ritmo",
+          anchors: {
+            three: "Um ritmo irregular. Enrolação ou pressa enfraquecem o embalo, e as intenções não se cumprem.",
+            five: "Em geral estável, com trechos lentos ou apressados perceptíveis.",
+            seven: "Bom ritmo, com episódios que têm propósito. O embalo se mantém, com poucos trechos fracos.",
+            nine: "Cada trecho merece seu tempo. O embalo cresce ao longo da temporada inteira, e ela entrega o que se propõe.",
+          },
           scope: "O ritmo ao longo de toda a exibição: consistência, episódios de enchimento e impulso.",
           boundary:
             "Avalie o quão bem o tempo de tela é usado. A qualidade da trama em si pertence a História e Mundo.",

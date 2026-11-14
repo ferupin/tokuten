@@ -41,6 +41,133 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "0.12.1",
+    date: "2026-11-13",
+    sentaiProfileVersion: 1,
+    title: { en: "A steadier result card", "pt-BR": "Um cartão de resultado mais firme", es: "Una tarjeta de resultado más estable" },
+    summary: {
+      en: "The seal no longer touches the table at a grade of 10, the reading text stops moving the radar, and restoring a draft keeps your place on the page.",
+      "pt-BR": "O carimbo não encosta mais na tabela com nota 10, o texto de leitura deixa de mover o radar, e restaurar um rascunho mantém sua posição na página.",
+      es: "El sello ya no toca la tabla con una nota de 10, el texto de lectura deja de mover el radar, y restaurar un borrador mantiene tu posición en la página.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "Fixed: with a score of 10.0 the seal overlapped the first column of the breakdown table. Only the wide 10.0 is drawn a little smaller, so the seal stays inside its own column. Other scores look exactly as before.",
+            "pt-BR":
+              "Corrigido: com nota 10.0 o carimbo se sobrepunha à primeira coluna da tabela de cálculo. Só o largo 10.0 é desenhado um pouco menor, para o carimbo ficar dentro da própria coluna. As outras notas ficam exatamente como antes.",
+            es: "Corregido: con una nota de 10.0 el sello se superponía a la primera columna de la tabla de cálculo. Solo el ancho 10.0 se dibuja un poco más pequeño, para que el sello quede dentro de su propia columna. Las demás notas se ven exactamente como antes.",
+          },
+          {
+            en: "Fixed: the reading text under the score changed height with the grade and pushed the radar up and down. The card now keeps the room of the longest text, so the radar stays in place. The text is still always visible.",
+            "pt-BR":
+              "Corrigido: o texto de leitura sob a nota mudava de altura com a nota e empurrava o radar para cima e para baixo. O cartão agora guarda o espaço do texto mais longo, então o radar fica no lugar. O texto continua sempre visível.",
+            es: "Corregido: el texto de lectura bajo la nota cambiaba de altura con la nota y empujaba el radar hacia arriba y hacia abajo. La tarjeta ahora guarda el espacio del texto más largo, así que el radar se queda en su sitio. El texto sigue siempre visible.",
+          },
+          {
+            en: "Fixed: pressing Restore draft or Discard could carry you to another part of the page, because the notice strip leaves and the result card fills in at that moment. The page now keeps what you were looking at in the same place.",
+            "pt-BR":
+              "Corrigido: apertar Restaurar rascunho ou Descartar podia levar você a outra parte da página, porque a faixa de aviso sai e o cartão de resultado se preenche nesse momento. A página agora mantém o que você estava olhando no mesmo lugar.",
+            es: "Corregido: pulsar Restaurar borrador o Descartar podía llevarte a otra parte de la página, porque la franja de aviso se va y la tarjeta de resultado se llena en ese momento. La página ahora mantiene en el mismo lugar lo que estabas mirando.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "The README is shorter and more direct: a link to the app, what you get, a checklist of where the project is, a checklist of how to help, and how to run it. The stack, the code layout and how to add a profile moved to docs/development.md.",
+            "pt-BR":
+              "O README ficou mais curto e direto: um link para o app, o que você ganha, um checklist de onde o projeto está, um checklist de como ajudar e como rodar. A stack, a organização do código e como adicionar um perfil foram para docs/development.md.",
+            es: "El README es más corto y directo: un enlace a la aplicación, lo que obtienes, una lista de comprobación de dónde está el proyecto, otra de cómo ayudar y cómo ejecutarlo. La pila, la organización del código y cómo añadir un perfil pasaron a docs/development.md.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    version: "0.12.0",
+    date: "2026-11-13",
+    sentaiProfileVersion: 1,
+    title: { en: "Reference points for grades", "pt-BR": "Pontos de referência para as notas", es: "Puntos de referencia para las notas" },
+    summary: {
+      en: "Every category now says what a 3, a 5, a 7 and a 9 look like, to help grade the same way every time. They never change a score.",
+      "pt-BR": "Cada categoria agora diz como são um 3, um 5, um 7 e um 9, para ajudar a dar notas do mesmo jeito sempre. Eles nunca mudam uma nota.",
+      es: "Cada categoría ahora dice cómo son un 3, un 5, un 7 y un 9, para ayudar a calificar siempre de la misma manera. Nunca cambian una puntuación.",
+    },
+    groups: [
+      {
+        area: "method",
+        items: [
+          {
+            en: "Each of the ten categories has four reference points, for the grades 3, 5, 7 and 9. They describe a typical reading and are not a checklist, since a season can sit between two of them.",
+            "pt-BR":
+              "Cada uma das dez categorias tem quatro pontos de referência, para as notas 3, 5, 7 e 9. Eles descrevem uma leitura típica e não são uma lista de verificação, já que uma temporada pode ficar entre dois deles.",
+            es: "Cada una de las diez categorías tiene cuatro puntos de referencia, para las notas 3, 5, 7 y 9. Describen una lectura típica y no son una lista de verificación, ya que una temporada puede quedar entre dos de ellos.",
+          },
+          {
+            en: "They judge what a season attempts and how well it succeeds, never its age, budget, popularity or nostalgia, and each one stays inside its own category so a strength is counted once.",
+            "pt-BR":
+              "Eles julgam o que a temporada tenta e o quanto consegue, nunca a idade, o orçamento, a popularidade ou a nostalgia, e cada um fica dentro da própria categoria para que uma força seja contada uma só vez.",
+            es: "Juzgan lo que una temporada intenta y qué tan bien lo logra, nunca su antigüedad, su presupuesto, su popularidad ni la nostalgia, y cada uno se queda dentro de su propia categoría para que una fortaleza se cuente una sola vez.",
+          },
+          {
+            en: "The extremes keep the existing grade band texts. A 1 and a 10 are rare and the bands already describe them.",
+            "pt-BR":
+              "Os extremos mantêm os textos de faixa que já existem. Um 1 e um 10 são raros e as faixas já os descrevem.",
+            es: "Los extremos mantienen los textos de banda que ya existen. Un 1 y un 10 son raros y las bandas ya los describen.",
+          },
+        ],
+      },
+      {
+        area: "interface",
+        items: [
+          {
+            en: "A collapsed Reference points list appears in each category, in Detailed mode below the scope and boundary notes, and in Quick mode inside the Guidance and notes panel. It is closed by default.",
+            "pt-BR":
+              "Uma lista recolhida de Pontos de referência aparece em cada categoria, no modo Detalhado abaixo das notas de escopo e limite, e no modo Rápido dentro do painel Orientação e anotações. Ela começa fechada.",
+            es: "Una lista contraída de Puntos de referencia aparece en cada categoría, en modo Detallado bajo las notas de alcance y límite, y en modo Rápido dentro del panel Guía y notas. Empieza cerrada.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "A dictionary test requires all four reference points for every category in every registered language, so a new language or profile cannot skip them.",
+            "pt-BR":
+              "Um teste do dicionário exige os quatro pontos de referência de toda categoria em todos os idiomas registrados, então um idioma ou perfil novo não pode pulá-los.",
+            es: "Una prueba del diccionario exige los cuatro puntos de referencia de cada categoría en todos los idiomas registrados, así que un idioma o perfil nuevo no puede omitirlos.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "The method description explains the reference points and how to use them, and the roadmap no longer lists them as pending.",
+            "pt-BR":
+              "A descrição do método explica os pontos de referência e como usá-los, e o roadmap não os lista mais como pendentes.",
+            es: "La descripción del método explica los puntos de referencia y cómo usarlos, y la hoja de ruta ya no los indica como pendientes.",
+          },
+        ],
+      },
+      {
+        area: "limits",
+        items: [
+          {
+            en: "The reference points are a first version and can be revised after future reviews of the method. A change in their wording does not change a score, so the profile version stays the same.",
+            "pt-BR":
+              "Os pontos de referência são uma primeira versão e podem ser revistos após futuras reavaliações do método. Mudar a redação deles não muda nenhuma nota, então a versão do perfil continua a mesma.",
+            es: "Los puntos de referencia son una primera versión y pueden revisarse tras futuras evaluaciones del método. Cambiar su redacción no cambia ninguna puntuación, así que la versión del perfil sigue igual.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.11.0",
     date: "2026-11-13",
     sentaiProfileVersion: 1,
@@ -1543,11 +1670,6 @@ export const releases: Release[] = [
 ];
 
 export const planned: Text[] = [
-  {
-    en: "Category specific grade anchors, written together with the method.",
-    "pt-BR": "Âncoras de nota específicas por categoria, escritas junto com o método.",
-    es: "Anclajes de notas específicos por categoría, escritos junto con el método.",
-  },
   {
     en: "Keyboard shortcuts for grading and marking not applicable.",
     "pt-BR": "Atalhos de teclado para avaliar e marcar como não aplicável.",
