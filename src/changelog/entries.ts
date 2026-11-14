@@ -99,6 +99,17 @@ export const releases: Release[] = [
         ],
       },
       {
+        area: "export",
+        items: [
+          {
+            en: "The standard Markdown shows the category grades in one table first, as a fraction of ten. Categories with subcriteria or notes then get a short detail block. The summary weights and the names in the weighted calculation are in bold, so the numbers are easy to find.",
+            "pt-BR":
+              "O Markdown padrão mostra primeiro as notas das categorias em uma única tabela, como fração de dez. As categorias com subcritérios ou anotações ganham depois um pequeno bloco de detalhe. Os pesos do resumo e os nomes do cálculo ponderado ficam em negrito, para os números serem fáceis de achar.",
+            es: "El Markdown estándar muestra primero las notas de las categorías en una sola tabla, como fracción de diez. Las categorías con subcriterios o notas reciben después un pequeño bloque de detalle. Los pesos del resumen y los nombres del cálculo ponderado van en negrita, para que los números sean fáciles de encontrar.",
+          },
+        ],
+      },
+      {
         area: "docs",
         items: [
           {

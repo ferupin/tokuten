@@ -235,7 +235,24 @@ describe("markdown export", () => {
     const result = computeResult(sentaiProfile, evaluation);
     const md = exportMarkdown(sentaiProfile, evaluation, result, t);
     const rows = md.split("\n").filter((l) => l.startsWith("| profiles.sentai.categories."));
-    expect(rows).toHaveLength(10);
+    // One row per category in the grade table and one in the summary.
+    expect(rows).toHaveLength(20);
+  });
+});
+
+describe("standard markdown format", () => {
+  it("bolds the scale, the summary weights and the calculation names", () => {
+    const evaluation = gradeAll(createEvaluation(sentaiProfile), { theme: 8.5, story: 6.6 });
+    const md = exportMarkdown(sentaiProfile, evaluation, computeResult(sentaiProfile, evaluation), (k) => k);
+    expect(md).toContain("| profiles.sentai.categories.theme.name | 8.5 / **10** |");
+    expect(md).toMatch(/^\| profiles\.sentai\.categories\.theme\.name \| 8\.5 \| \*\*[\d.]+%\*\* \|$/m);
+    expect(md).toMatch(/^- \*\*profiles\.sentai\.categories\.theme\.name:\*\* 8\.5 × /m);
+  });
+
+  it("leaves categories without subcriteria or notes out of the detail blocks", () => {
+    const evaluation = gradeAll(createEvaluation(sentaiProfile), { theme: 8 });
+    const md = exportMarkdown(sentaiProfile, evaluation, computeResult(sentaiProfile, evaluation), (k) => k);
+    expect(md).not.toContain("### ");
   });
 });
 

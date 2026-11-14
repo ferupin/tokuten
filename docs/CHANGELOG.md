@@ -32,6 +32,9 @@ Calmer export controls and a draft check. Sentai profile v1.
 - The result card is compact: firmer border and shadow, smaller score, no line about how close the categories are, and a radar right under the reading with larger kanji in the color of their pillar. It is about a quarter shorter and the chart comes into view sooner. Strongest and weakest sit at the bottom of the table column.
 - Share this result is a small quiet link in the top corner of the card, so it adds no height.
 
+### Export
+- The standard Markdown shows the category grades in one table first, as a fraction of ten. Categories with subcriteria or notes then get a short detail block. Summary weights and the names in the weighted calculation are in bold.
+
 ### Documentation
 - The design system and ADR 0009 describe the grouping, the pulse and the check.
 

@@ -8,7 +8,7 @@ export type Translate = (key: string, values?: Record<string, string | number>) 
  * Renders an evaluation as Markdown following the Kijun output format:
  *
  * 1. Season identification and introduction
- * 2. Category evaluations with grades and reasoning
+ * 2. Category evaluations: a grade table, then details for categories with subcriteria or notes
  * 3. Summary table
  * 4. Weighted calculation
  * 5. Official score
@@ -27,6 +27,9 @@ export function exportMarkdown(
   const na = t("export.notApplicable");
   const pending = t("export.notGraded");
   const out = result.categories;
+  // The grade reads as a fraction of ten, with the scale in bold like the official score.
+  const gradeText = (c: (typeof out)[number]) =>
+    c.status === "not-applicable" ? na : c.grade === null ? pending : `${formatGrade(c.grade)} / **10**`;
 
   // 1. Identification
   lines.push(`# ${evaluation.title.trim() || t("export.untitled")}`);
@@ -42,32 +45,34 @@ export function exportMarkdown(
     lines.push(`> ${t("export.quickNote")}`);
   }
 
-  // 2. Category evaluations
+  // 2. Category evaluations: one table with every grade, then a detail block
+  // only for the categories that have subcriteria or notes to show.
   lines.push("");
   lines.push(`## ${t("export.categoryEvaluations")}`);
+  lines.push("");
+  lines.push(`| ${t("export.category")} | ${t("export.grade")} |`);
+  lines.push("|---|---:|");
+  for (const c of out) {
+    lines.push(`| ${catName(c.id)} | ${gradeText(c)} |`);
+  }
   for (const c of out) {
     const entry = evaluation.categories[c.id];
+    const rows =
+      c.status !== "not-applicable" && evaluation.mode !== "quick"
+        ? Object.entries(entry.subcriteria).filter(([, s]) => s.applicable && s.value !== null)
+        : [];
+    if (rows.length === 0 && !entry.notes.trim()) continue;
     lines.push("");
     lines.push(`### ${catName(c.id)}`);
     lines.push("");
-    if (c.status === "not-applicable") {
-      lines.push(`**${t("export.grade")}:** ${na}`);
-    } else if (c.grade === null) {
-      lines.push(`**${t("export.grade")}:** ${pending}`);
-    } else {
-      lines.push(`**${t("export.grade")}:** ${formatGrade(c.grade)} / 10`);
-    }
-
-    if (c.status !== "not-applicable" && evaluation.mode !== "quick") {
-      const rows = Object.entries(entry.subcriteria).filter(([, s]) => s.applicable && s.value !== null);
-      if (rows.length > 0) {
-        lines.push("");
-        lines.push(`| ${t("export.subcriterion")} | ${t("export.grade")} |`);
-        lines.push("|:---|---:|");
-        for (const [id, s] of rows) {
-          const name = t(`${p}.categories.${c.id}.subcriteria.${id}`).replace(/\|/g, "\\|");
-          lines.push(`| ${name} | ${formatGrade(s.value as number)} |`);
-        }
+    lines.push(`**${t("export.grade")}:** ${gradeText(c)}`);
+    if (rows.length > 0) {
+      lines.push("");
+      lines.push(`| ${t("export.subcriterion")} | ${t("export.grade")} |`);
+      lines.push("|:---|---:|");
+      for (const [id, s] of rows) {
+        const name = t(`${p}.categories.${c.id}.subcriteria.${id}`).replace(/\|/g, "\\|");
+        lines.push(`| ${name} | ${formatGrade(s.value as number)} |`);
       }
     }
     if (entry.notes.trim()) {
@@ -87,7 +92,7 @@ export function exportMarkdown(
       c.status === "not-applicable" ? na : c.grade === null ? pending : formatGrade(c.grade);
     const weight =
       c.status === "not-applicable" ? "0%" : `${formatGrade(c.effectiveWeight, c.effectiveWeight % 1 === 0 ? 0 : 2)}%`;
-    lines.push(`| ${catName(c.id)} | ${grade} | ${weight} |`);
+    lines.push(`| ${catName(c.id)} | ${grade} | **${weight}** |`);
   }
 
   // 4. Calculation
@@ -98,7 +103,7 @@ export function exportMarkdown(
   for (const c of out) {
     if (c.status !== "graded" || c.grade === null || c.contribution === null) continue;
     const w = formatGrade(c.effectiveWeight, c.effectiveWeight % 1 === 0 ? 0 : 2);
-    parts.push(`- ${catName(c.id)}: ${formatGrade(c.grade)} × ${w}% = ${formatGrade(c.contribution, 2)}`);
+    parts.push(`- **${catName(c.id)}:** ${formatGrade(c.grade)} × ${w}% = ${formatGrade(c.contribution, 2)}`);
   }
   lines.push(...parts);
   if (result.redistributed) {
