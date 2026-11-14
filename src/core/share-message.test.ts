@@ -44,8 +44,7 @@ describe("share networks", () => {
     }
   });
 
-  it("have a unique id and a short mark", () => {
+  it("have a unique id", () => {
     expect(new Set(NETWORKS.map((n) => n.id)).size).toBe(NETWORKS.length);
-    for (const n of NETWORKS) expect(n.mark.length).toBeLessThanOrEqual(2);
   });
 });

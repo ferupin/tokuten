@@ -1,10 +1,22 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { siBluesky, siFacebook, siReddit, siTelegram, siThreads, siWhatsapp, siX, type SimpleIcon } from "simple-icons";
 import { MESSAGE_STYLES, buildMessage, type MessageStyle } from "@/core/share-message";
-import { NETWORKS, type Network } from "@/core/share-networks";
+import { NETWORKS, type Network, type NetworkId } from "@/core/share-networks";
 import { Segmented } from "@/components/ui/segmented";
 import { useI18n } from "@/i18n";
+
+/** The mark of each network, from the Simple Icons set. Every shape is a single path, drawn in the text color. */
+const ICONS: Record<NetworkId, SimpleIcon> = {
+  x: siX,
+  bluesky: siBluesky,
+  threads: siThreads,
+  reddit: siReddit,
+  facebook: siFacebook,
+  whatsapp: siWhatsapp,
+  telegram: siTelegram,
+};
 
 interface Props {
   title: string;
@@ -132,9 +144,11 @@ export function SocialShare({ title, score, link, style, onStyle, renderImage, c
               aria-label={name}
               title={name}
               onClick={() => prepare(n)}
-              className="network inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-surface font-mono text-xs font-bold text-ink no-underline"
+              className="network inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-surface text-ink no-underline"
             >
-              {n.mark}
+              <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d={ICONS[n.id].path} />
+              </svg>
             </a>
           );
         })}

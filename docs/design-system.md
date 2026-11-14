@@ -60,7 +60,7 @@ A control that does something is a button. A control that stays on or off, or pi
 - **Quiet link action**: the one action that erases work, Start over, is a small red underlined link and not a button, so it is easy to find and hard to press by habit.
 - **Attention pulse**: a dot that asks for a decision sends a soft ring from its center until the choice is made. It pauses while the pointer or focus is on the notice and is off with reduced motion.
 - **Saved check**: a small toast-style chip that hangs under the header for about two seconds to confirm a save, shown at most once every eight seconds. It overlays the page, so it never shifts the layout.
-- **Network button**: a round button with two letters, a tooltip and a screen reader label. It lights up in the accent color on hover and focus, and never moves.
+- **Network button**: a round button with the network mark from Simple Icons, a tooltip and a screen reader label. It lights up in the accent color on hover and focus, and never moves.
 - **Segmented control**: one choice among a few, such as the Markdown format. It is one piece with arrow key support.
 
 ## Accessibility

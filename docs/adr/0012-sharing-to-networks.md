@@ -22,10 +22,11 @@ Each network is a plain link built in the browser (`src/core/share-networks.ts`)
 - **Five wordings, chosen by the person.** Curious, Direct, Challenge, Minimal and Formal. The choice is remembered. The text can be edited, and picking a wording starts again from it. The wording lives in the dictionaries, so every language keeps its own voice.
 - **The link follows the address the app runs from.** It is built from the page address at the moment of sharing, so a move to another host needs no change.
 - **LinkedIn and Mastodon are left out.** LinkedIn takes only a link and its audience is not this one. Mastodon needs the person's own server address.
-- **Buttons carry a short mark, not a logo.** Each round button shows two letters, with a tooltip and a screen reader label naming the network. Official logos have their own usage rules, so they are not drawn here. A contributor may replace a mark with the official asset of a network, following that network's brand guidelines.
+- **Icons come from a set, not from our own drawing.** Each round button shows the mark of its network from the Simple Icons package, which is released under CC0 and is imported one icon at a time, so only seven small paths reach the page. Every button also has a tooltip and a screen reader label naming the network. The marks belong to their owners, who have their own usage rules, and they appear here only to say which network a button sends to. If a network asks for its mark to be removed, the set drops it and the button can fall back to the network name.
 
 ## Consequences
 
+- One new dependency, `simple-icons`, used only for these seven shapes.
 - Nothing is sent until a button is pressed, and no third party script is loaded.
 - Pasting the image is one extra step on the web. The app says so when it has copied the image.
 - Network post links can change. They are in one small file with a test, so a fix is a one line change.
