@@ -1,6 +1,6 @@
 # File format
 
-This document is the promise about the files Tokuten writes. From version 1.0 it holds for every 1.x release. Until then it is already followed, and a test enforces it.
+This document is the promise about the files Tokuten writes. It holds for every 1.x release, since version 1.0, and a test enforces it.
 
 There are three things that carry an evaluation out of the app.
 

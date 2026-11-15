@@ -19,6 +19,17 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 1.0.0 (2026-11-15)
+
+Version 1.0. Sentai profile v1.
+
+### Method
+- Tokuten reaches 1.0. From here, a JSON file saved by any 1.x release opens in every later 1.x release with the same grades and the same score. New fields are optional, unknown fields are ignored, a file from a newer schema is refused with a clear message, and the calculation does not change inside 1.x. A change that breaks any of this would be version 2, which keeps reading these files.
+- The full terms are in [file-format.md](file-format.md), and a test with saved example files enforces them. The Markdown exports, the look of the cards and new profiles can still change and grow, since they are outside the promise.
+
+### Documentation
+- The roadmap and the README mark 1.0 as reached. The accessibility pass is the next step.
+
 ## 0.14.0 (2026-11-14)
 
 Share to social networks. Sentai profile v1.
@@ -449,7 +460,8 @@ Where the project stands. Checked steps are done. Nothing unchecked is promised 
 - [x] Share a result as an image and as a link.
 - [x] A stable JSON file format.
 - [x] Grade reference points for each category.
-- [ ] Version 1.0.
+- [x] Version 1.0.
+- [ ] Accessibility pass.
 - [ ] Keyboard shortcuts.
 - [ ] Compare seasons side by side.
 - [ ] Kamen Rider profile.

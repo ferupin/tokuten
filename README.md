@@ -23,7 +23,7 @@ Tokuten applies **Kijun 基準**, a method with ten weighted categories, clear c
 - [x] Share as image and as link
 - [x] English, Portuguese, Spanish
 - [x] Stable file format ([promise](docs/file-format.md))
-- [ ] 1.0.0
+- [x] 1.0.0
 - [ ] Kamen Rider profile
 - [ ] Compare seasons side by side
 - [ ] Sensitivity view

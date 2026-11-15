@@ -6,14 +6,18 @@ Each item has a rough size: small is a few hours, medium is a few days, large is
 
 ## Next
 
-## Toward 1.0
+- **Accessibility pass.** A check with screen readers and with keyboard only, across every page. Size: small. Help welcome.
 
-The 1.0 mark is a promise that the method, the file format and the core of the interface are stable. It needs:
+## Version 1.0
 
-1. The grade anchors written, so the meaning of a grade stops changing. Done in 0.12.0.
-2. A JSON format that old files keep opening with. Done in 0.11.0, see [file-format.md](file-format.md).
-3. Sharing delivered. Done in 0.9.1 (image) and 0.10.0 (link).
-4. English, Portuguese and Spanish complete. Done in 0.8.0, and kept complete by tests.
+Reached on 2026-11-15. It is a promise that the method, the file format and the core of the interface are stable. In short, a file saved today opens in every 1.x release with the same grades and the same score, and a calculation or a profile only changes in a new, announced version. The full terms are in [file-format.md](file-format.md), and a test enforces them.
+
+What made it possible, for the record:
+
+1. The grade anchors written, so the meaning of a grade stops changing (0.12.0).
+2. A JSON format that old files keep opening with (0.11.0).
+3. Sharing delivered, as an image (0.9.1), a link (0.10.0) and a post to the main networks (0.14.0).
+4. English, Portuguese and Spanish complete, and kept complete by tests (0.8.0).
 
 ## Method
 
@@ -32,8 +36,6 @@ Open to the community, now that a language is one file and one line ([ADR 0011](
 
 - **Compare seasons.** Two or more seasons side by side, from imported JSON files. Size: large.
 - **Keyboard shortcuts.** Grade and mark not applicable without the mouse. Size: small to medium. Help welcome.
-- **Accessibility pass.** A check with screen readers and with keyboard only, across every page. Size: small. Help welcome.
-
 ## Not planned
 
 - Accounts, a database or any server logic. The app stays a static site, and a draft or a JSON file is how work is kept.

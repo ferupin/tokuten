@@ -41,6 +41,47 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "1.0.0",
+    date: "2026-11-15",
+    sentaiProfileVersion: 1,
+    title: { en: "Version 1.0", "pt-BR": "Versão 1.0", es: "Versión 1.0" },
+    summary: {
+      en: "A promise that the method, the file format and the core of the interface are stable.",
+      "pt-BR": "A promessa de que o método, o formato de arquivo e o núcleo da interface permanecem estáveis.",
+      es: "La promesa de que el método, el formato de archivo y el núcleo de la interfaz se mantienen estables.",
+    },
+    groups: [
+      {
+        area: "method",
+        items: [
+          {
+            en: "Tokuten reaches 1.0. From here, a JSON file saved by any 1.x release opens in every later 1.x release with the same grades and the same score. New fields are optional, unknown fields are ignored, a file from a newer schema is refused with a clear message, and the calculation does not change inside 1.x. A change that breaks any of this would be version 2, which keeps reading these files.",
+            "pt-BR":
+              "O Tokuten chega à 1.0. A partir daqui, um arquivo JSON salvo por qualquer versão 1.x abre em todas as versões 1.x seguintes com as mesmas notas e a mesma pontuação. Campos novos são opcionais, campos desconhecidos são ignorados, um arquivo de um esquema mais novo é recusado com uma mensagem clara, e o cálculo não muda dentro da 1.x. Uma mudança que quebrasse qualquer um desses pontos seria a versão 2, que continuaria lendo estes arquivos.",
+            es: "Tokuten llega a la 1.0. Desde aquí, un archivo JSON guardado por cualquier versión 1.x se abre en todas las versiones 1.x posteriores con las mismas notas y la misma puntuación. Los campos nuevos son opcionales, los campos desconocidos se ignoran, un archivo de un esquema más nuevo se rechaza con un mensaje claro, y el cálculo no cambia dentro de la 1.x. Un cambio que rompiera cualquiera de esto sería la versión 2, que seguiría leyendo estos archivos.",
+          },
+          {
+            en: "The full terms are in docs/file-format.md, and a test with saved example files enforces them. The Markdown exports, the look of the cards and new profiles can still change and grow, since they are outside the promise.",
+            "pt-BR":
+              "Os termos completos estão em docs/file-format.md, e um teste com arquivos de exemplo salvos garante o cumprimento. As exportações em Markdown, o visual dos cartões e os novos perfis ainda podem mudar e crescer, pois estão fora da promessa.",
+            es: "Los términos completos están en docs/file-format.md, y una prueba con archivos de ejemplo guardados los hace cumplir. Las exportaciones en Markdown, el aspecto de las tarjetas y los nuevos perfiles aún pueden cambiar y crecer, ya que están fuera de la promesa.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "The roadmap and the README mark 1.0 as reached. The accessibility pass is the next step.",
+            "pt-BR":
+              "O roadmap e o README marcam a 1.0 como alcançada. A passada de acessibilidade é o próximo passo.",
+            es: "La hoja de ruta y el README marcan la 1.0 como alcanzada. La revisión de accesibilidad es el siguiente paso.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "0.14.0",
     date: "2026-11-14",
     sentaiProfileVersion: 1,
@@ -1879,11 +1920,19 @@ export const planned: PlannedStep[] = [
     },
   },
   {
-    done: false,
+    done: true,
     text: {
       en: "Version 1.0: a promise that the method, the file format and the core of the interface stay stable.",
       "pt-BR": "Versão 1.0: a promessa de que o método, o formato de arquivo e o núcleo da interface permanecem estáveis.",
       es: "Versión 1.0: la promesa de que el método, el formato de archivo y el núcleo de la interfaz se mantienen estables.",
+    },
+  },
+  {
+    done: false,
+    text: {
+      en: "An accessibility pass with screen readers and with keyboard only, across every page.",
+      "pt-BR": "Uma passada de acessibilidade com leitores de tela e só com o teclado, em todas as páginas.",
+      es: "Una revisión de accesibilidad con lectores de pantalla y solo con teclado, en todas las páginas.",
     },
   },
   {
