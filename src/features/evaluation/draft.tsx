@@ -65,6 +65,8 @@ export function useDraft(): DraftController {
     if (pending || !anchor.current) return;
     const kept = anchor.current;
     anchor.current = null;
+    // The buttons that were just pressed are gone, so keyboard focus moves to the page itself.
+    document.getElementById("main")?.focus({ preventScroll: true });
     applyAnchor(kept);
     // Once more after the next frame, for anything that settles late.
     window.requestAnimationFrame(() => applyAnchor(kept));

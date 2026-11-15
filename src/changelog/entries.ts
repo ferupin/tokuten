@@ -41,6 +41,64 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "1.0.1",
+    date: "2026-11-15",
+    sentaiProfileVersion: 1,
+    title: { en: "Accessibility pass", "pt-BR": "Passada de acessibilidade", es: "Revisión de accesibilidad" },
+    summary: {
+      en: "Every page was checked with an automated audit and with the keyboard alone, and the problems found were fixed.",
+      "pt-BR": "Todas as páginas foram verificadas com uma auditoria automática e só com o teclado, e os problemas encontrados foram corrigidos.",
+      es: "Todas las páginas se revisaron con una auditoría automática y solo con el teclado, y se corrigieron los problemas encontrados.",
+    },
+    groups: [
+      {
+        area: "design",
+        items: [
+          {
+            en: "Text in the yellow and pink category colors is darker in the light theme, so it meets the AA contrast ratio. The edges of fields, sliders and switches are stronger in both themes, so a control can be found by its outline alone.",
+            "pt-BR":
+              "O texto nas cores amarela e rosa das categorias ficou mais escuro no tema claro, para atingir o contraste AA. As bordas de campos, controles deslizantes e interruptores ficaram mais fortes nos dois temas, para que um controle seja encontrado só pelo contorno.",
+            es: "El texto en los colores amarillo y rosa de las categorías es más oscuro en el tema claro, para cumplir el contraste AA. Los bordes de campos, deslizadores e interruptores son más fuertes en ambos temas, para que un control se encuentre solo por su contorno.",
+          },
+        ],
+      },
+      {
+        area: "interface",
+        items: [
+          {
+            en: "Keyboard focus now follows the action. It moves to Cancel when Start over asks for confirmation, returns to Start over when the question closes, and Escape closes the question. After a draft is restored or discarded, focus moves to the page instead of being lost.",
+            "pt-BR":
+              "O foco do teclado agora acompanha a ação. Ele vai para Cancelar quando Recomeçar pede confirmação, volta para Recomeçar quando a pergunta fecha, e Esc fecha a pergunta. Depois de restaurar ou descartar um rascunho, o foco vai para a página em vez de se perder.",
+            es: "El foco del teclado ahora acompaña la acción. Pasa a Cancelar cuando Empezar de nuevo pide confirmación, vuelve a Empezar de nuevo cuando la pregunta se cierra, y Esc cierra la pregunta. Tras restaurar o descartar un borrador, el foco pasa a la página en lugar de perderse.",
+          },
+          {
+            en: "The card layouts on the share page work as one group: arrow keys move between them, and Tab enters and leaves the group once. Text fields show a clear focus outline.",
+            "pt-BR":
+              "Os formatos de cartão na página de compartilhamento funcionam como um grupo: as setas alternam entre eles, e Tab entra e sai do grupo uma vez. Os campos de texto mostram um contorno de foco claro.",
+            es: "Los formatos de tarjeta de la página de compartir funcionan como un grupo: las flechas cambian entre ellos y Tab entra y sale del grupo una vez. Los campos de texto muestran un contorno de foco claro.",
+          },
+          {
+            en: "The progress bar announces how many categories are graded out of how many apply, and the evaluation header wraps on very narrow screens.",
+            "pt-BR":
+              "A barra de progresso anuncia quantas categorias foram avaliadas entre quantas se aplicam, e o cabeçalho da avaliação quebra em telas muito estreitas.",
+            es: "La barra de progreso anuncia cuántas categorías se calificaron de cuántas aplican, y el encabezado de la evaluación se ajusta en pantallas muy estrechas.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "A test now checks the contrast of the category colors and of the control edges in both themes, so a later color change cannot quietly break them.",
+            "pt-BR":
+              "Um teste agora verifica o contraste das cores das categorias e das bordas dos controles nos dois temas, para que uma mudança de cor futura não os quebre em silêncio.",
+            es: "Una prueba ahora verifica el contraste de los colores de las categorías y de los bordes de los controles en ambos temas, para que un cambio de color posterior no los rompa en silencio.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.0.0",
     date: "2026-11-15",
     sentaiProfileVersion: 1,
@@ -1928,7 +1986,7 @@ export const planned: PlannedStep[] = [
     },
   },
   {
-    done: false,
+    done: true,
     text: {
       en: "An accessibility pass with screen readers and with keyboard only, across every page.",
       "pt-BR": "Uma passada de acessibilidade com leitores de tela e só com o teclado, em todas as páginas.",

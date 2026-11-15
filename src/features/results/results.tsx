@@ -101,6 +101,7 @@ export function Results() {
   // cause them are spread over the page.
   const [status, setStatus] = useState<{ message: string; leaving: boolean } | null>(null);
   const statusTimers = useRef<number[]>([]);
+  const layoutRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [messageStyle, setMessageStyle] = useState<MessageStyle>(DEFAULT_MESSAGE_STYLE);
 
   // Layout and card theme are remembered. Personal enjoyment never is: it is off every visit.
@@ -271,15 +272,29 @@ export function Results() {
                 {t("share.layoutLabel")}
               </div>
               <div role="radiogroup" aria-labelledby="share-layouts" className="grid grid-cols-3 gap-2 sm:gap-3">
-                {LAYOUTS.map((l) => (
+                {LAYOUTS.map((l, i) => (
                   <button
                     key={l}
+                    ref={(el) => {
+                      layoutRefs.current[i] = el;
+                    }}
                     type="button"
                     role="radio"
                     aria-checked={layout === l}
+                    tabIndex={layout === l ? 0 : -1}
                     onClick={() => {
                       setLayout(l);
                       writePreferences({ cardLayout: l });
+                    }}
+                    onKeyDown={(e) => {
+                      // Arrow keys move the choice, as in any radio group.
+                      const step = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0;
+                      if (!step) return;
+                      e.preventDefault();
+                      const next = (i + step + LAYOUTS.length) % LAYOUTS.length;
+                      setLayout(LAYOUTS[next]);
+                      writePreferences({ cardLayout: LAYOUTS[next] });
+                      layoutRefs.current[next]?.focus();
                     }}
                     className={`flex flex-col items-center gap-1.5 rounded-xl border-2 p-2 transition-colors ${
                       layout === l ? "border-accent bg-surface" : "border-line bg-surface-2 hover:border-line-strong"

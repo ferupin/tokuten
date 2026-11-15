@@ -25,7 +25,7 @@ export function Switch({ checked, onChange, label }: SwitchProps) {
         className="relative inline-block h-5 w-9 shrink-0 rounded-full border transition-colors"
         style={{
           background: checked ? "var(--accent)" : "var(--surface-2)",
-          borderColor: checked ? "var(--accent)" : "var(--line-strong)",
+          borderColor: checked ? "var(--accent)" : "var(--control)",
         }}
       >
         <span

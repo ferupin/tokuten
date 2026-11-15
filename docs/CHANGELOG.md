@@ -19,6 +19,21 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 1.0.1 (2026-11-15)
+
+Accessibility pass. Sentai profile v1.
+
+### Design
+- Text in the yellow and pink category colors is darker in the light theme, so it meets the AA contrast ratio. The edges of fields, sliders and switches are stronger in both themes, so a control can be found by its outline alone.
+
+### Interface
+- Keyboard focus now follows the action. It moves to Cancel when Start over asks for confirmation, returns to Start over when the question closes, and Escape closes the question. After a draft is restored or discarded, focus moves to the page instead of being lost.
+- The card layouts on the share page work as one group: arrow keys move between them, and Tab enters and leaves the group once. Text fields show a clear focus outline.
+- The progress bar announces how many categories are graded out of how many apply, and the evaluation header wraps on very narrow screens.
+
+### Quality
+- A test now checks the contrast of the category colors and of the control edges in both themes, so a later color change cannot quietly break them.
+
 ## 1.0.0 (2026-11-15)
 
 Version 1.0. Sentai profile v1.

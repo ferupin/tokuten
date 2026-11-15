@@ -6,7 +6,7 @@ Each item has a rough size: small is a few hours, medium is a few days, large is
 
 ## Next
 
-- **Accessibility pass.** A check with screen readers and with keyboard only, across every page. Size: small. Help welcome.
+- **Keyboard shortcuts.** Grade and mark not applicable without the pointer. Size: small to medium.
 
 ## Version 1.0
 

@@ -42,6 +42,20 @@ export function ActionsBar({
   const reset = useEvaluationStore((s) => s.reset);
   const fileRef = useRef<HTMLInputElement>(null);
   const [confirming, setConfirming] = useState(false);
+  // Keyboard focus follows the question: it moves to Cancel when the question opens
+  // and back to Start over when it closes without clearing anything.
+  const cancelRef = useRef<HTMLButtonElement>(null);
+  const resetRef = useRef<HTMLButtonElement>(null);
+  const askedRef = useRef(false);
+  useEffect(() => {
+    if (confirming) {
+      askedRef.current = true;
+      cancelRef.current?.focus();
+    } else if (askedRef.current) {
+      askedRef.current = false;
+      resetRef.current?.focus();
+    }
+  }, [confirming]);
   const [format, setFormat] = useState<ExportFormat>("standard");
 
   // The chosen format is remembered between visits.
@@ -181,6 +195,9 @@ export function ActionsBar({
               role="alertdialog"
               aria-label={t("actions.resetConfirm")}
               className="inline-flex flex-wrap items-center gap-2 text-xs text-soft"
+              onKeyDown={(e) => {
+                if (e.key === "Escape") setConfirming(false);
+              }}
             >
               {t("actions.resetConfirm")}
               <button
@@ -195,6 +212,7 @@ export function ActionsBar({
                 {t("actions.confirm")}
               </button>
               <button
+                ref={cancelRef}
                 type="button"
                 className="btn ghost !py-1"
                 onClick={() => setConfirming(false)}
@@ -204,6 +222,7 @@ export function ActionsBar({
             </span>
           ) : (
             <button
+              ref={resetRef}
               type="button"
               onClick={() => setConfirming(true)}
               className="cursor-pointer border-0 bg-transparent p-0 text-xs underline underline-offset-2 hover:opacity-80"

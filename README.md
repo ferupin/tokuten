@@ -27,7 +27,8 @@ Tokuten applies **Kijun 基準**, a method with ten weighted categories, clear c
 - [ ] Kamen Rider profile
 - [ ] Compare seasons side by side
 - [ ] Sensitivity view
-- [ ] Keyboard shortcuts and an accessibility pass
+- [x] Accessibility pass (1.0.1)
+- [ ] Keyboard shortcuts
 
 Details and sizes are in the [roadmap](docs/ROADMAP.md).
 

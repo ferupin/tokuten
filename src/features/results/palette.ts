@@ -31,9 +31,9 @@ export const palettes: Record<CardTheme, Palette> = {
     accent: "#c23a22",
     red: "#b8392a",
     blue: "#2c6a85",
-    yellow: "#a9770d",
+    yellow: "#8a5f00",
     green: "#4f7440",
-    pink: "#b45a7c",
+    pink: "#a14a6c",
   },
   dark: {
     bg: "#16130e",

@@ -60,7 +60,7 @@ export function Evaluator() {
       </a>
 
       <header className="no-print sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center gap-2 px-4 py-3 sm:gap-3">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-2 gap-y-2 px-4 py-3 sm:gap-x-3">
           <Hanko size={38} title={t("app.kanji")}>点</Hanko>
           <span className="flex-1 min-[430px]:hidden" aria-hidden />
           <div className="hidden min-w-0 flex-1 leading-tight min-[430px]:block">
@@ -80,7 +80,7 @@ export function Evaluator() {
         <DraftSavedChip draft={draft} />
       </header>
 
-      <main id="main" className="mx-auto max-w-5xl space-y-10 px-4 pb-24 pt-10">
+      <main id="main" tabIndex={-1} className="mx-auto max-w-5xl space-y-10 px-4 pb-24 pt-10 outline-none">
         <section>
           <p className="label m-0">{t(`profiles.${profile.id}.name`)}</p>
           <h1 className="mb-2 mt-2 font-display text-[clamp(30px,5.5vw,52px)] font-normal leading-[1.05]">{t("app.tagline")}</h1>
@@ -139,6 +139,7 @@ export function Evaluator() {
           <div
             className="h-1.5 overflow-hidden rounded-full bg-surface-2"
             role="progressbar"
+            aria-label={t("evaluation.progress", { graded: result.gradedCount, total: result.applicableCount })}
             aria-valuemin={0}
             aria-valuemax={result.applicableCount}
             aria-valuenow={result.gradedCount}

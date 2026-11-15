@@ -66,7 +66,10 @@ A control that does something is a button. A control that stays on or off, or pi
 
 ## Accessibility
 
-- Text contrast follows WCAG AA in both themes.
+- Text contrast follows WCAG AA in both themes. The category colors are used as text, so the light theme uses darker yellow and pink than the dark theme. A test checks the ratios.
+- Controls that are found by their outline alone (fields, slider tracks, switches) use the `--control` token, at least 3:1 against the page.
+- Focus follows the action: when a control disappears or a question opens, focus moves to the next sensible element, never to nothing.
+- A group of choices that act as one (the segmented control, the card layouts) is a single Tab stop, with arrow keys inside.
 - Every control can be used from the keyboard and has a visible focus ring.
 - Sliders expose their value and band label to screen readers.
 - Motion respects `prefers-reduced-motion`.
