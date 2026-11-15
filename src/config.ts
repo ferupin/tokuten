@@ -8,6 +8,7 @@ export const repo = {
   bug: `${base}/issues/new?template=bug_report.yml`,
   idea: `${base}/issues/new?template=feature_request.yml`,
   guide: `${base}/blob/master/CONTRIBUTING.md`,
+  support: "https://ko-fi.com/ferupin",
 } as const;
 
 /** Public address of the deployed app, used for link previews. */

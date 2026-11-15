@@ -21,6 +21,7 @@ export const ptBR: Messages = {
     changelog: "Histórico de versões",
     meaning: "Significado",
     contribute: "Contribuir",
+    support: "Apoiar o projeto",
     backToTop: "Voltar ao topo",
     backToApp: "Voltar ao avaliador",
   },

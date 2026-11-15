@@ -376,6 +376,16 @@ input[type="range"].grade:disabled {
   color: color-mix(in srgb, var(--accent) 70%, var(--bg));
 }
 
+/* The support link stays quiet until it is reached. */
+.support {
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.support:hover,
+.support:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .attention::after {
     animation: none;

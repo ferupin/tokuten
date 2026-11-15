@@ -25,6 +25,7 @@ export const en = {
     changelog: "Changelog",
     meaning: "Meaning",
     contribute: "Contribute",
+    support: "Support the project",
     backToTop: "Back to top",
     backToApp: "Back to the evaluator",
   },

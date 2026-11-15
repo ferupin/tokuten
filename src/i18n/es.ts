@@ -21,6 +21,7 @@ export const es: Messages = {
     changelog: "Historial de cambios",
     meaning: "Significado",
     contribute: "Contribuir",
+    support: "Apoyar el proyecto",
     backToTop: "Volver arriba",
     backToApp: "Volver al evaluador",
   },
