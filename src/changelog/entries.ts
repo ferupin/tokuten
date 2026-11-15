@@ -61,6 +61,12 @@ export const releases: Release[] = [
             es: "Compartir este resultado envía una publicación a X, Bluesky, Threads, Reddit, Facebook, WhatsApp y Telegram. Elige entre cinco textos (Curioso, Directo, Desafío, Mínimo o Formal), edítalo si quieres y pulsa el botón redondo de una red. La publicación lleva el mensaje y el enlace de tu resultado. Donde la red permite pegar una imagen, la tarjeta se copia antes y la app lo avisa.",
           },
           {
+            en: "The share page is tidier. The three cards, the theme and the personal enjoyment switch live together in one container with the preview and its buttons. Copy image, Copy link and Copy message show a check like the Markdown copy button. The separate link section, the link text and the description for screen readers are gone from view. The card keeps its description as a hidden label.",
+            "pt-BR":
+              "A página de compartilhamento ficou mais limpa. Os três cartões, o tema e o botão de gosto pessoal ficam juntos em um container com a prévia e seus botões. Copiar imagem, Copiar link e Copiar mensagem mostram um check como o botão de copiar do Markdown. A seção de link separada, o texto do link e a descrição para leitores de tela saíram da vista. O cartão mantém a descrição como um rótulo oculto.",
+            es: "La página de compartir quedó más limpia. Las tres tarjetas, el tema y el interruptor del gusto personal viven juntos en un contenedor con la vista previa y sus botones. Copiar imagen, Copiar enlace y Copiar mensaje muestran una marca como el botón de copiar del Markdown. La sección de enlace aparte, el texto del enlace y la descripción para lectores de pantalla ya no se ven. La tarjeta conserva su descripción como una etiqueta oculta.",
+          },
+          {
             en: "No network accepts an image through a link, so every wording invites the reader to open the result. On devices that can share files, Share from this device sends the image, the message and the link together. Nothing is sent until you press a button, and nothing goes through a server of ours.",
             "pt-BR":
               "Nenhuma rede aceita imagem por link, então todos os textos convidam quem lê a abrir o resultado. Em aparelhos que compartilham arquivos, Compartilhar deste aparelho envia a imagem, a mensagem e o link juntos. Nada é enviado até você apertar um botão, e nada passa por um servidor nosso.",

@@ -13,6 +13,7 @@ import { computeResult } from "@/core/scoring";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { Footer } from "@/components/ui/footer";
 import { PageHeader } from "@/components/ui/page-header";
+import { CopyButton } from "@/components/ui/copy-button";
 import { Segmented } from "@/components/ui/segmented";
 import { Switch } from "@/components/ui/switch";
 import { useScrollTop } from "@/components/ui/use-scroll-top";
@@ -26,7 +27,20 @@ import { SocialShare } from "./social-share";
 const slug = (s: string) => s.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "season";
 
 /** A card drawn on a canvas that scales down with its container. */
-function CardCanvas({ layout, data, theme, label }: { layout: CardLayout; data: NonNullable<ReturnType<typeof buildCardData>>; theme: CardTheme; label?: string }) {
+function CardCanvas({
+  layout,
+  data,
+  theme,
+  label,
+  thumb,
+}: {
+  layout: CardLayout;
+  data: NonNullable<ReturnType<typeof buildCardData>>;
+  theme: CardTheme;
+  label?: string;
+  /** Fit inside a frame of fixed height instead of taking the full width. */
+  thumb?: boolean;
+}) {
   const ref = useRef<HTMLCanvasElement>(null);
   const { width, height } = LAYOUT_SIZE[layout];
   useEffect(() => {
@@ -46,8 +60,8 @@ function CardCanvas({ layout, data, theme, label }: { layout: CardLayout; data: 
       height={height}
       role="img"
       aria-label={label ?? data.description}
-      className="block h-auto w-full rounded-md border border-line"
-      style={{ aspectRatio: `${width} / ${height}` }}
+      className={thumb ? "block h-full w-full object-contain" : "block h-auto w-full rounded-md border border-line"}
+      style={thumb ? undefined : { aspectRatio: `${width} / ${height}` }}
     />
   );
 }
@@ -149,13 +163,15 @@ export function Results() {
   };
 
   const copyImage = async () => {
-    if (!data) return;
+    if (!data) return false;
     try {
       const blob = await renderCard(layout, data, cardTheme);
       await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
       say(t("share.imageCopied"));
+      return true;
     } catch {
       say(t("share.copyFailed"));
+      return false;
     }
   };
 
@@ -169,22 +185,14 @@ export function Results() {
     }
   }, []);
 
-  const copyDescription = async () => {
-    if (!data) return;
-    try {
-      await navigator.clipboard.writeText(data.description);
-      say(t("share.descriptionCopied"));
-    } catch {
-      say(t("share.copyFailed"));
-    }
-  };
-
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(link);
       say(t("share.linkCopied"));
+      return true;
     } catch {
       say(t("share.copyFailed"));
+      return false;
     }
   };
 
@@ -254,11 +262,15 @@ export function Results() {
           <p className="card m-0 p-6">{t("share.nothing")}</p>
         ) : (
           <>
-            <section aria-labelledby="share-layouts" className="flex flex-col gap-3">
-              <h2 id="share-layouts" className="label m-0">
+            <section
+              aria-label={t("share.previewLabel")}
+              className="card flex flex-col gap-4 p-5"
+              style={{ borderColor: "var(--line-strong)", borderWidth: 1.5, boxShadow: "var(--shadow-lifted)" }}
+            >
+              <div id="share-layouts" className="label m-0">
                 {t("share.layoutLabel")}
-              </h2>
-              <div role="radiogroup" aria-labelledby="share-layouts" className="grid items-start gap-3 sm:grid-cols-3">
+              </div>
+              <div role="radiogroup" aria-labelledby="share-layouts" className="grid grid-cols-3 gap-2 sm:gap-3">
                 {LAYOUTS.map((l) => (
                   <button
                     key={l}
@@ -269,20 +281,19 @@ export function Results() {
                       setLayout(l);
                       writePreferences({ cardLayout: l });
                     }}
-                    className={`flex flex-col gap-2 rounded-xl border-2 p-3 text-left transition-colors ${
+                    className={`flex flex-col items-center gap-1.5 rounded-xl border-2 p-2 transition-colors ${
                       layout === l ? "border-accent bg-surface" : "border-line bg-surface-2 hover:border-line-strong"
                     }`}
                   >
-                    <CardCanvas layout={l} data={data} theme={cardTheme} label={layoutName(l)} />
-                    <span className="font-serif text-lg font-extrabold">{layoutName(l)}</span>
-                    <span className="text-xs text-soft">{t(`share.${l}Hint`)}</span>
+                    <span className="block h-20 w-full sm:h-28">
+                      <CardCanvas thumb layout={l} data={data} theme={cardTheme} label={layoutName(l)} />
+                    </span>
+                    <span className="font-serif text-base font-extrabold">{layoutName(l)}</span>
                   </button>
                 ))}
               </div>
-            </section>
 
-            <section aria-label={t("share.previewLabel")} className="flex flex-col gap-4">
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-dashed border-line pt-4">
                 <div className="flex items-center gap-3">
                   <span className="label">{t("share.themeLabel")}</span>
                   <Segmented
@@ -299,21 +310,23 @@ export function Results() {
                   />
                 </div>
                 {!shared && evaluation.enjoyment !== null && (
-                  <div className="flex flex-col gap-1">
-                    <Switch checked={withEnjoyment} onChange={setWithEnjoyment} label={t("share.enjoymentSwitch")} />
-                    <p className="m-0 text-xs text-soft">{t("share.enjoymentHint")}</p>
-                  </div>
+                  <Switch checked={withEnjoyment} onChange={setWithEnjoyment} label={t("share.enjoymentSwitch")} />
                 )}
               </div>
-              <CardCanvas layout={layout} data={data} theme={cardTheme} />
-              <p className="m-0 text-xs text-soft">{t("share.privacy")}</p>
-              <div className="flex flex-wrap items-center gap-3">
+
+              <div className="mx-auto w-full max-w-[720px]">
+                <CardCanvas layout={layout} data={data} theme={cardTheme} />
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center gap-3">
                 <button type="button" className="btn" onClick={download}>
+                  <svg aria-hidden width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14" />
+                  </svg>
                   {t("share.download")}
                 </button>
-                <button type="button" className="btn ghost" onClick={copyImage}>
-                  {t("share.copyImage")}
-                </button>
+                <CopyButton onCopy={copyImage}>{t("share.copyImage")}</CopyButton>
+                {!shared && link && <CopyButton onCopy={copyLink}>{t("share.copyLink")}</CopyButton>}
               </div>
             </section>
 
@@ -334,40 +347,6 @@ export function Results() {
               />
             )}
 
-            {!shared && link && (
-              <section aria-labelledby="share-link" className="flex flex-col gap-2">
-                <h2 id="share-link" className="label m-0">
-                  {t("share.linkTitle")}
-                </h2>
-                <p className="m-0 text-sm text-soft">{t("share.linkHint")}</p>
-                <div className="flex flex-wrap items-center gap-3">
-                  <input
-                    readOnly
-                    value={link}
-                    aria-label={t("share.linkLabel")}
-                    onFocus={(e) => e.currentTarget.select()}
-                    className="min-w-0 flex-1 rounded-lg border border-line bg-surface px-3 py-2 font-mono text-xs text-ink"
-                  />
-                  <button type="button" className="btn ghost" onClick={copyLink}>
-                    {t("share.copyLink")}
-                  </button>
-                </div>
-                <p className="m-0 text-xs text-soft">{t("share.linkPrivacy")}</p>
-              </section>
-            )}
-
-            <section aria-labelledby="share-description" className="flex flex-col gap-2">
-              <h2 id="share-description" className="label m-0">
-                {t("share.descriptionTitle")}
-              </h2>
-              <p className="m-0 text-xs text-soft">{t("share.descriptionHint")}</p>
-              <p className="card m-0 p-4 text-sm leading-relaxed">{data.description}</p>
-              <div>
-                <button type="button" className="btn ghost" onClick={copyDescription}>
-                  {t("share.copyDescription")}
-                </button>
-              </div>
-            </section>
           </>
         )}
         <Footer />

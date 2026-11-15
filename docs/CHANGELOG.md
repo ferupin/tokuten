@@ -26,6 +26,7 @@ Share to social networks. Sentai profile v1.
 ### Interface
 - Share this result sends a post to X, Bluesky, Threads, Reddit, Facebook, WhatsApp and Telegram. Pick one of five wordings (Curious, Direct, Challenge, Minimal or Formal), edit the text, and press the round button of a network. The post carries the message and the link to the result. Where a network lets people paste an image, the card is copied first and the app says so.
 - No network accepts an image through a link, so every wording invites the reader to open the result. On devices that can share files, Share from this device sends the image, the message and the link together. Nothing is sent until a button is pressed.
+- The share page is tidier: the three cards, the theme and the personal enjoyment switch live in one container with the preview and its buttons, and every copy button shows a check like the Markdown one. The link section and the description for screen readers are gone from view.
 - The messages on the share page and the Evaluation imported message fade in and out like the draft check, and a new message restarts the time.
 - Planned is a read-only checklist of how far the project has come. Inside each release, the points are bullets.
 

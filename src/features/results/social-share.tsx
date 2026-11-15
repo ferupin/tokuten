@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { siBluesky, siFacebook, siReddit, siTelegram, siThreads, siWhatsapp, siX, type SimpleIcon } from "simple-icons";
 import { MESSAGE_STYLES, buildMessage, type MessageStyle } from "@/core/share-message";
 import { NETWORKS, type Network, type NetworkId } from "@/core/share-networks";
+import { CopyButton } from "@/components/ui/copy-button";
 import { Segmented } from "@/components/ui/segmented";
 import { useI18n } from "@/i18n";
 
@@ -51,8 +52,10 @@ export function SocialShare({ title, score, link, style, onStyle, renderImage, c
     try {
       await navigator.clipboard.writeText(`${message} ${link}`);
       onStatus(t("share.messageCopied"));
+      return true;
     } catch {
       onStatus(t("share.copyFailed"));
+      return false;
     }
   };
 
@@ -83,77 +86,64 @@ export function SocialShare({ title, score, link, style, onStyle, renderImage, c
   };
 
   return (
-    <section aria-labelledby="share-social" className="card flex flex-col gap-3 p-5">
-      <h2 id="share-social" className="m-0 font-serif text-xl font-extrabold">
-        {t("share.socialTitle")}
-      </h2>
-      <p className="m-0 text-sm text-soft">{t("share.socialHint")}</p>
+    <section aria-labelledby="share-social" className="card flex flex-col gap-4 p-5" style={{ borderColor: "var(--line-strong)", borderWidth: 1.5, boxShadow: "var(--shadow-lifted)" }}>
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+        <h2 id="share-social" className="m-0 font-serif text-xl font-extrabold">
+          {t("share.socialTitle")}
+        </h2>
+        <Segmented
+          wrap
+          label={t("share.styleLabel")}
+          value={style}
+          options={MESSAGE_STYLES.map((s) => ({ value: s, label: t(`share.styles.${s}`) }))}
+          onChange={(s) => {
+            onStyle(s);
+            setTyped(null);
+          }}
+        />
+      </div>
 
-      <div className="flex max-w-full flex-col gap-1.5">
-        <span className="label">{t("share.styleLabel")}</span>
-        <div>
-          <Segmented
-            wrap
-            label={t("share.styleLabel")}
-            value={style}
-            options={MESSAGE_STYLES.map((s) => ({ value: s, label: t(`share.styles.${s}`) }))}
-            onChange={(s) => {
-              onStyle(s);
-              setTyped(null);
-            }}
-          />
+      <textarea
+        aria-label={t("share.messageLabel")}
+        value={message}
+        rows={3}
+        onChange={(e) => setTyped(e.target.value)}
+        className="w-full resize-y rounded-lg border border-line bg-surface px-3 py-2 text-sm leading-relaxed text-ink"
+      />
+
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          {canShareFile && (
+            <button type="button" className="btn" onClick={shareFromDevice}>
+              {t("share.device")}
+            </button>
+          )}
+          <CopyButton className={canShareFile ? "btn ghost" : "btn"} onCopy={copyMessage}>
+            {t("share.copyMessage")}
+          </CopyButton>
+        </div>
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+          {NETWORKS.map((n) => {
+            const name = t("share.shareOn", { network: n.name });
+            return (
+              <a
+                key={n.id}
+                href={n.url(message, link)}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={name}
+                title={name}
+                onClick={() => prepare(n)}
+                className="network inline-flex h-9 w-9 items-center sm:h-10 sm:w-10 justify-center rounded-full border border-line-strong bg-surface text-ink no-underline"
+              >
+                <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d={ICONS[n.id].path} />
+                </svg>
+              </a>
+            );
+          })}
         </div>
       </div>
-
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="share-message" className="label">
-          {t("share.messageLabel")}
-        </label>
-        <textarea
-          id="share-message"
-          value={message}
-          rows={3}
-          onChange={(e) => setTyped(e.target.value)}
-          className="w-full resize-y rounded-lg border border-line bg-surface px-3 py-2 text-sm leading-relaxed text-ink"
-        />
-        <p className="m-0 break-all font-mono text-xs text-soft">{link}</p>
-      </div>
-
-      <div className="flex flex-wrap items-center gap-3">
-        {canShareFile && (
-          <button type="button" className="btn" onClick={shareFromDevice}>
-            {t("share.device")}
-          </button>
-        )}
-        <button type="button" className={canShareFile ? "btn ghost" : "btn"} onClick={copyMessage}>
-          {t("share.copyMessage")}
-        </button>
-        {canShareFile && <span className="text-xs text-soft">{t("share.deviceHint")}</span>}
-      </div>
-
-      <div className="flex flex-wrap items-center gap-2 border-t border-dashed border-line pt-3">
-        <span className="label mr-2">{t("share.openIn")}</span>
-        {NETWORKS.map((n) => {
-          const name = t("share.shareOn", { network: n.name });
-          return (
-            <a
-              key={n.id}
-              href={n.url(message, link)}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={name}
-              title={name}
-              onClick={() => prepare(n)}
-              className="network inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-surface text-ink no-underline"
-            >
-              <svg aria-hidden width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path d={ICONS[n.id].path} />
-              </svg>
-            </a>
-          );
-        })}
-      </div>
-      <p className="m-0 text-xs text-soft">{t("share.networkNote")}</p>
     </section>
   );
 }
