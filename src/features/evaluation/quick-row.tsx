@@ -36,7 +36,7 @@ export function QuickRow({ index, profileId, category, pillar, result, store }: 
   const notesId = `quick-notes-${category.id}`;
 
   return (
-    <article className="card overflow-hidden px-4 py-4 sm:px-5" style={{ borderLeft: `4px solid ${na ? "var(--line-strong)" : tone}` }}>
+    <article data-category={category.id} tabIndex={-1} className="card overflow-hidden px-4 py-4 sm:px-5" style={{ borderLeft: `4px solid ${na ? "var(--line-strong)" : tone}` }}>
       <div className="flex items-center gap-4">
         <span className="font-serif text-2xl font-extrabold leading-none" style={{ color: tone }} aria-hidden>
           {numeral(index)}

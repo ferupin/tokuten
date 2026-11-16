@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { formatGrade, gradeBand } from "@/core/grades";
 import { useI18n } from "@/i18n";
 
@@ -19,11 +19,27 @@ interface GradeSliderProps {
   bare?: boolean;
 }
 
+/** Name of the event a shortcut sends to a slider, with the grade as its detail. */
+export const SET_GRADE_EVENT = "tokuten:set-grade";
+
 export function GradeSlider({ label, value, onChange, tone, disabled, min = 0, max = 10, step = 0.1, showHint, bare }: GradeSliderProps) {
   const { t } = useI18n();
   const shown = value ?? (min + max) / 2;
   const style = { "--tone": tone, "--pct": value === null ? "0%" : `${((shown - min) / (max - min)) * 100}%` } as CSSProperties;
   const band = value === null ? null : gradeBand(value);
+
+  // A keyboard shortcut sets the grade by sending this event, so it works the same
+  // for a slider that has no grade yet and rests at the middle of the scale.
+  const ref = useRef<HTMLInputElement>(null);
+  const latest = useRef(onChange);
+  latest.current = onChange;
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const listen = (e: Event) => latest.current((e as CustomEvent<number>).detail);
+    el.addEventListener(SET_GRADE_EVENT, listen);
+    return () => el.removeEventListener(SET_GRADE_EVENT, listen);
+  }, []);
 
   return (
     <div className={value === null ? "opacity-90" : ""}>
@@ -34,6 +50,7 @@ export function GradeSlider({ label, value, onChange, tone, disabled, min = 0, m
         </span>
       </div>
       <input
+        ref={ref}
         type="range"
         className="grade"
         aria-label={label}

@@ -62,6 +62,8 @@ A control that does something is a button. A control that stays on or off, or pi
 - **Saved check**: a small toast-style chip that hangs under the header for about two seconds to confirm a save, shown at most once every eight seconds. It overlays the page, so it never shifts the layout.
 - **Copy button**: every copy in the app answers the same way, with the icon turning into a check for two seconds and a short toast.
 - **Network button**: a round button with the network mark from Simple Icons, a tooltip and a screen reader label. It lights up in the accent color on hover and focus, and never moves.
+- **Key cap** (`.kbd`): the name of a key in text, in mono type with a thicker bottom edge.
+- **Shortcuts dialog**: a native modal `dialog`, so focus is trapped and Escape closes it. It holds the list and the switch that turns single key shortcuts off.
 - **Segmented control**: one choice among a few, such as the Markdown format. It is one piece with arrow key support.
 
 ## Accessibility
@@ -69,6 +71,7 @@ A control that does something is a button. A control that stays on or off, or pi
 - Text contrast follows WCAG AA in both themes. The category colors are used as text, so the light theme uses darker yellow and pink than the dark theme. A test checks the ratios.
 - Controls that are found by their outline alone (fields, slider tracks, switches) use the `--control` token, at least 3:1 against the page.
 - Focus follows the action: when a control disappears or a question opens, focus moves to the next sensible element, never to nothing.
+- Single key shortcuts only act when focus is not in a text field, never with a modifier key, and can be turned off (WCAG 2.1.4).
 - A group of choices that act as one (the segmented control, the card layouts) is a single Tab stop, with arrow keys inside.
 - Every control can be used from the keyboard and has a visible focus ring.
 - Sliders expose their value and band label to screen readers.

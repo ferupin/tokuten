@@ -71,9 +71,11 @@ export interface Preferences {
   cardTheme: "light" | "dark" | null;
   /** The wording chosen for a shared message. */
   shareStyle: "curious" | "direct" | "challenge" | "minimal" | "formal" | null;
+  /** Whether single key shortcuts are active on the evaluation page. On unless turned off. */
+  shortcuts: boolean;
 }
 
-export const defaultPreferences: Preferences = { draft: true, mode: null, format: null, cardLayout: null, cardTheme: null, shareStyle: null };
+export const defaultPreferences: Preferences = { draft: true, mode: null, format: null, cardLayout: null, cardTheme: null, shareStyle: null, shortcuts: true };
 
 const preferencesSchema = z.object({
   draft: z.boolean().catch(true),
@@ -82,6 +84,7 @@ const preferencesSchema = z.object({
   cardLayout: z.enum(["seal", "ledger", "poster"]).nullable().catch(null),
   cardTheme: z.enum(["light", "dark"]).nullable().catch(null),
   shareStyle: z.enum(["curious", "direct", "challenge", "minimal", "formal"]).nullable().catch(null),
+  shortcuts: z.boolean().catch(true),
 });
 
 export function parsePreferences(text: string | null): Preferences {

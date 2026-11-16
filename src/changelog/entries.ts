@@ -41,6 +41,47 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "1.1.0",
+    date: "2026-11-16",
+    sentaiProfileVersion: 1,
+    title: { en: "Keyboard shortcuts", "pt-BR": "Atalhos de teclado", es: "Atajos de teclado" },
+    summary: {
+      en: "A season can be graded without the pointer: move between categories, type a grade and mark a category not applicable.",
+      "pt-BR": "Uma temporada pode ser avaliada sem o mouse: mover entre categorias, digitar uma nota e marcar uma categoria como não aplicável.",
+      es: "Una temporada puede calificarse sin el puntero: moverse entre categorías, escribir una nota y marcar una categoría como no aplicable.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "J and K move to the next and the previous category, and the focus lands on its slider. Typing a digit sets the grade of the focused category in Quick mode, or of the focused slider in Detailed mode. Type 7.5 for a decimal, and 1 then 0 for 10. N marks the focused category not applicable, or restores it, and says so in a short message.",
+            "pt-BR":
+              "J e K vão para a próxima e para a categoria anterior, e o foco chega ao controle deslizante dela. Digitar um algarismo define a nota da categoria em foco no modo Rápido, ou do controle em foco no modo Detalhado. Digite 7.5 para um decimal, e 1 e depois 0 para 10. N marca a categoria em foco como não aplicável, ou a restaura, e avisa com uma mensagem curta.",
+            es: "J y K van a la categoría siguiente y a la anterior, y el foco llega a su deslizador. Escribir un dígito fija la nota de la categoría enfocada en el modo Rápido, o del deslizador enfocado en el modo Detallado. Escribe 7.5 para un decimal, y 1 y luego 0 para 10. N marca la categoría enfocada como no aplicable, o la restaura, y lo avisa con un mensaje breve.",
+          },
+          {
+            en: "The question mark key, or the Keyboard shortcuts button, opens the list. The list also holds the switch that turns single key shortcuts off. The shortcuts never act while you type in a field, and never with Ctrl, Alt or Cmd held.",
+            "pt-BR":
+              "A tecla de interrogação, ou o botão Atalhos de teclado, abre a lista. A lista também tem o interruptor que desliga os atalhos de uma tecla. Os atalhos nunca agem enquanto você digita em um campo, nem com Ctrl, Alt ou Cmd pressionados.",
+            es: "La tecla de interrogación, o el botón Atajos de teclado, abre la lista. La lista también incluye el interruptor que desactiva los atajos de una tecla. Los atajos nunca actúan mientras escribes en un campo, ni con Ctrl, Alt o Cmd pulsados.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "The rules that turn typed keys into a grade are covered by tests, and the choice to turn shortcuts off is remembered in this browser.",
+            "pt-BR":
+              "As regras que transformam as teclas digitadas em nota têm testes, e a escolha de desligar os atalhos fica guardada neste navegador.",
+            es: "Las reglas que convierten las teclas escritas en una nota tienen pruebas, y la elección de desactivar los atajos se recuerda en este navegador.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.0.1",
     date: "2026-11-15",
     sentaiProfileVersion: 1,
@@ -1994,7 +2035,7 @@ export const planned: PlannedStep[] = [
     },
   },
   {
-    done: false,
+    done: true,
     text: {
       en: "Keyboard shortcuts for grading and marking not applicable.",
       "pt-BR": "Atalhos de teclado para avaliar e marcar como não aplicável.",

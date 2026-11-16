@@ -19,6 +19,17 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 1.1.0 (2026-11-16)
+
+Keyboard shortcuts. Sentai profile v1.
+
+### Interface
+- J and K move to the next and the previous category, and the focus lands on its slider. Typing a digit sets the grade of the focused category in Quick mode, or of the focused slider in Detailed mode. Type 7.5 for a decimal, and 1 then 0 for 10. N marks the focused category not applicable, or restores it, and says so in a short message.
+- The question mark key, or the Keyboard shortcuts button, opens the list. The list also holds the switch that turns single key shortcuts off. The shortcuts never act while you type in a field, and never with Ctrl, Alt or Cmd held.
+
+### Quality
+- The rules that turn typed keys into a grade are covered by tests, and the choice to turn shortcuts off is remembered in this browser.
+
 ## 1.0.1 (2026-11-15)
 
 Accessibility pass. Sentai profile v1.

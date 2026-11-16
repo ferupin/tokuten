@@ -33,7 +33,7 @@ export function CategoryCard({ index, profileId, category, pillar, result, store
   const bodyId = `body-${category.id}`;
 
   return (
-    <article className="card overflow-hidden" style={{ borderLeft: `4px solid ${na ? "var(--line-strong)" : tone}` }}>
+    <article data-category={category.id} tabIndex={-1} className="card overflow-hidden" style={{ borderLeft: `4px solid ${na ? "var(--line-strong)" : tone}` }}>
       <h3 className="m-0">
         <button
           type="button"

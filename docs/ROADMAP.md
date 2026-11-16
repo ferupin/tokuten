@@ -6,7 +6,7 @@ Each item has a rough size: small is a few hours, medium is a few days, large is
 
 ## Next
 
-- **Keyboard shortcuts.** Grade and mark not applicable without the pointer. Size: small to medium.
+- **Sensitivity view.** How much each category moves the final score, to show where a grade matters most. Size: medium. It starts with a short decision record.
 
 ## Version 1.0
 
@@ -18,10 +18,6 @@ What made it possible, for the record:
 2. A JSON format that old files keep opening with (0.11.0).
 3. Sharing delivered, as an image (0.9.1), a link (0.10.0) and a post to the main networks (0.14.0).
 4. English, Portuguese and Spanish complete, and kept complete by tests (0.8.0).
-
-## Method
-
-- **Sensitivity view.** How much each category moves the final score, to show where a grade matters most. Size: medium.
 
 ## Profiles
 
@@ -35,7 +31,7 @@ Open to the community, now that a language is one file and one line ([ADR 0011](
 ## Interface
 
 - **Compare seasons.** Two or more seasons side by side, from imported JSON files. Size: large.
-- **Keyboard shortcuts.** Grade and mark not applicable without the mouse. Size: small to medium. Help welcome.
+
 ## Not planned
 
 - Accounts, a database or any server logic. The app stays a static site, and a draft or a JSON file is how work is kept.

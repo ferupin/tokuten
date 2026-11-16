@@ -17,6 +17,7 @@ import { CategoryCard } from "./category-card";
 import { ModeSwitch } from "./mode-switch";
 import { DraftBanner, DraftSavedChip, DraftStatus, useDraft } from "./draft";
 import { QuickRow } from "./quick-row";
+import { ShortcutsButton, ShortcutsDialog, useShortcuts } from "./shortcuts";
 import { useEvaluationStore } from "./use-store";
 
 export function Evaluator() {
@@ -45,6 +46,7 @@ export function Evaluator() {
     ];
   };
   useEffect(() => () => toastTimers.current.forEach(window.clearTimeout), []);
+  const shortcuts = useShortcuts(notify);
   const toggle = (id: string) =>
     setOpenIds((prev) => {
       const next = new Set(prev);
@@ -122,6 +124,7 @@ export function Evaluator() {
             </div>
             <div className="no-print flex flex-wrap items-center gap-3">
               <ModeSwitch mode={evaluation.mode} onChange={setMode} />
+              <ShortcutsButton controller={shortcuts} />
               {evaluation.mode === "detailed" && (
                 <button
                   type="button"
@@ -197,6 +200,7 @@ export function Evaluator() {
         <Footer />
       </main>
 
+      <ShortcutsDialog controller={shortcuts} />
       <BackToTop />
 
       <div role="status" aria-live="polite" className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center no-print">

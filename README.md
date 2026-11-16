@@ -28,7 +28,7 @@ Tokuten applies **Kijun 基準**, a method with ten weighted categories, clear c
 - [ ] Compare seasons side by side
 - [ ] Sensitivity view
 - [x] Accessibility pass (1.0.1)
-- [ ] Keyboard shortcuts
+- [x] Keyboard shortcuts (1.1.0)
 
 Details and sizes are in the [roadmap](docs/ROADMAP.md).
 
