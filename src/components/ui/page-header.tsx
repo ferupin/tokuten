@@ -13,7 +13,7 @@ export function PageHeader({ width = "max-w-3xl" }: { width?: string }) {
     <header className="sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur">
       <div className={`mx-auto flex ${width} items-center gap-3 px-4 py-3`}>
         <Link href="/" className="flex min-w-0 flex-1 items-center gap-3 text-ink no-underline" aria-label={t("ui.backToApp")}>
-          <Hanko size={40}>点</Hanko>
+          <Hanko size={32} className="mt-[2px] self-start">点</Hanko>
           <span className="font-display text-lg tracking-wide">TOKUTEN</span>
         </Link>
         <LanguageSwitch />

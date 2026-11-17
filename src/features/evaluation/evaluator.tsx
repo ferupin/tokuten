@@ -63,9 +63,9 @@ export function Evaluator() {
 
       <header className="no-print sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-2 gap-y-2 px-4 py-3 sm:gap-x-3">
-          <Hanko size={40} title={t("app.kanji")} className="self-start mt-0.5">点</Hanko>
+          <Hanko size={40} title={t("app.kanji")} className="mt-[3px] self-start">点</Hanko>
           <span className="flex-1 min-[430px]:hidden" aria-hidden />
-          <div className="hidden min-w-0 flex-1 leading-tight min-[430px]:block">
+          <div className="relative -top-[2px] hidden min-w-0 flex-1 leading-tight min-[430px]:block">
             <p className="m-0 font-display text-lg tracking-wide">TOKUTEN</p>
             <p className="label m-0 truncate">
               {t("app.kanji")} · {t("app.method")} {t("app.methodKanji")}
