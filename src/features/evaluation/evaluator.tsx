@@ -13,6 +13,7 @@ import { ActionsBar } from "@/features/result/actions-bar";
 import { ChecklistCard } from "@/features/result/checklist-card";
 import { EnjoymentCard } from "@/features/result/enjoyment-card";
 import { ResultPanel } from "@/features/result/result-panel";
+import { SensitivityPanel } from "@/features/result/sensitivity-panel";
 import { CategoryCard } from "./category-card";
 import { ModeSwitch } from "./mode-switch";
 import { DraftBanner, DraftSavedChip, DraftStatus, useDraft } from "./draft";
@@ -180,6 +181,7 @@ export function Evaluator() {
         </section>
 
         <ResultPanel profile={profile} result={result} mode={evaluation.mode} title={evaluation.title} />
+        <SensitivityPanel profile={profile} result={result} />
         <EnjoymentCard />
 
         <section className="card grid gap-2 p-5 sm:p-6">

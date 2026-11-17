@@ -19,6 +19,22 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 1.2.0 (2026-11-17)
+
+Sensitivity view. Sentai profile v1.
+
+### Method
+- For each graded category, how much the score moves for one point of grade, with the heaviest first and the room each one still has to rise. It is the weight made visible, exact and without simulation. Categories marked not applicable are left out, and their weight is shared by the others.
+
+### Interface
+- The section stays closed until you open it. With four or more graded categories it also states how much of the score the three heaviest hold. It never changes the score, the exports or the share card.
+
+### Docs
+- A decision record explains why the view describes the method and does not suggest grades (ADR 0013).
+
+### Quality
+- Nine tests check the figures, including that they match the real change of the score when a grade moves by one point.
+
 ## 1.1.0 (2026-11-16)
 
 Keyboard shortcuts. Sentai profile v1.

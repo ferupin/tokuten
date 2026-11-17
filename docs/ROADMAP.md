@@ -6,7 +6,7 @@ Each item has a rough size: small is a few hours, medium is a few days, large is
 
 ## Next
 
-- **Sensitivity view.** How much each category moves the final score, to show where a grade matters most. Size: medium. It starts with a short decision record.
+- **Kamen Rider profile.** The categories and weights need a discussion before any code. See Profiles below.
 
 ## Version 1.0
 

@@ -41,6 +41,61 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "1.2.0",
+    date: "2026-11-17",
+    sentaiProfileVersion: 1,
+    title: { en: "Sensitivity view", "pt-BR": "Visão de sensibilidade", es: "Vista de sensibilidad" },
+    summary: {
+      en: "A closed section under the result shows where a grade matters most, without changing the score.",
+      "pt-BR": "Uma seção fechada abaixo do resultado mostra onde uma nota mais pesa, sem alterar o score.",
+      es: "Una sección cerrada bajo el resultado muestra dónde pesa más una nota, sin cambiar la puntuación.",
+    },
+    groups: [
+      {
+        area: "method",
+        items: [
+          {
+            en: "For each graded category, how much the score moves for one point of grade, with the heaviest first and the room each one still has to rise. It is the weight made visible, exact and without simulation. Categories marked not applicable are left out, and their weight is shared by the others.",
+            "pt-BR":
+              "Para cada categoria avaliada, quanto o score se move por um ponto de nota, com a mais pesada primeiro e a folga que cada uma ainda tem para subir. É o peso tornado visível, exato e sem simulação. Categorias marcadas como não aplicáveis ficam de fora, e o peso delas é dividido entre as outras.",
+            es: "Para cada categoría calificada, cuánto se mueve la puntuación por un punto de nota, con la más pesada primero y el margen que aún tiene para subir. Es el peso hecho visible, exacto y sin simulación. Las categorías marcadas como no aplicables quedan fuera y su peso se reparte entre las demás.",
+          },
+        ],
+      },
+      {
+        area: "interface",
+        items: [
+          {
+            en: "The section stays closed until you open it. With four or more graded categories it also states how much of the score the three heaviest hold. It never changes the score, the exports or the share card.",
+            "pt-BR":
+              "A seção fica fechada até você abri-la. Com quatro ou mais categorias avaliadas, ela também informa quanto do score as três mais pesadas concentram. Nunca altera o score, as exportações nem o cartão de compartilhamento.",
+            es: "La sección permanece cerrada hasta que la abras. Con cuatro o más categorías calificadas, también indica cuánto de la puntuación concentran las tres más pesadas. Nunca cambia la puntuación, las exportaciones ni la tarjeta de compartir.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "A decision record explains why the view describes the method and does not suggest grades (ADR 0013).",
+            "pt-BR": "Um registro de decisão explica por que a visão descreve o método e não sugere notas (ADR 0013).",
+            es: "Un registro de decisión explica por qué la vista describe el método y no sugiere notas (ADR 0013).",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "Nine tests check the figures, including that they match the real change of the score when a grade moves by one point.",
+            "pt-BR": "Nove testes verificam os valores, inclusive que eles coincidem com a mudança real do score quando uma nota sobe um ponto.",
+            es: "Nueve pruebas verifican las cifras, incluido que coinciden con el cambio real de la puntuación cuando una nota sube un punto.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.1.0",
     date: "2026-11-16",
     sentaiProfileVersion: 1,
@@ -2059,7 +2114,7 @@ export const planned: PlannedStep[] = [
     },
   },
   {
-    done: false,
+    done: true,
     text: {
       en: "Sensitivity view: how much each category moves the final score.",
       "pt-BR": "Visão de sensibilidade: o quanto cada categoria move a nota final.",
