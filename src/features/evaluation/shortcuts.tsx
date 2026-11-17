@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { SET_GRADE_EVENT } from "@/components/ui/grade-slider";
+import { Modal } from "@/components/ui/modal";
 import { Switch } from "@/components/ui/switch";
 import { applyGradeKey, GRADE_BUFFER_MS } from "@/core/shortcuts";
 import { useI18n } from "@/i18n";
@@ -24,6 +25,66 @@ const enabledSliders = (root: ParentNode) =>
 /** Where focus goes for a category: its first slider, else its header button, else the card. */
 function focusTarget(article: HTMLElement): HTMLElement {
   return enabledSliders(article)[0] ?? article.querySelector<HTMLElement>("h3 button") ?? article;
+}
+
+const SUB_SLIDERS = "[data-subcriteria] input[type=\"range\"]:not(:disabled)";
+
+/** Opens or closes a category card through its own header button, the way a click would. */
+function setCardOpen(article: HTMLElement, open: boolean) {
+  const button = article.querySelector<HTMLButtonElement>("h3 button[aria-expanded]");
+  if (button && button.getAttribute("aria-expanded") !== String(open)) button.click();
+}
+
+/** Calls `run` once React has drawn the card that was just opened or closed. */
+function afterDraw(run: () => void) {
+  window.requestAnimationFrame(() => window.requestAnimationFrame(run));
+}
+
+/**
+ * Moves through the subcriteria sliders of the Detailed mode, one after the other.
+ * The grade of a whole category is a manual choice outside this walk. Entering a
+ * category opens its card, and leaving it closes the card, so only one stays open.
+ * Categories that are not applicable, or with no subcriterion left, are skipped.
+ */
+function walkSubcriteria(direction: 1 | -1, active: Element | null) {
+  const store = useEvaluationStore.getState();
+  const articles = Array.from(document.querySelectorAll<HTMLElement>("[data-category]"));
+  const walkable = (article: HTMLElement) => {
+    const entry = store.evaluation.categories[article.dataset.category!];
+    return Boolean(entry?.applicable) && Object.values(entry.subcriteria).some((sub) => sub.applicable);
+  };
+
+  const current = active?.closest<HTMLElement>("[data-category]") ?? null;
+  const from = current ? articles.indexOf(current) : direction === 1 ? -1 : articles.length;
+  const sliderIn = (article: HTMLElement) => Array.from(article.querySelectorAll<HTMLInputElement>(SUB_SLIDERS));
+
+  // Inside a card that is open, with the focus on one of its subcriteria sliders.
+  if (current && active instanceof HTMLInputElement && active.closest("[data-subcriteria]")) {
+    const sliders = sliderIn(current);
+    const next = sliders[sliders.indexOf(active) + direction];
+    if (next) return reveal(next);
+  }
+
+  // From a card with the focus elsewhere, "forward" enters that same card.
+  const enterSame = current !== null && direction === 1 && !(active instanceof HTMLInputElement && active.closest("[data-subcriteria]"));
+  let target = enterSame ? from : from + direction;
+  while (target >= 0 && target < articles.length && !walkable(articles[target])) target += direction;
+  if (target < 0 || target >= articles.length) return;
+
+  const destination = articles[target];
+  if (current && destination !== current) setCardOpen(current, false);
+  setCardOpen(destination, true);
+  afterDraw(() => {
+    const sliders = sliderIn(destination);
+    const slider = direction === 1 ? sliders[0] : sliders[sliders.length - 1];
+    if (slider) reveal(slider);
+  });
+}
+
+function reveal(el: HTMLElement) {
+  el.focus({ preventScroll: true });
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({ block: "center", behavior: calm ? "auto" : "smooth" });
 }
 
 export interface ShortcutsController {
@@ -69,13 +130,14 @@ export function useShortcuts(notify: (message: string) => void): ShortcutsContro
       if (key === "j" || key === "k") {
         if (!articles.length) return;
         e.preventDefault();
+        if (useEvaluationStore.getState().evaluation.mode === "detailed") {
+          walkSubcriteria(key === "j" ? 1 : -1, active);
+          return;
+        }
         const at = current ? articles.indexOf(current) : -1;
         const step = key === "j" ? 1 : -1;
         const next = at === -1 ? 0 : Math.min(articles.length - 1, Math.max(0, at + step));
-        const target = focusTarget(articles[next]);
-        target.focus({ preventScroll: true });
-        const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        target.scrollIntoView({ block: "center", behavior: calm ? "auto" : "smooth" });
+        reveal(focusTarget(articles[next]));
         return;
       }
 
@@ -148,18 +210,10 @@ export function ShortcutsButton({ controller }: { controller: ShortcutsControlle
   );
 }
 
-/** The list of shortcuts, in a native modal dialog. It traps focus and closes with Escape. */
+/** The list of shortcuts, in a modal window. */
 export function ShortcutsDialog({ controller }: { controller: ShortcutsController }) {
   const { t } = useI18n();
-  const ref = useRef<HTMLDialogElement>(null);
   const { open, setOpen } = controller;
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (open && !el.open) el.showModal();
-    if (!open && el.open) el.close();
-  }, [open]);
 
   const rows: { keys: React.ReactNode; text: string }[] = [
     { keys: <><Kbd>J</Kbd> <Kbd>K</Kbd></>, text: `${t("shortcuts.next")} / ${t("shortcuts.previous")}` },
@@ -170,15 +224,7 @@ export function ShortcutsDialog({ controller }: { controller: ShortcutsControlle
   ];
 
   return (
-    <dialog
-      ref={ref}
-      className="shortcuts-dialog card"
-      aria-labelledby="shortcuts-title"
-      onClose={() => setOpen(false)}
-      onClick={(e) => {
-        if (e.target === ref.current) setOpen(false);
-      }}
-    >
+    <Modal open={open} onClose={() => setOpen(false)} labelledBy="shortcuts-title">
       <div className="grid gap-4 p-5 sm:p-6">
         <h2 id="shortcuts-title" className="m-0 font-serif text-xl font-extrabold">
           {t("shortcuts.title")}
@@ -192,6 +238,7 @@ export function ShortcutsDialog({ controller }: { controller: ShortcutsControlle
             </div>
           ))}
         </dl>
+        <p className="m-0 text-xs text-soft">{t("shortcuts.detailedWalk")}</p>
         <p className="m-0 text-xs text-soft">{t("shortcuts.sliderKeys")}</p>
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
           <Switch checked={controller.enabled} onChange={controller.setEnabled} label={t("shortcuts.enable")} />
@@ -200,6 +247,6 @@ export function ShortcutsDialog({ controller }: { controller: ShortcutsControlle
           </button>
         </div>
       </div>
-    </dialog>
+    </Modal>
   );
 }

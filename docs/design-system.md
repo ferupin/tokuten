@@ -63,7 +63,8 @@ A control that does something is a button. A control that stays on or off, or pi
 - **Copy button**: every copy in the app answers the same way, with the icon turning into a check for two seconds and a short toast.
 - **Network button**: a round button with the network mark from Simple Icons, a tooltip and a screen reader label. It lights up in the accent color on hover and focus, and never moves.
 - **Key cap** (`.kbd`): the name of a key in text, in mono type with a thicker bottom edge.
-- **Shortcuts dialog**: a native modal `dialog`, so focus is trapped and Escape closes it. It holds the list and the switch that turns single key shortcuts off.
+- **Modal** (`Modal`): a native `dialog`, so focus is trapped and Escape closes it. A click on the backdrop closes it too. The shortcuts list and the sensitivity view use it.
+- **Help dot** (`.help-dot`): a 24px round "?" beside a label, for explanation that few people need. It opens a modal.
 - **Segmented control**: one choice among a few, such as the Markdown format. It is one piece with arrow key support.
 
 ## Accessibility

@@ -26,7 +26,7 @@ export function createEvaluation(profile: Profile): Evaluation {
   return {
     profileId: profile.id,
     profileVersion: profile.version,
-    mode: "detailed",
+    mode: "quick",
     title: "",
     introduction: "",
     conclusion: "",

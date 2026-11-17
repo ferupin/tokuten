@@ -43,9 +43,9 @@ export function Footer() {
           href={repo.support}
           target="_blank"
           rel="noopener noreferrer"
-          className="support inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1 text-xs text-soft no-underline"
+          className="support inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-xs leading-none text-soft no-underline"
         >
-          <svg aria-hidden width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg aria-hidden width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="support-heart">
             <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" />
           </svg>
           {t("ui.support")}

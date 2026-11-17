@@ -69,8 +69,7 @@ export const en = {
   sensitivity: {
     label: "Sensitivity · 感度",
     title: "Where a grade matters most",
-    show: "Show",
-    hide: "Hide",
+    close: "Close",
     intro: "Each bar shows how much the score moves for one point of grade. It describes the method and does not suggest a grade.",
     unit: "score points per grade point",
     upTo: "up to +{value}",
@@ -135,6 +134,7 @@ export const en = {
     previous: "Go to the previous category",
     grade: "Set the grade of the focused category or slider. Type 7.5 for a decimal and 10 as 1 then 0.",
     notApplicable: "Mark the focused category not applicable, or restore it",
+    detailedWalk: "In Detailed mode, J and K go through the subcriteria sliders only. A category opens when you enter it and closes when you leave it. The grade of a whole category stays manual.",
     sliderKeys: "On a slider: arrows move by 0.1, Page Up and Page Down by 1, Home and End to 0 and 10",
     help: "Open this list",
     dismiss: "Close this list",

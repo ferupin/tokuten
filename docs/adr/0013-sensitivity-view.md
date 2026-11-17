@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted, version 1.2.0.
+Accepted, version 1.2.0. Amended in 1.2.1: the closed section became a window opened by a question mark.
 
 ## Context
 
@@ -12,13 +12,13 @@ The risk is in how it reads. A list of "what moves the score most" can be taken 
 
 ## Decision
 
-A closed section under the result, opened only by whoever wants it. Each graded category shows how much the shown score moves for one point of grade, as a bar and a number, with the heaviest first.
+A small question mark beside the calculation, which opens a window for whoever wants it. Each graded category shows how much the shown score moves for one point of grade, as a bar and a number, with the heaviest first.
 
 - **It is the weight made visible.** The score is a weighted average of the graded categories, so one more point in a category moves it by that category's share of the graded weight. The figure is exact and needs no simulation. It does not depend on the grades, only on which categories count, and a test checks it against the real change of the score.
 - **It follows the score that is shown.** While some categories are still ungraded, the figures are relative to the graded ones, and the section says so. Ungraded categories are listed as such and have no figure, because grading them would change everyone else's share.
 - **Not applicable categories are left out.** Their weight is shared by the others, so the figures of the others rise. The section says so when it happens.
 - **The room to rise is shown.** For each category, how much it could still add if it went to 10. It is a plain consequence of the weight. The section states, in its own text, that it describes the method and does not suggest a grade.
-- **Closed by default.** The result page already holds a lot, and this is a second reading for those who ask for it. It is a native `details` element, so it works from the keyboard and with screen readers without extra code.
+- **A window, opened on request.** The result page already holds a lot, and this is a second reading that few people need: it matters most to whoever works in Detailed mode and cares about the weights. In 1.2.0 it was a closed section under the result. In 1.2.1 it became a small question mark beside the calculation that opens a modal window, the same kind the shortcuts list uses (a native `dialog`, so focus is kept inside and Escape closes it). The page no longer carries a card that most people never open.
 - **A top three share appears with four or more graded categories.** With fewer, the share says nothing.
 - **It never reaches the score, the exports or the share card.** It is a view, and the file format is not touched.
 
@@ -33,3 +33,4 @@ A closed section under the result, opened only by whoever wants it. Each graded 
 - **A column in the breakdown table.** Rejected: the table is already dense, and the figure would be read as a result.
 - **A scenario simulator, where grades can be changed to see the score.** Rejected: it invites tuning, and it is a different tool.
 - **A page of its own.** Rejected: it hides the view from the result it explains.
+- **A closed section under the result (the 1.2.0 version).** Replaced: even closed, it took a card of room in a page that is already long.

@@ -23,8 +23,9 @@ export interface DraftController {
 }
 
 /**
- * Keeps a draft of the evaluation in this browser, and remembers the grading
- * mode. The draft never leaves the device. A stored draft is offered back with
+ * Keeps a draft of the evaluation in this browser. The draft carries the grading
+ * mode, so a restored draft comes back in the mode it was in, and a fresh page
+ * always starts in Quick mode. The draft never leaves the device. A stored draft is offered back with
  * a prompt instead of replacing what is on screen, and nothing is written until
  * that choice is made, so the offer cannot be overwritten by a blank page.
  */
@@ -32,7 +33,6 @@ export function useDraft(): DraftController {
   const profile = useEvaluationStore((s) => s.profile);
   const evaluation = useEvaluationStore((s) => s.evaluation);
   const load = useEvaluationStore((s) => s.load);
-  const setMode = useEvaluationStore((s) => s.setMode);
 
   const [ready, setReady] = useState(false);
   const [enabled, setEnabledState] = useState(true);
@@ -50,11 +50,9 @@ export function useDraft(): DraftController {
     const found = prefs.draft && !inMemory ? readDraft(profile) : { ok: false as const };
     if (found.ok && !isBlank(profile, found.evaluation)) {
       setPending({ evaluation: found.evaluation, savedAt: found.savedAt });
-    } else if (!inMemory && prefs.mode) {
-      setMode(prefs.mode);
     }
     setReady(true);
-  }, [profile, setMode]);
+  }, [profile]);
 
   const active = ready && !pending;
 
@@ -71,10 +69,6 @@ export function useDraft(): DraftController {
     // Once more after the next frame, for anything that settles late.
     window.requestAnimationFrame(() => applyAnchor(kept));
   }, [pending]);
-
-  useEffect(() => {
-    if (active) writePreferences({ mode: evaluation.mode });
-  }, [active, evaluation.mode]);
 
   const latest = useRef(evaluation);
   latest.current = evaluation;
@@ -139,8 +133,6 @@ export function useDraft(): DraftController {
       anchor.current = captureAnchor();
       clearDraft();
       setPending(null);
-      const mode = readPreferences().mode;
-      if (mode) setMode(mode);
     },
     remove: () => {
       clearDraft();

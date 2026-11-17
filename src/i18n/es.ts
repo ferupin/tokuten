@@ -65,8 +65,7 @@ export const es: Messages = {
   sensitivity: {
     label: "Sensibilidad · 感度",
     title: "Dónde pesa más una nota",
-    show: "Mostrar",
-    hide: "Ocultar",
+    close: "Cerrar",
     intro: "Cada barra muestra cuánto se mueve la puntuación por cada punto de nota. Describe el método y no sugiere una nota.",
     unit: "puntos de puntuación por punto de nota",
     upTo: "hasta +{value}",
@@ -131,6 +130,7 @@ export const es: Messages = {
     previous: "Ir a la categoría anterior",
     grade: "Fijar la nota de la categoría o del control enfocado. Escribe 7.5 para un decimal y 10 como 1 y luego 0.",
     notApplicable: "Marcar la categoría enfocada como no aplicable, o restaurarla",
+    detailedWalk: "En el modo Detallado, J y K recorren solo los deslizadores de las subcategorías. La categoría se abre al entrar y se cierra al salir. La nota de la categoría entera sigue siendo manual.",
     sliderKeys: "En un deslizador: las flechas mueven 0,1, Re Pág y Av Pág mueven 1, Inicio y Fin llevan a 0 y 10",
     help: "Abrir esta lista",
     dismiss: "Cerrar esta lista",

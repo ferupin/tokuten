@@ -95,11 +95,11 @@ export function CategoryCard({ index, profileId, category, pillar, result, store
               <div>
                 <h4 className="m-0 text-sm font-bold">{t("evaluation.subcriteriaTitle")}</h4>
                 <p className="mb-3 mt-0.5 text-xs text-soft">{t("evaluation.subcriteriaHint")}</p>
-                <ul className="m-0 grid list-none gap-3 p-0">
+                <ul data-subcriteria className="m-0 grid list-none gap-3 p-0">
                   {category.subcriteria.map((id) => {
                     const sub = entry.subcriteria[id];
                     return (
-                      <li key={id} className="grid grid-cols-[1fr_auto] items-center gap-3">
+                      <li key={id} data-sub={id} className="grid grid-cols-[1fr_auto] items-center gap-3">
                         <GradeSlider
                           label={t(`${base}.subcriteria.${id}`)}
                           value={sub.value}

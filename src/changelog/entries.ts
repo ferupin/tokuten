@@ -41,6 +41,52 @@ export interface Release {
 
 export const releases: Release[] = [
   {
+    version: "1.2.1",
+    date: "2026-11-17",
+    sentaiProfileVersion: 1,
+    title: { en: "Quick start and a calmer sensitivity view", "pt-BR": "Início Rápido e uma sensibilidade mais discreta", es: "Inicio rápido y una sensibilidad más discreta" },
+    summary: {
+      en: "The page starts in Quick mode, the shortcuts walk the Detailed mode properly, and the sensitivity view moved behind a small question mark.",
+      "pt-BR": "A página começa no modo Rápido, os atalhos percorrem o modo Detalhado do jeito certo e a visão de sensibilidade foi para trás de uma pequena interrogação.",
+      es: "La página empieza en modo Rápido, los atajos recorren bien el modo Detallado y la vista de sensibilidad pasó detrás de un pequeño signo de interrogación.",
+    },
+    groups: [
+      {
+        area: "interface",
+        items: [
+          {
+            en: "A new page starts in Quick mode. A draft that is restored comes back in the mode it was saved in, so a person who works in Detailed mode finds it again.",
+            "pt-BR":
+              "Uma página nova começa no modo Rápido. Um rascunho restaurado volta no modo em que foi salvo, então quem trabalha no modo Detalhado o encontra de novo.",
+            es: "Una página nueva empieza en modo Rápido. Un borrador restaurado vuelve en el modo en que se guardó, así que quien trabaja en modo Detallado lo encuentra otra vez.",
+          },
+          {
+            en: "In Detailed mode, J and K walk through the subcriteria sliders only. Entering a category opens its card and leaving it closes the card, so one card is open at a time. Categories and subcriteria marked not applicable are skipped. The grade of a whole category stays a manual choice.",
+            "pt-BR":
+              "No modo Detalhado, J e K percorrem apenas os controles das subcategorias. Entrar numa categoria abre o cartão dela e sair a fecha, então só um cartão fica aberto por vez. Categorias e subcategorias marcadas como não aplicáveis são puladas. A nota da categoria inteira continua uma escolha manual.",
+            es: "En el modo Detallado, J y K recorren solo los deslizadores de las subcategorías. Entrar en una categoría abre su tarjeta y salir la cierra, así que solo una tarjeta queda abierta a la vez. Las categorías y subcategorías marcadas como no aplicables se omiten. La nota de la categoría entera sigue siendo una elección manual.",
+          },
+          {
+            en: "The sensitivity view is now a small question mark beside Calculation that opens a window, for whoever wants it. It no longer takes room in the page.",
+            "pt-BR":
+              "A visão de sensibilidade agora é uma pequena interrogação ao lado de Cálculo que abre uma janela, para quem quiser. Ela não ocupa mais espaço na página.",
+            es: "La vista de sensibilidad ahora es un pequeño signo de interrogación junto a Cálculo que abre una ventana, para quien la quiera. Ya no ocupa espacio en la página.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "ADR 0013 records why the sensitivity view moved from a section to a window.",
+            "pt-BR": "O ADR 0013 registra por que a visão de sensibilidade passou de uma seção para uma janela.",
+            es: "El ADR 0013 registra por qué la vista de sensibilidad pasó de una sección a una ventana.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     version: "1.2.0",
     date: "2026-11-17",
     sentaiProfileVersion: 1,

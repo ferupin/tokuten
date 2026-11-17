@@ -8,7 +8,7 @@ const t = (key: string, values?: Record<string, string | number>) =>
   values ? `${key}(${Object.entries(values).map(([k, v]) => `${k}=${v}`).join(",")})` : key;
 
 function build(setup?: (e: ReturnType<typeof createEvaluation>) => void, date?: string) {
-  const evaluation = createEvaluation(sentaiProfile);
+  const evaluation = { ...createEvaluation(sentaiProfile), mode: "detailed" as const };
   evaluation.title = 'Season "One": test';
   evaluation.introduction = "Intro.";
   evaluation.conclusion = "Done.";

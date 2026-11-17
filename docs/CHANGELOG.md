@@ -19,6 +19,18 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
 
+## 1.2.1 (2026-11-17)
+
+Quick start and a calmer sensitivity view. Sentai profile v1.
+
+### Interface
+- A new page starts in Quick mode. A draft that is restored comes back in the mode it was saved in, so a person who works in Detailed mode finds it again.
+- In Detailed mode, J and K walk through the subcriteria sliders only. Entering a category opens its card and leaving it closes the card, so one card is open at a time. Categories and subcriteria marked not applicable are skipped. The grade of a whole category stays a manual choice.
+- The sensitivity view is now a small question mark beside Calculation that opens a window, for whoever wants it. It no longer takes room in the page.
+
+### Docs
+- ADR 0013 records why the sensitivity view moved from a section to a window.
+
 ## 1.2.0 (2026-11-17)
 
 Sensitivity view. Sentai profile v1.

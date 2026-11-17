@@ -4,6 +4,7 @@ import Link from "next/link";
 import { formatGrade } from "@/core/grades";
 import type { EvaluationMode, EvaluationResult, Profile } from "@/core/types";
 import { ScoreCard } from "./score-card";
+import { SensitivityHelp } from "./sensitivity-panel";
 import { numeral } from "@/features/evaluation/numerals";
 import { useI18n } from "@/i18n";
 
@@ -39,7 +40,10 @@ export function ResultPanel({
         <ScoreCard profile={profile} result={result} mode={mode} title={title} />
 
         <div className="flex flex-col">
-          <h3 className="label mb-3 mt-0">{t("result.breakdown")}</h3>
+          <div className="mb-3 flex items-center gap-2">
+            <h3 className="label m-0">{t("result.breakdown")}</h3>
+            <SensitivityHelp profile={profile} result={result} />
+          </div>
           <table className="w-full border-collapse text-[13px]">
             <thead>
               <tr className="label text-left">

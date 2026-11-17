@@ -8,8 +8,8 @@ import { computeResult, createEvaluation } from "./scoring";
 const t = (key: string) => key;
 
 describe("evaluation modes", () => {
-  it("start in detailed mode", () => {
-    expect(createEvaluation(sentaiProfile).mode).toBe("detailed");
+  it("start in quick mode", () => {
+    expect(createEvaluation(sentaiProfile).mode).toBe("quick");
   });
 
   it("do not change the calculation", () => {
@@ -95,7 +95,7 @@ describe("store", () => {
 
 describe("standard export subcriteria table", () => {
   it("is a two column table with a right aligned grade and no list", () => {
-    const ev = createEvaluation(sentaiProfile);
+    const ev = { ...createEvaluation(sentaiProfile), mode: "detailed" as const };
     ev.categories.story.subcriteria.structure.value = 8;
     ev.categories.story.subcriteria.plot.value = 6.5;
     const md = exportMarkdown(sentaiProfile, ev, computeResult(sentaiProfile, ev), (k) => k);

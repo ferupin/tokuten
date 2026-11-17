@@ -65,8 +65,7 @@ export const ptBR: Messages = {
   sensitivity: {
     label: "Sensibilidade · 感度",
     title: "Onde uma nota mais pesa",
-    show: "Mostrar",
-    hide: "Ocultar",
+    close: "Fechar",
     intro: "Cada barra mostra quanto o score se move para um ponto de nota. Ela descreve o método e não sugere uma nota.",
     unit: "pontos de score por ponto de nota",
     upTo: "até +{value}",
@@ -131,6 +130,7 @@ export const ptBR: Messages = {
     previous: "Ir para a categoria anterior",
     grade: "Definir a nota da categoria ou do controle em foco. Digite 7.5 para um decimal e 10 como 1 e depois 0.",
     notApplicable: "Marcar a categoria em foco como não aplicável, ou restaurá-la",
+    detailedWalk: "No modo Detalhado, J e K percorrem apenas os controles das subcategorias. A categoria abre quando você entra nela e fecha quando sai. A nota da categoria inteira continua manual.",
     sliderKeys: "Em um controle deslizante: as setas movem 0,1, Page Up e Page Down movem 1, Home e End levam a 0 e 10",
     help: "Abrir esta lista",
     dismiss: "Fechar esta lista",

@@ -401,7 +401,7 @@ input[type="range"].grade:disabled {
   }
 }
 
-.shortcuts-dialog {
+.modal {
   margin: auto;
   width: min(92vw, 30rem);
   max-height: 90vh;
@@ -409,18 +409,95 @@ input[type="range"].grade:disabled {
   color: var(--ink);
   overflow: auto;
 }
-.shortcuts-dialog::backdrop {
+.modal-wide {
+  width: min(94vw, 56rem);
+}
+.modal::backdrop {
   background: rgba(22, 19, 14, 0.55);
 }
 
-/* The support link stays quiet until it is reached. */
-.support {
+/* A small round "?" that opens a window of explanation. 24px is the smallest comfortable target. */
+.help-dot {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid var(--control);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
   transition: color 0.15s ease, border-color 0.15s ease;
+}
+.help-dot:hover,
+.help-dot:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/*
+ * The support link stays quiet until it is reached. Then the heart fills and beats twice,
+ * a soft ring leaves the pill once, and the pill takes a faint tint of the accent.
+ */
+@keyframes support-beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  18% {
+    transform: scale(1.35);
+  }
+  36% {
+    transform: scale(1);
+  }
+  54% {
+    transform: scale(1.22);
+  }
+  72% {
+    transform: scale(1);
+  }
+}
+@keyframes support-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 12px color-mix(in srgb, var(--accent) 0%, transparent);
+  }
+}
+.support {
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+.support-heart {
+  position: relative;
+  /* The line of lowercase text sits lower than the middle of its box. This puts the heart on its middle. */
+  top: 0.75px;
+  overflow: visible;
+  transform-origin: 50% 55%;
+}
+.support-heart path {
+  fill: transparent;
+  transition: fill 0.2s ease;
 }
 .support:hover,
 .support:focus-visible {
   color: var(--accent);
   border-color: var(--accent);
+  background-color: color-mix(in srgb, var(--accent) 8%, transparent);
+  animation: support-ring 1.1s ease-out 1;
+}
+.support:hover .support-heart,
+.support:focus-visible .support-heart {
+  animation: support-beat 1.1s ease-in-out 1;
+}
+.support:hover .support-heart path,
+.support:focus-visible .support-heart path {
+  fill: currentColor;
 }
 
 @media (prefers-reduced-motion: reduce) {
