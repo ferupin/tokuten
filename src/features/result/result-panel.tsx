@@ -42,7 +42,7 @@ export function ResultPanel({
         <div className="flex flex-col">
           <div className="mb-3 flex items-center gap-2">
             <h3 className="label m-0">{t("result.breakdown")}</h3>
-            <SensitivityHelp profile={profile} result={result} />
+            {mode === "detailed" && <SensitivityHelp profile={profile} result={result} />}
           </div>
           <table className="w-full border-collapse text-[13px]">
             <thead>

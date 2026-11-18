@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Hanko } from "@/components/brand/hanko";
 import { LanguageSwitch } from "@/components/theme/language-switch";
+import { LanguageSwitchCompact, ThemeToggleCompact } from "@/components/theme/compact-controls";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { useI18n } from "@/i18n";
 
@@ -16,8 +17,15 @@ export function PageHeader({ width = "max-w-3xl" }: { width?: string }) {
           <Hanko size={32} className="mt-[2px] self-start">点</Hanko>
           <span className="font-display text-lg tracking-wide">TOKUTEN</span>
         </Link>
-        <LanguageSwitch />
-        <ThemeToggle />
+        {/* Narrow screens get two icon buttons, wide screens keep the full controls. */}
+        <div className="hidden items-center gap-3 sm:flex">
+          <LanguageSwitch />
+          <ThemeToggle />
+        </div>
+        <div className="flex items-center gap-2 sm:hidden">
+          <LanguageSwitchCompact />
+          <ThemeToggleCompact />
+        </div>
       </div>
     </header>
   );

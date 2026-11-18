@@ -413,31 +413,75 @@ input[type="range"].grade:disabled {
   width: min(94vw, 56rem);
 }
 .modal::backdrop {
-  background: rgba(22, 19, 14, 0.55);
+  background: rgba(22, 19, 14, 0.4);
+}
+/* The content behind a window softens. The header is not inside main, so it stays sharp. */
+main,
+footer {
+  transition: filter 0.2s ease;
+}
+html[data-modal-open] main,
+html[data-modal-open] footer {
+  filter: blur(5px);
 }
 
-/* A small round "?" that opens a window of explanation. 24px is the smallest comfortable target. */
+/* A square button holding one icon, for the narrow header. */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.icon-btn:hover,
+.icon-btn:focus-within {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.icon-btn:focus-visible,
+.icon-btn:has(select:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/*
+ * A small "?" beside a label, as large as the text. The button is 24px so it is easy to hit,
+ * and only the circle inside it is drawn.
+ */
 .help-dot {
   display: inline-grid;
   place-items: center;
   width: 24px;
   height: 24px;
+  margin: -6px 0;
   padding: 0;
-  border: 1px solid var(--control);
-  border-radius: 999px;
+  border: 0;
   background: transparent;
   color: var(--ink-soft);
+  cursor: pointer;
+}
+.help-dot > span {
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
   font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 12px;
+  font-size: 9px;
   font-weight: 700;
   line-height: 1;
-  cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease;
 }
 .help-dot:hover,
 .help-dot:focus-visible {
   color: var(--accent);
-  border-color: var(--accent);
 }
 
 /*

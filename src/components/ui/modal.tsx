@@ -28,6 +28,14 @@ export function Modal({
     if (!open && el.open) el.close();
   }, [open]);
 
+  // While a window is open, the page behind it softens, but the navigation bar stays sharp.
+  useEffect(() => {
+    if (!open) return;
+    const root = document.documentElement;
+    root.setAttribute("data-modal-open", "");
+    return () => root.removeAttribute("data-modal-open");
+  }, [open]);
+
   return (
     <dialog
       ref={ref}
