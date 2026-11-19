@@ -63,7 +63,7 @@ The file keeps the grades and the text a person wrote. It does not keep the scor
 
 - The wording and layout of the Markdown exports.
 - The look of the cards and the images.
-- New profiles, each with its own `profileId`.
+- New profiles, each with its own `profileId`. Kamen Rider arrived in 1.3.0 as `kamen-rider`, and a file or a link names the profile it belongs to.
 - New optional fields, as in rule 2.
 
 ## How the promise is checked

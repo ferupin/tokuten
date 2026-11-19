@@ -575,14 +575,26 @@ html[data-modal-open] footer {
 
 /* The choice of evaluation method, where the profile label used to be. */
 .profile-switch {
+  position: relative;
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 2px;
   padding: 3px;
   border: 1px solid var(--line-strong);
   border-radius: 10px;
 }
+/* The highlight slides behind the chosen item. */
+.profile-switch-mark {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 0;
+  border-radius: 8px;
+  background: var(--ink);
+  transition: transform 0.28s cubic-bezier(0.3, 0.7, 0.2, 1), width 0.28s cubic-bezier(0.3, 0.7, 0.2, 1), opacity 0.15s ease;
+}
 .profile-switch-item {
+  position: relative;
   display: inline-flex;
   align-items: baseline;
   gap: 8px;
@@ -593,7 +605,7 @@ html[data-modal-open] footer {
   font-weight: 500;
   white-space: nowrap;
   text-decoration: none;
-  transition: color 0.15s ease, background-color 0.15s ease;
+  transition: color 0.2s ease;
 }
 .profile-switch-item > span {
   font-size: 11px;
@@ -603,13 +615,33 @@ html[data-modal-open] footer {
   color: var(--ink);
 }
 .profile-switch-item[data-on] {
-  background: var(--ink);
   color: var(--bg);
   font-weight: 600;
 }
 .profile-switch-item:focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
+}
+/* A quiet inline link with a small arrow for a page that opens elsewhere. */
+.quiet-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.quiet-link svg {
+  align-self: center;
+  opacity: 0.6;
+}
+.quiet-link:hover,
+.quiet-link:focus-visible {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
 }
 .profile-tag {
   display: inline-block;
@@ -630,5 +662,10 @@ html[data-modal-open] footer {
   }
   .profile-switch-item {
     padding: 7px 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .profile-switch-mark {
+    transition: none !important;
   }
 }

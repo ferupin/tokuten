@@ -36,10 +36,106 @@ export interface Release {
   title: Text;
   summary: Text;
   sentaiProfileVersion: number;
+  /** Present from 1.3.0, when the Kamen Rider profile arrived. */
+  kamenRiderProfileVersion?: number;
   groups: ReleaseGroup[];
 }
 
 export const releases: Release[] = [
+  {
+    version: "1.3.0",
+    date: "2026-11-19",
+    sentaiProfileVersion: 1,
+    kamenRiderProfileVersion: 1,
+    title: { en: "The Kamen Rider profile and a choice of method", "pt-BR": "O perfil Kamen Rider e a escolha do método", es: "El perfil de Kamen Rider y la elección del método" },
+    summary: {
+      en: "Tokuten now has a second profile. Kamen Rider uses the same method, with its own categories and colors, and the page switches between the two without reloading.",
+      "pt-BR": "O Tokuten agora tem um segundo perfil. O Kamen Rider usa o mesmo método, com categorias e cores próprias, e a página alterna entre os dois sem recarregar.",
+      es: "Tokuten ahora tiene un segundo perfil. Kamen Rider usa el mismo método, con categorías y colores propios, y la página alterna entre los dos sin recargar.",
+    },
+    groups: [
+      {
+        area: "method",
+        items: [
+          {
+            en: "A Kamen Rider profile, marked as provisional until people who know the series have reviewed it. It keeps the ten categories under five pillars and the weights of Super Sentai, so a score reads the same way in both.",
+            "pt-BR": "Um perfil Kamen Rider, marcado como provisório até que quem conhece a série o revise. Ele mantém as dez categorias em cinco pilares e os pesos do Super Sentai, então uma nota se lê do mesmo jeito nos dois.",
+            es: "Un perfil de Kamen Rider, marcado como provisional hasta que lo revisen quienes conocen la serie. Mantiene las diez categorías en cinco pilares y los pesos de Super Sentai, así que una puntuación se lee igual en los dos.",
+          },
+          {
+            en: "Antagonists & Threat takes the place of Squad Chemistry, because the sources treat villains as central to a Kamen Rider series. Characters, Partners & Allies now covers partners, allied or rival Riders and the supporting cast. Rider Design and Gear, Forms & Vehicles replace Suits and Mecha.",
+            "pt-BR": "Antagonistas e Ameaça ocupa o lugar de Squad Chemistry, porque as fontes tratam os vilões como centrais em uma série de Kamen Rider. Personagens, Parceiros e Aliados passa a cobrir parceiros, Riders aliados ou rivais e o elenco de apoio. Design dos Riders e Equipamento, Formas e Veículos substituem Trajes e Mecha.",
+            es: "Antagonistas y amenaza ocupa el lugar de Squad Chemistry, porque las fuentes tratan a los villanos como centrales en una serie de Kamen Rider. Personajes, compañeros y aliados pasa a cubrir compañeros, Riders aliados o rivales y el reparto de apoyo. Diseño de los Riders y Equipo, formas y vehículos sustituyen a Trajes y Mecha.",
+          },
+        ],
+      },
+      {
+        area: "interface",
+        items: [
+          {
+            en: "A choice between Super Sentai and Kamen Rider, where the profile name used to be. Each profile has its own page, its own grades and its own draft, and switching keeps what was entered in the other one.",
+            "pt-BR": "Uma escolha entre Super Sentai e Kamen Rider, onde antes ficava o nome do perfil. Cada perfil tem a sua página, as suas notas e o seu rascunho, e alternar mantém o que foi preenchido no outro.",
+            es: "Una elección entre Super Sentai y Kamen Rider, donde antes estaba el nombre del perfil. Cada perfil tiene su página, sus notas y su borrador, y al alternar se conserva lo que se escribió en el otro.",
+          },
+          {
+            en: "The switch happens inside the page, with no reload, and the highlight slides to the new choice. Super Sentai stays at the root address, so existing links keep working, and Kamen Rider lives at /kamen-rider.",
+            "pt-BR": "A troca acontece dentro da página, sem recarregar, e o destaque desliza até a nova escolha. O Super Sentai continua no endereço raiz, então os links existentes seguem funcionando, e o Kamen Rider fica em /kamen-rider.",
+            es: "El cambio ocurre dentro de la página, sin recargar, y el resaltado se desliza hasta la nueva opción. Super Sentai sigue en la dirección raíz, así que los enlaces existentes siguen funcionando, y Kamen Rider está en /kamen-rider.",
+          },
+          {
+            en: "A provisional note on the Kamen Rider profile with a direct link to suggest a correction.",
+            "pt-BR": "Uma nota de perfil provisório no Kamen Rider, com um link direto para sugerir uma correção.",
+            es: "Una nota de perfil provisional en Kamen Rider, con un enlace directo para sugerir una corrección.",
+          },
+          {
+            en: "The Meaning page explains the pillar colors of each profile.",
+            "pt-BR": "A página Significados explica as cores dos pilares de cada perfil.",
+            es: "La página Significados explica los colores de los pilares de cada perfil.",
+          },
+        ],
+      },
+      {
+        area: "design",
+        items: [
+          {
+            en: "Kamen Rider takes the colors of the Riders for its pillars: red 赤, silver 銀, gold 金, green 緑 and violet 紫. Red and green are shared with Super Sentai. The new colors pass the contrast checks in both themes.",
+            "pt-BR": "O Kamen Rider usa as cores dos Riders nos seus pilares: vermelho 赤, prata 銀, dourado 金, verde 緑 e violeta 紫. O vermelho e o verde são compartilhados com o Super Sentai. As novas cores passam nas verificações de contraste nos dois temas.",
+            es: "Kamen Rider usa los colores de los Riders en sus pilares: rojo 赤, plata 銀, dorado 金, verde 緑 y violeta 紫. El rojo y el verde se comparten con Super Sentai. Los colores nuevos pasan las comprobaciones de contraste en los dos temas.",
+          },
+          {
+            en: "The identity of the app does not change between profiles. Only the words and the pillar colors do.",
+            "pt-BR": "A identidade do app não muda entre os perfis. Mudam apenas as palavras e as cores dos pilares.",
+            es: "La identidad de la app no cambia entre perfiles. Solo cambian las palabras y los colores de los pilares.",
+          },
+        ],
+      },
+      {
+        area: "quality",
+        items: [
+          {
+            en: "New tests for the shape every profile keeps (ten categories, five pillars, weights that add up to 100), for the Kamen Rider weights, and for files, drafts and links of one profile staying out of the other.",
+            "pt-BR": "Novos testes para o formato que todo perfil mantém (dez categorias, cinco pilares, pesos que somam 100), para os pesos do Kamen Rider e para que arquivos, rascunhos e links de um perfil não entrem no outro.",
+            es: "Nuevas pruebas para la forma que mantiene todo perfil (diez categorías, cinco pilares, pesos que suman 100), para los pesos de Kamen Rider y para que archivos, borradores y enlaces de un perfil no entren en el otro.",
+          },
+          {
+            en: "Every score, file and link of Super Sentai is unchanged, and the compatibility tests of 1.x stay green.",
+            "pt-BR": "Toda nota, arquivo e link do Super Sentai permanece igual, e os testes de compatibilidade da 1.x continuam verdes.",
+            es: "Toda puntuación, archivo y enlace de Super Sentai permanece igual, y las pruebas de compatibilidad de 1.x siguen en verde.",
+          },
+        ],
+      },
+      {
+        area: "docs",
+        items: [
+          {
+            en: "ADR 0014 records how the Kamen Rider profile was decided, with its sources. The README invites anyone who knows the works to review the profiles, and a form for it needs no code.",
+            "pt-BR": "O ADR 0014 registra como o perfil Kamen Rider foi decidido, com as fontes. O README convida quem conhece as obras a revisar os perfis, e há um formulário para isso que não exige código.",
+            es: "El ADR 0014 registra cómo se decidió el perfil de Kamen Rider, con sus fuentes. El README invita a quien conozca las obras a revisar los perfiles, y hay un formulario para ello que no requiere código.",
+          },
+        ],
+      },
+    ],
+  },
   {
     version: "1.2.1",
     date: "2026-11-17",
@@ -2152,11 +2248,19 @@ export const planned: PlannedStep[] = [
     },
   },
   {
-    done: false,
+    done: true,
     text: {
       en: "Kamen Rider profile.",
       "pt-BR": "Perfil Kamen Rider.",
       es: "Perfil de Kamen Rider.",
+    },
+  },
+  {
+    done: false,
+    text: {
+      en: "Community review of the Kamen Rider profile, and a profile for another community.",
+      "pt-BR": "Revisão do perfil Kamen Rider pela comunidade, e um perfil para outra comunidade.",
+      es: "Revisión del perfil de Kamen Rider por la comunidad, y un perfil para otra comunidad.",
     },
   },
   {

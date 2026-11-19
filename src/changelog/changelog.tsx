@@ -99,6 +99,7 @@ export function Changelog() {
                 </h2>
                 <p className="label m-0 mt-1">
                   {t("changelog.released", { date: formatDate(release.date) })} · {t("changelog.profileVersion", { version: release.sentaiProfileVersion })}
+                  {release.kamenRiderProfileVersion !== undefined && ` · ${t("changelog.profileVersionRider", { version: release.kamenRiderProfileVersion })}`}
                 </p>
                 <p className="mb-0 mt-3 text-[15px]">{pick(release.summary, locale)}</p>
               </header>

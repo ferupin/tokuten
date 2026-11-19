@@ -56,10 +56,11 @@ The most important rule is that `core/` knows nothing about React or about any l
 
 ## Adding a new profile
 
-1. Create `src/profiles/rider.ts` with its pillars, categories, weights and subcriteria. The weights must add up to 100.
-2. Register it in `src/profiles/index.ts`.
-3. Add a `profiles.rider` block to every dictionary in `src/i18n/` (the registry is `src/i18n/languages.ts`). TypeScript will report any language that is missing keys.
-4. Add a test that checks the weights, like the one for Sentai.
+1. Create `src/profiles/<id>.ts` with its pillars, categories, weights and subcriteria. Keep ten categories under five pillars, with weights that add up to 100. The Kamen Rider file is a worked example. Mark it `provisional: true` until it has been reviewed.
+2. Register it in `src/profiles/index.ts`. The page `/<id>` is generated from the registry, and the switch lists it.
+3. If a pillar needs a new color, add its token in `src/app/globals.css` for both themes, in `src/features/results/palette.ts` and in the `Pillar` tone type. The contrast test then covers it.
+4. Add a `profiles.<id>` block to every dictionary in `src/i18n/` (the registry is `src/i18n/languages.ts`): `name`, `title`, `titleJa`, `example`, `checklist`, `pillars`, `pillarMeaning` and `categories`. TypeScript and the dictionary tests report anything missing.
+5. Add the profile to `src/profiles/profiles.test.ts` and write a decision record. Add a `<profile>ProfileVersion` field to the changelog entry of the release that ships it.
 
 
 ## Conventions

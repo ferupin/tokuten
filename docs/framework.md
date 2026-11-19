@@ -1,6 +1,6 @@
 # The Kijun method
 
-Kijun 基準 means standard or criterion. It is the evaluation method behind Tokuten. This page describes the Super Sentai profile as it is implemented.
+Kijun 基準 means standard or criterion. It is the evaluation method behind Tokuten. This page describes the Super Sentai profile as it is implemented. Kamen Rider is the second profile, with the same shape. The ten categories, the five pillars, the weights that add up to 100 and the scale are the same, and its categories and weights are in [ADR 0014](adr/0014-kamen-rider-profile.md).
 
 ## Philosophy
 

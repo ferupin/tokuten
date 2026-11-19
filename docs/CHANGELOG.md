@@ -10,7 +10,7 @@ Versions follow `major.minor.patch`.
 - **Minor**: new features, new screens, new profiles.
 - **Major**: changes that alter how an existing evaluation is calculated or that break the JSON format.
 
-The Sentai profile has its own version number. It goes up whenever a weight, category or subcriterion changes, because that changes what a score means. The JSON export stores the profile version.
+Each profile has its own version number. It goes up whenever a weight, category or subcriterion changes, because that changes what a score means. The JSON export stores the profile version.
 
 ## Releasing
 
@@ -18,6 +18,31 @@ The Sentai profile has its own version number. It goes up whenever a weight, cat
 2. Update `version` in `package.json`. A test fails if the two disagree.
 3. Add the same entry here.
 4. Run `npm test` and `npm run build`.
+
+## 1.3.0 (2026-11-19)
+
+The Kamen Rider profile and a choice of method. Sentai profile v1, Kamen Rider profile v1.
+
+### Method
+- A Kamen Rider profile, marked as provisional until people who know the series have reviewed it. It keeps the ten categories under five pillars and the weights of Super Sentai, so a score reads the same way in both.
+- Antagonists & Threat takes the place of Squad Chemistry, because the sources treat villains as central to a Kamen Rider series. Characters, Partners & Allies now covers partners, allied or rival Riders and the supporting cast. Rider Design and Gear, Forms & Vehicles replace Suits and Mecha.
+
+### Interface
+- A choice between Super Sentai and Kamen Rider, where the profile name used to be. Each profile has its own page, its own grades and its own draft, and switching keeps what was entered in the other one.
+- The switch happens inside the page, with no reload, and the highlight slides to the new choice. Super Sentai stays at the root address, so existing links keep working, and Kamen Rider lives at `/kamen-rider`.
+- A provisional note on the Kamen Rider profile with a direct link to suggest a correction.
+- The Meaning page explains the pillar colors of each profile.
+
+### Design
+- Kamen Rider takes the colors of the Riders for its pillars: red 赤, silver 銀, gold 金, green 緑 and violet 紫. Red and green are shared with Super Sentai. The new colors pass the contrast checks in both themes.
+- The identity of the app does not change between profiles. Only the words and the pillar colors do.
+
+### Quality
+- New tests for the shape every profile keeps (ten categories, five pillars, weights that add up to 100), for the Kamen Rider weights, and for files, drafts and links of one profile staying out of the other.
+- Every score, file and link of Super Sentai is unchanged, and the compatibility tests of 1.x stay green.
+
+### Docs
+- [ADR 0014](adr/0014-kamen-rider-profile.md) records how the Kamen Rider profile was decided, with its sources. The README invites anyone who knows the works to review the profiles, and a form for it needs no code.
 
 ## 1.2.1 (2026-11-17)
 

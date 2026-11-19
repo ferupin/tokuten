@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import pkg from "../../package.json";
+import { kamenRiderProfile } from "@/profiles/kamen-rider";
 import { sentaiProfile } from "@/profiles/sentai";
 import type { Locale } from "@/i18n";
 import { currentVersion, pick, planned, releases } from "./entries";
@@ -30,6 +31,7 @@ describe("changelog", () => {
 
   it("records the current Sentai profile version", () => {
     expect(releases[0].sentaiProfileVersion).toBe(sentaiProfile.version);
+    expect(releases[0].kamenRiderProfileVersion).toBe(kamenRiderProfile.version);
   });
 
   it("has English text everywhere, and full text in the maintained languages", () => {

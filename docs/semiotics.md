@@ -23,7 +23,7 @@ The logo uses the single kanji 点. It is short enough to read inside a small se
 
 ## The five pillars
 
-The ten categories are grouped under five colors. This echoes the classic five color team of Super Sentai, which goes back to the first series of the franchise.
+The ten categories are grouped under five colors. In Super Sentai this echoes the classic five color team, which goes back to the first series of the franchise. In Kamen Rider the colors are those of the Riders. Every profile keeps five pillars, and the shared reds and greens keep the profiles one family.
 
 | Pillar | Kanji | Reading | Color token | Categories |
 |---|---|---|---|---|
@@ -40,6 +40,18 @@ The kanji and readings are facts. The pairing of each color with a pillar is **d
 - **Yellow** is light and attention. It holds what the eye meets first.
 - **Green** is growth and work done by hand. It holds the making of the season.
 - **Pink** comes from the peach (桃) and stands for movement and warmth. It holds what carries a viewer through the season.
+
+### Kamen Rider pillars
+
+| Pillar | Kanji | Reading | Color token | Categories |
+|---|---|---|---|---|
+| Narrative | 赤 | aka | `--red` | Story, Characters, Antagonists |
+| Concept | 銀 | gin | `--silver` | Theme and Concept |
+| Visual | 金 | kin | `--gold` | Rider Design, Gear |
+| Craft | 緑 | midori | `--green` | Action, Production |
+| Rhythm and Sound | 紫 | murasaki | `--violet` | Music, Pacing |
+
+Again the kanji are facts and the pairing with a pillar is design intent: red is the scarf and the heart of the hero, silver the chrome of the helmet and the cold idea behind a season, gold the belt and the eyes, green the grasshopper of the first Rider and work done by hand, and violet a color apart from the others that marks what carries a viewer through the season. The violet is the least anchored pairing and the first to revisit if the community suggests a better one.
 
 Pillars are only a visual grouping. They never change a weight or a score. Color is never the only carrier of meaning: each pillar also has a kanji and a text label.
 

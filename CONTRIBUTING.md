@@ -81,6 +81,10 @@ Keep the kanji that belong to the identity untranslated: the logo, the pillars, 
 
 The changelog is optional. A changelog text in `src/changelog/entries.ts` can carry any language next to `en`, and any text that is missing is shown in English. Translate as many as you like, newest first. English, Portuguese and Spanish are kept complete, and a test enforces that.
 
+## Reviewing a profile
+
+You do not need to write code to help a profile match the works. Open a [profile review](https://github.com/ferupin/tokuten/issues/new?template=profile_review.yml), say which category, subcriterion or reference point does not match, and why. An example from a series and a source help a lot. A change to a weight or a wording becomes a new, announced profile version, so old files keep their score.
+
 ## Adding a profile
 
 Follow the steps in the [development guide](docs/development.md#adding-a-new-profile). Include the dictionary entries in every language and a test for the weights.

@@ -1,0 +1,54 @@
+name: Profile review
+description: Say where a profile does not match the works. No code needed.
+labels: ["profile-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping a profile stay true to the works. You do not need to write code. A short reason and, if you can, an example are enough.
+  - type: dropdown
+    id: profile
+    attributes:
+      label: Profile
+      options:
+        - Kamen Rider
+        - Super Sentai
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: What does not match?
+      options:
+        - A category (name, scope or what it covers)
+        - A weight
+        - A subcriterion
+        - A reference point (the text for a grade of 3, 5, 7 or 9)
+        - A pillar color or its meaning
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: item
+    attributes:
+      label: Which one?
+      description: The category, subcriterion or reference point, for example "Antagonists & Threat, reference for 7".
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: What does not match, and why?
+      description: Say how the works do it and what the profile says instead.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: An example from a series
+      description: A series, a character or an episode that shows the point. Optional, but it helps a lot.
+  - type: input
+    id: source
+    attributes:
+      label: A source
+      description: A link to an article, an interview or a wiki page, if there is one. Optional.

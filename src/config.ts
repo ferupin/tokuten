@@ -7,6 +7,7 @@ export const repo = {
   issuesChoose: `${base}/issues/new/choose`,
   bug: `${base}/issues/new?template=bug_report.yml`,
   idea: `${base}/issues/new?template=feature_request.yml`,
+  profileReview: `${base}/issues/new?template=profile_review.yml`,
   guide: `${base}/blob/master/CONTRIBUTING.md`,
   support: "https://ko-fi.com/ferupin",
 } as const;

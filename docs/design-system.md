@@ -19,9 +19,9 @@ Both themes avoid pure white and pure black.
 
 Light is warm cream paper with sumi ink. Dark is lacquer black with a brown undertone and ivory text. The accent is a vermilion, the color of a seal stamp. By default the theme follows the system setting, and the choice is remembered by the browser.
 
-## Ranger colors
+## Pillar colors
 
-Each pillar uses one color and one kanji. The colors are softened so they stay comfortable on both backgrounds.
+Each pillar uses one color and one kanji. The colors are softened so they stay comfortable on both backgrounds. Super Sentai uses the ranger colors. Kamen Rider has its own five, with red and green shared, and its tokens are listed after the first table.
 
 | Pillar | Kanji | Token |
 |---|---|---|
@@ -30,6 +30,8 @@ Each pillar uses one color and one kanji. The colors are softened so they stay c
 | Visual | 黄 | `--yellow` |
 | Craft | 緑 | `--green` |
 | Rhythm and Sound | 桃 | `--pink` |
+
+Kamen Rider: 赤 `--red`, 銀 `--silver`, 金 `--gold`, 緑 `--green` and 紫 `--violet`. A test checks that every token passes the contrast rules in both themes.
 
 Color is never the only carrier of meaning. Every colored item also has a text label and a numeral.
 
@@ -66,6 +68,8 @@ A control that does something is a button. A control that stays on or off, or pi
 - **Modal** (`Modal`): a native `dialog`, so focus is trapped and Escape closes it. A click on the backdrop closes it too. The shortcuts list and the sensitivity view use it.
 - **Help dot** (`.help-dot`): a 24px round "?" beside a label, for explanation that few people need. It opens a modal.
 - **Segmented control**: one choice among a few, such as the Markdown format. It is one piece with arrow key support.
+- **Profile switch** (`.profile-switch`): the choice of evaluation method, above the headline. Each option is a real link to the route of its profile, so back, refresh and a shared address agree. The highlight slides between the options, even though each profile is a page of its own, because the control remembers where it was. It follows reduced motion and loses the Japanese names on a phone.
+- **Provisional tag** (`.profile-tag`) and **quiet link** (`.quiet-link`): a small outlined tag and an inline link with a thin underline and a small arrow, for a page that opens in a new tab.
 
 ## Accessibility
 

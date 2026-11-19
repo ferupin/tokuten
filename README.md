@@ -2,12 +2,13 @@
 
 **Score a tokusatsu season the same way every time.**
 
-Tokuten applies **Kijun 基準**, a method with ten weighted categories, clear criteria and a score that stays apart from personal enjoyment. It runs entirely in your browser: no account, no server, nothing uploaded.
+Tokuten applies **Kijun 基準**, a method with ten weighted categories, now for **Super Sentai** and **Kamen Rider**, clear criteria and a score that stays apart from personal enjoyment. It runs entirely in your browser: no account, no server, nothing uploaded.
 
 ### → [Open the app: tokuten-snowy.vercel.app](https://tokuten-snowy.vercel.app)
 
 ## What you get
 
+- **One method, a profile per franchise.** Super Sentai and Kamen Rider, switched on the page without a reload.
 - **Two ways to grade.** Detailed (詳細) through subcriteria, or Quick (簡易) with one grade per category.
 - **A fair official score.** Categories that do not apply share their weight, and a partial score says so.
 - **Enjoyment kept apart.** Your personal score never touches the official one.
@@ -24,7 +25,8 @@ Tokuten applies **Kijun 基準**, a method with ten weighted categories, clear c
 - [x] English, Portuguese, Spanish
 - [x] Stable file format ([promise](docs/file-format.md))
 - [x] 1.0.0
-- [ ] Kamen Rider profile
+- [x] Kamen Rider profile, provisional (1.3.0)
+- [ ] Community review of the Kamen Rider profile
 - [ ] Compare seasons side by side
 - [x] Sensitivity view (1.2.0)
 - [x] Accessibility pass (1.0.1)
@@ -38,9 +40,14 @@ Pick one, open an issue to say so, and send a pull request. The [contributing gu
 
 - [ ] **Translate** into Japanese, French, German or another language. One file and one line, see [adding a language](CONTRIBUTING.md#adding-a-language).
 - [ ] **Review the Spanish and Portuguese** wording for naturalness.
-- [ ] **Propose a profile**, such as Kamen Rider. Open an issue first, because categories and weights deserve a discussion.
+- [ ] **Review a profile.** Tell us where Kamen Rider or Super Sentai does not match the works. No code needed, see below.
+- [ ] **Propose a profile** for another franchise or community. Open an issue first, because categories and weights deserve a discussion.
 - [ ] **Test it** with a screen reader, on a phone, in Safari or Firefox, and tell us what felt wrong.
 - [ ] **Report a bug or an idea** through an [issue](https://github.com/ferupin/tokuten/issues/new/choose). The version in the footer and a JSON export help a lot.
+
+## Help the profiles stay true to the works
+
+The Kamen Rider profile was built from public sources and community analysis, and it is provisional until people who know the series well have reviewed it. If a category, a subcriterion or a wording does not match what the works do, please [open a profile review](https://github.com/ferupin/tokuten/issues/new?template=profile_review.yml) with a short reason and, if you can, an example. Reviews of the Super Sentai profile are just as welcome. You do not need to write code, and every accepted change is recorded with its source in the [decision record](docs/adr/0014-kamen-rider-profile.md).
 
 ## Run it locally
 

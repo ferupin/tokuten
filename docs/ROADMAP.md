@@ -6,7 +6,7 @@ Each item has a rough size: small is a few hours, medium is a few days, large is
 
 ## Next
 
-- **Kamen Rider profile.** The categories and weights need a discussion before any code. See Profiles below.
+- **Community review of the Kamen Rider profile.** It shipped in 1.3.0 as provisional. People who know the series can open a profile review, and each accepted change is recorded in [ADR 0014](adr/0014-kamen-rider-profile.md). Size: ongoing. Help welcome.
 
 ## Version 1.0
 
@@ -21,8 +21,8 @@ What made it possible, for the record:
 
 ## Profiles
 
-- **Kamen Rider.** A profile is plain data, so the scoring code does not change. The categories, weights and subcriteria need a discussion first. Size: medium. Help welcome.
-- Other franchises follow the same path.
+- **Kamen Rider** shipped in 1.3.0. See [ADR 0014](adr/0014-kamen-rider-profile.md).
+- **Other franchises** follow the same path: a profile is plain data, so the scoring code does not change. The categories, weights and subcriteria need a discussion first. Size: medium. Help welcome.
 - **Beyond tokusatsu.** Tokuten is the permanent name and brand, whatever the profiles cover. In time the method could serve anime first, then series and films, with each community getting a profile of its own. This is a direction and not a plan. The shape of a more neutral profile will be decided once a third profile exists to compare against.
 
 ## Languages
