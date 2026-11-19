@@ -18,6 +18,9 @@ export interface Palette {
   yellow: string;
   green: string;
   pink: string;
+  silver: string;
+  gold: string;
+  violet: string;
 }
 
 export const palettes: Record<CardTheme, Palette> = {
@@ -34,6 +37,9 @@ export const palettes: Record<CardTheme, Palette> = {
     yellow: "#8a5f00",
     green: "#4f7440",
     pink: "#a14a6c",
+    silver: "#566170",
+    gold: "#8a5f00",
+    violet: "#6f4bb8",
   },
   dark: {
     bg: "#16130e",
@@ -48,6 +54,9 @@ export const palettes: Record<CardTheme, Palette> = {
     yellow: "#e0b04a",
     green: "#86b573",
     pink: "#e48fb1",
+    silver: "#b9c3cf",
+    gold: "#e0b04a",
+    violet: "#ab90e8",
   },
 };
 
@@ -65,4 +74,7 @@ export const cssVariable: Record<keyof Palette, string> = {
   yellow: "--yellow",
   green: "--green",
   pink: "--pink",
+  silver: "--silver",
+  gold: "--gold",
+  violet: "--violet",
 };

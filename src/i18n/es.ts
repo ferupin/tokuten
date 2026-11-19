@@ -15,6 +15,9 @@ export const es: Messages = {
     theme: { label: "Tema", light: "Claro", dark: "Oscuro", system: "Sistema" },
     language: { label: "Idioma" },
     skipToContent: "Saltar al contenido",
+    profileSwitch: "Método de evaluación",
+    provisional: "Provisional",
+    provisionalNote: "Este perfil aún está siendo revisado por quienes conocen las obras. Abra un issue si algo no coincide.",
     footer: "Tokuten funciona por completo en tu navegador. No se envía nada a ningún sitio. El borrador se queda en este dispositivo.",
     madeBy: "Creado por",
     version: "Versión {version}",
@@ -28,7 +31,6 @@ export const es: Messages = {
   evaluation: {
     sectionTitle: "Evaluación por categorías",
     seasonLabel: "Temporada",
-    seasonPlaceholder: "Por ejemplo: Kaizoku Sentai Gokaiger",
     introductionLabel: "Introducción",
     introductionPlaceholder: "Una breve presentación de la temporada y de lo que se propone.",
     progress: "{graded} de {total} categorías calificadas",
@@ -194,31 +196,9 @@ export const es: Messages = {
     pillars: {
       title: "Los cinco pilares",
       intro:
-        "Las diez categorías se agrupan bajo cinco colores, en eco del clásico equipo de cinco colores de Super Sentai. La agrupación es solo visual y nunca cambia un peso ni una puntuación.",
+        "Las diez categorías se agrupan en cinco colores. En Super Sentai remiten al clásico equipo de cinco colores, y en Kamen Rider toman los colores de los Riders. La agrupación es solo visual y nunca cambia un peso ni una puntuación.",
       colorLabel: "Color",
       categoriesLabel: "Categorías",
-      items: {
-        narrative: {
-          color: "Rojo",
-          why: "El rojo es el líder y el corazón del equipo. Reúne aquello sobre lo que se construye una historia: la trama, los personajes y el vínculo entre ellos.",
-        },
-        concept: {
-          color: "Azul",
-          why: "El azul es sereno y reflexivo. Reúne la idea que hay detrás de la temporada.",
-        },
-        visual: {
-          color: "Amarillo",
-          why: "El amarillo es luz y atención. Reúne lo primero que encuentra la vista: los trajes, los diseños de los enemigos y los mecha.",
-        },
-        craft: {
-          color: "Verde",
-          why: "El verde es crecimiento y trabajo hecho a mano. Reúne la realización de la temporada: la acción, las acrobacias y la dirección.",
-        },
-        rhythm: {
-          color: "Rosa",
-          why: "El rosa viene del durazno (桃) y representa el movimiento y la calidez. Reúne lo que lleva al espectador a lo largo de la temporada.",
-        },
-      },
       note: "El color nunca es el único portador de significado. Cada pilar también tiene un kanji y una etiqueta de texto.",
     },
     seal: {
@@ -455,6 +435,9 @@ export const es: Messages = {
   profiles: {
     sentai: {
       name: "Kijun: Super Sentai",
+      title: "Super Sentai",
+      titleJa: "スーパー戦隊",
+      example: "Por ejemplo: Kaizoku Sentai Gokaiger",
       checklist: {
         noNostalgia: "No di ninguna bonificación por nostalgia.",
         noAgePenalty: "No apliqué ninguna penalización por antigüedad ni por limitaciones de producción.",
@@ -473,6 +456,28 @@ export const es: Messages = {
         visual: "Visual",
         craft: "Oficio",
         rhythm: "Ritmo y sonido",
+      },
+      pillarMeaning: {
+        narrative: {
+          color: "Rojo",
+          why: "El rojo es el líder y el corazón del equipo. Reúne aquello sobre lo que se construye una historia: la trama, los personajes y el vínculo entre ellos.",
+        },
+        concept: {
+          color: "Azul",
+          why: "El azul es sereno y reflexivo. Reúne la idea que hay detrás de la temporada.",
+        },
+        visual: {
+          color: "Amarillo",
+          why: "El amarillo es luz y atención. Reúne lo primero que encuentra la vista: los trajes, los diseños de los enemigos y los mecha.",
+        },
+        craft: {
+          color: "Verde",
+          why: "El verde es crecimiento y trabajo hecho a mano. Reúne la realización de la temporada: la acción, las acrobacias y la dirección.",
+        },
+        rhythm: {
+          color: "Rosa",
+          why: "El rosa viene del durazno (桃) y representa el movimiento y la calidez. Reúne lo que lleva al espectador a lo largo de la temporada.",
+        },
       },
       categories: {
         theme: {
@@ -647,6 +652,259 @@ export const es: Messages = {
           scope: "Cómo se filma, se monta y se lleva a la pantalla la temporada.",
           boundary:
             "Se juzgan la dirección y la ejecución técnica. Los diseños de trajes y de robots pertenecen a otras categorías, y la coreografía de las peleas a Acción y coreografía.",
+          subcriteria: {
+            cinematography: "Fotografía",
+            editing: "Montaje",
+            directing: "Dirección",
+            practicalEffects: "Efectos prácticos",
+            presentation: "Presentación visual",
+            execution: "Ejecución de la producción",
+          },
+        },
+        pacing: {
+          name: "Ritmo y ejecución general",
+          short: "Ritmo",
+          anchors: {
+            three: "Un ritmo irregular. El relleno o las prisas debilitan el impulso, y las intenciones no se cumplen.",
+            five: "Por lo general estable, con tramos lentos o apresurados perceptibles.",
+            seven: "Buen ritmo, con episodios que tienen un propósito. El impulso se mantiene, con pocos tramos débiles.",
+            nine: "Cada tramo se gana su tiempo. El impulso crece a lo largo de toda la temporada, y cumple lo que se propone.",
+          },
+          scope: "El ritmo a lo largo de toda la serie: consistencia, relleno e impulso.",
+          boundary:
+            "Se juzga qué tan bien se aprovecha el tiempo en pantalla. La calidad de la trama en sí pertenece a Historia y trasfondo.",
+          subcriteria: {
+            consistency: "Consistencia entre episodios",
+            rhythm: "Ritmo narrativo",
+            filler: "Relleno",
+            momentum: "Impulso",
+            screenTime: "Uso del tiempo en pantalla",
+            delivery: "Cumplimiento de las intenciones",
+          },
+        },
+      },
+    },
+    "kamen-rider": {
+      name: "Kijun: Kamen Rider",
+      title: "Kamen Rider",
+      titleJa: "仮面ライダー",
+      example: "Por ejemplo: Kamen Rider Build",
+      checklist: {
+        noNostalgia: "No di ninguna bonificación por nostalgia.",
+        noAgePenalty: "No apliqué ninguna penalización por antigüedad ni por limitaciones de producción.",
+        attemptAndSuccess: "Juzgué lo que la temporada intenta y qué tan bien lo logra.",
+        conceptVsExecution: "Mantuve separado un concepto interesante de su ejecución.",
+        quantityVsQuality: "No confundí cantidad con calidad.",
+        noDoubleCounting: "No conté la misma fortaleza o debilidad en más de una categoría.",
+        wholeSeason: "Consideré la temporada completa, no solo sus mejores o peores episodios.",
+        concreteExamples: "Respaldé cada juicio con ejemplos concretos.",
+        noPopularityBonus: "No inflé una nota porque la temporada sea popular.",
+        noForcedLow: "No forcé una nota baja solo para parecer objetivo.",
+      },
+      pillars: {
+        narrative: "Narrativa",
+        concept: "Concepto",
+        visual: "Visual",
+        craft: "Oficio",
+        rhythm: "Ritmo y sonido",
+      },
+      pillarMeaning: {
+        narrative: {
+          color: "Rojo",
+          why: "El rojo es la bufanda y el corazón del héroe. Reúne aquello sobre lo que se construye una historia: la trama, los personajes, sus vínculos y los villanos que se les oponen.",
+        },
+        concept: {
+          color: "Plata",
+          why: "La plata es el cromado del casco y la idea fría que hay detrás de la temporada. Reúne el concepto.",
+        },
+        visual: {
+          color: "Dorado",
+          why: "El dorado es el cinturón y los ojos, lo primero que encuentra la vista. Reúne el aspecto de los Riders y el equipo que usan.",
+        },
+        craft: {
+          color: "Verde",
+          why: "El verde es el saltamontes del primer Rider y el trabajo hecho a mano. Reúne la realización de la temporada: la acción, las acrobacias y la dirección.",
+        },
+        rhythm: {
+          color: "Violeta",
+          why: "El violeta queda aparte de los otros cuatro colores y marca lo que lleva al espectador a lo largo de la temporada: la música y el ritmo.",
+        },
+      },
+      categories: {
+        theme: {
+          name: "Tema y concepto",
+          short: "Tema",
+          anchors: {
+            three: "La idea es prestada o vaga, y la temporada la abandona o la contradice con frecuencia.",
+            five: "Una idea clara pero familiar, que se mantiene a la vista sin explorarse mucho.",
+            seven: "Una idea distinta que da forma a la mayor parte de la temporada y se explora con cierta profundidad.",
+            nine: "Una idea memorable, con identidad propia, explorada desde varios ángulos y mantenida con coherencia hasta el final.",
+          },
+          scope: "La idea detrás de la temporada y qué tan bien la explora.",
+          boundary: "Aquí se juzgan el concepto y su coherencia. Los hechos de la trama pertenecen a Historia y trasfondo.",
+          subcriteria: {
+            originality: "Originalidad",
+            identity: "Identidad temática",
+            premise: "Premisa",
+            consistency: "Coherencia",
+            exploration: "Exploración de las ideas centrales",
+          },
+        },
+        design: {
+          name: "Diseño de los Riders e identidad visual",
+          short: "Diseño",
+          anchors: {
+            three: "Los diseños parecen inacabados o sin relación entre sí, y los Riders y los villanos no comparten ninguna lógica visual.",
+            five: "Diseños legibles que siguen las convenciones del género, con pocos que destacan.",
+            seven: "Diseños cohesionados con una identidad clara. Los Riders son fáciles de distinguir y varios diseños destacan.",
+            nine: "Una identidad visual fuerte en Riders, villanos y mundo. Los diseños son distintivos, coherentes y memorables por sí solos.",
+          },
+          scope: "Cómo se ven los Riders, los villanos y el mundo de la temporada.",
+          boundary:
+            "Solo el diseño estático. El movimiento pertenece a Acción y coreografía, el trabajo de cámara a Producción y dirección, y el equipo como sistema en funcionamiento a Equipo, formas y vehículos.",
+          subcriteria: {
+            riderDesigns: "Diseño de los Riders",
+            visualIdentity: "Identidad visual",
+            villainDesigns: "Diseño de villanos y monstruos",
+            aesthetics: "Estética",
+            visualConsistency: "Coherencia visual",
+          },
+        },
+        gear: {
+          name: "Equipo, formas y vehículos",
+          short: "Equipo",
+          anchors: {
+            three: "El equipo y las formas son genéricos o repetitivos, sirven de poco y son fáciles de olvidar.",
+            five: "Diseños y formas funcionales que cumplen su papel, con variedad limitada.",
+            seven: "Equipo y formas variados y bien diseñados, que importan en la historia y en las peleas.",
+            nine: "Un conjunto inventivo en el que cada pieza y cada forma tienen una función e identidad claras, y una forma nueva se siente como un acontecimiento.",
+          },
+          scope: "El cinturón, los dispositivos, las armas, las formas y los vehículos de los Riders, y cómo sirven a la temporada.",
+          boundary:
+            "Aquí cuentan el diseño y el funcionamiento. El aspecto de un Rider pertenece a Diseño de los Riders e identidad visual, y la ejecución de una pelea o de un golpe final a Acción y coreografía. El equipo se juzga por lo que aporta a la historia y a la acción, y no por lo bien que se vende.",
+          subcriteria: {
+            devices: "Diseño del cinturón y los dispositivos",
+            forms: "Transformación y formas",
+            weaponsVehicles: "Armas y vehículos",
+            rules: "Funcionalidad y reglas",
+            variety: "Variedad",
+            integration: "Integración en la temporada",
+          },
+        },
+        story: {
+          name: "Historia y trasfondo",
+          short: "Historia",
+          anchors: {
+            three: "La trama es difícil de seguir o queda sin resolver, y el mundo plantea preguntas que no responde.",
+            five: "Una trama directa, con principio y final. El mundo y los conflictos la sirven sin sorpresas.",
+            seven: "Una trama bien estructurada, con un mundo desarrollado y conflictos que crecen, resuelta de forma satisfactoria.",
+            nine: "Una historia con capas y coherente, cuya estructura, construcción del mundo y final se refuerzan entre sí y recompensan la atención a lo largo de toda la temporada.",
+          },
+          scope: "La trama, su estructura, la construcción del mundo y el desenlace.",
+          boundary:
+            "No subas ni bajes esta nota por los personajes, la música o el ritmo. Cómo se reparte la historia entre los episodios pertenece a Ritmo.",
+          subcriteria: {
+            structure: "Estructura narrativa",
+            worldbuilding: "Construcción del mundo",
+            continuity: "Continuidad",
+            plot: "Desarrollo de la trama",
+            conflicts: "Conflictos",
+            resolution: "Desenlace",
+          },
+        },
+        characters: {
+          name: "Personajes, compañeros y aliados",
+          short: "Personajes",
+          anchors: {
+            three: "Los personajes se definen por un solo rasgo y no cambian. El héroe está casi siempre solo, y las personas a su alrededor son decorado.",
+            five: "Personajes claros, con motivaciones comprensibles. Los compañeros y aliados ayudan al héroe, pero pocos tienen un arco propio.",
+            seven: "La mayor parte del reparto tiene una motivación y un arco, los vínculos entre los héroes se sienten ganados y los aliados importan en la historia.",
+            nine: "Los personajes se sienten como individuos, las alianzas y los vínculos marcan momentos clave, y el reparto de apoyo tiene sus propias apuestas y crecimiento.",
+          },
+          scope: "Los personajes individuales y las personas que rodean al héroe: motivaciones, arcos, compañeros, Riders aliados o rivales y el reparto de apoyo.",
+          boundary:
+            "Aquí se juzga el lado del héroe, incluidos los Riders que se alían o se enfrentan y quienes los ayudan. Los villanos, y el vínculo entre un héroe y un villano, pertenecen a Antagonistas y amenaza.",
+          subcriteria: {
+            characterization: "Caracterización",
+            arcs: "Arcos y crecimiento",
+            motivations: "Motivaciones",
+            bonds: "Alianzas y vínculos",
+            supportingCast: "Reparto de apoyo y aliados",
+            consistency: "Coherencia",
+          },
+        },
+        antagonists: {
+          name: "Antagonistas y amenaza",
+          short: "Antagonistas",
+          anchors: {
+            three: "Los villanos son genéricos o intercambiables, sus objetivos son vagos y suponen poca amenaza real.",
+            five: "Antagonistas claros, con objetivos comprensibles, que causan problemas de verdad, pero con poca conexión con el héroe y poco desarrollo.",
+            seven: "Villanos con motivos propios que desafían al héroe de forma relevante y escalan a lo largo de la temporada.",
+            nine: "Antagonistas que ponen a prueba aquello en lo que cree el héroe, con objetivos y métodos específicos, y cuya amenaza y desenlace definen la temporada.",
+          },
+          scope: "Los villanos como personajes y como amenaza: sus objetivos, su presencia y su efecto sobre el héroe y la temporada.",
+          boundary:
+            "Aquí se juzga a los antagonistas. Sus diseños pertenecen a Diseño de los Riders e identidad visual, sus peleas a Acción y coreografía y la trama que impulsan a Historia y trasfondo. El vínculo entre un héroe y un villano se juzga aquí y en ningún otro lugar.",
+          subcriteria: {
+            threat: "Amenaza y presencia",
+            goals: "Motivaciones y objetivos",
+            heroConnection: "Conexión con el héroe",
+            escalation: "Desafío y escalada",
+            antagonistSide: "El bando antagonista en conjunto",
+            payoff: "Desenlace y recompensa",
+          },
+        },
+        music: {
+          name: "Música y banda sonora",
+          short: "Música",
+          anchors: {
+            three: "La música es genérica, repetitiva o fuera de lugar, y el diseño de sonido aporta poco.",
+            five: "Una banda sonora competente que apoya las escenas, con pocas piezas que destacan.",
+            seven: "Temas memorables y música bien colocada que aporta emoción, con un diseño de sonido cuidadoso.",
+            nine: "Una banda sonora con identidad propia, cuyos temas y canciones insertadas elevan escenas clave y se quedan con el espectador.",
+          },
+          scope: "Canciones, partitura y diseño de sonido.",
+          boundary: "La música afecta solo a esta categoría. Una banda sonora potente no sube la nota de Historia y trasfondo.",
+          subcriteria: {
+            themeSongs: "Temas de apertura y cierre",
+            backgroundMusic: "Música de fondo",
+            insertSongs: "Canciones insertadas",
+            emotionalImpact: "Impacto emocional",
+            soundDesign: "Diseño de sonido",
+          },
+        },
+        action: {
+          name: "Acción y coreografía",
+          short: "Acción",
+          anchors: {
+            three: "Las peleas son cortas, confusas o repetitivas, con pocas acrobacias y poca creatividad.",
+            five: "Peleas competentes y legibles, con coreografía estándar y poca variación.",
+            seven: "Peleas variadas y claras, con buen trabajo acrobático y algunos momentos inventivos.",
+            nine: "Una coreografía inventiva y legible, que aprovecha bien el escenario y los poderes, con varias peleas memorables.",
+          },
+          scope: "Peleas, acrobacias y creatividad en el combate.",
+          boundary:
+          "Aquí cuentan la coreografía, la calidad de los dobles y los golpes finales. Las decisiones de cámara y montaje pertenecen a Producción y dirección, y el equipo detrás de un golpe a Equipo, formas y vehículos.",
+          subcriteria: {
+            choreography: "Coreografía de las peleas",
+            stuntWork: "Trabajo acrobático",
+            creativity: "Creatividad en el combate",
+            clarity: "Claridad visual",
+            actionDirection: "Dirección de la acción",
+          },
+        },
+        production: {
+          name: "Producción y dirección",
+          short: "Producción",
+          anchors: {
+            three: "Los problemas técnicos son frecuentes: encuadres confusos, montaje torpe, efectos que rompen la escena.",
+            five: "Ejecución competente dentro de sus medios. La dirección es funcional y casi siempre discreta.",
+            seven: "Dirección y montaje seguros, con efectos y presentación tratados con cuidado y algunas escenas llamativas.",
+            nine: "Dirección, montaje y efectos trabajan juntos con una intención clara, y la temporada se ve y se siente deliberada y pulida de principio a fin.",
+          },
+          scope: "Cómo se filma, se monta y se lleva a la pantalla la temporada.",
+          boundary:
+          "Se juzgan la dirección y la ejecución técnica. Los diseños de los Riders y del equipo pertenecen a otras categorías, y la coreografía de las peleas a Acción y coreografía.",
           subcriteria: {
             cinematography: "Fotografía",
             editing: "Montaje",

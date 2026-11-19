@@ -11,7 +11,7 @@ import { Swatch } from "@/components/ui/swatch";
 import { useScrollTop } from "@/components/ui/use-scroll-top";
 import { useI18n } from "@/i18n";
 import { numeral } from "@/features/evaluation/numerals";
-import { defaultProfileId, getProfile } from "@/profiles";
+import { defaultProfileId, getProfile, profileList } from "@/profiles";
 
 type Kind = "fact" | "intent";
 
@@ -42,7 +42,6 @@ function Section({ id, title, children }: { id: string; title: string; children:
 function ThemePanel({ theme, title, names }: { theme: "light" | "dark"; title: string; names: [string, string, string, string] }) {
   const { t } = useI18n();
   const tokens = ["--bg", "--surface", "--ink", "--accent"];
-  const pillars = getProfile(defaultProfileId).pillars;
   return (
     <div data-theme={theme} className="rounded-xl border p-4" style={{ background: "var(--bg)", color: "var(--ink)", borderColor: "var(--line-strong)" }}>
       <p className="m-0 font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: "var(--ink-soft)" }}>
@@ -56,11 +55,18 @@ function ThemePanel({ theme, title, names }: { theme: "light" | "dark"; title: s
       <p className="mb-0 mt-4 font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: "var(--ink-soft)" }}>
         {t("meaning.colors.rangers")}
       </p>
-      <div className="mt-2 flex flex-wrap items-start gap-x-3 gap-y-1">
-        {pillars.map((pillar) => (
-          <Swatch key={pillar.id} token={`--${pillar.tone}`} name={pillar.kanji} japanese size="sm" />
-        ))}
-      </div>
+      {profileList.map((profile) => (
+        <div key={profile.id} className="mt-2">
+          <p className="m-0 text-[12px]" style={{ color: "var(--ink-soft)" }}>
+            {t(`profiles.${profile.id}.title`)}
+          </p>
+          <div className="mt-1 flex flex-wrap items-start gap-x-3 gap-y-1">
+            {profile.pillars.map((pillar) => (
+              <Swatch key={pillar.id} token={`--${pillar.tone}`} name={pillar.kanji} japanese size="sm" />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -126,7 +132,11 @@ export function Meaning() {
 
         <Section id="pillars" title={t("meaning.pillars.title")}>
           <p className="m-0 max-w-2xl text-soft">{t("meaning.pillars.intro")}</p>
-          <div className="grid gap-4">
+        {profileList.map((profile) => {
+          const p = `profiles.${profile.id}`;
+          return (
+          <div key={profile.id} className="grid gap-4">
+            <h3 className="m-0 mt-2 text-[15px] font-bold">{t(`${p}.title`)} <span lang="ja" className="label ml-1">{t(`${p}.titleJa`)}</span></h3>
             {profile.pillars.map((pillar) => {
               const tone = `var(--${pillar.tone})`;
               const cats = profile.categories.filter((c) => c.pillarId === pillar.id);
@@ -142,11 +152,11 @@ export function Meaning() {
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="m-0 text-[16px] font-bold">{t(`${p}.pillars.${pillar.id}`)}</h3>
                       <span className="label">
-                        {t("meaning.pillars.colorLabel")}: {t(`meaning.pillars.items.${pillar.id}.color`)}
+                        {t("meaning.pillars.colorLabel")}: {t(`${p}.pillarMeaning.${pillar.id}.color`)}
                       </span>
                       <Tag kind="intent" />
                     </div>
-                    <p className="mb-3 mt-2 text-[14px]">{t(`meaning.pillars.items.${pillar.id}.why`)}</p>
+                    <p className="mb-3 mt-2 text-[14px]">{t(`${p}.pillarMeaning.${pillar.id}.why`)}</p>
                     <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
                       {cats.map((c) => (
                         <li key={c.id} className="rounded-full border border-line px-2.5 py-1 text-[12px]">
@@ -162,6 +172,8 @@ export function Meaning() {
               );
             })}
           </div>
+          );
+        })}
           <p className="m-0 text-[13px] text-soft">{t("meaning.pillars.note")}</p>
         </Section>
 

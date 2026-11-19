@@ -14,7 +14,8 @@ import type { Evaluation, Profile } from "@/core/types";
  * strict settings). When it fails the app simply works as it always did.
  */
 
-const DRAFT_KEY = "tokuten.draft";
+/** Each profile keeps its own draft. Sentai keeps the key it has always had, so existing drafts still open. */
+const draftKey = (profileId: string) => (profileId === "sentai" ? "tokuten.draft" : `tokuten.draft.${profileId}`);
 const PREFS_KEY = "tokuten.prefs";
 
 export function readPreferences(): Preferences {
@@ -35,7 +36,7 @@ export function writePreferences(patch: Partial<Preferences>): void {
 
 export function readDraft(profile: Profile): DraftParse {
   try {
-    return parseDraft(localStorage.getItem(DRAFT_KEY), profile);
+    return parseDraft(localStorage.getItem(draftKey(profile.id)), profile);
   } catch {
     return { ok: false };
   }
@@ -44,16 +45,16 @@ export function readDraft(profile: Profile): DraftParse {
 /** Returns false when the draft could not be written, for example storage full. */
 export function writeDraft(evaluation: Evaluation): boolean {
   try {
-    localStorage.setItem(DRAFT_KEY, JSON.stringify(toDraft(evaluation)));
+    localStorage.setItem(draftKey(evaluation.profileId), JSON.stringify(toDraft(evaluation)));
     return true;
   } catch {
     return false;
   }
 }
 
-export function clearDraft(): void {
+export function clearDraft(profileId: string): void {
   try {
-    localStorage.removeItem(DRAFT_KEY);
+    localStorage.removeItem(draftKey(profileId));
   } catch {
     /* ignore */
   }

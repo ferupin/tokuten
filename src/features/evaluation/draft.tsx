@@ -7,7 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import type { Evaluation } from "@/core/types";
 import { useI18n } from "@/i18n";
 import { clearDraft, readDraft, readPreferences, writeDraft, writePreferences } from "./persistence";
-import { useEvaluationStore } from "./use-store";
+import { useEvaluationStore, useEvaluationStoreApi } from "./use-store";
 
 const SAVE_DELAY = 500;
 
@@ -33,6 +33,7 @@ export function useDraft(): DraftController {
   const profile = useEvaluationStore((s) => s.profile);
   const evaluation = useEvaluationStore((s) => s.evaluation);
   const load = useEvaluationStore((s) => s.load);
+  const storeApi = useEvaluationStoreApi();
 
   const [ready, setReady] = useState(false);
   const [enabled, setEnabledState] = useState(true);
@@ -46,13 +47,13 @@ export function useDraft(): DraftController {
   useEffect(() => {
     const prefs = readPreferences();
     setEnabledState(prefs.draft);
-    const inMemory = !isBlank(profile, useEvaluationStore.getState().evaluation);
+    const inMemory = !isBlank(profile, storeApi.getState().evaluation);
     const found = prefs.draft && !inMemory ? readDraft(profile) : { ok: false as const };
     if (found.ok && !isBlank(profile, found.evaluation)) {
       setPending({ evaluation: found.evaluation, savedAt: found.savedAt });
     }
     setReady(true);
-  }, [profile]);
+  }, [profile, storeApi]);
 
   const active = ready && !pending;
 
@@ -76,7 +77,7 @@ export function useDraft(): DraftController {
   const save = useCallback(() => {
     const current = latest.current;
     if (isBlank(profile, current)) {
-      clearDraft();
+      clearDraft(profile.id);
       setSavedAt(null);
       setFailed(false);
       return;
@@ -131,11 +132,11 @@ export function useDraft(): DraftController {
     },
     discard: () => {
       anchor.current = captureAnchor();
-      clearDraft();
+      clearDraft(profile.id);
       setPending(null);
     },
     remove: () => {
-      clearDraft();
+      clearDraft(profile.id);
       setSavedAt(null);
     },
     setEnabled: (on) => {
@@ -143,7 +144,7 @@ export function useDraft(): DraftController {
       setEnabledState(on);
       setFailed(false);
       if (!on) {
-        clearDraft();
+        clearDraft(profile.id);
         setSavedAt(null);
       }
     },

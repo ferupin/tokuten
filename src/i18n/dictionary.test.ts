@@ -104,8 +104,8 @@ describe("profile text", () => {
       it("has a meaning text for every pillar, so a new profile cannot skip it", () => {
         for (const { flat } of all) {
           for (const pillar of profile.pillars) {
-            expect(flat[`meaning.pillars.items.${pillar.id}.color`], pillar.id).toBeTruthy();
-            expect(flat[`meaning.pillars.items.${pillar.id}.why`], pillar.id).toBeTruthy();
+            expect(flat[`${p}.pillarMeaning.${pillar.id}.color`], pillar.id).toBeTruthy();
+            expect(flat[`${p}.pillarMeaning.${pillar.id}.why`], pillar.id).toBeTruthy();
           }
         }
       });

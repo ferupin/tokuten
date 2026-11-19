@@ -7,7 +7,7 @@ import { GradeSlider } from "@/components/ui/grade-slider";
 import { Anchors } from "./anchors";
 import { useI18n } from "@/i18n";
 import { numeral } from "./numerals";
-import type { useEvaluationStore } from "./use-store";
+import { useEvaluationStore, useEvaluationStoreApi } from "./use-store";
 
 interface Props {
   index: number;
@@ -15,7 +15,6 @@ interface Props {
   category: Category;
   pillar: Pillar;
   result: CategoryResult;
-  store: typeof useEvaluationStore;
 }
 
 /**
@@ -23,10 +22,10 @@ interface Props {
  * directly. Guidance and notes stay one click away, so the shortcut never
  * hides what the category covers.
  */
-export function QuickRow({ index, profileId, category, pillar, result, store }: Props) {
+export function QuickRow({ index, profileId, category, pillar, result }: Props) {
   const { t } = useI18n();
-  const entry = store((s) => s.evaluation.categories[category.id]);
-  const actions = store.getState();
+  const entry = useEvaluationStore((s) => s.evaluation.categories[category.id]);
+  const actions = useEvaluationStoreApi().getState();
   const [open, setOpen] = useState(false);
 
   const base = `profiles.${profileId}.categories.${category.id}`;

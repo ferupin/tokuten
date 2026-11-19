@@ -19,6 +19,9 @@ export const en = {
     theme: { label: "Theme", light: "Light", dark: "Dark", system: "System" },
     language: { label: "Language" },
     skipToContent: "Skip to content",
+    profileSwitch: "Evaluation method",
+    provisional: "Provisional",
+    provisionalNote: "This profile is still being reviewed by people who know the works. Open an issue if something does not match.",
     footer: "Tokuten runs entirely in your browser. Nothing is sent anywhere. A draft stays on this device.",
     madeBy: "Made by",
     version: "Version {version}",
@@ -32,7 +35,6 @@ export const en = {
   evaluation: {
     sectionTitle: "Category evaluation",
     seasonLabel: "Season",
-    seasonPlaceholder: "For example: Kaizoku Sentai Gokaiger",
     introductionLabel: "Introduction",
     introductionPlaceholder: "A short presentation of the season and what it sets out to do.",
     progress: "{graded} of {total} categories graded",
@@ -198,31 +200,9 @@ export const en = {
     pillars: {
       title: "The five pillars",
       intro:
-        "The ten categories are grouped under five colors, echoing the classic five color team of Super Sentai. The grouping is visual only and never changes a weight or a score.",
+        "The ten categories are grouped under five colors. In Super Sentai they echo the classic five color team, and in Kamen Rider they take the colors of the Riders. The grouping is visual only and never changes a weight or a score.",
       colorLabel: "Color",
       categoriesLabel: "Categories",
-      items: {
-        narrative: {
-          color: "Red",
-          why: "Red is the leader and the heart of the team. It holds what a story is built on: the plot, the characters and the bond between them.",
-        },
-        concept: {
-          color: "Blue",
-          why: "Blue is cool and thoughtful. It holds the idea behind the season.",
-        },
-        visual: {
-          color: "Yellow",
-          why: "Yellow is light and attention. It holds what the eye meets first: suits, enemy designs and mecha.",
-        },
-        craft: {
-          color: "Green",
-          why: "Green is growth and work done by hand. It holds the making of the season: action, stunts and direction.",
-        },
-        rhythm: {
-          color: "Pink",
-          why: "Pink comes from the peach (桃) and stands for movement and warmth. It holds what carries a viewer through the season.",
-        },
-      },
       note: "Color is never the only carrier of meaning. Every pillar also has a kanji and a text label.",
     },
     seal: {
@@ -459,6 +439,9 @@ export const en = {
   profiles: {
     sentai: {
       name: "Kijun: Super Sentai",
+      title: "Super Sentai",
+      titleJa: "スーパー戦隊",
+      example: "For example: Kaizoku Sentai Gokaiger",
       checklist: {
         noNostalgia: "I gave no bonus for nostalgia.",
         noAgePenalty: "I applied no penalty for age or production limits.",
@@ -477,6 +460,28 @@ export const en = {
         visual: "Visual",
         craft: "Craft",
         rhythm: "Rhythm and Sound",
+      },
+      pillarMeaning: {
+        narrative: {
+          color: "Red",
+          why: "Red is the leader and the heart of the team. It holds what a story is built on: the plot, the characters and the bond between them.",
+        },
+        concept: {
+          color: "Blue",
+          why: "Blue is cool and thoughtful. It holds the idea behind the season.",
+        },
+        visual: {
+          color: "Yellow",
+          why: "Yellow is light and attention. It holds what the eye meets first: suits, enemy designs and mecha.",
+        },
+        craft: {
+          color: "Green",
+          why: "Green is growth and work done by hand. It holds the making of the season: action, stunts and direction.",
+        },
+        rhythm: {
+          color: "Pink",
+          why: "Pink comes from the peach (桃) and stands for movement and warmth. It holds what carries a viewer through the season.",
+        },
       },
       categories: {
         theme: {
@@ -651,6 +656,259 @@ export const en = {
           scope: "How the season is filmed, edited and brought to the screen.",
           boundary:
             "Judge direction and technical execution. Suit and robot designs belong elsewhere, and fight choreography belongs to Action & Choreography.",
+          subcriteria: {
+            cinematography: "Cinematography",
+            editing: "Editing",
+            directing: "Directing",
+            practicalEffects: "Practical effects",
+            presentation: "Visual presentation",
+            execution: "Production execution",
+          },
+        },
+        pacing: {
+          name: "Pacing & Overall Execution",
+          short: "Pacing",
+          anchors: {
+            three: "An uneven rhythm. Filler or rushing weakens the momentum, and intentions go undelivered.",
+            five: "Mostly steady, with noticeable slow or rushed stretches.",
+            seven: "Good rhythm with purposeful episodes. Momentum holds, with few weak stretches.",
+            nine: "Every stretch earns its time. Momentum builds across the whole season, and it delivers what it sets out to.",
+          },
+          scope: "Rhythm across the whole run: consistency, filler and momentum.",
+          boundary:
+            "Judge how well the screen time is used. The quality of the plot itself belongs to Story & Lore.",
+          subcriteria: {
+            consistency: "Episode-to-episode consistency",
+            rhythm: "Narrative rhythm",
+            filler: "Filler",
+            momentum: "Momentum",
+            screenTime: "Use of screen time",
+            delivery: "Delivery of intentions",
+          },
+        },
+      },
+    },
+    "kamen-rider": {
+      name: "Kijun: Kamen Rider",
+      title: "Kamen Rider",
+      titleJa: "仮面ライダー",
+      example: "For example: Kamen Rider Build",
+      checklist: {
+        noNostalgia: "I gave no bonus for nostalgia.",
+        noAgePenalty: "I applied no penalty for age or production limits.",
+        attemptAndSuccess: "I judged what the season attempts and how well it succeeds.",
+        conceptVsExecution: "I kept an interesting concept apart from its execution.",
+        quantityVsQuality: "I did not confuse quantity with quality.",
+        noDoubleCounting: "I did not count the same strength or weakness in more than one category.",
+        wholeSeason: "I considered the whole season, not only its best or worst episodes.",
+        concreteExamples: "I supported each judgment with concrete examples.",
+        noPopularityBonus: "I did not inflate a grade because the season is popular.",
+        noForcedLow: "I did not force a low grade just to look objective.",
+      },
+      pillars: {
+        narrative: "Narrative",
+        concept: "Concept",
+        visual: "Visual",
+        craft: "Craft",
+        rhythm: "Rhythm and Sound",
+      },
+      pillarMeaning: {
+        narrative: {
+          color: "Red",
+          why: "Red is the scarf and the heart of the hero. It holds what a story is built on: the plot, the characters, their bonds and the villains who oppose them.",
+        },
+        concept: {
+          color: "Silver",
+          why: "Silver is the chrome of the helmet and the cold idea behind the season. It holds the concept.",
+        },
+        visual: {
+          color: "Gold",
+          why: "Gold is the belt and the eyes, what the eye meets first. It holds how the Riders look and the gear they use.",
+        },
+        craft: {
+          color: "Green",
+          why: "Green is the grasshopper of the first Rider, and work done by hand. It holds the making of the season: action, stunts and direction.",
+        },
+        rhythm: {
+          color: "Violet",
+          why: "Violet sits apart from the other four colors and marks what carries a viewer through the season: the music and the pacing.",
+        },
+      },
+      categories: {
+        theme: {
+          name: "Theme & Concept",
+          short: "Theme",
+          anchors: {
+            three: "The idea is borrowed or vague, and the season drops it or contradicts it often.",
+            five: "A clear but familiar idea that stays in view without being explored much.",
+            seven: "A distinct idea that shapes most of the season and is explored with some depth.",
+            nine: "A memorable idea with its own identity, explored from several angles and held consistently to the end.",
+          },
+          scope: "The idea behind the season and how well it explores that idea.",
+          boundary: "Judge the concept and its consistency here. Plot events belong to Story & Lore.",
+          subcriteria: {
+            originality: "Originality",
+            identity: "Thematic identity",
+            premise: "Premise",
+            consistency: "Consistency",
+            exploration: "Exploration of central ideas",
+          },
+        },
+        design: {
+          name: "Rider Design & Visual Identity",
+          short: "Design",
+          anchors: {
+            three: "Designs look unfinished or unrelated to each other, and the Riders and the villains share no visual logic.",
+            five: "Readable designs that follow the conventions of the genre, with few that stand out.",
+            seven: "Cohesive designs with a clear identity. The Riders are easy to tell apart and several designs stand out.",
+            nine: "A strong visual identity across Riders, villains and world. Designs are distinctive, consistent and memorable on their own.",
+          },
+          scope: "How the Riders, the villains and the world of the season look.",
+          boundary:
+            "Static design only. Movement belongs to Action & Choreography, camera work to Production & Direction, and gear as a working system to Gear, Forms & Vehicles.",
+          subcriteria: {
+            riderDesigns: "Rider designs",
+            visualIdentity: "Visual identity",
+            villainDesigns: "Villain and monster designs",
+            aesthetics: "Aesthetics",
+            visualConsistency: "Visual consistency",
+          },
+        },
+        gear: {
+          name: "Gear, Forms & Vehicles",
+          short: "Gear",
+          anchors: {
+            three: "Gear and forms are generic or repetitive, serve little purpose and are easy to forget.",
+            five: "Functional designs and forms that do the job, with limited variety.",
+            seven: "Varied, well designed gear and forms that matter in the story and in the fights.",
+            nine: "An inventive set where each piece and form has a clear function and identity, and a new form feels like an event.",
+          },
+          scope: "The driver, devices, weapons, forms and vehicles of the Riders, and how they serve the season.",
+          boundary:
+            "Design and function count here. How a Rider looks belongs to Rider Design & Visual Identity, and how a fight or a finishing move is performed to Action & Choreography. Gear is judged on what it does for the story and the action, not on how well it sells.",
+          subcriteria: {
+            devices: "Driver and device designs",
+            forms: "Transformation and forms",
+            weaponsVehicles: "Weapons and vehicles",
+            rules: "Functionality and rules",
+            variety: "Variety",
+            integration: "Integration into the season",
+          },
+        },
+        story: {
+          name: "Story & Lore",
+          short: "Story",
+          anchors: {
+            three: "The plot is hard to follow or left unresolved, and the world raises questions it does not answer.",
+            five: "A straightforward plot with a beginning and an end. The world and the conflicts serve it without surprise.",
+            seven: "A well structured plot with a developed world and conflicts that build, resolved in a satisfying way.",
+            nine: "A layered, coherent story whose structure, worldbuilding and ending reinforce each other and reward attention across the whole season.",
+          },
+          scope: "The plot, its structure, worldbuilding and resolution.",
+          boundary:
+            "Do not raise or lower this grade because of characters, music or pacing. How the story is spread across episodes belongs to Pacing.",
+          subcriteria: {
+            structure: "Narrative structure",
+            worldbuilding: "Worldbuilding",
+            continuity: "Continuity",
+            plot: "Plot development",
+            conflicts: "Conflicts",
+            resolution: "Resolution",
+          },
+        },
+        characters: {
+          name: "Characters, Partners & Allies",
+          short: "Characters",
+          anchors: {
+            three: "Characters are defined by one trait and do not change. The hero stands mostly alone, and the people around him are decoration.",
+            five: "Clear characters with understandable motivations. Partners and allies help the hero, but few have an arc of their own.",
+            seven: "Most of the cast has a motivation and an arc, the bonds between heroes feel earned, and allies matter to the story.",
+            nine: "Characters feel like individuals, the partnerships and bonds shape key moments, and the supporting cast has its own stakes and growth.",
+          },
+          scope: "Individual characters and the people around the hero: motivations, arcs, partners, allied or rival Riders and the supporting cast.",
+          boundary:
+            "Judge the hero's side here, including Riders who ally or clash and the people who help them. Villains, and the bond between a hero and a villain, belong to Antagonists & Threat.",
+          subcriteria: {
+            characterization: "Characterization",
+            arcs: "Arcs and growth",
+            motivations: "Motivations",
+            bonds: "Partnerships and bonds",
+            supportingCast: "Supporting cast and allies",
+            consistency: "Consistency",
+          },
+        },
+        antagonists: {
+          name: "Antagonists & Threat",
+          short: "Antagonists",
+          anchors: {
+            three: "The villains are generic or interchangeable, their goals are vague and they pose little real threat.",
+            five: "Clear antagonists with understandable goals who cause real trouble, but with little connection to the hero and little development.",
+            seven: "Villains with their own motives who challenge the hero in ways that matter and escalate across the season.",
+            nine: "Antagonists who test what the hero believes, with goals and methods that feel specific, whose threat and payoff define the season.",
+          },
+          scope: "The villains as characters and as a threat: their goals, their presence and their effect on the hero and the season.",
+          boundary:
+            "Judge the antagonists here. Their designs belong to Rider Design & Visual Identity, their fights to Action & Choreography and the plot they drive to Story & Lore. A bond between a hero and a villain is judged here and nowhere else.",
+          subcriteria: {
+            threat: "Threat and presence",
+            goals: "Motivations and goals",
+            heroConnection: "Connection to the hero",
+            escalation: "Challenge and escalation",
+            antagonistSide: "The antagonist side as a whole",
+            payoff: "Resolution and payoff",
+          },
+        },
+        music: {
+          name: "Music & Soundtrack",
+          short: "Music",
+          anchors: {
+            three: "Music is generic, repetitive or out of place, and the sound design adds little.",
+            five: "A competent soundtrack that supports the scenes, with few pieces that stand out.",
+            seven: "Memorable themes and well placed music that adds emotion, with careful sound design.",
+            nine: "A soundtrack with its own identity, whose themes and insert songs lift key scenes and stay with the viewer.",
+          },
+          scope: "Songs, score and sound design.",
+          boundary: "Music affects only this category. A strong soundtrack does not lift the Story & Lore grade.",
+          subcriteria: {
+            themeSongs: "Opening and ending themes",
+            backgroundMusic: "Background music",
+            insertSongs: "Insert songs",
+            emotionalImpact: "Emotional impact",
+            soundDesign: "Sound design",
+          },
+        },
+        action: {
+          name: "Action & Choreography",
+          short: "Action",
+          anchors: {
+            three: "Fights are short, confusing or repetitive, with limited stunts and little creativity.",
+            five: "Competent, readable fights with standard choreography and little variation.",
+            seven: "Varied, clear fights with good stunt work and some inventive moments.",
+            nine: "Inventive, readable choreography that uses the setting and the powers well, with several standout fights.",
+          },
+          scope: "Fights, stunts and combat creativity.",
+          boundary:
+          "Choreography, stunt quality and finishing moves count here. Camera and editing choices belong to Production & Direction, and the gear behind a move to Gear, Forms & Vehicles.",
+          subcriteria: {
+            choreography: "Fight choreography",
+            stuntWork: "Stunt work",
+            creativity: "Combat creativity",
+            clarity: "Visual clarity",
+            actionDirection: "Action direction",
+          },
+        },
+        production: {
+          name: "Production & Direction",
+          short: "Production",
+          anchors: {
+            three: "Technical problems are frequent: unclear framing, awkward editing, effects that break the scene.",
+            five: "Competent execution within its means. Direction is functional and mostly unobtrusive.",
+            seven: "Confident direction and editing, with effects and presentation handled carefully and some striking scenes.",
+            nine: "Direction, editing and effects work together with clear intent, and the season looks and feels deliberate and polished throughout.",
+          },
+          scope: "How the season is filmed, edited and brought to the screen.",
+          boundary:
+          "Judge direction and technical execution. Rider and gear designs belong elsewhere, and fight choreography belongs to Action & Choreography.",
           subcriteria: {
             cinematography: "Cinematography",
             editing: "Editing",

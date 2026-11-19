@@ -23,6 +23,7 @@ What made it possible, for the record:
 
 - **Kamen Rider.** A profile is plain data, so the scoring code does not change. The categories, weights and subcriteria need a discussion first. Size: medium. Help welcome.
 - Other franchises follow the same path.
+- **Beyond tokusatsu.** Tokuten is the permanent name and brand, whatever the profiles cover. In time the method could serve anime first, then series and films, with each community getting a profile of its own. This is a direction and not a plan. The shape of a more neutral profile will be decided once a third profile exists to compare against.
 
 ## Languages
 

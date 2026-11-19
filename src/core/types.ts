@@ -10,7 +10,7 @@ export type PillarId = string;
 export type CategoryId = string;
 export type SubcriterionId = string;
 
-/** A group of categories, shown with the color and kanji of a ranger. */
+/** A group of categories, shown with a color and a kanji. */
 export interface Pillar {
   id: PillarId;
   /** Single kanji used as the visual mark, for example 赤. */
@@ -18,7 +18,7 @@ export interface Pillar {
   /** Romanized reading, for example "aka". */
   reading: string;
   /** Design token name, resolved to a color by the theme. */
-  tone: "red" | "blue" | "yellow" | "green" | "pink";
+  tone: "red" | "blue" | "yellow" | "green" | "pink" | "silver" | "gold" | "violet";
 }
 
 export interface Category {
@@ -38,6 +38,8 @@ export interface Profile {
   id: string;
   /** Version of the weights and categories, bumped on any change. */
   version: number;
+  /** True until people who know the works have reviewed the profile. Shown in the interface. */
+  provisional?: boolean;
   pillars: readonly Pillar[];
   categories: readonly Category[];
   scale: { min: number; max: number; step: number };

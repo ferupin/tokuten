@@ -18,9 +18,19 @@ import { ModeSwitch } from "./mode-switch";
 import { DraftBanner, DraftSavedChip, DraftStatus, useDraft } from "./draft";
 import { QuickRow } from "./quick-row";
 import { ShortcutsButton, ShortcutsDialog, useShortcuts } from "./shortcuts";
-import { useEvaluationStore } from "./use-store";
+import { ProfileSwitch } from "./profile-switch";
+import { ProfileProvider, useEvaluationStore } from "./use-store";
 
-export function Evaluator() {
+/** The evaluation page of one profile. Each profile has its own store and its own draft. */
+export function Evaluator({ profileId }: { profileId: string }) {
+  return (
+    <ProfileProvider profileId={profileId}>
+      <EvaluatorView />
+    </ProfileProvider>
+  );
+}
+
+function EvaluatorView() {
   const { t } = useI18n();
   useScrollTop();
   const profile = useEvaluationStore((s) => s.profile);
@@ -84,8 +94,8 @@ export function Evaluator() {
 
       <main id="main" tabIndex={-1} className="mx-auto max-w-5xl space-y-10 px-4 pb-24 pt-10 outline-none">
         <section>
-          <p className="label m-0">{t(`profiles.${profile.id}.name`)}</p>
-          <h1 className="mb-2 mt-2 font-display text-[clamp(30px,5.5vw,52px)] font-normal leading-[1.05]">{t("app.tagline")}</h1>
+          <ProfileSwitch current={profile.id} />
+          <h1 className="mb-2 mt-4 font-display text-[clamp(30px,5.5vw,52px)] font-normal leading-[1.05]">{t("app.tagline")}</h1>
           <p className="m-0 max-w-2xl text-soft">{t("app.description")}</p>
         </section>
 
@@ -97,7 +107,7 @@ export function Evaluator() {
               className="field !text-xl font-bold"
               autoComplete="off"
               spellCheck={false}
-              placeholder={t("evaluation.seasonPlaceholder")}
+              placeholder={t(`profiles.${profile.id}.example`)}
               value={evaluation.title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -160,7 +170,6 @@ export function Evaluator() {
                   category={category}
                   pillar={pillar}
                   result={result.categories[i]}
-                  store={useEvaluationStore}
                 />
               ) : (
                 <CategoryCard
@@ -170,7 +179,6 @@ export function Evaluator() {
                   category={category}
                   pillar={pillar}
                   result={result.categories[i]}
-                  store={useEvaluationStore}
                   open={openIds.has(category.id)}
                   onToggle={() => toggle(category.id)}
                 />

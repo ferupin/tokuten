@@ -7,7 +7,7 @@ import { GradeSlider } from "@/components/ui/grade-slider";
 import { Anchors } from "./anchors";
 import { useI18n } from "@/i18n";
 import { numeral } from "./numerals";
-import type { useEvaluationStore } from "./use-store";
+import { useEvaluationStore, useEvaluationStoreApi } from "./use-store";
 
 interface Props {
   index: number;
@@ -15,15 +15,14 @@ interface Props {
   category: Category;
   pillar: Pillar;
   result: CategoryResult;
-  store: typeof useEvaluationStore;
   open: boolean;
   onToggle: () => void;
 }
 
-export function CategoryCard({ index, profileId, category, pillar, result, store, open, onToggle }: Props) {
+export function CategoryCard({ index, profileId, category, pillar, result, open, onToggle }: Props) {
   const { t } = useI18n();
-  const entry = store((s) => s.evaluation.categories[category.id]);
-  const s = store.getState();
+  const entry = useEvaluationStore((s) => s.evaluation.categories[category.id]);
+  const s = useEvaluationStoreApi().getState();
   const manual = entry.override !== null;
 
   const base = `profiles.${profileId}.categories.${category.id}`;

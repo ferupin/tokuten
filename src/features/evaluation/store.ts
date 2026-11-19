@@ -1,8 +1,8 @@
-import { create } from "zustand";
+import { createStore, type StoreApi } from "zustand/vanilla";
 import { createEvaluation } from "@/core/scoring";
 import type { CategoryId, Evaluation, EvaluationMode, Profile, SubcriterionId } from "@/core/types";
 
-interface EvaluationState {
+export interface EvaluationState {
   profile: Profile;
   evaluation: Evaluation;
   setMode: (mode: EvaluationMode) => void;
@@ -24,8 +24,10 @@ interface EvaluationState {
  * In-memory store. Nothing is persisted: closing the tab clears the evaluation,
  * which is intentional. Export to JSON when you want to keep one.
  */
-export function createEvaluationStore(profile: Profile) {
-  return create<EvaluationState>((set) => {
+export type EvaluationStore = StoreApi<EvaluationState>;
+
+export function createEvaluationStore(profile: Profile): EvaluationStore {
+  return createStore<EvaluationState>((set) => {
     const patchCategory = (id: CategoryId, patch: (c: Evaluation["categories"][string]) => Evaluation["categories"][string]) =>
       set((s) => ({
         evaluation: {

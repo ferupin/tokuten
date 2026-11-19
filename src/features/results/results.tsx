@@ -8,7 +8,7 @@ import { isBlank } from "@/core/draft";
 import { buildCardData } from "@/core/share-card";
 import { decodeShare, encodeShare } from "@/core/share-link";
 import { DEFAULT_MESSAGE_STYLE, type MessageStyle } from "@/core/share-message";
-import { profiles } from "@/profiles";
+import { profileRoute, profiles } from "@/profiles";
 import { computeResult } from "@/core/scoring";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { Footer } from "@/components/ui/footer";
@@ -18,7 +18,7 @@ import { Segmented } from "@/components/ui/segmented";
 import { Switch } from "@/components/ui/switch";
 import { useScrollTop } from "@/components/ui/use-scroll-top";
 import { readPreferences, writePreferences } from "@/features/evaluation/persistence";
-import { useEvaluationStore } from "@/features/evaluation/use-store";
+import { ProfileProvider, lastProfileId, storeFor, useEvaluationStore } from "@/features/evaluation/use-store";
 import { useI18n } from "@/i18n";
 import { LAYOUTS, LAYOUT_SIZE, drawCard, loadCardFonts, renderCard, type CardLayout } from "./draw-card";
 import type { CardTheme } from "./palette";
@@ -66,12 +66,20 @@ function CardCanvas({
   );
 }
 
+/** The page works on the profile that was open last, and opens a shared result in the profile it belongs to. */
 export function Results() {
+  return (
+    <ProfileProvider profileId={lastProfileId()}>
+      <ResultsView />
+    </ProfileProvider>
+  );
+}
+
+function ResultsView() {
   const { t } = useI18n();
   const { resolvedTheme } = useTheme();
   const profile = useEvaluationStore((s) => s.profile);
   const evaluation = useEvaluationStore((s) => s.evaluation);
-  const load = useEvaluationStore((s) => s.load);
   const router = useRouter();
   const ownResult = useMemo(() => computeResult(profile, evaluation), [profile, evaluation]);
   useScrollTop();
@@ -199,12 +207,14 @@ export function Results() {
 
   const openShared = () => {
     if (!shared) return;
-    if (!isBlank(profile, evaluation) && !confirming) {
+    // The result opens in its own profile, and only that profile's work can be replaced.
+    const target = storeFor(shared.profile.id);
+    if (!isBlank(shared.profile, target.getState().evaluation) && !confirming) {
       setConfirming(true);
       return;
     }
-    load(shared.evaluation);
-    router.push("/");
+    target.getState().load(shared.evaluation);
+    router.push(profileRoute(shared.profile.id));
   };
 
   const showOwn = () => {

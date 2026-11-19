@@ -33,7 +33,7 @@ function ratio(a: string, b: string): number {
 describe("contrast", () => {
   for (const [name, theme] of Object.entries(themes)) {
     it(`keeps category colors readable as text in the ${name} theme (AA, 4.5:1)`, () => {
-      for (const token of ["--red", "--blue", "--yellow", "--green", "--pink"]) {
+      for (const token of ["--red", "--blue", "--yellow", "--green", "--pink", "--silver", "--gold", "--violet"]) {
         for (const surface of ["--bg", "--surface"]) {
           expect(ratio(color(theme, token), color(theme, surface)), `${token} on ${surface}`).toBeGreaterThanOrEqual(4.5);
         }

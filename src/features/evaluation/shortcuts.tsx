@@ -7,7 +7,8 @@ import { Switch } from "@/components/ui/switch";
 import { applyGradeKey, GRADE_BUFFER_MS } from "@/core/shortcuts";
 import { useI18n } from "@/i18n";
 import { readPreferences, writePreferences } from "./persistence";
-import { useEvaluationStore } from "./use-store";
+import type { EvaluationStore } from "./store";
+import { useEvaluationStoreApi } from "./use-store";
 
 const TEXT_INPUTS = new Set(["", "text", "search", "email", "url", "tel", "password", "number", "date", "time"]);
 
@@ -46,8 +47,8 @@ function afterDraw(run: () => void) {
  * category opens its card, and leaving it closes the card, so only one stays open.
  * Categories that are not applicable, or with no subcriterion left, are skipped.
  */
-function walkSubcriteria(direction: 1 | -1, active: Element | null) {
-  const store = useEvaluationStore.getState();
+function walkSubcriteria(api: EvaluationStore, direction: 1 | -1, active: Element | null) {
+  const store = api.getState();
   const articles = Array.from(document.querySelectorAll<HTMLElement>("[data-category]"));
   const walkable = (article: HTMLElement) => {
     const entry = store.evaluation.categories[article.dataset.category!];
@@ -101,6 +102,7 @@ export interface ShortcutsController {
  */
 export function useShortcuts(notify: (message: string) => void): ShortcutsController {
   const { t } = useI18n();
+  const api = useEvaluationStoreApi();
   const [enabled, setEnabledState] = useState(true);
   const [open, setOpen] = useState(false);
   const typed = useRef({ buffer: "", at: 0 });
@@ -130,8 +132,8 @@ export function useShortcuts(notify: (message: string) => void): ShortcutsContro
       if (key === "j" || key === "k") {
         if (!articles.length) return;
         e.preventDefault();
-        if (useEvaluationStore.getState().evaluation.mode === "detailed") {
-          walkSubcriteria(key === "j" ? 1 : -1, active);
+        if (api.getState().evaluation.mode === "detailed") {
+          walkSubcriteria(api, key === "j" ? 1 : -1, active);
           return;
         }
         const at = current ? articles.indexOf(current) : -1;
@@ -143,7 +145,7 @@ export function useShortcuts(notify: (message: string) => void): ShortcutsContro
 
       if (!current) return;
       const id = current.dataset.category!;
-      const store = useEvaluationStore.getState();
+      const store = api.getState();
 
       if (key === "n") {
         e.preventDefault();
@@ -177,7 +179,7 @@ export function useShortcuts(notify: (message: string) => void): ShortcutsContro
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [api]);
 
   return {
     enabled,

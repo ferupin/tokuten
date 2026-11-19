@@ -26,6 +26,9 @@
   --yellow: #8a5f00;
   --green: #4f7440;
   --pink: #a14a6c;
+  --silver: #566170;
+  --gold: #8a5f00;
+  --violet: #6f4bb8;
 
   --good: #4f7440;
   --warn: #a9770d;
@@ -54,6 +57,9 @@
   --yellow: #e0b04a;
   --green: #86b573;
   --pink: #e48fb1;
+  --silver: #b9c3cf;
+  --gold: #e0b04a;
+  --violet: #ab90e8;
 
   --good: #86b573;
   --warn: #e0b04a;
@@ -564,5 +570,65 @@ html[data-modal-open] footer {
   }
   .no-print {
     display: none !important;
+  }
+}
+
+/* The choice of evaluation method, where the profile label used to be. */
+.profile-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+}
+.profile-switch-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+.profile-switch-item > span {
+  font-size: 11px;
+  opacity: 0.7;
+}
+.profile-switch-item:hover {
+  color: var(--ink);
+}
+.profile-switch-item[data-on] {
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 600;
+}
+.profile-switch-item:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.profile-tag {
+  display: inline-block;
+  padding: 1px 6px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  color: var(--warn);
+}
+@media (max-width: 479px) {
+  /* On a phone the Japanese names would push the choice onto two lines. */
+  .profile-switch-item > span {
+    display: none;
+  }
+  .profile-switch-item {
+    padding: 7px 12px;
   }
 }

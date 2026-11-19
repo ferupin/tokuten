@@ -1,6 +1,6 @@
 import type { Translate } from "./export-markdown";
 import { formatGrade, gradeBand } from "./grades";
-import type { EvaluationResult, Profile } from "./types";
+import type { EvaluationResult, Pillar, Profile } from "./types";
 
 /**
  * The data a shared card is allowed to show.
@@ -15,7 +15,7 @@ export interface CardRow {
   name: string;
   /** Pillar kanji, decoration only. The name carries the meaning. */
   kanji: string;
-  tone: "red" | "blue" | "yellow" | "green" | "pink";
+  tone: Pillar["tone"];
   /** Null when not graded or not applicable. */
   grade: number | null;
   gradeText: string;
